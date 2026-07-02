@@ -1,0 +1,32 @@
+sources:
+  - id: hf_zachz_prompt_injection_benchmark
+    platform: huggingface
+    name: zachz/prompt-injection-benchmark
+    purpose: external_test
+    license: MIT
+    url: https://huggingface.co/datasets/zachz/prompt-injection-benchmark
+    notes: "303 rows, labeled injection/benign, category and severity."
+
+  - id: hf_neuralchemy_prompt_injection
+    platform: huggingface
+    name: neuralchemy/Prompt-injection-dataset
+    purpose: train_validation
+    license: MIT
+    url: https://huggingface.co/datasets/neuralchemy/Prompt-injection-dataset
+    notes: "Binary detection dataset, 29 attack categories."
+
+  - id: hf_chillies_ielts_task2
+    platform: huggingface
+    name: chillies/IELTS-writing-task-2-evaluation
+    purpose: clean_ielts_base
+    license: CC-BY-4.0
+    url: https://huggingface.co/datasets/chillies/IELTS-writing-task-2-evaluation
+    notes: "IELTS Writing Task 2 essays with approximate band scores."
+
+  - id: kaggle_ielts_scored_essays
+    platform: kaggle
+    name: mazlumi/ielts-writing-scored-essays-dataset
+    purpose: clean_ielts_base
+    license: CC0-Public-Domain
+    url: https://www.kaggle.com/datasets/mazlumi/ielts-writing-scored-essays-dataset
+    notes: "IELTS essays and band scores."

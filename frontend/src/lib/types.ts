@@ -121,3 +121,31 @@ export interface BenchmarkSummary {
   false_positive_rate: number;
   case_results: BenchmarkCaseResult[];
 }
+
+export interface BenchmarkCaseEvaluationResultV2 {
+  sample_id: string;
+  group_id: string;
+  label: string;
+  attack_type: string;
+  expected_action: string;
+  predicted_action: string;
+  risk_score: number;
+  passed: boolean;
+  error_type?: string | null;
+}
+
+export interface BenchmarkReportV2 {
+  benchmark_id: string;
+  total_cases: number;
+  passed_cases: number;
+  accuracy: number;
+  precision: number;
+  recall: number;
+  macro_f1: number;
+  false_positive_rate: number;
+  under_block_rate: number;
+  over_block_rate: number;
+  by_attack_type: Record<string, { accuracy: number; total: number }>;
+  by_language: Record<string, { accuracy: number; total: number }>;
+  failure_cases: BenchmarkCaseEvaluationResultV2[];
+}

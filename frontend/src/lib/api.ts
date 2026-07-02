@@ -1,0 +1,64 @@
+import {
+  CompareResponse,
+  DashboardStats,
+  FirewallResult,
+  GradingResult,
+  RedteamResult,
+  SecureGradeResponse,
+  SecurityEvent,
+} from "./types";
+
+const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+
+async function request<T>(path: string, options?: RequestInit): Promise<T> {
+  const res = await fetch(`${API_BASE}${path}`, {
+    headers: {
+      "Content-Type": "application/json",
+      ...(options?.headers || {}),
+    },
+    ...options,
+  });
+
+  if (!res.ok) {
+    const text = await res.text();
+    throw new Error(text || `Request failed: ${res.status}`);
+  }
+
+  return res.json();
+}
+
+export const api = {
+  generateAttack: (body: { text: string; task_type: string; attack_type: string }) =>
+    request<RedteamResult>("/api/redteam/generate", {
+      method: "POST",
+      body: JSON.stringify(body),
+    }),
+
+  analyzeFirewall: (body: { text: string; task_type: string }) =>
+    request<FirewallResult>("/api/firewall/analyze", {
+      method: "POST",
+      body: JSON.stringify(body),
+    }),
+
+  baselineGrade: (body: { text: string; task_type: string }) =>
+    request<GradingResult>("/api/grade/baseline", {
+      method: "POST",
+      body: JSON.stringify(body),
+    }),
+
+  secureGrade: (body: { text: string; task_type: string }) =>
+    request<SecureGradeResponse>("/api/grade/secure", {
+      method: "POST",
+      body: JSON.stringify(body),
+    }),
+
+  compare: (body: { original_text: string; injected_text: string; task_type: string }) =>
+    request<CompareResponse>("/api/grade/compare", {
+      method: "POST",
+      body: JSON.stringify(body),
+    }),
+
+  dashboardStats: () => request<DashboardStats>("/api/dashboard/stats"),
+
+  dashboardEvents: () => request<SecurityEvent[]>("/api/dashboard/events"),
+};

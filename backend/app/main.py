@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.config import settings
-from app.api import firewall, redteam, grading, dashboard
+from app.api import firewall, redteam, grading, dashboard, benchmark
 
 
 app = FastAPI(title=settings.app_name)
@@ -25,3 +25,4 @@ app.include_router(firewall.router, prefix="/api/firewall", tags=["firewall"])
 app.include_router(redteam.router, prefix="/api/redteam", tags=["redteam"])
 app.include_router(grading.router, prefix="/api/grade", tags=["grading"])
 app.include_router(dashboard.router, prefix="/api/dashboard", tags=["dashboard"])
+app.include_router(benchmark.router, prefix="/api/benchmark", tags=["benchmark"])

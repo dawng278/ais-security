@@ -1,4 +1,5 @@
 import {
+  BenchmarkSummary,
   CompareResponse,
   DashboardStats,
   FirewallResult,
@@ -61,4 +62,6 @@ export const api = {
   dashboardStats: () => request<DashboardStats>("/api/dashboard/stats"),
 
   dashboardEvents: () => request<SecurityEvent[]>("/api/dashboard/events"),
+
+  runBenchmark: () => request<BenchmarkSummary>("/api/benchmark/run", { method: "POST" }),
 };

@@ -102,3 +102,22 @@ export interface SecurityEvent {
   explanation: string;
   created_at: string;
 }
+
+export interface BenchmarkCaseResult {
+  id: string;
+  label: string;
+  expected_action: string;
+  actual_action: string;
+  risk_score: number;
+  passed: boolean;
+}
+
+export interface BenchmarkSummary {
+  total_cases: number;
+  passed_cases: number;
+  accuracy: number;
+  precision: number;
+  recall: number;
+  false_positive_rate: number;
+  case_results: BenchmarkCaseResult[];
+}

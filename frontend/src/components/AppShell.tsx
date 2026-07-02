@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { ShieldAlert, Terminal, LayoutDashboard, GitCompare, ShieldCheck } from "lucide-react";
+import { ShieldCheck, Terminal, LayoutDashboard, BarChart3 } from "lucide-react";
 
 interface AppShellProps {
   children: React.ReactNode;
@@ -38,6 +38,13 @@ export const AppShell: React.FC<AppShellProps> = ({ children }) => {
             >
               <LayoutDashboard className="w-4 h-4 text-emerald-400" />
               <span>Dashboard</span>
+            </Link>
+            <Link
+              href="/benchmark"
+              className="flex items-center space-x-2 px-3 py-2 rounded-md hover:bg-slate-800 text-slate-300 hover:text-white transition"
+            >
+              <BarChart3 className="w-4 h-4 text-teal-400" />
+              <span>Benchmark</span>
             </Link>
           </nav>
         </div>

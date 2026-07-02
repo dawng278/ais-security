@@ -28,11 +28,11 @@ Student Submission
 cd backend
 python3 -m venv venv && source venv/bin/activate
 pip install -r requirements.txt
-uvicorn app.main:app --reload --port 8000
+uvicorn app.main:app --reload --port 8001
 ```
 
-Backend API health check: [http://localhost:8000/health](http://localhost:8000/health)  
-Interactive API docs: [http://localhost:8000/docs](http://localhost:8000/docs)
+Backend API health check: [http://localhost:8001/health](http://localhost:8001/health)  
+Interactive API docs: [http://localhost:8001/docs](http://localhost:8001/docs)
 
 ### 2. Run Frontend (Next.js)
 

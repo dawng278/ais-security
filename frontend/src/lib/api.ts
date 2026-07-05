@@ -6,6 +6,7 @@ import {
   BenchmarkSummary,
   CompareResponse,
   DashboardStats,
+  DatasetLineageReport,
   FailureAnalysisResponse,
   FirewallResult,
   GradingResult,
@@ -13,6 +14,7 @@ import {
   SecureGradeResponse,
   SecurityEvent,
 } from "./types";
+
 
 const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
@@ -80,7 +82,10 @@ export const api = {
 
   getEvidenceLatest: () => request<any>("/api/evidence/latest"),
 
+  getLineageReport: () => request<DatasetLineageReport>("/api/lineage/report"),
+
   getArenaProfiles: () => request<AttackerProfile[]>("/api/arena/profiles"),
+
 
   runArenaScenario: (body: ArenaRunRequest) =>
     request<ArenaRunResponse>("/api/arena/run", {

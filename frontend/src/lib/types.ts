@@ -216,4 +216,36 @@ export interface FailureAnalysisResponse {
   failures: FailureAnalysisItem[];
 }
 
+export interface DataSourceLineage {
+  source_id: string;
+  platform: string;
+  purpose: string;
+  license_status: string;
+  raw_rows: number;
+  accepted_rows: number;
+  rejected_rows: number;
+  notes: string;
+}
+
+export interface TransformStage {
+  stage: string;
+  input_rows: number;
+  output_rows: number;
+  rejected_rows: number;
+  reason: string;
+}
+
+export interface DatasetLineageReport {
+  dataset_version: string;
+  dataset_sha256?: string | null;
+  sources: DataSourceLineage[];
+  stages: TransformStage[];
+  split_distribution: Record<string, number>;
+  label_distribution: Record<string, number>;
+  attack_type_distribution: Record<string, number>;
+  language_distribution: Record<string, number>;
+  notes: string[];
+}
+
+
 

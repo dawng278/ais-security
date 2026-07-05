@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { ShieldCheck, Terminal, LayoutDashboard, BarChart3, Swords } from "lucide-react";
+import { ShieldCheck, Terminal, LayoutDashboard, BarChart3, Swords, GitBranch } from "lucide-react";
 
 interface AppShellProps {
   children: React.ReactNode;
@@ -53,9 +53,17 @@ export const AppShell: React.FC<AppShellProps> = ({ children }) => {
               <BarChart3 className="w-4 h-4 text-teal-400" />
               <span>Benchmark</span>
             </Link>
+            <Link
+              href="/data-lineage"
+              className="flex items-center space-x-2 px-3 py-2 rounded-md hover:bg-slate-800 text-indigo-400 font-medium hover:text-indigo-300 transition"
+            >
+              <GitBranch className="w-4 h-4 text-indigo-400" />
+              <span>Data Lineage</span>
+            </Link>
           </nav>
         </div>
       </header>
+
 
       {/* Main Content */}
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">

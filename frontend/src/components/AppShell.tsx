@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { ShieldCheck, Terminal, LayoutDashboard, BarChart3, Swords, GitBranch } from "lucide-react";
+import { ShieldCheck, Terminal, LayoutDashboard, BarChart3, Swords, GitBranch, Trophy } from "lucide-react";
 
 interface AppShellProps {
   children: React.ReactNode;
@@ -24,38 +24,45 @@ export const AppShell: React.FC<AppShellProps> = ({ children }) => {
             </div>
           </div>
 
-          <nav className="flex items-center space-x-1 sm:space-x-4 text-sm">
+          <nav className="flex items-center space-x-1 sm:space-x-3 text-sm">
+            <Link
+              href="/judge-view"
+              className="flex items-center space-x-1.5 px-3 py-1.5 rounded-md bg-amber-950/60 hover:bg-amber-900/80 text-amber-300 font-bold border border-amber-800/80 transition"
+            >
+              <Trophy className="w-4 h-4 text-amber-400" />
+              <span>Judge View</span>
+            </Link>
             <Link
               href="/attack-arena"
-              className="flex items-center space-x-2 px-3 py-2 rounded-md hover:bg-slate-800 text-rose-400 font-medium hover:text-rose-300 transition"
+              className="flex items-center space-x-1.5 px-2.5 py-1.5 rounded-md hover:bg-slate-800 text-rose-400 font-medium hover:text-rose-300 transition"
             >
               <Swords className="w-4 h-4 text-rose-400" />
               <span>Attack Arena</span>
             </Link>
             <Link
               href="/playground"
-              className="flex items-center space-x-2 px-3 py-2 rounded-md hover:bg-slate-800 text-slate-300 hover:text-white transition"
+              className="flex items-center space-x-1.5 px-2.5 py-1.5 rounded-md hover:bg-slate-800 text-slate-300 hover:text-white transition"
             >
               <Terminal className="w-4 h-4 text-cyan-400" />
               <span>Playground</span>
             </Link>
             <Link
               href="/dashboard"
-              className="flex items-center space-x-2 px-3 py-2 rounded-md hover:bg-slate-800 text-slate-300 hover:text-white transition"
+              className="flex items-center space-x-1.5 px-2.5 py-1.5 rounded-md hover:bg-slate-800 text-slate-300 hover:text-white transition"
             >
               <LayoutDashboard className="w-4 h-4 text-emerald-400" />
               <span>Dashboard</span>
             </Link>
             <Link
               href="/benchmark"
-              className="flex items-center space-x-2 px-3 py-2 rounded-md hover:bg-slate-800 text-slate-300 hover:text-white transition"
+              className="flex items-center space-x-1.5 px-2.5 py-1.5 rounded-md hover:bg-slate-800 text-slate-300 hover:text-white transition"
             >
               <BarChart3 className="w-4 h-4 text-teal-400" />
               <span>Benchmark</span>
             </Link>
             <Link
               href="/data-lineage"
-              className="flex items-center space-x-2 px-3 py-2 rounded-md hover:bg-slate-800 text-indigo-400 font-medium hover:text-indigo-300 transition"
+              className="flex items-center space-x-1.5 px-2.5 py-1.5 rounded-md hover:bg-slate-800 text-indigo-400 font-medium hover:text-indigo-300 transition"
             >
               <GitBranch className="w-4 h-4 text-indigo-400" />
               <span>Data Lineage</span>
@@ -63,6 +70,7 @@ export const AppShell: React.FC<AppShellProps> = ({ children }) => {
           </nav>
         </div>
       </header>
+
 
 
       {/* Main Content */}

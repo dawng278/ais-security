@@ -8,7 +8,9 @@ Welcome to the comprehensive documentation repository for **GradingGuard AI**, a
 
 | Document | Description | Key Focus Area |
 | :--- | :--- | :--- |
+| 🔍 **[Verification Report](./verification_report.md)** | Final Pre-Submission Audit | Test logs, API smoke test results, failure breakdown |
 | 📄 **[Executive Summary](./executive_summary.md)** | 1-Page High-Level Overview | Problem, solution, core results, differentiators |
+
 | 📘 **[Technical Report](./technical_report.md)** | Full 3,000-Word Specification | 16-section technical deep dive into gateway architecture |
 | 📊 **[Evaluation Report](./evaluation_report.md)** | Empirical Evaluation & Metrics | Benchmark v3 methodology, score integrity, failure analysis |
 | 🛡️ **[Threat Model](./threat_model.md)** | Security Risk & Threat Matrix | Attacker personas, assets, boundaries, risk controls |

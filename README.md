@@ -2,13 +2,13 @@
 
 > **Evidence-driven AI Security Gateway for Trustworthy LLM-based IELTS Grading**
 
-GradingGuard AI is an enterprise-grade AI security gateway designed to protect automated IELTS Writing and Speaking evaluation pipelines against prompt injection attacks, role spoofing, and band score manipulation.
+GradingGuard AI is a competition-ready AI security gateway prototype (with a clear production hardening path) designed to protect automated IELTS Writing and Speaking evaluation pipelines against prompt injection attacks, role spoofing, and band score manipulation.
 
 ---
 
 ## 1. Overview
 
-As educational institutions and language assessment platforms adopt Large Language Models (LLMs) for automated scoring, they face a critical security vulnerability: **Prompt Injection embedded inside student exam submissions**. 
+As educational institutions and language assessment platforms adopt Large Language Models (LLMs) for automated scoring, they face a critical security vulnerability: **Prompt Injection embedded inside student submissions**. 
 
 Because LLMs process prompt templates and student answers within the same context window, a malicious student can embed invisible or explicit instructions that hijack the grader's system prompt, causing the AI to award artificially high scores (e.g., inflating a Band 5.5 essay to a Band 8.5).
 
@@ -31,11 +31,11 @@ GradingGuard AI acts as a transparent security firewall that sits between incomi
 
 ## 3. Core Demo Result
 
-| Scenario | IELTS Band | Status | Defense Impact |
+| Scenario | IELTS Band | Status | Security Recovery |
 | :--- | :---: | :---: | :--- |
 | **Clean essay** | **5.5** | Normal | Authentic Baseline |
 | **Injected without firewall** | **8.5** | Vulnerable | +3.0 Band Inflation |
-| **Injected with GradingGuard AI** | **5.5** | Protected | 100% Score Integrity Recovered |
+| **Injected with GradingGuard AI** | **5.5** | Protected | 100% Defense Recovery (Core Demo) |
 
 **Key Metric Summary**:
 - **Score Inflation**: +3.0 Bands
@@ -198,6 +198,7 @@ Sources include Hugging Face benchmarks, Kaggle datasets, clean IELTS essay pool
 
 For detailed competition documentation, technical specifications, and evaluation reports, see the [`docs/`](./docs/README.md) directory:
 
+- [Verification & Audit Report](./docs/verification_report.md) *(Final pre-submission audit)*
 - [Executive Summary](./docs/executive_summary.md)
 - [Technical Report](./docs/technical_report.md)
 - [Evaluation Report](./docs/evaluation_report.md)

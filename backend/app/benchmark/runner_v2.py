@@ -70,6 +70,8 @@ def run_benchmark_v2(samples: List[BenchmarkSample]) -> BenchmarkReportV2:
                 risk_score=res.risk_score,
                 passed=passed,
                 error_type=error_type,
+                language=sample.language,
+                text_preview=sample.text[:120] + ("..." if len(sample.text) > 120 else ""),
             )
         )
 

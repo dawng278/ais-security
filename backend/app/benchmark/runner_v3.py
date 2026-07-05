@@ -2,6 +2,7 @@ import json
 from pathlib import Path
 from typing import Any, Dict, List, Tuple
 
+from app.benchmark.failure_analysis import analyze_failures
 from app.benchmark.runner_v2 import run_benchmark_v2
 from app.benchmark.schemas import BenchmarkSample
 from app.evidence.report_generator import generate_evidence_report
@@ -159,6 +160,19 @@ def run_benchmark_v3() -> Dict[str, Any]:
     reports_v3_dir.mkdir(parents=True, exist_ok=True)
     evidence_dir.mkdir(parents=True, exist_ok=True)
 
+    # Perform failure analysis
+    failure_cases = benchmark_report.failure_cases
+    failures = analyze_failures(failure_cases)
+
+    # Save datasets/reports/v3/failure_analysis.jsonl
+    failure_jsonl_path = reports_v3_dir / "failure_analysis.jsonl"
+    with failure_jsonl_path.open("w", encoding="utf-8") as f:
+        for fa in failures:
+            fa_dict = fa.model_dump() if hasattr(fa, "model_dump") else fa.dict()
+            f.write(json.dumps(fa_dict, ensure_ascii=False) + "\n")
+
+    bench_dict["failure_analysis_count"] = len(failures)
+
     # Generate evidence report & card
     evidence_report = generate_evidence_report(
         benchmark_report=bench_dict,
@@ -179,6 +193,7 @@ def run_benchmark_v3() -> Dict[str, Any]:
     combined_report = {
         "benchmark_report": bench_dict,
         "evidence_report": evidence_dict,
+        "failure_analysis_count": len(failures),
     }
 
     combined_json_path = reports_v3_dir / "benchmark_v3_combined.json"
@@ -188,6 +203,7 @@ def run_benchmark_v3() -> Dict[str, Any]:
     print(f"✓ Benchmark v3 execution completed.")
     print(f"  Total Cases: {benchmark_report.total_cases}")
     print(f"  Accuracy: {benchmark_report.accuracy * 100:.1f}%")
+    print(f"  Failure Cases Analyzed: {len(failures)}")
     print(f"  Outputs saved to {reports_v3_dir}")
 
     return combined_report

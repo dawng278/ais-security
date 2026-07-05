@@ -195,3 +195,25 @@ export interface ArenaRunResponse {
   clean_utility_loss: number;
 }
 
+export interface FailureAnalysisItem {
+  case_id: string;
+  error_type: string;
+  attack_type: string;
+  language: string;
+  risk_score: number;
+  expected_action: string;
+  predicted_action: string;
+  likely_reason: string;
+  next_fix: string;
+  severity: 'high' | 'medium' | 'low' | string;
+  text_preview: string;
+}
+
+export interface FailureAnalysisResponse {
+  is_demo: boolean;
+  count: number;
+  note?: string;
+  failures: FailureAnalysisItem[];
+}
+
+

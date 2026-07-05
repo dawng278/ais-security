@@ -32,6 +32,9 @@ class BenchmarkCaseEvaluationResult(BaseModel):
     risk_score: float
     passed: bool
     error_type: Optional[str] = None  # false_positive, false_negative, under_block, over_block
+    language: Optional[str] = "en"
+    text_preview: Optional[str] = ""
+
 
 
 class BenchmarkReportV2(BaseModel):

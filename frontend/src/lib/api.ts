@@ -6,6 +6,7 @@ import {
   BenchmarkSummary,
   CompareResponse,
   DashboardStats,
+  FailureAnalysisResponse,
   FirewallResult,
   GradingResult,
   RedteamResult,
@@ -71,6 +72,14 @@ export const api = {
 
   runBenchmarkV2: () => request<BenchmarkReportV2>("/api/benchmark/run_v2", { method: "POST" }),
 
+  runBenchmarkV3: () => request<any>("/api/benchmark/v3/run", { method: "POST" }),
+
+  getBenchmarkV3Report: () => request<any>("/api/benchmark/v3/report"),
+
+  getBenchmarkFailureAnalysis: () => request<FailureAnalysisResponse>("/api/benchmark/v3/failure-analysis"),
+
+  getEvidenceLatest: () => request<any>("/api/evidence/latest"),
+
   getArenaProfiles: () => request<AttackerProfile[]>("/api/arena/profiles"),
 
   runArenaScenario: (body: ArenaRunRequest) =>
@@ -79,4 +88,3 @@ export const api = {
       body: JSON.stringify(body),
     }),
 };
-

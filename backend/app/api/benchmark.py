@@ -1,9 +1,11 @@
 import json
 from pathlib import Path
 from fastapi import APIRouter, HTTPException
-from app.benchmark.schemas import BenchmarkReportV2
+
+from app.benchmark.failure_analysis import seeded_failure_analysis
 from app.benchmark.runner_v2 import run_benchmark_v2
 from app.benchmark.runner_v3 import run_benchmark_v3
+from app.benchmark.schemas import BenchmarkReportV2
 from app.benchmark.transforms.injectors import generate_ielts_injected_samples
 
 router = APIRouter()
@@ -64,3 +66,48 @@ def get_benchmark_v3_report():
             status_code=500,
             detail=f"Failed to read benchmark v3 report: {str(e)}",
         )
+
+
+@router.get("/v3/failure-analysis")
+def get_failure_analysis():
+    root = resolve_project_root()
+    failure_file = root / "datasets" / "reports" / "v3" / "failure_analysis.jsonl"
+
+    if not failure_file.exists():
+        seeded = seeded_failure_analysis()
+        return {
+            "is_demo": True,
+            "count": len(seeded),
+            "note": "Demo failure analysis data (file missing, run Benchmark v3 first)",
+            "failures": [s.model_dump() if hasattr(s, "model_dump") else s.dict() for s in seeded],
+        }
+
+    failures = []
+    try:
+        with failure_file.open("r", encoding="utf-8") as f:
+            for line in f:
+                line = line.strip()
+                if not line:
+                    continue
+                failures.append(json.loads(line))
+    except Exception as e:
+        raise HTTPException(
+            status_code=500,
+            detail=f"Failed to read failure analysis JSONL: {str(e)}",
+        )
+
+    if not failures:
+        seeded = seeded_failure_analysis()
+        return {
+            "is_demo": True,
+            "count": len(seeded),
+            "note": "Demo failure analysis data (empty file)",
+            "failures": [s.model_dump() if hasattr(s, "model_dump") else s.dict() for s in seeded],
+        }
+
+    return {
+        "is_demo": False,
+        "count": len(failures),
+        "note": "Real failure analysis from latest benchmark run",
+        "failures": failures,
+    }

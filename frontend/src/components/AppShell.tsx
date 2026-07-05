@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { ShieldCheck, Terminal, LayoutDashboard, BarChart3 } from "lucide-react";
+import { ShieldCheck, Terminal, LayoutDashboard, BarChart3, Swords } from "lucide-react";
 
 interface AppShellProps {
   children: React.ReactNode;
@@ -25,6 +25,13 @@ export const AppShell: React.FC<AppShellProps> = ({ children }) => {
           </div>
 
           <nav className="flex items-center space-x-1 sm:space-x-4 text-sm">
+            <Link
+              href="/attack-arena"
+              className="flex items-center space-x-2 px-3 py-2 rounded-md hover:bg-slate-800 text-rose-400 font-medium hover:text-rose-300 transition"
+            >
+              <Swords className="w-4 h-4 text-rose-400" />
+              <span>Attack Arena</span>
+            </Link>
             <Link
               href="/playground"
               className="flex items-center space-x-2 px-3 py-2 rounded-md hover:bg-slate-800 text-slate-300 hover:text-white transition"

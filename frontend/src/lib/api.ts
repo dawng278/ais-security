@@ -1,4 +1,7 @@
 import {
+  ArenaRunRequest,
+  ArenaRunResponse,
+  AttackerProfile,
   BenchmarkReportV2,
   BenchmarkSummary,
   CompareResponse,
@@ -10,7 +13,7 @@ import {
   SecurityEvent,
 } from "./types";
 
-const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8001";
+const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
 async function request<T>(path: string, options?: RequestInit): Promise<T> {
   const res = await fetch(`${API_BASE}${path}`, {
@@ -67,4 +70,13 @@ export const api = {
   runBenchmark: () => request<BenchmarkSummary>("/api/benchmark/run", { method: "POST" }),
 
   runBenchmarkV2: () => request<BenchmarkReportV2>("/api/benchmark/run_v2", { method: "POST" }),
+
+  getArenaProfiles: () => request<AttackerProfile[]>("/api/arena/profiles"),
+
+  runArenaScenario: (body: ArenaRunRequest) =>
+    request<ArenaRunResponse>("/api/arena/run", {
+      method: "POST",
+      body: JSON.stringify(body),
+    }),
 };
+

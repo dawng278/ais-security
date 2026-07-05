@@ -149,3 +149,49 @@ export interface BenchmarkReportV2 {
   by_language: Record<string, { accuracy: number; total: number }>;
   failure_cases: BenchmarkCaseEvaluationResultV2[];
 }
+
+export interface AttackerProfile {
+  profile_id: string;
+  name: string;
+  description: string;
+  skill_level: string;
+  attack_types: string[];
+}
+
+export interface DefenseStep {
+  name: string;
+  status: string;
+  details: string;
+}
+
+export interface ArenaAttempt {
+  attempt_id: number;
+  attack_type: string;
+  injected_span: string;
+  baseline_score: number;
+  secure_score: number;
+  risk_score: number;
+  action: FirewallAction | string;
+  result_status: string;
+  removed_spans: string[];
+  defense_steps: DefenseStep[];
+}
+
+export interface ArenaRunRequest {
+  original_text: string;
+  profile_id: string;
+  task_type?: TaskType | string;
+}
+
+export interface ArenaRunResponse {
+  scenario_id: string;
+  profile: AttackerProfile;
+  attempts: ArenaAttempt[];
+  total_attempts: number;
+  secured_attempts: number;
+  manual_review_attempts: number;
+  benign_allowed: number;
+  total_score_inflation_prevented: number;
+  clean_utility_loss: number;
+}
+

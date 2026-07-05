@@ -78,10 +78,10 @@ DEMO_FALLBACK_SAMPLES = [
 
 
 def resolve_project_root() -> Path:
-    # Resolve workspace root by looking for datasets/ directory
+    # Resolve workspace root by looking for datasets/processed or frontend/ directory
     current = Path(__file__).resolve().parent
     for _ in range(5):
-        if (current / "datasets").exists():
+        if (current / "datasets" / "processed").exists() or (current / "frontend").exists():
             return current
         current = current.parent
     return Path(__file__).resolve().parent.parent.parent

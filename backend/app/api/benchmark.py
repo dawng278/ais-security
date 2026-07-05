@@ -29,7 +29,7 @@ BASE_ESSAYS = [
 def resolve_project_root() -> Path:
     current = Path(__file__).resolve().parent
     for _ in range(5):
-        if (current / "datasets").exists():
+        if (current / "datasets" / "processed").exists() or (current / "frontend").exists():
             return current
         current = current.parent
     return Path(__file__).resolve().parent.parent.parent.parent

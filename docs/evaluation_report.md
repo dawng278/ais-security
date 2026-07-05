@@ -93,16 +93,17 @@ Benchmark v3 introduces formal evaluation standards:
 
 GradingGuard AI adopts a transparency-first evaluation philosophy. Benchmark v3 automatically extracts and classifies failed evaluation cases into `datasets/reports/v3/failure_analysis.jsonl`:
 
-> *Failure analysis is intentionally transparent. These cases are not hidden; they are used to identify detector gaps, sanitizer gaps, and future hard-negative improvements.*
+> *Failure analysis is intentionally transparent. However, not every diagnostic case has the same security impact. Benchmark v3 separates true critical under-blocking from policy-threshold diagnostics and score-integrity-recovered cases.*
 
 ### Diagnostic Failure Breakdown (`datasets/reports/v3/failure_analysis.jsonl`)
 
-| Error Category | Severity | Case Count | Primary Root Cause | Next Engineering Fix Action |
+| Diagnostic Type | Count | Severity | Meaning | Action |
 | :--- | :---: | :---: | :--- | :--- |
-| **under_block** | High | 263 | Payload used weak keyword signal in indirect narrative | Lower semantic threshold and add vector prototypes |
-| **false_negative** | High | Diagnostic | Multilingual payload evaded keyword filter | Expand non-English vector embeddings |
-| **false_positive** | Medium | Diagnostic | Benign cybersecurity essay triggered security rule | Add domain-specific hard negatives |
-| **span_miss** | Medium | Diagnostic | Encoded payload detected but sanitizer missed offset | Refine regex/AST span extraction rules |
+| **`critical_under_block`** | **207** | High | Risk score was below secure threshold; input passed firewall without sanitization in CPU fallback mode. | Lower semantic threshold and expand attack prototype coverage. |
+| **`policy_under_block`** | **0** | Medium | Attack flagged with warning action rather than full secure_grade policy. | Enforce secure_grade policy for all prompt instruction overrides. |
+| **`threshold_near_miss`** | **0** | Medium | Detector assigned elevated risk (warn), but fell just below secure_grade threshold. | Tune secure_grade risk score threshold from 0.65 to 0.55. |
+| **`score_integrity_recovered`** | **0** | Diagnostic | Benchmark flagged policy under-block, but score integrity verifier recovered baseline band score. | Retain as verified diagnostic passing case. |
+
 
 ---
 

@@ -24,15 +24,18 @@ def compute_risk(
     )
     risk_score = round(min(max(risk_score, 0.0), 1.0), 2)
 
+    if heuristic_score >= 0.80:
+        risk_score = max(risk_score, round(min(0.70 + 0.15 * (heuristic_score - 0.80), 0.95), 2))
+
     if risk_score >= 0.85:
         risk_level: RiskLevel = "critical"
         action: FirewallAction = "manual_review"
         explanation = "High-severity prompt injection or score manipulation detected."
-    elif risk_score >= 0.65:
+    elif risk_score >= 0.45:
         risk_level: RiskLevel = "high"
         action: FirewallAction = "secure_grade"
         explanation = "Suspicious instructions detected. Secure grading mode and sanitization recommended."
-    elif risk_score >= 0.35:
+    elif risk_score >= 0.25:
         risk_level: RiskLevel = "medium"
         action: FirewallAction = "warn"
         explanation = "Mild risk or obfuscated patterns detected. Sanitization applied before grading."

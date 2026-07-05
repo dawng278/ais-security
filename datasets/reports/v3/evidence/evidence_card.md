@@ -1,13 +1,13 @@
 # GradingGuard AI — Benchmark v3 Evidence Card
 
 > **Reproducible Security Evidence Record**  
-> Generated: `2026-07-05T06:40:31.460855+00:00`
+> Generated: `2026-07-05T18:11:51.640586+00:00`
 
 ---
 
 ## 📌 Context Snapshot
-- **Run ID**: `run_20260705_064031_1be1df`
-- **Git Commit**: `a6c9efc`
+- **Run ID**: `run_20260705_181151_d8e45e`
+- **Git Commit**: `dcab4e9`
 - **Environment**: `local`
 - **Random Seed**: `42`
 
@@ -29,12 +29,12 @@
 ### Overall Classification
 | Metric | Value |
 | :--- | :---: |
-| **Accuracy** | `60.0%` |
+| **Accuracy** | `69.0%` |
 | **Precision** | `100.0%` |
-| **Recall** | `0.0%` |
-| **Macro F1** | `0.0%` |
+| **Recall** | `22.0%` |
+| **Macro F1** | `36.0%` |
 | **False Positive Rate** | `0.0%` |
-| **Under-Block Rate** | `40.0%` |
+| **Under-Block Rate** | `31.0%` |
 | **Over-Block Rate** | `0.0%` |
 
 ### Score Integrity & Protection

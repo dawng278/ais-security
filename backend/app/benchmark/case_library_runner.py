@@ -22,6 +22,7 @@ class CaseLibraryEvaluationResult(BaseModel):
     failure_reason: Optional[str] = None
     under_block_risk: str
     over_block_risk: str
+    stakeholder_lenses: List[str] = Field(default_factory=list)
     evidence_observed: Dict[str, Any] = Field(default_factory=dict)
     text_preview: str = ""
 
@@ -137,6 +138,7 @@ def evaluate_single_case(sc_case: ScenarioCase) -> CaseLibraryEvaluationResult:
         failure_reason=failure_reason,
         under_block_risk=sc_case.decision_rationale.under_block_risk,
         over_block_risk=sc_case.decision_rationale.over_block_risk,
+        stakeholder_lenses=sc_case.stakeholder_lenses,
         evidence_observed=evidence,
         text_preview=sc_case.text[:100],
     )

@@ -308,6 +308,7 @@ export interface CaseLibraryEvaluationResult {
   failure_reason?: string | null;
   under_block_risk: string;
   over_block_risk: string;
+  stakeholder_lenses?: string[];
   evidence_observed?: Record<string, any>;
   text_preview: string;
 }
@@ -325,6 +326,16 @@ export interface CaseLibraryEvaluationReport {
   strongest_perspective: string;
   is_demo?: boolean;
   results: CaseLibraryEvaluationResult[];
+}
+
+export interface StakeholderLens {
+  stakeholder_id: string;
+  name: string;
+  main_concern: string;
+  what_good_looks_like: string;
+  risk_if_underblocked: string;
+  risk_if_overblocked: string;
+  evidence_needed: string[];
 }
 
 

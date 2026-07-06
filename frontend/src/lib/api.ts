@@ -13,6 +13,7 @@ import {
   MultiPerspectiveReport,
   DecisionMatrixItem,
   CaseLibraryEvaluationReport,
+  StakeholderLens,
   RedteamResult,
   SecureGradeResponse,
   SecurityEvent,
@@ -105,4 +106,6 @@ export const api = {
   getCaseLibraryReport: () => request<CaseLibraryEvaluationReport>("/api/benchmark/case-library"),
 
   runCaseLibrary: () => request<CaseLibraryEvaluationReport>("/api/benchmark/case-library/run", { method: "POST" }),
+
+  getStakeholderLenses: () => request<{ stakeholders: StakeholderLens[] }>("/api/benchmark/stakeholder-lenses"),
 };

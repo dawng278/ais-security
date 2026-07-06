@@ -76,8 +76,23 @@
 
 ---
 
-### **Q15: What would you build next if given additional development time?**
-**Answer**:
-1. Export detector models to ONNX runtime for sub-10ms hardware acceleration.
-2. Implement an automated active learning pipeline that harvests benchmark failure logs to auto-tune detection thresholds.
-3. Extend the gateway architecture to process IELTS Speaking audio streams and STT transcript injections.
+---
+
+### **Q16: Why do you use multiple stakeholder perspectives?**
+**Answer**: Because the same detection decision has different real-world consequences. For students, overblocking is a fairness issue (wrongful penalty). For examiners, underblocking is a rubric integrity issue (unearned score inflation). For platform operators, misrouting is an operational cost issue. For auditors, the key question is whether the decision can be reproduced and evidenced. Evaluating across multiple stakeholder lenses ensures that GradingGuard AI functions as a complete governance solution rather than a simple classifier.
+
+---
+
+### **Q17: What happens when the model is uncertain?**
+**Answer**: GradingGuard AI does not blindly grade uncertain high-risk cases. It can route them to `manual_review`, preserving student fairness while preventing hidden manipulation from reaching downstream LLM graders.
+
+---
+
+### **Q18: How do you prevent the system from becoming too aggressive?**
+**Answer**: We evaluate hard negatives such as academic cybersecurity essays and quoted attack phrases. These cases measure whether the firewall preserves benign student content instead of acting as a crude keyword filter.
+
+---
+
+### **Q19: Why not optimize only for highest recall?**
+**Answer**: In high-stakes education, optimizing solely for highest recall creates unfair overblocking on legitimate essays. GradingGuard AI balances security recall with score integrity, false positive risk, manual review rate, and audit evidence quality.
+

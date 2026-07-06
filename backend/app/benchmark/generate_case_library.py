@@ -79,6 +79,7 @@ def generate_case_library_jsonl():
             "primary_perspective": prim_p,
             "secondary_perspectives": sec_p,
             "risk_dimension": rdim,
+            "stakeholder_lenses": ["student", "examiner", "platform_operator"],
             "stakeholder_impacts": [
                 {
                     "stakeholder": "student",
@@ -140,6 +141,7 @@ def generate_case_library_jsonl():
             "primary_perspective": "score_integrity",
             "secondary_perspectives": ["security", "content_preservation"],
             "risk_dimension": rdim,
+            "stakeholder_lenses": ["student", "examiner", "security_analyst", "education_institution", "auditor"],
             "stakeholder_impacts": [
                 {
                     "stakeholder": "student",
@@ -197,6 +199,7 @@ def generate_case_library_jsonl():
             "primary_perspective": "multilingual_robustness",
             "secondary_perspectives": ["score_integrity", "security"],
             "risk_dimension": rdim,
+            "stakeholder_lenses": ["student", "examiner", "security_analyst", "education_institution", "auditor"],
             "stakeholder_impacts": [
                 {
                     "stakeholder": "platform_operator",
@@ -249,6 +252,7 @@ def generate_case_library_jsonl():
             "primary_perspective": "security",
             "secondary_perspectives": ["operational_review", "score_integrity"],
             "risk_dimension": rdim,
+            "stakeholder_lenses": ["security_analyst", "platform_operator", "auditor", "examiner"],
             "stakeholder_impacts": [
                 {
                     "stakeholder": "security_analyst",
@@ -301,6 +305,7 @@ def generate_case_library_jsonl():
             "primary_perspective": "obfuscation_robustness",
             "secondary_perspectives": ["security", "content_preservation"],
             "risk_dimension": rdim,
+            "stakeholder_lenses": ["security_analyst", "research_team", "platform_operator"],
             "stakeholder_impacts": [
                 {
                     "stakeholder": "auditor",
@@ -349,6 +354,7 @@ def generate_case_library_jsonl():
             "primary_perspective": "security",
             "secondary_perspectives": ["score_integrity", "fairness"],
             "risk_dimension": rdim,
+            "stakeholder_lenses": ["security_analyst", "examiner", "research_team"],
             "stakeholder_impacts": [
                 {
                     "stakeholder": "examiner",
@@ -394,6 +400,7 @@ def generate_case_library_jsonl():
             "primary_perspective": "security",
             "secondary_perspectives": ["multilingual_robustness", "score_integrity"],
             "risk_dimension": rdim,
+            "stakeholder_lenses": ["examiner", "security_analyst", "platform_operator"],
             "stakeholder_impacts": [
                 {
                     "stakeholder": "examiner",
@@ -439,6 +446,7 @@ def generate_case_library_jsonl():
             "primary_perspective": "operational_review",
             "secondary_perspectives": ["fairness", "content_preservation"],
             "risk_dimension": rdim,
+            "stakeholder_lenses": ["platform_operator", "examiner", "student"],
             "stakeholder_impacts": [
                 {
                     "stakeholder": "platform_operator",

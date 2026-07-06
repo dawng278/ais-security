@@ -42,6 +42,7 @@ export default function BenchmarkPage() {
   const [multiPerspectiveReport, setMultiPerspectiveReport] = useState<MultiPerspectiveReport | null>(null);
   const [decisionMatrix, setDecisionMatrix] = useState<DecisionMatrixItem[]>([]);
   const [caseLibraryReport, setCaseLibraryReport] = useState<CaseLibraryEvaluationReport | null>(null);
+  const [selectedStakeholder, setSelectedStakeholder] = useState<string>("all");
   const [error, setError] = useState<string | null>(null);
 
   const fetchAllBenchmarkData = async () => {
@@ -955,9 +956,9 @@ export default function BenchmarkPage() {
               </div>
             </div>
 
-            {/* D. Case Library Evaluation Table */}
+            {/* D. Case Library Evaluation Table with Stakeholder Filter */}
             <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-4">
-              <div className="flex items-center justify-between">
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <div>
                   <h3 className="text-base font-bold text-white flex items-center gap-2">
                     <Grid className="w-5 h-5 text-emerald-400" /> Structured Scenario Case Library (60 Cases)
@@ -965,6 +966,32 @@ export default function BenchmarkPage() {
                   <p className="text-xs text-slate-400 mt-0.5">
                     Individual evaluation outcomes with stakeholder risk breakdowns.
                   </p>
+                </div>
+
+                {/* Stakeholder Filter Buttons */}
+                <div className="flex flex-wrap items-center gap-1.5 bg-slate-950 p-1.5 rounded-xl border border-slate-800">
+                  <span className="text-[10px] text-slate-500 font-mono px-2 uppercase">Filter Lens:</span>
+                  {[
+                    { id: "all", label: "All Scenarios" },
+                    { id: "student", label: "Student" },
+                    { id: "examiner", label: "Examiner" },
+                    { id: "platform_operator", label: "Platform Operator" },
+                    { id: "security_analyst", label: "Security Analyst" },
+                    { id: "auditor", label: "Auditor" },
+                    { id: "research_team", label: "Research Team" },
+                  ].map((st) => (
+                    <button
+                      key={st.id}
+                      onClick={() => setSelectedStakeholder(st.id)}
+                      className={`px-2.5 py-1 rounded-lg text-xs font-medium transition ${
+                        selectedStakeholder === st.id
+                          ? "bg-emerald-500 text-slate-950 font-bold shadow-sm"
+                          : "text-slate-400 hover:text-white hover:bg-slate-850"
+                      }`}
+                    >
+                      {st.label}
+                    </button>
+                  ))}
                 </div>
               </div>
 
@@ -974,7 +1001,7 @@ export default function BenchmarkPage() {
                     <tr className="border-b border-slate-800 text-slate-400 uppercase font-mono text-[10px]">
                       <th className="py-3 px-3">Case ID & Title</th>
                       <th className="py-3 px-3">Scenario Group</th>
-                      <th className="py-3 px-3">Perspective</th>
+                      <th className="py-3 px-3">Stakeholders</th>
                       <th className="py-3 px-3">Lang</th>
                       <th className="py-3 px-3">Expected</th>
                       <th className="py-3 px-3">Predicted</th>
@@ -985,47 +1012,70 @@ export default function BenchmarkPage() {
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-slate-800/60 font-mono">
-                    {caseLibraryReport?.results?.map((res) => (
-                      <tr key={res.case_id} className="hover:bg-slate-800/40 transition">
-                        <td className="py-2.5 px-3">
-                          <span className="text-slate-200 font-bold block">{res.case_id}</span>
-                          <span className="text-[10px] text-slate-400 font-sans block">{res.title}</span>
-                        </td>
-                        <td className="py-2.5 px-3 text-emerald-300 font-sans text-xs">{res.scenario_group}</td>
-                        <td className="py-2.5 px-3 text-slate-400 capitalize">{res.primary_perspective.replace("_", " ")}</td>
-                        <td className="py-2.5 px-3 text-slate-300 uppercase">{res.language}</td>
-                        <td className="py-2.5 px-3 text-slate-400">{res.expected_action}</td>
-                        <td className="py-2.5 px-3">
-                          <span
-                            className={`px-2 py-0.5 rounded text-[10px] font-bold ${
-                              res.predicted_action === "secure_grade"
-                                ? "bg-teal-950 text-teal-300 border border-teal-800"
-                                : res.predicted_action === "manual_review"
-                                ? "bg-purple-950 text-purple-300 border border-purple-800"
-                                : res.predicted_action === "warn"
-                                ? "bg-amber-950 text-amber-300 border border-amber-800"
-                                : "bg-slate-800 text-slate-300 border border-slate-700"
-                            }`}
-                          >
-                            {res.predicted_action}
-                          </span>
-                        </td>
-                        <td className="py-2.5 px-3 text-right text-slate-300">{res.risk_score.toFixed(2)}</td>
-                        <td className="py-2.5 px-3 text-center">
-                          {res.passed ? (
-                            <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-950 text-emerald-400 border border-emerald-800">
-                              PASS
+                    {caseLibraryReport?.results
+                      ?.filter((res) => {
+                        if (selectedStakeholder === "all") return true;
+                        return res.stakeholder_lenses?.includes(selectedStakeholder);
+                      })
+                      ?.map((res) => (
+                        <tr key={res.case_id} className="hover:bg-slate-800/40 transition">
+                          <td className="py-2.5 px-3">
+                            <span className="text-slate-200 font-bold block">{res.case_id}</span>
+                            <span className="text-[10px] text-slate-400 font-sans block">{res.title}</span>
+                          </td>
+                          <td className="py-2.5 px-3 text-emerald-300 font-sans text-xs">{res.scenario_group}</td>
+                          <td className="py-2.5 px-3">
+                            <div className="flex flex-wrap gap-1">
+                              {(res.stakeholder_lenses || [res.primary_perspective]).map((s, i) => (
+                                <span
+                                  key={i}
+                                  className="px-1.5 py-0.2 rounded text-[9px] bg-slate-950 text-slate-300 border border-slate-800 font-sans"
+                                >
+                                  {s.replace("_", " ")}
+                                </span>
+                              ))}
+                            </div>
+                          </td>
+                          <td className="py-2.5 px-3 text-slate-300 uppercase">{res.language}</td>
+                          <td className="py-2.5 px-3 text-slate-400">{res.expected_action}</td>
+                          <td className="py-2.5 px-3">
+                            <span
+                              className={`px-2 py-0.5 rounded text-[10px] font-bold ${
+                                res.predicted_action === "secure_grade"
+                                  ? "bg-teal-950 text-teal-300 border border-teal-800"
+                                  : res.predicted_action === "manual_review"
+                                  ? "bg-purple-950 text-purple-300 border border-purple-800"
+                                  : res.predicted_action === "warn"
+                                  ? "bg-amber-950 text-amber-300 border border-amber-800"
+                                  : "bg-slate-800 text-slate-300 border border-slate-700"
+                              }`}
+                            >
+                              {res.predicted_action}
                             </span>
-                          ) : (
-                            <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-rose-950 text-rose-400 border border-rose-800" title={res.failure_reason || "Failed"}>
-                              FAIL
-                            </span>
-                          )}
-                        </td>
-                        <td className="py-2.5 px-3 text-[10px] font-sans text-rose-300 max-w-[150px] truncate">{res.under_block_risk}</td>
-                        <td className="py-2.5 px-3 text-[10px] font-sans text-amber-300 max-w-[150px] truncate">{res.over_block_risk}</td>
-                      </tr>
-                    ))}
+                          </td>
+                          <td className="py-2.5 px-3 text-right text-slate-300">{res.risk_score.toFixed(2)}</td>
+                          <td className="py-2.5 px-3 text-center">
+                            {res.passed ? (
+                              <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-950 text-emerald-400 border border-emerald-800">
+                                PASS
+                              </span>
+                            ) : (
+                              <span
+                                className="px-2 py-0.5 rounded text-[10px] font-bold bg-rose-950 text-rose-400 border border-rose-800"
+                                title={res.failure_reason || "Failed"}
+                              >
+                                FAIL
+                              </span>
+                            )}
+                          </td>
+                          <td className="py-2.5 px-3 text-[10px] font-sans text-rose-300 max-w-[150px] truncate">
+                            {res.under_block_risk}
+                          </td>
+                          <td className="py-2.5 px-3 text-[10px] font-sans text-amber-300 max-w-[150px] truncate">
+                            {res.over_block_risk}
+                          </td>
+                        </tr>
+                      ))}
                   </tbody>
                 </table>
               </div>

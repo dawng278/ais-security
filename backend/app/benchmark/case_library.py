@@ -29,6 +29,7 @@ class ScenarioCase(BaseModel):
     primary_perspective: str
     secondary_perspectives: List[str] = Field(default_factory=list)
     risk_dimension: str
+    stakeholder_lenses: List[str] = Field(default_factory=list)
     stakeholder_impacts: List[StakeholderImpact] = Field(default_factory=list)
     decision_rationale: DecisionRationale
     tags: List[str] = Field(default_factory=list)

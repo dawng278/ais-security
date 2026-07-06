@@ -24,6 +24,7 @@ import {
   Check,
   RefreshCw,
   Compass,
+  Users,
 } from "lucide-react";
 
 // Seeded Fallback Constants
@@ -647,6 +648,104 @@ export default function JudgeViewPage() {
                 <p className="text-[11px] text-slate-400 leading-normal">
                   Produces dataset/config hashes, failure analysis, and audit reports.
                 </p>
+              </div>
+            </div>
+
+            {/* Stakeholder Lens & Risk Trade-offs */}
+            <div className="pt-4 border-t border-slate-800 space-y-4">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                <h3 className="text-sm font-bold text-white flex items-center gap-2">
+                  <Users className="w-4 h-4 text-emerald-400" /> Multi-Stakeholder Lens & Risk Decision Framework
+                </h3>
+                <div className="flex flex-wrap gap-1.5 text-[10px] font-mono">
+                  <span className="bg-emerald-950 text-emerald-300 border border-emerald-800/80 px-2 py-0.5 rounded">Fairness lens</span>
+                  <span className="bg-cyan-950 text-cyan-300 border border-cyan-800/80 px-2 py-0.5 rounded">Rubric integrity lens</span>
+                  <span className="bg-rose-950 text-rose-300 border border-rose-800/80 px-2 py-0.5 rounded">Security lens</span>
+                  <span className="bg-purple-950 text-purple-300 border border-purple-800/80 px-2 py-0.5 rounded">Operations lens</span>
+                  <span className="bg-blue-950 text-blue-300 border border-blue-800/80 px-2 py-0.5 rounded">Evidence lens</span>
+                </div>
+              </div>
+              <p className="text-xs text-slate-300 leading-relaxed">
+                A grading security decision has different consequences for different stakeholders. GradingGuard AI makes those trade-offs explicit instead of treating every case as a simple binary classification problem.
+              </p>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
+                <div className="bg-slate-950 p-3.5 rounded-xl border border-slate-800 space-y-2">
+                  <div className="text-xs font-bold text-emerald-400 flex items-center justify-between">
+                    <span>Student / Test-taker</span>
+                    <span className="text-[10px] text-slate-500 font-mono">Fairness</span>
+                  </div>
+                  <p className="text-[11px] text-slate-300 leading-tight">Clean essays and academic discussion are preserved without false positive penalties.</p>
+                  <div className="text-[10px] text-rose-400 bg-rose-950/40 p-1.5 rounded border border-rose-900/40">
+                    <span className="font-semibold">Over-block risk:</span> Honest students unfairly flagged.
+                  </div>
+                </div>
+
+                <div className="bg-slate-950 p-3.5 rounded-xl border border-slate-800 space-y-2">
+                  <div className="text-xs font-bold text-cyan-400 flex items-center justify-between">
+                    <span>Examiner / Rubric Owner</span>
+                    <span className="text-[10px] text-slate-500 font-mono">Integrity</span>
+                  </div>
+                  <p className="text-[11px] text-slate-300 leading-tight">Band scores strictly follow official IELTS criteria, not candidate commands.</p>
+                  <div className="text-[10px] text-rose-400 bg-rose-950/40 p-1.5 rounded border border-rose-900/40">
+                    <span className="font-semibold">Under-block risk:</span> Score manipulation bypasses rubric.
+                  </div>
+                </div>
+
+                <div className="bg-slate-950 p-3.5 rounded-xl border border-slate-800 space-y-2">
+                  <div className="text-xs font-bold text-purple-400 flex items-center justify-between">
+                    <span>Platform Operator</span>
+                    <span className="text-[10px] text-slate-500 font-mono">Operations</span>
+                  </div>
+                  <p className="text-[11px] text-slate-300 leading-tight">High automation throughput; ambiguous edge-cases routed to manual review queue.</p>
+                  <div className="text-[10px] text-amber-400 bg-amber-950/40 p-1.5 rounded border border-amber-900/40">
+                    <span className="font-semibold">Over-block risk:</span> High review queue cost.
+                  </div>
+                </div>
+
+                <div className="bg-slate-950 p-3.5 rounded-xl border border-slate-800 space-y-2">
+                  <div className="text-xs font-bold text-rose-400 flex items-center justify-between">
+                    <span>Security Analyst</span>
+                    <span className="text-[10px] text-slate-500 font-mono">Protection</span>
+                  </div>
+                  <p className="text-[11px] text-slate-300 leading-tight">Detects role spoofing, zero-width spaces, and cross-lingual injection payloads.</p>
+                  <div className="text-[10px] text-rose-400 bg-rose-950/40 p-1.5 rounded border border-rose-900/40">
+                    <span className="font-semibold">Under-block risk:</span> Attack reaches LLM grader.
+                  </div>
+                </div>
+
+                <div className="bg-slate-950 p-3.5 rounded-xl border border-slate-800 space-y-2">
+                  <div className="text-xs font-bold text-teal-400 flex items-center justify-between">
+                    <span>Education Institution</span>
+                    <span className="text-[10px] text-slate-500 font-mono">Trust</span>
+                  </div>
+                  <p className="text-[11px] text-slate-300 leading-tight">Certificates and admissions remain defensible against security scandals.</p>
+                  <div className="text-[10px] text-rose-400 bg-rose-950/40 p-1.5 rounded border border-rose-900/40">
+                    <span className="font-semibold">Under-block risk:</span> Certificate invalidation risk.
+                  </div>
+                </div>
+
+                <div className="bg-slate-950 p-3.5 rounded-xl border border-slate-800 space-y-2">
+                  <div className="text-xs font-bold text-blue-400 flex items-center justify-between">
+                    <span>Auditor / Reviewer</span>
+                    <span className="text-[10px] text-slate-500 font-mono">Audit</span>
+                  </div>
+                  <p className="text-[11px] text-slate-300 leading-tight">SHA256 dataset/config fingerprints enable reproducible audit verification.</p>
+                  <div className="text-[10px] text-slate-400 bg-slate-900 p-1.5 rounded border border-slate-800">
+                    <span className="font-semibold text-slate-300">Evidence:</span> Cryptographic logs.
+                  </div>
+                </div>
+
+                <div className="bg-slate-950 p-3.5 rounded-xl border border-slate-800 space-y-2 col-span-1 md:col-span-2">
+                  <div className="text-xs font-bold text-indigo-400 flex items-center justify-between">
+                    <span>Research / Improvement Team</span>
+                    <span className="text-[10px] text-slate-500 font-mono">Feedback Loop</span>
+                  </div>
+                  <p className="text-[11px] text-slate-300 leading-tight">Categorizes failures into transparent diagnostic types to drive continuous heuristic & ML pipeline tuning.</p>
+                  <div className="text-[10px] text-indigo-300 bg-indigo-950/40 p-1.5 rounded border border-indigo-900/40">
+                    <span className="font-semibold">Action:</span> Failure analysis feedback loop.
+                  </div>
+                </div>
               </div>
             </div>
           </div>

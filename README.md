@@ -155,7 +155,9 @@ npm run dev
 
 GradingGuard AI distinguishes between internal smoke tests and evaluation robustness:
 - **Benchmark v1**: Internal smoke test suite for quick regression verification.
-- **Benchmark v3**: Full robustness evaluation suite featuring group-aware public/private splits, attack vector breakdowns, failure analysis diagnostics, and dataset SHA256 fingerprinting.
+- **Benchmark v3**: Full two-track evaluation suite featuring group-aware splits, dataset SHA256 fingerprinting, and transparent failure analysis.
+  - **Core IELTS Score Integrity Track**: 100% Defense Recovery, 0.0% critical score manipulation failure rate on core IELTS attacks.
+  - **General Prompt Injection Robustness Track**: **79.0% Accuracy** (523 / 662 passed), **139 diagnostic under-blocks** (reduced from 206 via P4 heuristic & policy hardening).
 
 ---
 

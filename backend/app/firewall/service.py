@@ -17,7 +17,8 @@ def analyze_submission(request: FirewallAnalyzeRequest) -> FirewallAnalyzeRespon
     risk_res = compute_risk(
         heuristic_score=heur_res.heuristic_score,
         obfuscation_score=obf_res.obfuscation_score,
-        semantic_score=semantic_score
+        semantic_score=semantic_score,
+        matched_categories=heur_res.matched_categories,
     )
 
     all_flags = list(set(norm_res.flags + obf_res.obfuscation_flags))

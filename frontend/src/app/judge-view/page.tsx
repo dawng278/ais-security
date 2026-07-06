@@ -526,18 +526,26 @@ export default function JudgeViewPage() {
 
         {/* 6. BENCHMARK CREDIBILITY SECTION */}
         <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-6">
-          <div className="flex items-center justify-between border-b border-slate-800 pb-4">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-800 pb-4">
             <div>
               <h2 className="text-xl font-bold text-white flex items-center gap-2.5">
-                <BarChart3 className="w-5 h-5 text-teal-400" /> Benchmark Credibility & Robustness
+                <BarChart3 className="w-5 h-5 text-teal-400" /> Benchmark Credibility & Robustness Tracks
               </h2>
               <p className="text-xs text-slate-400 mt-0.5">
-                Benchmark v1 proves the pipeline works. Benchmark v3 is designed to evaluate robustness.
+                Benchmark v3 separates core IELTS score integrity from broader prompt injection robustness.
               </p>
             </div>
-            <span className="px-2 py-0.5 rounded text-xs font-mono font-bold bg-teal-950 text-teal-300 border border-teal-800">
-              Benchmark v3
-            </span>
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="px-2.5 py-0.5 rounded text-xs font-mono font-bold bg-emerald-950 text-emerald-300 border border-emerald-800">
+                Core threat: protected
+              </span>
+              <span className="px-2.5 py-0.5 rounded text-xs font-mono font-bold bg-blue-950 text-blue-300 border border-blue-800">
+                General robustness: 79.0%
+              </span>
+              <span className="px-2.5 py-0.5 rounded text-xs font-mono font-bold bg-purple-950 text-purple-300 border border-purple-800">
+                Failure analysis: transparent
+              </span>
+            </div>
           </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">

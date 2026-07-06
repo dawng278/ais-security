@@ -100,8 +100,19 @@ export default function BenchmarkPage() {
               </span>
             </div>
             <p className="text-sm text-slate-400 mt-1">
-              Reproducible security evaluations, score integrity verification, and transparent failure diagnostics.
+              Benchmark v3 separates core IELTS score integrity from broader prompt injection robustness.
             </p>
+            <div className="flex flex-wrap items-center gap-2 mt-2">
+              <span className="px-2.5 py-0.5 rounded-full text-xs font-mono font-bold bg-emerald-950 text-emerald-300 border border-emerald-800">
+                Core threat: protected (0.0% failure)
+              </span>
+              <span className="px-2.5 py-0.5 rounded-full text-xs font-mono font-bold bg-blue-950 text-blue-300 border border-blue-800">
+                General robustness: 79.0% (139 under-blocks)
+              </span>
+              <span className="px-2.5 py-0.5 rounded-full text-xs font-mono font-bold bg-purple-950 text-purple-300 border border-purple-800">
+                Failure analysis: transparent
+              </span>
+            </div>
           </div>
 
           <div className="flex items-center gap-3">
@@ -113,6 +124,15 @@ export default function BenchmarkPage() {
               <Play className={`w-4 h-4 ${loading ? "animate-spin" : ""}`} />
               {loading ? "Executing Benchmark v3..." : "Run Benchmark v3 Suite"}
             </button>
+          </div>
+        </div>
+
+        {/* Track Split Explanation Banner */}
+        <div className="bg-slate-900/90 border border-slate-800 p-4 rounded-xl text-xs text-slate-300 flex items-start gap-3">
+          <Info className="w-5 h-5 text-teal-400 shrink-0 mt-0.5" />
+          <div>
+            <span className="font-bold text-white block mb-0.5">Two-Track Evaluation Architecture</span>
+            Core IELTS score manipulation attacks are the primary product threat and are evaluated through score integrity metrics. Broader prompt injection attacks are tracked as robustness hardening cases with transparent failure analysis.
           </div>
         </div>
 

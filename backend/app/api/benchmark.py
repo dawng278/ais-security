@@ -141,3 +141,40 @@ def get_multi_perspective_report():
             status_code=500,
             detail=f"Failed to read multi-perspective report: {str(e)}",
         )
+
+
+@router.get("/decision-matrix")
+def get_decision_matrix_endpoint():
+    from app.benchmark.decision_matrix import get_decision_matrix
+    return get_decision_matrix()
+
+
+@router.post("/case-library/run")
+def run_case_library_endpoint():
+    from app.benchmark.case_library_runner import evaluate_case_library
+    report = evaluate_case_library()
+    return report.model_dump()
+
+
+@router.get("/case-library")
+def get_case_library_report():
+    root = resolve_project_root()
+    report_file = root / "datasets" / "reports" / "case_library_report.json"
+
+    if not report_file.exists():
+        from app.benchmark.case_library_runner import evaluate_case_library
+        report = evaluate_case_library()
+        report_data = report.model_dump()
+        report_data["is_demo"] = True
+        return report_data
+
+    try:
+        with report_file.open("r", encoding="utf-8") as f:
+            data = json.load(f)
+        return data
+    except Exception as e:
+        raise HTTPException(
+            status_code=500,
+            detail=f"Failed to read case library report: {str(e)}",
+        )
+

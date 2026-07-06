@@ -594,8 +594,8 @@ export default function JudgeViewPage() {
               </h3>
               <span className="text-[11px] text-slate-400 font-mono">5 Evaluation Lenses</span>
             </div>
-            <p className="text-xs text-slate-400">
-              Instead of reporting only one accuracy number, GradingGuard AI evaluates each case through security, scoring, fairness, operations, and evidence lenses.
+            <p className="text-xs text-slate-300 leading-relaxed">
+              GradingGuard AI does not rely on a single accuracy number. It evaluates decisions through security, score integrity, fairness, operations, and evidence perspectives, supported by a 60-scenario Case Library & Policy Decision Matrix.
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 pt-1">

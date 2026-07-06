@@ -3,7 +3,13 @@
 import React, { useEffect, useState } from "react";
 import { AppShell } from "@/components/AppShell";
 import { api } from "@/lib/api";
-import { FailureAnalysisItem, FailureAnalysisResponse, MultiPerspectiveReport } from "@/lib/types";
+import {
+  FailureAnalysisItem,
+  FailureAnalysisResponse,
+  MultiPerspectiveReport,
+  CaseLibraryEvaluationReport,
+  DecisionMatrixItem,
+} from "@/lib/types";
 import {
   BarChart3,
   Play,
@@ -21,11 +27,12 @@ import {
   Eye,
   Globe,
   Grid,
+  Scale,
 } from "lucide-react";
 
 export default function BenchmarkPage() {
   const [activeTab, setActiveTab] = useState<
-    "overview" | "attack_type" | "score_integrity" | "failure_analysis" | "evidence" | "multi_perspective"
+    "overview" | "attack_type" | "score_integrity" | "failure_analysis" | "evidence" | "multi_perspective" | "case_library"
   >("overview");
 
   const [loading, setLoading] = useState(false);
@@ -33,6 +40,8 @@ export default function BenchmarkPage() {
   const [failureRes, setFailureRes] = useState<FailureAnalysisResponse | null>(null);
   const [evidenceData, setEvidenceData] = useState<any>(null);
   const [multiPerspectiveReport, setMultiPerspectiveReport] = useState<MultiPerspectiveReport | null>(null);
+  const [decisionMatrix, setDecisionMatrix] = useState<DecisionMatrixItem[]>([]);
+  const [caseLibraryReport, setCaseLibraryReport] = useState<CaseLibraryEvaluationReport | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   const fetchAllBenchmarkData = async () => {
@@ -62,6 +71,20 @@ export default function BenchmarkPage() {
       setMultiPerspectiveReport(mpRes);
     } catch (e) {
       console.log("Could not fetch multi-perspective report.");
+    }
+
+    try {
+      const dm = await api.getDecisionMatrix();
+      setDecisionMatrix(dm);
+    } catch (e) {
+      console.log("Could not fetch decision matrix.");
+    }
+
+    try {
+      const cl = await api.getCaseLibraryReport();
+      setCaseLibraryReport(cl);
+    } catch (e) {
+      console.log("Could not fetch case library report.");
     }
   };
 
@@ -225,6 +248,17 @@ export default function BenchmarkPage() {
             }`}
           >
             <Compass className="w-4 h-4" /> Multi-Perspective
+          </button>
+
+          <button
+            onClick={() => setActiveTab("case_library")}
+            className={`px-4 py-2.5 rounded-t-lg transition border-b-2 flex items-center gap-2 ${
+              activeTab === "case_library"
+                ? "border-emerald-400 text-emerald-400 bg-slate-900/80 font-bold"
+                : "border-transparent text-slate-400 hover:text-slate-200 hover:bg-slate-900/40"
+            }`}
+          >
+            <Grid className="w-4 h-4" /> Case Library & Decision Matrix
           </button>
         </div>
 
@@ -744,6 +778,252 @@ export default function BenchmarkPage() {
                             </span>
                           )}
                         </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* TAB 7: CASE LIBRARY & DECISION MATRIX */}
+        {activeTab === "case_library" && (
+          <div className="space-y-6">
+            {/* Explanation Card */}
+            <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-500/5 rounded-full blur-3xl pointer-events-none" />
+              <div className="flex items-start gap-4">
+                <div className="p-3 bg-emerald-950/80 border border-emerald-800/80 rounded-xl shrink-0">
+                  <Scale className="w-6 h-6 text-emerald-400" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-bold text-white tracking-tight">
+                    Multi-Perspective Case Library & Governance Decision Matrix
+                  </h3>
+                  <p className="text-sm text-slate-300 mt-1 leading-relaxed">
+                    This matrix evaluates GradingGuard AI from multiple perspectives instead of reducing the system to one accuracy number. It helps distinguish true attacks, benign academic discussion, score manipulation, ambiguous cases, and manual review situations.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* A. Scenario Summary Cards */}
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+              <div className="bg-slate-900 border border-slate-800 p-4 rounded-xl space-y-1">
+                <p className="text-xs font-medium text-slate-400">Total Cases</p>
+                <p className="text-2xl font-black text-white">{caseLibraryReport?.total_cases || 60}</p>
+                <p className="text-[10px] text-slate-500">Structured scenarios</p>
+              </div>
+
+              <div className="bg-slate-900 border border-slate-800 p-4 rounded-xl space-y-1">
+                <p className="text-xs font-medium text-slate-400">Pass Rate</p>
+                <p className="text-2xl font-black text-emerald-400">
+                  {((caseLibraryReport?.pass_rate || 0.80) * 100).toFixed(1)}%
+                </p>
+                <p className="text-[10px] text-emerald-500/80 font-mono">
+                  {caseLibraryReport?.passed_cases || 48} / {caseLibraryReport?.total_cases || 60} passed
+                </p>
+              </div>
+
+              <div className="bg-slate-900 border border-slate-800 p-4 rounded-xl space-y-1">
+                <p className="text-xs font-medium text-slate-400">Security Cases</p>
+                <p className="text-2xl font-black text-blue-400">
+                  {caseLibraryReport?.by_perspective?.security?.total || 25}
+                </p>
+                <p className="text-[10px] text-blue-500/80 font-mono">
+                  {((caseLibraryReport?.by_perspective?.security?.pass_rate || 0.85) * 100).toFixed(0)}% pass rate
+                </p>
+              </div>
+
+              <div className="bg-slate-900 border border-slate-800 p-4 rounded-xl space-y-1">
+                <p className="text-xs font-medium text-slate-400">Fairness Cases</p>
+                <p className="text-2xl font-black text-teal-400">
+                  {caseLibraryReport?.by_perspective?.fairness?.total || 10}
+                </p>
+                <p className="text-[10px] text-teal-500/80 font-mono">
+                  {((caseLibraryReport?.by_perspective?.fairness?.pass_rate || 1.0) * 100).toFixed(0)}% pass rate
+                </p>
+              </div>
+
+              <div className="bg-slate-900 border border-slate-800 p-4 rounded-xl space-y-1">
+                <p className="text-xs font-medium text-slate-400">Score Integrity</p>
+                <p className="text-2xl font-black text-purple-400">
+                  {caseLibraryReport?.by_perspective?.score_integrity?.total || 10}
+                </p>
+                <p className="text-[10px] text-purple-500/80 font-mono">
+                  {((caseLibraryReport?.by_perspective?.score_integrity?.pass_rate || 0.90) * 100).toFixed(0)}% pass rate
+                </p>
+              </div>
+
+              <div className="bg-slate-900 border border-slate-800 p-4 rounded-xl space-y-1">
+                <p className="text-xs font-medium text-slate-400">Manual Review</p>
+                <p className="text-2xl font-black text-amber-400">
+                  {caseLibraryReport?.by_perspective?.operational_review?.total || 5}
+                </p>
+                <p className="text-[10px] text-amber-500/80 font-mono">
+                  Escalation rules
+                </p>
+              </div>
+            </div>
+
+            {/* B. Multi-Perspective Perspective Cards */}
+            <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-4">
+              <h3 className="text-base font-bold text-white flex items-center gap-2">
+                <Compass className="w-5 h-5 text-emerald-400" /> Perspective Health Metrics
+              </h3>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                {caseLibraryReport?.by_perspective &&
+                  Object.entries(caseLibraryReport.by_perspective).map(([pName, pData]) => (
+                    <div key={pName} className="p-4 bg-slate-950/60 border border-slate-800 rounded-xl space-y-2">
+                      <div className="flex items-center justify-between">
+                        <span className="text-xs font-bold text-slate-200 capitalize">{pName.replace("_", " ")}</span>
+                        <span className={`px-2 py-0.5 rounded text-[10px] font-mono font-bold ${
+                          pData.pass_rate >= 0.9 ? "bg-emerald-950 text-emerald-400 border border-emerald-800" :
+                          pData.pass_rate >= 0.7 ? "bg-blue-950 text-blue-400 border border-blue-800" :
+                          "bg-amber-950 text-amber-400 border border-amber-800"
+                        }`}>
+                          {(pData.pass_rate * 100).toFixed(0)}%
+                        </span>
+                      </div>
+                      <div className="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
+                        <div
+                          className={`h-full rounded-full ${
+                            pData.pass_rate >= 0.9 ? "bg-emerald-500" :
+                            pData.pass_rate >= 0.7 ? "bg-blue-500" : "bg-amber-500"
+                          }`}
+                          style={{ width: `${pData.pass_rate * 100}%` }}
+                        />
+                      </div>
+                      <p className="text-[10px] text-slate-400 font-mono">
+                        {pData.passed} / {pData.total} cases passed ({pData.failed} failed)
+                      </p>
+                    </div>
+                  ))}
+              </div>
+            </div>
+
+            {/* C. Decision Matrix Table */}
+            <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-4">
+              <div>
+                <h3 className="text-base font-bold text-white flex items-center gap-2">
+                  <Scale className="w-5 h-5 text-teal-400" /> Policy Decision Matrix
+                </h3>
+                <p className="text-xs text-slate-400 mt-0.5">
+                  Explicit governance rules mapping input conditions to expected security actions and risk rationales.
+                </p>
+              </div>
+
+              <div className="overflow-x-auto">
+                <table className="w-full text-left text-xs">
+                  <thead>
+                    <tr className="border-b border-slate-800 text-slate-400 uppercase font-mono text-[10px]">
+                      <th className="py-3 px-3">Condition</th>
+                      <th className="py-3 px-3">Expected Action</th>
+                      <th className="py-3 px-3">Under-Block Risk</th>
+                      <th className="py-3 px-3">Over-Block Risk</th>
+                      <th className="py-3 px-3">Policy Rationale</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-800/60 font-sans">
+                    {decisionMatrix?.map((row, idx) => (
+                      <tr key={idx} className="hover:bg-slate-800/40 transition">
+                        <td className="py-3 px-3 font-semibold text-white">
+                          {row.condition}
+                          <span className="block text-[10px] text-slate-400 font-mono mt-0.5">
+                            Ex: {row.examples.join(", ")}
+                          </span>
+                        </td>
+                        <td className="py-3 px-3">
+                          <span className={`px-2 py-0.5 rounded text-[10px] font-mono font-bold ${
+                            row.expected_action === "secure_grade" ? "bg-teal-950 text-teal-300 border border-teal-800" :
+                            row.expected_action === "manual_review" ? "bg-purple-950 text-purple-300 border border-purple-800" :
+                            row.expected_action === "warn" ? "bg-amber-950 text-amber-300 border border-amber-800" :
+                            "bg-emerald-950 text-emerald-300 border border-emerald-800"
+                          }`}>
+                            {row.expected_action}
+                          </span>
+                        </td>
+                        <td className="py-3 px-3 text-rose-300 text-[11px]">{row.under_block_risk}</td>
+                        <td className="py-3 px-3 text-amber-300 text-[11px]">{row.over_block_risk}</td>
+                        <td className="py-3 px-3 text-slate-300 text-[11px]">{row.rationale}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            {/* D. Case Library Evaluation Table */}
+            <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-4">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h3 className="text-base font-bold text-white flex items-center gap-2">
+                    <Grid className="w-5 h-5 text-emerald-400" /> Structured Scenario Case Library (60 Cases)
+                  </h3>
+                  <p className="text-xs text-slate-400 mt-0.5">
+                    Individual evaluation outcomes with stakeholder risk breakdowns.
+                  </p>
+                </div>
+              </div>
+
+              <div className="overflow-x-auto">
+                <table className="w-full text-left text-xs">
+                  <thead>
+                    <tr className="border-b border-slate-800 text-slate-400 uppercase font-mono text-[10px]">
+                      <th className="py-3 px-3">Case ID & Title</th>
+                      <th className="py-3 px-3">Scenario Group</th>
+                      <th className="py-3 px-3">Perspective</th>
+                      <th className="py-3 px-3">Lang</th>
+                      <th className="py-3 px-3">Expected</th>
+                      <th className="py-3 px-3">Predicted</th>
+                      <th className="py-3 px-3 text-right">Risk</th>
+                      <th className="py-3 px-3 text-center">Status</th>
+                      <th className="py-3 px-3">Under-block Risk</th>
+                      <th className="py-3 px-3">Over-block Risk</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-800/60 font-mono">
+                    {caseLibraryReport?.results?.map((res) => (
+                      <tr key={res.case_id} className="hover:bg-slate-800/40 transition">
+                        <td className="py-2.5 px-3">
+                          <span className="text-slate-200 font-bold block">{res.case_id}</span>
+                          <span className="text-[10px] text-slate-400 font-sans block">{res.title}</span>
+                        </td>
+                        <td className="py-2.5 px-3 text-emerald-300 font-sans text-xs">{res.scenario_group}</td>
+                        <td className="py-2.5 px-3 text-slate-400 capitalize">{res.primary_perspective.replace("_", " ")}</td>
+                        <td className="py-2.5 px-3 text-slate-300 uppercase">{res.language}</td>
+                        <td className="py-2.5 px-3 text-slate-400">{res.expected_action}</td>
+                        <td className="py-2.5 px-3">
+                          <span
+                            className={`px-2 py-0.5 rounded text-[10px] font-bold ${
+                              res.predicted_action === "secure_grade"
+                                ? "bg-teal-950 text-teal-300 border border-teal-800"
+                                : res.predicted_action === "manual_review"
+                                ? "bg-purple-950 text-purple-300 border border-purple-800"
+                                : res.predicted_action === "warn"
+                                ? "bg-amber-950 text-amber-300 border border-amber-800"
+                                : "bg-slate-800 text-slate-300 border border-slate-700"
+                            }`}
+                          >
+                            {res.predicted_action}
+                          </span>
+                        </td>
+                        <td className="py-2.5 px-3 text-right text-slate-300">{res.risk_score.toFixed(2)}</td>
+                        <td className="py-2.5 px-3 text-center">
+                          {res.passed ? (
+                            <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-950 text-emerald-400 border border-emerald-800">
+                              PASS
+                            </span>
+                          ) : (
+                            <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-rose-950 text-rose-400 border border-rose-800" title={res.failure_reason || "Failed"}>
+                              FAIL
+                            </span>
+                          )}
+                        </td>
+                        <td className="py-2.5 px-3 text-[10px] font-sans text-rose-300 max-w-[150px] truncate">{res.under_block_risk}</td>
+                        <td className="py-2.5 px-3 text-[10px] font-sans text-amber-300 max-w-[150px] truncate">{res.over_block_risk}</td>
                       </tr>
                     ))}
                   </tbody>

@@ -129,6 +129,8 @@ def evaluate_multi_perspective_scenarios(scenarios_path: Optional[str] = None) -
     root = resolve_project_root()
     if not scenarios_path:
         scenarios_file = root / "datasets" / "scenarios" / "multi_perspective_scenarios.jsonl"
+        if not scenarios_file.exists():
+            scenarios_file = root / "datasets" / "scenarios" / "gradingguard_case_library.jsonl"
     else:
         scenarios_file = Path(scenarios_path)
 

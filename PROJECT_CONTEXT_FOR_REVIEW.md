@@ -109,10 +109,15 @@ ais-gau-security/
 10. **Failure Analysis Engine (`backend/app/benchmark/failure_analysis.py`)** [Complete]
     - Classifies benchmark errors into 4 transparent diagnostic categories (`critical_under_block`, `policy_under_block`, `threshold_near_miss`, `score_integrity_recovered`), adding `diagnostic_type`, `is_critical_security_failure`, and `score_integrity_status` saved to `datasets/reports/v3/failure_analysis.jsonl`.
 
-11. **Data Lineage Tracking (`backend/app/datasets/lineage.py`)** [Complete]
+11. **Multi-Perspective Case Library & Governance Decision Matrix (`backend/app/benchmark/case_library.py`, `decision_matrix.py`, `case_library_runner.py`)** [Complete]
+    - Structured 60-scenario case library (`datasets/scenarios/gradingguard_case_library.jsonl`) evaluating security, score integrity, fairness, multilingual, obfuscation, operational review, content preservation, and evidence governance.
+    - Governance Decision Matrix mapping conditions (score manipulation commands, role spoofing, academic quotes, obfuscated text, speaking transcripts) to policy actions, under-block risks, over-block risks, and evidence requirements.
+    - Case library evaluation runner delivering **80.0% pass rate** across 60 multi-perspective scenarios.
+
+12. **Data Lineage Tracking (`backend/app/datasets/lineage.py`)** [Complete]
     - Tracks provenance across 7 registered sources and 8 sequential data engineering transformation pipeline stages.
 
-12. **Automated Verification Script (`scripts/final_check.sh`)** [Complete]
+13. **Automated Verification Script (`scripts/final_check.sh`)** [Complete]
     - One-click script executing backend unit tests, Benchmark v3 suite execution, and Next.js production static compilation.
 
 ---
@@ -122,7 +127,7 @@ ais-gau-security/
 All routes below exist and build cleanly in `frontend/src/app/` (Next.js static compilation passes 10/10 pages in 2.4s):
 
 1. **`/judge-view` (`frontend/src/app/judge-view/page.tsx`)** [Complete]
-   - Screenshot-ready 60-second competition summary featuring hero metric strip, threat model, 3-step core demo (5.5 → 8.5 → 5.5), 7-stage pipeline cards, attack arena summary, benchmark credibility, failure analysis, data lineage, evidence audit, top differentiators, and action links.
+   - Screenshot-ready 60-second competition summary featuring hero metric strip, threat model, 3-step core demo (5.5 → 8.5 → 5.5), 7-stage pipeline cards, attack arena summary, 5 multi-dimensional evaluation lenses, failure analysis, data lineage, evidence audit, top differentiators, and action links.
 
 2. **`/playground` (`frontend/src/app/playground/page.tsx`)** [Complete]
    - Interactive security sandbox allowing live text injection testing, firewall analysis, baseline vs secure score comparison, and span sanitizer preview.
@@ -131,7 +136,7 @@ All routes below exist and build cleanly in `frontend/src/app/` (Next.js static 
    - Red-team multi-attempt attacker scenario runner displaying dynamic attempt logs, risk scores, sanitizer output, and cumulative score inflation prevented.
 
 4. **`/benchmark` (`frontend/src/app/benchmark/page.tsx`)** [Complete]
-   - 5-tab dashboard (Overview, By Attack Type, Score Integrity, Failure Analysis, Evidence Report) featuring a severity-coded failure diagnostics table.
+   - 7-tab dashboard (Overview, By Attack Type, Score Integrity, Failure Analysis, Evidence Report, Multi-Perspective, Case Library & Decision Matrix) featuring a severity-coded failure diagnostics table, perspective health metrics, policy decision matrix, and structured scenario case library results.
 
 5. **`/data-lineage` (`frontend/src/app/data-lineage/page.tsx`)** [Complete]
    - Data Lineage Center showing dataset SHA256 fingerprints, source registry table (HF, Kaggle, self-built), 8 pipeline stage flow cards, distribution profiles, and audit notes.

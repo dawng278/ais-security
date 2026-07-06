@@ -11,6 +11,8 @@ import {
   FirewallResult,
   GradingResult,
   MultiPerspectiveReport,
+  DecisionMatrixItem,
+  CaseLibraryEvaluationReport,
   RedteamResult,
   SecureGradeResponse,
   SecurityEvent,
@@ -97,4 +99,10 @@ export const api = {
   getMultiPerspectiveReport: () => request<MultiPerspectiveReport>("/api/benchmark/multi-perspective/report"),
 
   runMultiPerspective: () => request<MultiPerspectiveReport>("/api/benchmark/multi-perspective/run", { method: "POST" }),
+
+  getDecisionMatrix: () => request<DecisionMatrixItem[]>("/api/benchmark/decision-matrix"),
+
+  getCaseLibraryReport: () => request<CaseLibraryEvaluationReport>("/api/benchmark/case-library"),
+
+  runCaseLibrary: () => request<CaseLibraryEvaluationReport>("/api/benchmark/case-library/run", { method: "POST" }),
 };

@@ -69,6 +69,7 @@ flowchart TD
 - **Span-Level Sanitizer**: Strips malicious instruction spans while preserving authentic student writing context.
 - **Score Integrity Verifier**: Evaluates score stability by comparing clean, vulnerable, and sanitized outputs.
 - **Red-Team Attack Arena**: Interactive scenario runner that simulates multi-attempt attacker profiles (Novice, Multilingual, Obfuscation, Adaptive).
+- **Multi-Perspective Case Library & Decision Matrix**: 60-scenario evaluation library and policy matrix evaluating security, score integrity, fairness, operations, and evidence governance.
 - **Benchmark v3 & Failure Analysis**: Robustness evaluation suite with automated failure classification (`false_negative`, `false_positive`, `under_block`) and actionable remediation advice.
 - **Data Lineage Center**: Tracks multi-source datasets from source registry to canonical schema, deduplication, group-aware split, and dataset hash.
 - **Cryptographic Evidence Logs**: Persists `dataset_sha256`, `config_sha256`, `run_id`, and `git_commit` fingerprints for independent auditing.

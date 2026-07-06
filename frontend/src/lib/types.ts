@@ -285,6 +285,49 @@ export interface MultiPerspectiveReport {
   evaluation_results: ScenarioEvaluationResult[];
 }
 
+export interface DecisionMatrixItem {
+  condition: string;
+  examples: string[];
+  expected_action: string;
+  under_block_risk: string;
+  over_block_risk: string;
+  rationale: string;
+}
+
+export interface CaseLibraryEvaluationResult {
+  case_id: string;
+  title: string;
+  scenario_group: string;
+  language: string;
+  task_type: string;
+  primary_perspective: string;
+  expected_action: string;
+  predicted_action: string;
+  risk_score: number;
+  passed: boolean;
+  failure_reason?: string | null;
+  under_block_risk: string;
+  over_block_risk: string;
+  evidence_observed?: Record<string, any>;
+  text_preview: string;
+}
+
+export interface CaseLibraryEvaluationReport {
+  total_cases: number;
+  passed_cases: number;
+  failed_cases: number;
+  pass_rate: number;
+  by_perspective: Record<string, { total: number; passed: number; failed: number; pass_rate: number }>;
+  by_scenario_group: Record<string, { total: number; passed: number; failed: number; pass_rate: number }>;
+  by_language: Record<string, { total: number; passed: number; failed: number; pass_rate: number }>;
+  by_expected_action: Record<string, { total: number; passed: number; failed: number; pass_rate: number }>;
+  most_fragile_perspective: string;
+  strongest_perspective: string;
+  is_demo?: boolean;
+  results: CaseLibraryEvaluationResult[];
+}
+
+
 
 
 

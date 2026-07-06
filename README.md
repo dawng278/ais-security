@@ -201,14 +201,18 @@ Sources include Hugging Face benchmarks, Kaggle datasets, clean IELTS essay pool
 
 For detailed competition documentation, technical specifications, and evaluation reports, see the [`docs/`](./docs/README.md) directory:
 
+- [Final One-Pager](./docs/final_one_pager.md) *(Executive 1-page summary)*
+- [Final Slide Deck Content](./docs/final_slide_deck_content.md) *(10-slide content & speaker notes)*
+- [Demo Recording Runbook](./docs/demo_recording_runbook.md) *(3-minute video recording guide)*
+- [Competition Day Runbook](./docs/competition_day_runbook.md) *(Live presentation & fallback playbook)*
+- [Judge Cheat Sheet](./docs/judge_cheat_sheet.md) *(15s/30s pitch & jury Q&A guide)*
+- [Screenshot Package Guide](./docs/screenshots/README.md) *(Backup screenshot capture specifications)*
+- [Risk Decision Playbook](./docs/risk_decision_playbook.md) *(Stakeholder trade-offs & scenario rules)*
 - [Verification & Audit Report](./docs/verification_report.md) *(Final pre-submission audit)*
 - [Executive Summary](./docs/executive_summary.md)
 - [Technical Report](./docs/technical_report.md)
 - [Evaluation Report](./docs/evaluation_report.md)
 - [Threat Model](./docs/threat_model.md)
 - [Architecture Specifications](./docs/architecture.md)
-- [Demo Video Script](./docs/demo_video_script.md)
-- [Pitch Deck Outline](./docs/pitch_deck_outline.md)
-- [Judge Q&A](./docs/judge_qna.md)
+- [Judge Q&A](./docs/judge_qna.md) *(24 authoritative jury Q&A responses)*
 - [Submission Checklist](./docs/final_submission_checklist.md)
-- [Live Demo Script](./docs/demo_script_top1.md)

@@ -1,13 +1,13 @@
 # GradingGuard AI — Benchmark v3 Evidence Card
 
 > **Reproducible Security Evidence Record**  
-> Generated: `2026-07-06T08:15:09.748339+00:00`
+> Generated: `2026-07-06T08:31:59.858497+00:00`
 
 ---
 
 ## 📌 Context Snapshot
-- **Run ID**: `run_20260706_081509_2f27b1`
-- **Git Commit**: `1623263`
+- **Run ID**: `run_20260706_083159_903f0a`
+- **Git Commit**: `9d8417d`
 - **Environment**: `local`
 - **Random Seed**: `42`
 

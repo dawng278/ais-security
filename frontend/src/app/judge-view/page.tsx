@@ -23,6 +23,7 @@ import {
   FileCheck,
   Check,
   RefreshCw,
+  Compass,
 } from "lucide-react";
 
 // Seeded Fallback Constants
@@ -582,6 +583,71 @@ export default function JudgeViewPage() {
             <div className="bg-slate-950 p-4 rounded-xl border border-slate-800 text-center">
               <div className="text-[10px] text-slate-400 uppercase">p95 Latency</div>
               <div className="text-xl font-black font-mono text-slate-200 mt-1">{benchmarkData.p95LatencyMs}ms</div>
+            </div>
+          </div>
+
+          {/* Multi-Perspective 5 Lenses Grid */}
+          <div className="pt-2 space-y-3">
+            <div className="flex items-center justify-between">
+              <h3 className="text-sm font-bold text-white flex items-center gap-2">
+                <Compass className="w-4 h-4 text-purple-400" /> Multi-Dimensional Evaluation Lenses
+              </h3>
+              <span className="text-[11px] text-slate-400 font-mono">5 Evaluation Lenses</span>
+            </div>
+            <p className="text-xs text-slate-400">
+              Instead of reporting only one accuracy number, GradingGuard AI evaluates each case through security, scoring, fairness, operations, and evidence lenses.
+            </p>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 pt-1">
+              <div className="bg-slate-950 p-3.5 rounded-xl border border-slate-800/80 space-y-1.5">
+                <div className="flex items-center justify-between text-xs font-bold text-teal-400 font-mono">
+                  <span>1. Security View</span>
+                  <span className="text-[10px] text-emerald-400 bg-emerald-950 px-1.5 py-0.2 rounded">100% Core</span>
+                </div>
+                <p className="text-[11px] text-slate-400 leading-normal">
+                  Detects whether adversarial instructions reach the LLM grader.
+                </p>
+              </div>
+
+              <div className="bg-slate-950 p-3.5 rounded-xl border border-slate-800/80 space-y-1.5">
+                <div className="flex items-center justify-between text-xs font-bold text-cyan-400 font-mono">
+                  <span>2. Score Integrity</span>
+                  <span className="text-[10px] text-cyan-400 bg-cyan-950 px-1.5 py-0.2 rounded">0.0 Delta</span>
+                </div>
+                <p className="text-[11px] text-slate-400 leading-normal">
+                  Measures whether the IELTS band score was manipulated (+3.0 prevented).
+                </p>
+              </div>
+
+              <div className="bg-slate-950 p-3.5 rounded-xl border border-slate-800/80 space-y-1.5">
+                <div className="flex items-center justify-between text-xs font-bold text-emerald-400 font-mono">
+                  <span>3. Fairness View</span>
+                  <span className="text-[10px] text-emerald-400 bg-emerald-950 px-1.5 py-0.2 rounded">6.0% FPR</span>
+                </div>
+                <p className="text-[11px] text-slate-400 leading-normal">
+                  Checks whether benign essays and academic discussions are preserved.
+                </p>
+              </div>
+
+              <div className="bg-slate-950 p-3.5 rounded-xl border border-slate-800/80 space-y-1.5">
+                <div className="flex items-center justify-between text-xs font-bold text-purple-400 font-mono">
+                  <span>4. Operational View</span>
+                  <span className="text-[10px] text-purple-400 bg-purple-950 px-1.5 py-0.2 rounded">Manual Queue</span>
+                </div>
+                <p className="text-[11px] text-slate-400 leading-normal">
+                  Routes ambiguous or high-risk cases to manual human review.
+                </p>
+              </div>
+
+              <div className="bg-slate-950 p-3.5 rounded-xl border border-slate-800/80 space-y-1.5">
+                <div className="flex items-center justify-between text-xs font-bold text-blue-400 font-mono">
+                  <span>5. Evidence View</span>
+                  <span className="text-[10px] text-blue-400 bg-blue-950 px-1.5 py-0.2 rounded">SHA256 Log</span>
+                </div>
+                <p className="text-[11px] text-slate-400 leading-normal">
+                  Produces dataset/config hashes, failure analysis, and audit reports.
+                </p>
+              </div>
             </div>
           </div>
 

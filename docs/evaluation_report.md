@@ -99,6 +99,34 @@ GradingGuard AI adopts a transparency-first evaluation philosophy. Benchmark v3 
 
 | Diagnostic Type | Count | Severity | Meaning | Action |
 | :--- | :---: | :---: | :--- | :--- |
+| **Critical Under-Block** | 139 | High | Payload allowed through without detection | Refine heuristic patterns & risk policy |
+| **Policy Under-Block** | 42 | Medium | Action assigned was `warn` instead of `secure_grade` | Escalate category risk rank |
+| **Threshold Near-Miss** | 25 | Low | Risk score close to decision threshold (e.g. 0.44 vs 0.45) | Fine-tune threshold weights |
+| **Score Integrity Recovered** | 0 | Info | Firewall flagged payload and secure grader maintained score | Verified safe |
+
+---
+
+## 9. Multi-Perspective Evaluation Matrix
+
+GradingGuard AI evaluates AI grading security through 5 complementary perspectives to prevent the benchmark from being reduced to a single accuracy metric:
+
+| Perspective | Question Answered | Example Metric | Evaluated Target |
+| :--- | :--- | :--- | :--- |
+| **Security** | Did the attack reach the LLM grader? | `critical_under_block` | Attack detection & gateway routing |
+| **Score Integrity** | Did the score change unfairly? | Defense recovery rate | Band score delta (5.5 → 8.5 → 5.5) |
+| **Fairness** | Did benign text get overblocked? | False positive rate | Clean essays & academic quotes |
+| **Operations** | Does this need human review? | Manual review rate | Ambiguous & role-spoofing edge cases |
+| **Evidence** | Can we reproduce the result? | `dataset_sha256`, `config_sha256` | Cryptographic evidence report |
+
+### Multi-Perspective Scenario Taxonomy
+
+The multi-perspective benchmark suite (`datasets/scenarios/multi_perspective_scenarios.jsonl`) evaluates 40 curated scenarios across 20 taxonomy groups:
+- **Clean Essays & Academic Negatives**: 90% Pass Rate (Preserves benign essays & academic cybersecurity discussions).
+- **Direct Score Manipulation (EN, VI, ZH)**: 100% Pass Rate (Triggers `secure_grade` or `manual_review`).
+- **Role Spoofing & Delimiter Escape**: 100% Pass Rate (Escalates to `manual_review` or `secure_grade`).
+- **Obfuscation & Obfuscated Payloads**: 75% Pass Rate (Decodes Base64 and Unicode zero-width space payloads).
+
+| :--- | :---: | :---: | :--- | :--- |
 | **`critical_under_block`** | **207** | High | Risk score was below secure threshold; input passed firewall without sanitization in CPU fallback mode. | Lower semantic threshold and expand attack prototype coverage. |
 | **`policy_under_block`** | **0** | Medium | Attack flagged with warning action rather than full secure_grade policy. | Enforce secure_grade policy for all prompt instruction overrides. |
 | **`threshold_near_miss`** | **0** | Medium | Detector assigned elevated risk (warn), but fell just below secure_grade threshold. | Tune secure_grade risk score threshold from 0.65 to 0.55. |

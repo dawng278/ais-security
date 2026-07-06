@@ -247,5 +247,44 @@ export interface DatasetLineageReport {
   notes: string[];
 }
 
+export interface PerspectiveMetric {
+  perspective_name: string;
+  total_cases: number;
+  passed_cases: number;
+  pass_rate: number;
+  description: string;
+}
+
+export interface ScenarioEvaluationResult {
+  case_id: string;
+  scenario_group: string;
+  language: string;
+  task_type: string;
+  is_attack: boolean;
+  primary_perspective: string;
+  risk_dimension: string;
+  expected_action: string;
+  predicted_action: string;
+  risk_score: number;
+  passed: boolean;
+  failure_reason?: string | null;
+  text_preview: string;
+  notes?: string | null;
+}
+
+export interface MultiPerspectiveReport {
+  report_id: string;
+  total_scenarios: number;
+  overall_pass_rate: number;
+  perspective_metrics: Record<string, PerspectiveMetric>;
+  scenario_group_pass_rates: Record<string, number>;
+  language_pass_rates: Record<string, number>;
+  most_fragile_perspective: string;
+  strongest_perspective: string;
+  is_demo?: boolean;
+  evaluation_results: ScenarioEvaluationResult[];
+}
+
+
 
 

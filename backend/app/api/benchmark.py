@@ -111,3 +111,33 @@ def get_failure_analysis():
         "note": "Real failure analysis from latest benchmark run",
         "failures": failures,
     }
+
+
+@router.post("/multi-perspective/run")
+def run_multi_perspective():
+    from app.benchmark.multi_perspective import evaluate_multi_perspective_scenarios
+    report = evaluate_multi_perspective_scenarios()
+    return report.model_dump()
+
+
+@router.get("/multi-perspective/report")
+def get_multi_perspective_report():
+    root = resolve_project_root()
+    report_file = root / "datasets" / "reports" / "multi_perspective_report.json"
+
+    if not report_file.exists():
+        from app.benchmark.multi_perspective import evaluate_multi_perspective_scenarios
+        report = evaluate_multi_perspective_scenarios()
+        report_data = report.model_dump()
+        report_data["is_demo"] = True
+        return report_data
+
+    try:
+        with report_file.open("r", encoding="utf-8") as f:
+            data = json.load(f)
+        return data
+    except Exception as e:
+        raise HTTPException(
+            status_code=500,
+            detail=f"Failed to read multi-perspective report: {str(e)}",
+        )

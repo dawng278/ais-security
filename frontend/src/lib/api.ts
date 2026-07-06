@@ -10,6 +10,7 @@ import {
   FailureAnalysisResponse,
   FirewallResult,
   GradingResult,
+  MultiPerspectiveReport,
   RedteamResult,
   SecureGradeResponse,
   SecurityEvent,
@@ -92,4 +93,8 @@ export const api = {
       method: "POST",
       body: JSON.stringify(body),
     }),
+
+  getMultiPerspectiveReport: () => request<MultiPerspectiveReport>("/api/benchmark/multi-perspective/report"),
+
+  runMultiPerspective: () => request<MultiPerspectiveReport>("/api/benchmark/multi-perspective/run", { method: "POST" }),
 };

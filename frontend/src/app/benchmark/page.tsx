@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { AppShell } from "@/components/AppShell";
 import { api } from "@/lib/api";
-import { FailureAnalysisItem, FailureAnalysisResponse } from "@/lib/types";
+import { FailureAnalysisItem, FailureAnalysisResponse, MultiPerspectiveReport } from "@/lib/types";
 import {
   BarChart3,
   Play,
@@ -17,17 +17,22 @@ import {
   Info,
   ExternalLink,
   Lock,
+  Compass,
+  Eye,
+  Globe,
+  Grid,
 } from "lucide-react";
 
 export default function BenchmarkPage() {
   const [activeTab, setActiveTab] = useState<
-    "overview" | "attack_type" | "score_integrity" | "failure_analysis" | "evidence"
+    "overview" | "attack_type" | "score_integrity" | "failure_analysis" | "evidence" | "multi_perspective"
   >("overview");
 
   const [loading, setLoading] = useState(false);
   const [combinedReport, setCombinedReport] = useState<any>(null);
   const [failureRes, setFailureRes] = useState<FailureAnalysisResponse | null>(null);
   const [evidenceData, setEvidenceData] = useState<any>(null);
+  const [multiPerspectiveReport, setMultiPerspectiveReport] = useState<MultiPerspectiveReport | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   const fetchAllBenchmarkData = async () => {
@@ -50,6 +55,13 @@ export default function BenchmarkPage() {
       setEvidenceData(evRes);
     } catch (e) {
       console.log("Could not fetch evidence data.");
+    }
+
+    try {
+      const mpRes = await api.getMultiPerspectiveReport();
+      setMultiPerspectiveReport(mpRes);
+    } catch (e) {
+      console.log("Could not fetch multi-perspective report.");
     }
   };
 
@@ -202,6 +214,17 @@ export default function BenchmarkPage() {
             }`}
           >
             <FileCode className="w-4 h-4" /> Evidence Report
+          </button>
+
+          <button
+            onClick={() => setActiveTab("multi_perspective")}
+            className={`px-4 py-2.5 rounded-t-lg transition border-b-2 flex items-center gap-2 ${
+              activeTab === "multi_perspective"
+                ? "border-purple-400 text-purple-400 bg-slate-900/80 font-bold"
+                : "border-transparent text-slate-400 hover:text-slate-200 hover:bg-slate-900/40"
+            }`}
+          >
+            <Compass className="w-4 h-4" /> Multi-Perspective
           </button>
         </div>
 
@@ -579,6 +602,154 @@ export default function BenchmarkPage() {
                 No evidence report available. Click &quot;Run Benchmark v3 Suite&quot; to generate cryptographic evidence.
               </div>
             )}
+          </div>
+        )}
+
+        {/* TAB 6: MULTI-PERSPECTIVE */}
+        {activeTab === "multi_perspective" && (
+          <div className="space-y-6">
+            {/* Perspective Explanation Card */}
+            <div className="bg-slate-900 border border-purple-900/50 p-6 rounded-2xl space-y-3">
+              <div className="flex items-center gap-3">
+                <Compass className="w-6 h-6 text-purple-400 shrink-0" />
+                <div>
+                  <h3 className="text-base font-bold text-white">Multi-Dimensional Evaluation Architecture</h3>
+                  <p className="text-xs text-slate-300 mt-0.5">
+                    GradingGuard AI is evaluated through multiple lenses: security, score integrity, fairness, operations, and evidence governance. This prevents the benchmark from being reduced to a single accuracy number.
+                  </p>
+                </div>
+              </div>
+
+              {multiPerspectiveReport && (
+                <div className="flex flex-wrap items-center gap-3 pt-2 text-xs font-mono">
+                  <span className="px-3 py-1 rounded-md bg-purple-950 text-purple-300 border border-purple-800 font-bold">
+                    Overall Scenario Pass Rate: {(multiPerspectiveReport.overall_pass_rate * 100).toFixed(1)}%
+                  </span>
+                  <span className="px-3 py-1 rounded-md bg-emerald-950 text-emerald-300 border border-emerald-800">
+                    Strongest: {multiPerspectiveReport.strongest_perspective}
+                  </span>
+                  <span className="px-3 py-1 rounded-md bg-rose-950 text-rose-300 border border-rose-800">
+                    Most Fragile: {multiPerspectiveReport.most_fragile_perspective}
+                  </span>
+                  <span className="px-3 py-1 rounded-md bg-slate-800 text-slate-300">
+                    Total Scenarios: {multiPerspectiveReport.total_scenarios}
+                  </span>
+                </div>
+              )}
+            </div>
+
+            {/* Perspective Summary Cards */}
+            {multiPerspectiveReport?.perspective_metrics && (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                {Object.entries(multiPerspectiveReport.perspective_metrics).map(([key, pm]) => {
+                  const passRate = (pm.pass_rate * 100).toFixed(1);
+                  const isHigh = pm.pass_rate >= 0.85;
+                  const isMed = pm.pass_rate >= 0.70 && pm.pass_rate < 0.85;
+
+                  return (
+                    <div
+                      key={key}
+                      className="bg-slate-900 border border-slate-800 p-4 rounded-xl space-y-2 hover:border-slate-700 transition"
+                    >
+                      <div className="flex items-center justify-between">
+                        <span className="text-xs font-bold text-slate-300 uppercase tracking-wider font-mono">
+                          {key.replace("_", " ")}
+                        </span>
+                        <span
+                          className={`px-2 py-0.5 rounded text-[10px] font-bold font-mono ${
+                            isHigh
+                              ? "bg-emerald-950 text-emerald-400 border border-emerald-800"
+                              : isMed
+                              ? "bg-amber-950 text-amber-400 border border-amber-800"
+                              : "bg-rose-950 text-rose-400 border border-rose-800"
+                          }`}
+                        >
+                          {passRate}%
+                        </span>
+                      </div>
+                      <div className="text-xl font-extrabold text-white font-mono">
+                        {pm.passed_cases} / {pm.total_cases}{" "}
+                        <span className="text-xs font-normal text-slate-400">passed</span>
+                      </div>
+                      <p className="text-[11px] text-slate-400 line-clamp-2 leading-relaxed">
+                        {pm.description}
+                      </p>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+
+            {/* Scenario Evaluation Matrix Table */}
+            <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-4">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h3 className="text-base font-bold text-white flex items-center gap-2">
+                    <Grid className="w-5 h-5 text-purple-400" /> Scenario Matrix & Lens Breakdown
+                  </h3>
+                  <p className="text-xs text-slate-400 mt-0.5">
+                    Evaluated across 20 scenario taxonomy groups and 8 primary security perspectives.
+                  </p>
+                </div>
+              </div>
+
+              <div className="overflow-x-auto">
+                <table className="w-full text-left text-xs">
+                  <thead>
+                    <tr className="border-b border-slate-800 text-slate-400 uppercase font-mono text-[10px]">
+                      <th className="py-3 px-3">Case ID</th>
+                      <th className="py-3 px-3">Scenario Group</th>
+                      <th className="py-3 px-3">Perspective</th>
+                      <th className="py-3 px-3">Lang</th>
+                      <th className="py-3 px-3">Expected Action</th>
+                      <th className="py-3 px-3">Predicted Action</th>
+                      <th className="py-3 px-3 text-right">Risk Score</th>
+                      <th className="py-3 px-3 text-center">Status</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-800/60 font-mono">
+                    {multiPerspectiveReport?.evaluation_results?.map((res) => (
+                      <tr key={res.case_id} className="hover:bg-slate-800/40 transition">
+                        <td className="py-2.5 px-3 text-slate-300 font-bold">{res.case_id}</td>
+                        <td className="py-2.5 px-3 text-purple-300 font-sans text-xs">{res.scenario_group}</td>
+                        <td className="py-2.5 px-3 text-slate-400 capitalize">{res.primary_perspective.replace("_", " ")}</td>
+                        <td className="py-2.5 px-3 text-slate-300 uppercase">{res.language}</td>
+                        <td className="py-2.5 px-3 text-slate-400">{res.expected_action}</td>
+                        <td className="py-2.5 px-3">
+                          <span
+                            className={`px-2 py-0.5 rounded text-[10px] font-bold ${
+                              res.predicted_action === "secure_grade"
+                                ? "bg-teal-950 text-teal-300 border border-teal-800"
+                                : res.predicted_action === "manual_review"
+                                ? "bg-purple-950 text-purple-300 border border-purple-800"
+                                : res.predicted_action === "warn"
+                                ? "bg-amber-950 text-amber-300 border border-amber-800"
+                                : "bg-slate-800 text-slate-300 border border-slate-700"
+                            }`}
+                          >
+                            {res.predicted_action}
+                          </span>
+                        </td>
+                        <td className="py-2.5 px-3 text-right text-slate-300">
+                          {res.risk_score.toFixed(2)}
+                        </td>
+                        <td className="py-2.5 px-3 text-center">
+                          {res.passed ? (
+                            <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-950 text-emerald-400 border border-emerald-800">
+                              PASS
+                            </span>
+                          ) : (
+                            <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-rose-950 text-rose-400 border border-rose-800" title={res.failure_reason || "Failed"}>
+                              FAIL
+                            </span>
+                          )}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </div>
         )}
       </div>

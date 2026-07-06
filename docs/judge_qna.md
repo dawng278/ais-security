@@ -96,3 +96,29 @@
 ### **Q19: Why not optimize only for highest recall?**
 **Answer**: In high-stakes education, optimizing solely for highest recall creates unfair overblocking on legitimate essays. GradingGuard AI balances security recall with score integrity, false positive risk, manual review rate, and audit evidence quality.
 
+---
+
+### **Q20: Your benchmark accuracy is ~69–79%. Is that weak?**
+**Answer**: Benchmark v3 is intentionally a robustness and diagnostic benchmark, not a polished leaderboard number. It includes broader prompt-injection, obfuscation, multilingual, and diagnostic edge cases. We separate evaluation into two tracks: (1) **Core IELTS Score Integrity Track**, where score manipulation has a **0.0% critical failure rate** (preventing +3.0 band inflation and recovering score stability), and (2) **General Robustness Track**, which evaluates broader attack families and is used for transparent engineering hardening.
+
+---
+
+### **Q21: Why are there 139–206 critical under-block cases in Benchmark v3?**
+**Answer**: Those cases are surfaced intentionally by Benchmark v3's failure analysis engine. We do not hide them. They represent broader prompt-injection edge cases beyond the core IELTS score manipulation scenario. Each failure is converted into a diagnostic category and an actionable engineering backlog item. In high-stakes AI systems, exposing failure diagnostics is essential for continuous hardening.
+
+---
+
+### **Q22: Does this mean GradingGuard AI is not ready?**
+**Answer**: GradingGuard AI is a competition-ready prototype with an audit-ready architecture. The core threat model—candidate prompt injection manipulating IELTS band scores—is fully defended and verified. Broader edge cases are cataloged transparently with cryptographic evidence (`dataset_sha256`, `config_sha256`) and failure logs.
+
+---
+
+### **Q23: How do you phrase system limitations safely?**
+**Answer**: We state our limitations honestly: (1) Benchmark v3 surfaces broader prompt-injection robustness gaps, (2) Semantic vector detection relies on CPU fallback when heavy ML packages are missing, (3) IELTS Speaking currently uses transcript text rather than live audio streams, and (4) The system is a competition-ready prototype with an explicit production hardening roadmap.
+
+---
+
+### **Q24: What is the single strongest contribution of GradingGuard AI?**
+**Answer**: The strongest contribution is **Score Integrity Evaluation & Auditability**. Most prompt injection tools stop at binary classification. GradingGuard AI measures whether an attack actually alters the IELTS band score (+3.0 bands inflation), whether the firewall recovers the clean score (+3.0 bands recovery), and generates cryptographic evidence reports to prove score integrity.
+
+

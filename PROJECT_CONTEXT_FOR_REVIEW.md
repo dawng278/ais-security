@@ -109,15 +109,23 @@ ais-gau-security/
 10. **Failure Analysis Engine (`backend/app/benchmark/failure_analysis.py`)** [Complete]
     - Classifies benchmark errors into 4 transparent diagnostic categories (`critical_under_block`, `policy_under_block`, `threshold_near_miss`, `score_integrity_recovered`), adding `diagnostic_type`, `is_critical_security_failure`, and `score_integrity_status` saved to `datasets/reports/v3/failure_analysis.jsonl`.
 
-11. **Multi-Perspective Case Library & Governance Decision Matrix (`backend/app/benchmark/case_library.py`, `decision_matrix.py`, `case_library_runner.py`)** [Complete]
+11. **Multi-Perspective Case Library & Governance Decision Matrix (`backend/app/benchmark/case_library.py`, `decision_matrix.py`, `case_library_runner.py`, `stakeholder_lens.py`)** [Complete]
+    - Defined 7-stakeholder taxonomy (*Student*, *Examiner*, *Platform Operator*, *Security Analyst*, *Education Institution*, *Auditor*, *Research Team*) mapping concerns, target conditions, under-block risks, over-block risks, and evidence requirements.
     - Structured 60-scenario case library (`datasets/scenarios/gradingguard_case_library.jsonl`) evaluating security, score integrity, fairness, multilingual, obfuscation, operational review, content preservation, and evidence governance.
-    - Governance Decision Matrix mapping conditions (score manipulation commands, role spoofing, academic quotes, obfuscated text, speaking transcripts) to policy actions, under-block risks, over-block risks, and evidence requirements.
+    - Governance Decision Matrix mapping conditions to policy actions, under-block risks, over-block risks, and evidence requirements.
+    - REST API endpoint `GET /api/benchmark/stakeholder-lenses` exposing stakeholder taxonomy.
     - Case library evaluation runner delivering **80.0% pass rate** across 60 multi-perspective scenarios.
 
 12. **Data Lineage Tracking (`backend/app/datasets/lineage.py`)** [Complete]
     - Tracks provenance across 7 registered sources and 8 sequential data engineering transformation pipeline stages.
 
-13. **Automated Verification Script (`scripts/final_check.sh`)** [Complete]
+13. **Pitch & Demo Defense Pack (`docs/presentation_deck_outline.md`, `docs/demo_script_5min.md`, `docs/risk_decision_playbook.md`)** [Complete]
+    - 10-slide presentation deck outline with two-track evaluation framing (*Core IELTS Score Integrity* vs *General Robustness Track*).
+    - 5-minute live demo script with minute-by-minute UI navigation timeline and dual-language (English / Vietnamese) spoken scripts.
+    - Risk Decision Playbook with trade-off analysis and 10 detailed scenario decision examples.
+    - Expanded Judge Q&A (`docs/judge_qna.md`) with 24 authoritative responses covering metric framing, under-block audits, and system limitations.
+
+14. **Automated Verification Script (`scripts/final_check.sh`)** [Complete]
     - One-click script executing backend unit tests, Benchmark v3 suite execution, and Next.js production static compilation.
 
 ---

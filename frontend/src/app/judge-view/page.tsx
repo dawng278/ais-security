@@ -927,6 +927,106 @@ export default function JudgeViewPage() {
           </div>
         </div>
 
+        {/* 10. PITCH & DEMO DEFENSE STRATEGY SECTION */}
+        <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-6">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-800 pb-4 gap-2">
+            <div>
+              <h2 className="text-xl font-bold text-white flex items-center gap-2.5">
+                <Compass className="w-5 h-5 text-emerald-400" /> Pitch & Demo Defense Strategy (P7)
+              </h2>
+              <p className="text-xs text-slate-400 mt-0.5">
+                Transparent evaluation framing, two-track benchmark defense, and 5-minute live presentation guide.
+              </p>
+            </div>
+            <span className="px-2.5 py-1 rounded text-xs font-mono font-bold bg-emerald-950 text-emerald-300 border border-emerald-800">
+              Jury Ready
+            </span>
+          </div>
+
+          {/* Two-Track Evaluation Model */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="bg-slate-950 p-4 rounded-xl border border-emerald-900/60 space-y-2">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-bold text-emerald-400 uppercase font-mono">Track 1: Core IELTS Score Integrity</span>
+                <span className="text-[10px] bg-emerald-950 text-emerald-300 border border-emerald-800 px-2 py-0.5 rounded font-mono font-bold">0.0% Critical Failure</span>
+              </div>
+              <p className="text-xs text-slate-300 leading-relaxed">
+                Evaluates direct IELTS score manipulation threats (e.g. Band 9 injection commands). Prevents +3.0 bands inflation and recovers score stability to 5.5.
+              </p>
+              <div className="text-[10px] text-emerald-400 font-mono bg-emerald-950/40 p-2 rounded border border-emerald-900/40">
+                Clean: 5.5 → Injected Baseline: 8.5 → Secured: 5.5 (+3.0 Recovery)
+              </div>
+            </div>
+
+            <div className="bg-slate-950 p-4 rounded-xl border border-amber-900/60 space-y-2">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-bold text-amber-400 uppercase font-mono">Track 2: General Robustness Track</span>
+                <span className="text-[10px] bg-amber-950 text-amber-300 border border-amber-800 px-2 py-0.5 rounded font-mono font-bold">Transparent Hardening</span>
+              </div>
+              <p className="text-xs text-slate-300 leading-relaxed">
+                Evaluates 662 broader prompt-injection edge cases, obfuscations, and multilingual payloads. Diagnostic under-blocks are cataloged into an engineering backlog.
+              </p>
+              <div className="text-[10px] text-amber-400 font-mono bg-amber-950/40 p-2 rounded border border-amber-900/40">
+                Benchmark v3: 79.0% Accuracy | Failure Analysis: 139 Diagnostic Cases
+              </div>
+            </div>
+          </div>
+
+          {/* Metric Defense Cheat Sheet */}
+          <div className="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-3">
+            <h3 className="text-xs font-bold text-slate-200 uppercase font-mono flex items-center gap-2">
+              <ShieldCheck className="w-4 h-4 text-cyan-400" /> Defense Framing for Jury Q&A
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+              <div className="space-y-1 bg-slate-900 p-3 rounded-lg border border-slate-800">
+                <p className="font-semibold text-rose-300 font-mono text-[11px]">&quot;Why is benchmark accuracy ~69-79%?&quot;</p>
+                <p className="text-slate-300 text-[11px] leading-snug">
+                  Benchmark v3 is intentionally a robustness benchmark, not a polished leaderboard number. It evaluates broader diagnostic edge cases. The core IELTS score manipulation threat is defended with 0.0% critical failure.
+                </p>
+              </div>
+              <div className="space-y-1 bg-slate-900 p-3 rounded-lg border border-slate-800">
+                <p className="font-semibold text-amber-300 font-mono text-[11px]">&quot;Why are there under-block failure cases?&quot;</p>
+                <p className="text-slate-300 text-[11px] leading-snug">
+                  Failures are surfaced transparently by our failure analysis engine rather than hidden. They represent broader prompt-injection edge cases and form an active engineering backlog.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* 5-Min Live Demo Script Breakdown */}
+          <div className="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-3">
+            <h3 className="text-xs font-bold text-slate-200 uppercase font-mono flex items-center gap-2">
+              <Terminal className="w-4 h-4 text-purple-400" /> 5-Minute Live Demo Timeline
+            </h3>
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 text-[10px] font-mono">
+              <div className="bg-slate-900 p-2.5 rounded border border-slate-800 space-y-1">
+                <span className="text-emerald-400 font-bold">0:00 - 0:30</span>
+                <p className="text-slate-300 font-sans">Open /judge-view positioning</p>
+              </div>
+              <div className="bg-slate-900 p-2.5 rounded border border-slate-800 space-y-1">
+                <span className="text-cyan-400 font-bold">0:30 - 1:40</span>
+                <p className="text-slate-300 font-sans">Playground live attack demo</p>
+              </div>
+              <div className="bg-slate-900 p-2.5 rounded border border-slate-800 space-y-1">
+                <span className="text-rose-400 font-bold">1:40 - 2:30</span>
+                <p className="text-slate-300 font-sans">Attack Arena red-team run</p>
+              </div>
+              <div className="bg-slate-900 p-2.5 rounded border border-slate-800 space-y-1">
+                <span className="text-teal-400 font-bold">2:30 - 3:30</span>
+                <p className="text-slate-300 font-sans">Benchmark & Failure Analysis</p>
+              </div>
+              <div className="bg-slate-900 p-2.5 rounded border border-slate-800 space-y-1">
+                <span className="text-indigo-400 font-bold">3:30 - 4:15</span>
+                <p className="text-slate-300 font-sans">Data Lineage provenance</p>
+              </div>
+              <div className="bg-slate-900 p-2.5 rounded border border-slate-800 space-y-1">
+                <span className="text-purple-400 font-bold">4:15 - 5:00</span>
+                <p className="text-slate-300 font-sans">Evidence & SHA256 Audit</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* 11. CLOSING & ACTION BUTTONS SECTION */}
         <div className="bg-gradient-to-r from-slate-900 via-indigo-950/60 to-slate-900 border border-slate-800 rounded-2xl p-8 space-y-6 text-center shadow-2xl">
           <div className="max-w-3xl mx-auto space-y-3">

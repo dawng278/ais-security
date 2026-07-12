@@ -1,0 +1,61 @@
+{
+  "canonical_path": "datasets/canonical/phase2_canonical_security_samples.jsonl",
+  "composition": {
+    "by_attack_family": {
+      "data_exfiltration": 1,
+      "delimiter_abuse": 1,
+      "direct_prompt_injection": 264,
+      "encoding_attack": 1,
+      "indirect_prompt_injection": 2,
+      "long_context_attack": 1,
+      "multilingual_attack": 2,
+      "none": 412,
+      "policy_manipulation": 1,
+      "role_spoofing": 1,
+      "score_manipulation": 1,
+      "system_prompt_extraction": 1,
+      "unicode_obfuscation": 1
+    },
+    "by_domain": {
+      "generic_llm_security": 662,
+      "ielts_reading": 5,
+      "ielts_speaking": 4,
+      "ielts_writing_task_1": 2,
+      "ielts_writing_task_2": 16
+    },
+    "by_language": {
+      "en": 686,
+      "vi": 1,
+      "vi-en": 2
+    },
+    "by_license_status": {
+      "APPROVED": 662,
+      "INTERNAL_SYNTHETIC": 27
+    },
+    "by_security_label": {
+      "attack": 277,
+      "benign": 13,
+      "clean": 399
+    },
+    "by_split": {
+      "private_holdout": 107,
+      "public_test": 89,
+      "train": 493
+    },
+    "by_track": {
+      "generic_prompt_injection": 662,
+      "ielts_domain_security": 27
+    },
+    "total_samples": 689
+  },
+  "dataset_hash": "a89eb6c09be417209af94f7026e319840195c4239202bec9639242b6a5511549",
+  "dataset_id": "phase2_canonical_security_dataset",
+  "sample_count": 689,
+  "schema": "schemas/canonical_security_sample.schema.json",
+  "schema_version": "canonical_dataset_manifest.v1",
+  "source_approval_states": {
+    "APPROVED": 2,
+    "APPROVED_WITH_RESTRICTIONS": 1,
+    "INTERNAL_SYNTHETIC": 3
+  }
+}

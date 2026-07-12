@@ -1,0 +1,102 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gradingguard.local/schemas/canonical_security_sample.schema.json",
+  "title": "Canonical Security Sample",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "sample_id",
+    "source_id",
+    "source_record_id",
+    "independence_group",
+    "content_hash",
+    "normalized_hash",
+    "task_type",
+    "domain",
+    "language",
+    "content",
+    "context",
+    "security_label",
+    "attack_family",
+    "attack_techniques",
+    "difficulty",
+    "obfuscation_type",
+    "expected_action_range",
+    "clean_pair_id",
+    "attack_pair_id",
+    "provenance",
+    "license_status",
+    "split",
+    "benchmark_tracks",
+    "annotation_status",
+    "reviewer",
+    "warnings"
+  ],
+  "properties": {
+    "schema_version": { "const": "canonical_security_sample.v1" },
+    "sample_id": { "type": "string", "pattern": "^ggs_[a-f0-9]{16}$" },
+    "source_id": { "type": "string", "minLength": 1 },
+    "source_record_id": { "type": "string", "minLength": 1 },
+    "independence_group": { "type": "string", "minLength": 1 },
+    "content_hash": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "normalized_hash": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "task_type": { "enum": ["writing", "speaking", "reading", "generic"] },
+    "domain": { "enum": ["generic_llm_security", "ielts_writing_task_1", "ielts_writing_task_2", "ielts_reading", "ielts_speaking"] },
+    "language": { "type": "string", "minLength": 2, "maxLength": 16 },
+    "content": { "type": "string", "minLength": 1 },
+    "context": { "type": "object" },
+    "security_label": { "enum": ["clean", "benign", "attack", "ambiguous", "review_required"] },
+    "attack_family": {
+      "enum": [
+        "none",
+        "direct_prompt_injection",
+        "indirect_prompt_injection",
+        "role_spoofing",
+        "score_manipulation",
+        "system_prompt_extraction",
+        "data_exfiltration",
+        "delimiter_abuse",
+        "unicode_obfuscation",
+        "encoding_attack",
+        "long_context_attack",
+        "multilingual_attack",
+        "policy_manipulation"
+      ]
+    },
+    "attack_techniques": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+    "difficulty": { "enum": ["low", "medium", "high", "critical"] },
+    "obfuscation_type": { "type": ["string", "null"] },
+    "expected_action_range": {
+      "type": "array",
+      "items": { "enum": ["allow", "warn", "sanitize", "secure_grade", "manual_review", "block"] },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "clean_pair_id": { "type": ["string", "null"] },
+    "attack_pair_id": { "type": ["string", "null"] },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source_path", "generation_method", "generator_type", "template_version", "human_review_status"],
+      "properties": {
+        "source_path": { "type": "string" },
+        "generation_method": { "type": "string" },
+        "generator_type": { "type": "string" },
+        "template_version": { "type": "string" },
+        "human_review_status": { "enum": ["unreviewed", "single_reviewed", "double_reviewed", "adjudicated", "rejected"] }
+      }
+    },
+    "license_status": { "enum": ["APPROVED", "APPROVED_WITH_RESTRICTIONS", "LICENSE_REVIEW_REQUIRED", "INTERNAL_SYNTHETIC", "REJECTED", "UNKNOWN"] },
+    "split": { "enum": ["train", "validation", "public_test", "private_holdout", "development", "measured_holdout", "failure_injection"] },
+    "benchmark_tracks": {
+      "type": "array",
+      "items": { "enum": ["generic_prompt_injection", "ielts_domain_security", "score_integrity", "operational_reliability"] },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "annotation_status": { "enum": ["unreviewed", "single_reviewed", "double_reviewed", "adjudicated", "rejected"] },
+    "reviewer": { "type": ["string", "null"] },
+    "warnings": { "type": "array", "items": { "type": "string" } }
+  }
+}

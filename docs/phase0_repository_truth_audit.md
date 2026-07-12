@@ -53,8 +53,8 @@ Backend:
 Frontend:
 
 - Next.js 16 app in `frontend/src/app`
-- Existing pages: `/`, `/dashboard`, `/judge-view`, `/playground`, `/attack-arena`, `/benchmark`, `/data-lineage`
-- No frontend `/evidence` route exists at audit time.
+- Existing pages at initial audit: `/`, `/dashboard`, `/judge-view`, `/playground`, `/attack-arena`, `/benchmark`, `/data-lineage`
+- The missing frontend `/evidence` route was added after the initial audit.
 
 Data and evidence:
 
@@ -116,6 +116,7 @@ Built routes:
 /benchmark
 /dashboard
 /data-lineage
+/evidence
 /judge-view
 /playground
 ```
@@ -237,7 +238,7 @@ Registry gap:
 
 The following claims are not supported by the observed repository state:
 
-- README claims frontend `/evidence`, but the frontend route does not exist.
+- README claims frontend `/evidence`; this claim is now backed by a real dynamic route.
 - README claims Docker Compose, but no Docker/Compose artifacts exist.
 - README and docs claim semantic embedding capability, while runtime falls back because `sentence_transformers` is unavailable.
 - `docs/technical_report.md`, `docs/evaluation_report.md`, `docs/judge_qna.md`, `docs/demo_script_top1.md`, and frontend `judge-view` contain stale or unsupported metrics such as `0.90` Macro F1, `0.06` FPR, or `210ms` p95.
@@ -256,7 +257,6 @@ Supported claims:
 Phase 0 is not fully complete because:
 
 - Frontend lint fails.
-- Frontend `/evidence` route is missing despite README/docs claims.
 - Docker claim is unsupported by repo artifacts.
 - Existing tracked evidence artifacts still contain stale embedding state until safely regenerated or reviewed.
 - Broader source/license due diligence is still required before final packaging.
@@ -275,6 +275,5 @@ Before implementing product features:
 
 - Make detector health evidence reflect actual runtime dependency/model state.
 - Regenerate or review tracked evidence artifacts now that new runs reflect detector health honestly.
-- Add or remove frontend `/evidence` claims.
 - Remove unsupported Docker Compose claims or add verified Docker artifacts later in the deployment phase.
 - Sync stale metrics in docs/UI from canonical evidence instead of hard-coded values.

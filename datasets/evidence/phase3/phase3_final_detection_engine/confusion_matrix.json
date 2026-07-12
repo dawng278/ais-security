@@ -1,0 +1,14 @@
+{
+  "generic_prompt_injection": {
+    "fn": 108,
+    "fp": 0,
+    "tn": 399,
+    "tp": 155
+  },
+  "ielts_domain_security": {
+    "fn": 4,
+    "fp": 1,
+    "tn": 12,
+    "tp": 10
+  }
+}

@@ -37,14 +37,7 @@
   "dirty_worktree": [
     " M datasets/reports/v3/benchmark_v3_combined.json",
     " M datasets/reports/v3/evidence/evidence_card.md",
-    " M datasets/reports/v3/evidence/evidence_report.json",
-    "?? datasets/canonical/",
-    "?? datasets/evidence/",
-    "?? datasets/manifests/",
-    "?? schemas/canonical_security_sample.schema.json",
-    "?? scripts/__pycache__/",
-    "?? scripts/audit_dataset_integrity.py",
-    "?? scripts/phase2_dataset_tools.py"
+    " M datasets/reports/v3/evidence/evidence_report.json"
   ],
   "environment": {
     "package_versions": {
@@ -53,7 +46,7 @@
     "platform": "Linux-7.0.13-200.fc44.x86_64-x86_64-with-glibc2.42",
     "python_version": "3.13.14"
   },
-  "git_commit": "2e9a285b88f5c84f28180589a79afbe6f73d0c9c",
+  "git_commit": "6acc4debc1d013d047d073420e46c0000df2fbfb",
   "limitations": [
     "No detector tuning performed in Phase 2.",
     "IELTS-domain track uses internally authored synthetic fixtures.",

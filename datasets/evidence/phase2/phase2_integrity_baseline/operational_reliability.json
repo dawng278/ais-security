@@ -52,7 +52,7 @@
       "action": "allow",
       "expected_state": "success_with_embedding_unavailable",
       "fault": "embedding_unavailable",
-      "latency_ms": 0.038,
+      "latency_ms": 0.039,
       "observed_state": "success_with_embedding_unavailable",
       "risk_score": 0.01,
       "scenario_id": "embedding_unavailable"
@@ -124,7 +124,7 @@
       "action": "secure_grade",
       "expected_state": "success",
       "fault": "local_concurrency",
-      "latency_ms": 0.038,
+      "latency_ms": 0.039,
       "observed_state": "success",
       "risk_score": 0.68,
       "scenario_id": "controlled_concurrency"

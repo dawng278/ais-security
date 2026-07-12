@@ -1,0 +1,12 @@
+{
+  "reason": "frontend package does not include @playwright/test or Playwright config",
+  "required_projects": [
+    "chromium-desktop",
+    "firefox-desktop",
+    "webkit-desktop",
+    "mobile-android",
+    "mobile-ios",
+    "tablet"
+  ],
+  "status": "NOT_RUN"
+}

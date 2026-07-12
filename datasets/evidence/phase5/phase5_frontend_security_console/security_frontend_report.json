@@ -1,0 +1,13 @@
+{
+  "dangerously_set_inner_html": true,
+  "local_storage_absent": true,
+  "status": "PASS",
+  "truth_labels": {
+    "DETERMINISTIC_DEMO": true,
+    "LOW_SUPPORT": true,
+    "NOT_MEASURED": true,
+    "PRODUCTION NOT READY": true,
+    "phase3_final_detection_engine": true,
+    "phase4_operational_safety": true
+  }
+}

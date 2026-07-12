@@ -1,0 +1,13 @@
+{
+  "endpoints": [
+    "/api/v1/security/analyze",
+    "/decisions",
+    "/incidents",
+    "/reviews",
+    "/policies",
+    "/runtime",
+    "/audit"
+  ],
+  "status": "PASS",
+  "typed_layer": "frontend/src/lib/security-api.ts"
+}

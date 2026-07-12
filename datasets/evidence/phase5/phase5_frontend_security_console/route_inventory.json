@@ -1,0 +1,75 @@
+{
+  "routes": [
+    {
+      "file": "frontend/src/app/attack-arena/page.tsx",
+      "route": "/attack-arena",
+      "source": "Phase 5 SecurityConsolePage"
+    },
+    {
+      "file": "frontend/src/app/benchmark/page.tsx",
+      "route": "/benchmark",
+      "source": "Phase 5 SecurityConsolePage"
+    },
+    {
+      "file": "frontend/src/app/dashboard/page.tsx",
+      "route": "/dashboard",
+      "source": "Phase 5 SecurityConsolePage"
+    },
+    {
+      "file": "frontend/src/app/data-lineage/page.tsx",
+      "route": "/data-lineage",
+      "source": "Phase 5 SecurityConsolePage"
+    },
+    {
+      "file": "frontend/src/app/detector-health/page.tsx",
+      "route": "/detector-health",
+      "source": "Phase 5 SecurityConsolePage"
+    },
+    {
+      "file": "frontend/src/app/evidence/page.tsx",
+      "route": "/evidence",
+      "source": "Phase 5 SecurityConsolePage"
+    },
+    {
+      "file": "frontend/src/app/incidents/[id]/page.tsx",
+      "route": "/incidents/[id]",
+      "source": "Phase 5 SecurityConsolePage"
+    },
+    {
+      "file": "frontend/src/app/integration-runtime/page.tsx",
+      "route": "/integration-runtime",
+      "source": "Phase 5 SecurityConsolePage"
+    },
+    {
+      "file": "frontend/src/app/judge-view/page.tsx",
+      "route": "/judge-view",
+      "source": "Phase 5 SecurityConsolePage"
+    },
+    {
+      "file": "frontend/src/app/manual-review/page.tsx",
+      "route": "/manual-review",
+      "source": "Phase 5 SecurityConsolePage"
+    },
+    {
+      "file": "frontend/src/app/page.tsx",
+      "route": "/",
+      "source": "Phase 5 SecurityConsolePage"
+    },
+    {
+      "file": "frontend/src/app/playground/page.tsx",
+      "route": "/playground",
+      "source": "Phase 5 SecurityConsolePage"
+    },
+    {
+      "file": "frontend/src/app/policies/page.tsx",
+      "route": "/policies",
+      "source": "Phase 5 SecurityConsolePage"
+    },
+    {
+      "file": "frontend/src/app/threat-inbox/page.tsx",
+      "route": "/threat-inbox",
+      "source": "Phase 5 SecurityConsolePage"
+    }
+  ],
+  "status": "PASS"
+}

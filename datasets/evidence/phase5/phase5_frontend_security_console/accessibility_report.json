@@ -1,0 +1,11 @@
+{
+  "implemented": [
+    "skip link",
+    "landmarks",
+    "focus-visible",
+    "table headers",
+    "text labels beyond color",
+    "reduced motion"
+  ],
+  "status": "STATIC_PASS_BROWSER_SCAN_NOT_RUN"
+}

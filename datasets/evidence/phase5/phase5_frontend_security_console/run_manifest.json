@@ -1,0 +1,63 @@
+{
+  "checksum_result": {
+    "actual": {
+      "datasets/evidence/phase2/phase2_integrity_baseline/metrics.json": "4483da1febbeeadf94ff004e1431c0984d76dedd06f9f23f79f95f39b74308dd",
+      "datasets/evidence/phase2/phase2_integrity_baseline/run_manifest.json": "e4d96d149ec26194301ee7cd15ab73d23667c0e97c6e244e08dd89943ca6d1cd",
+      "datasets/evidence/phase3/phase3_final_detection_engine/metrics.json": "2484ac00a1114d8aa735cbb7b6613ee41fa41dbc9c41f2ba67f96c0cbdab35df",
+      "datasets/evidence/phase3/phase3_final_detection_engine/run_manifest.json": "f68e4208016df63e0e558f9c4f0ef2e371d9c46b98d891a47fc3a8f027cc770d",
+      "datasets/evidence/phase4/phase4_operational_safety/phase3_regression_report.json": "212391bdb3b922dab29602a7a7d16e1b9e87ab4b6429e28c94fe5c12571a8272",
+      "datasets/evidence/phase4/phase4_operational_safety/run_manifest.json": "2be011314732a7c080a5fb488c8cc9320ee9dc11f30842bbaa520d85683b9be0",
+      "datasets/reports/v3/benchmark_v3_combined.json": "863c8509af20d56e4f1370948f3ebf8b11562efef59245ab5e71061b83f44003",
+      "datasets/reports/v3/evidence/evidence_card.md": "c9e60724e1e8d6ba53549e790222e4a1f6e6e8cad8d74fb7001b62dfe9e9071f",
+      "datasets/reports/v3/evidence/evidence_report.json": "c5aa5b41c602c299acb59d8a0097e22aee12ed4d2a5ee8d06b5aa3bacf937b67"
+    },
+    "expected": {
+      "datasets/evidence/phase2/phase2_integrity_baseline/metrics.json": "4483da1febbeeadf94ff004e1431c0984d76dedd06f9f23f79f95f39b74308dd",
+      "datasets/evidence/phase2/phase2_integrity_baseline/run_manifest.json": "e4d96d149ec26194301ee7cd15ab73d23667c0e97c6e244e08dd89943ca6d1cd",
+      "datasets/evidence/phase3/phase3_final_detection_engine/metrics.json": "2484ac00a1114d8aa735cbb7b6613ee41fa41dbc9c41f2ba67f96c0cbdab35df",
+      "datasets/evidence/phase3/phase3_final_detection_engine/run_manifest.json": "f68e4208016df63e0e558f9c4f0ef2e371d9c46b98d891a47fc3a8f027cc770d",
+      "datasets/evidence/phase4/phase4_operational_safety/phase3_regression_report.json": "212391bdb3b922dab29602a7a7d16e1b9e87ab4b6429e28c94fe5c12571a8272",
+      "datasets/evidence/phase4/phase4_operational_safety/run_manifest.json": "2be011314732a7c080a5fb488c8cc9320ee9dc11f30842bbaa520d85683b9be0",
+      "datasets/reports/v3/benchmark_v3_combined.json": "863c8509af20d56e4f1370948f3ebf8b11562efef59245ab5e71061b83f44003",
+      "datasets/reports/v3/evidence/evidence_card.md": "c9e60724e1e8d6ba53549e790222e4a1f6e6e8cad8d74fb7001b62dfe9e9071f",
+      "datasets/reports/v3/evidence/evidence_report.json": "c5aa5b41c602c299acb59d8a0097e22aee12ed4d2a5ee8d06b5aa3bacf937b67"
+    },
+    "status": "PASS"
+  },
+  "dirty_worktree": [
+    "M datasets/reports/v3/benchmark_v3_combined.json",
+    " M datasets/reports/v3/evidence/evidence_card.md",
+    " M datasets/reports/v3/evidence/evidence_report.json",
+    "?? datasets/evidence/phase5/",
+    "?? docs/audits/phase5_frontend_security_console_report.json",
+    "?? docs/frontend/",
+    "?? docs/phase5_frontend_security_console_report.md",
+    "?? docs/product/phase5_gau_design_alignment.md",
+    "?? scripts/phase5_evidence.py"
+  ],
+  "environment": {
+    "platform": "Linux-7.0.13-200.fc44.x86_64-x86_64-with-glibc2.42",
+    "python": "3.13.14"
+  },
+  "frontend_verification": {
+    "browser_e2e_matrix": "NOT_RUN",
+    "lint": "PASS",
+    "production_build": "PASS",
+    "static_phase5_tests": "PASS",
+    "typecheck": "PASS"
+  },
+  "git_commit": "3c92769134c733dace972fc53c2df0d57d7246d3",
+  "limitations": [
+    "Six-browser Playwright E2E matrix not run because Playwright test tooling is not present.",
+    "200% zoom and browser accessibility scans require browser automation/manual acceptance.",
+    "No screenshots/videos/traces committed."
+  ],
+  "readiness": {
+    "competition": "READY",
+    "pilot": "READY",
+    "production": "NOT_READY"
+  },
+  "run_id": "phase5_frontend_security_console",
+  "status": "partial",
+  "verdict": "PHASE_5_FRONTEND_SECURITY_CONSOLE_PARTIAL"
+}

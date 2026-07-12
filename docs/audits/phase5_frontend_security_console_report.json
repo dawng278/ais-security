@@ -1,0 +1,33 @@
+{
+  "verdict": "PHASE_5_FRONTEND_SECURITY_CONSOLE_PARTIAL",
+  "partial_reason": "Six-browser Playwright E2E, browser zoom and automated browser accessibility matrix are unavailable in the current frontend dependency set.",
+  "competition_ready": "READY",
+  "pilot_ready": "READY",
+  "production_ready": "NOT_READY",
+  "phase6_started": false,
+  "implemented": [
+    "GAU design alignment",
+    "design tokens",
+    "AppShell/navigation",
+    "typed API layer",
+    "Security Overview",
+    "Threat Inbox",
+    "Incident Detail",
+    "Manual Review",
+    "Policy Management",
+    "Detector Health",
+    "Benchmark/Evidence",
+    "Data Lineage",
+    "Integration/Runtime",
+    "Attack Arena",
+    "Playground",
+    "Judge View"
+  ],
+  "truth_labels_preserved": [
+    "IELTS_DOMAIN_TRACK LOW_SUPPORT",
+    "MEASURED_SCORE_INTEGRITY NOT_MEASURED",
+    "EMBEDDING_RUNTIME unavailable/degraded when missing",
+    "PRODUCTION_READY NOT_READY"
+  ]
+}
+

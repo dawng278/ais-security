@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { AppShell } from "@/components/AppShell";
 import { api } from "@/lib/api";
+import { BenchmarkV3CombinedReport, EvidenceReport } from "@/lib/types";
 import {
   Trophy,
   ShieldCheck,
@@ -19,24 +20,11 @@ import {
   ArrowRight,
   Lock,
   Zap,
-  Cpu,
   FileCheck,
   Check,
-  RefreshCw,
   Compass,
   Users,
 } from "lucide-react";
-
-// Seeded Fallback Constants
-const CORE_DEMO = {
-  cleanScore: 5.5,
-  injectedBaselineScore: 8.5,
-  secureScore: 5.5,
-  scoreInflation: 3.0,
-  defenseRecovery: 3.0,
-  scoreStability: 0.0,
-  cleanUtilityLoss: 0.0,
-};
 
 const SEEDED_ARENA_SUMMARY = {
   totalAttempts: 5,
@@ -93,31 +81,38 @@ const SEEDED_ARENA_SUMMARY = {
   ],
 };
 
-const SEEDED_BENCHMARK = {
-  datasetVersion: "gradingguard_benchmark_v3",
-  macroF1: 0.9,
-  recall: 0.91,
-  fpr: 0.06,
-  underBlockRate: 0.04,
-  asrReduction: 0.78,
-  p95LatencyMs: 210,
+interface JudgeBenchmarkData {
+  datasetVersion: string;
+  macroF1: number | null;
+  recall: number | null;
+  fpr: number | null;
+  underBlockRate: number | null;
+  asrReduction: number | null;
+  p95LatencyMs: number | null;
+  status: "Measured" | "Unavailable";
+}
+
+const EMPTY_BENCHMARK: JudgeBenchmarkData = {
+  datasetVersion: "Unavailable",
+  macroF1: null,
+  recall: null,
+  fpr: null,
+  underBlockRate: null,
+  asrReduction: null,
+  p95LatencyMs: null,
+  status: "Unavailable",
 };
 
-const SEEDED_EVIDENCE = {
-  runId: "gg_run_demo",
-  datasetVersion: "gradingguard_benchmark_v3_demo",
-  datasetSha256: "demo_sha256_pending_real_benchmark_run",
-  configSha256: "demo_config_sha256",
-  gitCommit: "local",
-  randomSeed: 42,
-  createdAt: "2026-07-05T06:40:00Z",
-};
+const formatMetric = (value: number | null, digits = 2) =>
+  typeof value === "number" ? value.toFixed(digits) : "Unavailable";
+
+const formatPercentMetric = (value: number | null) =>
+  typeof value === "number" ? `${(value * 100).toFixed(0)}%` : "Unavailable";
 
 export default function JudgeViewPage() {
   const [isDemo, setIsDemo] = useState(false);
-  const [evidenceData, setEvidenceData] = useState<any>(SEEDED_EVIDENCE);
-  const [lineageData, setLineageData] = useState<any>(null);
-  const [benchmarkData, setBenchmarkData] = useState<any>(SEEDED_BENCHMARK);
+  const [evidenceData, setEvidenceData] = useState<EvidenceReport | null>(null);
+  const [benchmarkData, setBenchmarkData] = useState<JudgeBenchmarkData>(EMPTY_BENCHMARK);
 
   useEffect(() => {
     async function fetchAllData() {
@@ -130,9 +125,7 @@ export default function JudgeViewPage() {
       let demoFlag = false;
 
       // Lineage
-      if (results[0].status === "fulfilled" && results[0].value) {
-        setLineageData(results[0].value);
-      } else {
+      if (results[0].status !== "fulfilled") {
         demoFlag = true;
       }
 
@@ -144,16 +137,17 @@ export default function JudgeViewPage() {
       }
 
       // Benchmark V3
-      if (results[2].status === "fulfilled" && results[2].value?.benchmark_report) {
-        const r = results[2].value.benchmark_report;
+      if (results[2].status === "fulfilled" && (results[2].value as BenchmarkV3CombinedReport).benchmark_report) {
+        const r = (results[2].value as BenchmarkV3CombinedReport).benchmark_report;
         setBenchmarkData({
           datasetVersion: r.benchmark_id || "gradingguard_benchmark_v3",
-          macroF1: r.macro_f1 || 0.9,
-          recall: r.recall || 0.91,
-          fpr: r.false_positive_rate || 0.06,
-          underBlockRate: r.under_block_rate || 0.04,
-          asrReduction: 0.78,
-          p95LatencyMs: 210,
+          macroF1: typeof r.macro_f1 === "number" ? r.macro_f1 : null,
+          recall: typeof r.recall === "number" ? r.recall : null,
+          fpr: typeof r.false_positive_rate === "number" ? r.false_positive_rate : null,
+          underBlockRate: typeof r.under_block_rate === "number" ? r.under_block_rate : null,
+          asrReduction: null,
+          p95LatencyMs: null,
+          status: "Measured",
         });
       } else {
         demoFlag = true;
@@ -542,7 +536,7 @@ export default function JudgeViewPage() {
                 Core threat: protected
               </span>
               <span className="px-2.5 py-0.5 rounded text-xs font-mono font-bold bg-blue-950 text-blue-300 border border-blue-800">
-                General robustness: 79.0%
+                General robustness: {benchmarkData.status}
               </span>
               <span className="px-2.5 py-0.5 rounded text-xs font-mono font-bold bg-purple-950 text-purple-300 border border-purple-800">
                 Failure analysis: transparent
@@ -551,40 +545,42 @@ export default function JudgeViewPage() {
           </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
-            <div className="bg-slate-950 p-4 rounded-xl border border-slate-800 text-center">
-              <div className="text-[10px] text-slate-400 uppercase">Macro F1</div>
-              <div className="text-xl font-black font-mono text-emerald-400 mt-1">
-                {benchmarkData.macroF1 ? benchmarkData.macroF1.toFixed(2) : "0.90"}
-              </div>
-            </div>
-            <div className="bg-slate-950 p-4 rounded-xl border border-slate-800 text-center">
-              <div className="text-[10px] text-slate-400 uppercase">Recall</div>
-              <div className="text-xl font-black font-mono text-cyan-400 mt-1">
-                {benchmarkData.recall ? benchmarkData.recall.toFixed(2) : "0.91"}
-              </div>
-            </div>
-            <div className="bg-slate-950 p-4 rounded-xl border border-slate-800 text-center">
-              <div className="text-[10px] text-slate-400 uppercase">FPR (Clean)</div>
-              <div className="text-xl font-black font-mono text-teal-400 mt-1">
-                {benchmarkData.fpr ? benchmarkData.fpr.toFixed(2) : "0.06"}
-              </div>
-            </div>
-            <div className="bg-slate-950 p-4 rounded-xl border border-slate-800 text-center">
-              <div className="text-[10px] text-slate-400 uppercase">Under-block Rate</div>
-              <div className="text-xl font-black font-mono text-amber-400 mt-1">
-                {benchmarkData.underBlockRate ? benchmarkData.underBlockRate.toFixed(2) : "0.04"}
-              </div>
-            </div>
-            <div className="bg-slate-950 p-4 rounded-xl border border-slate-800 text-center">
-              <div className="text-[10px] text-slate-400 uppercase">ASR Reduction</div>
-              <div className="text-xl font-black font-mono text-indigo-400 mt-1">
-                {(benchmarkData.asrReduction * 100).toFixed(0)}%
-              </div>
-            </div>
-            <div className="bg-slate-950 p-4 rounded-xl border border-slate-800 text-center">
-              <div className="text-[10px] text-slate-400 uppercase">p95 Latency</div>
-              <div className="text-xl font-black font-mono text-slate-200 mt-1">{benchmarkData.p95LatencyMs}ms</div>
-            </div>
+	            <div className="bg-slate-950 p-4 rounded-xl border border-slate-800 text-center">
+	              <div className="text-[10px] text-slate-400 uppercase">Macro F1</div>
+	              <div className="text-xl font-black font-mono text-emerald-400 mt-1">
+	                {formatMetric(benchmarkData.macroF1)}
+	              </div>
+	            </div>
+	            <div className="bg-slate-950 p-4 rounded-xl border border-slate-800 text-center">
+	              <div className="text-[10px] text-slate-400 uppercase">Recall</div>
+	              <div className="text-xl font-black font-mono text-cyan-400 mt-1">
+	                {formatMetric(benchmarkData.recall)}
+	              </div>
+	            </div>
+	            <div className="bg-slate-950 p-4 rounded-xl border border-slate-800 text-center">
+	              <div className="text-[10px] text-slate-400 uppercase">FPR (Clean)</div>
+	              <div className="text-xl font-black font-mono text-teal-400 mt-1">
+	                {formatMetric(benchmarkData.fpr)}
+	              </div>
+	            </div>
+	            <div className="bg-slate-950 p-4 rounded-xl border border-slate-800 text-center">
+	              <div className="text-[10px] text-slate-400 uppercase">Under-block Rate</div>
+	              <div className="text-xl font-black font-mono text-amber-400 mt-1">
+	                {formatMetric(benchmarkData.underBlockRate)}
+	              </div>
+	            </div>
+	            <div className="bg-slate-950 p-4 rounded-xl border border-slate-800 text-center">
+	              <div className="text-[10px] text-slate-400 uppercase">ASR Reduction</div>
+	              <div className="text-xl font-black font-mono text-indigo-400 mt-1">
+	                {formatPercentMetric(benchmarkData.asrReduction)}
+	              </div>
+	            </div>
+	            <div className="bg-slate-950 p-4 rounded-xl border border-slate-800 text-center">
+	              <div className="text-[10px] text-slate-400 uppercase">p95 Latency</div>
+	              <div className="text-xl font-black font-mono text-slate-200 mt-1">
+	                {typeof benchmarkData.p95LatencyMs === "number" ? `${benchmarkData.p95LatencyMs}ms` : "Unavailable"}
+	              </div>
+	            </div>
           </div>
 
           {/* Multi-Perspective 5 Lenses Grid */}
@@ -848,22 +844,22 @@ export default function JudgeViewPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="bg-slate-950 p-5 rounded-xl border border-slate-800 space-y-2 font-mono text-xs">
-              <div className="flex justify-between border-b border-slate-850 pb-1">
-                <span className="text-slate-400">Run ID:</span>
-                <span className="text-cyan-400">{evidenceData?.runId || "gg_run_demo"}</span>
-              </div>
-              <div className="flex justify-between border-b border-slate-850 pb-1">
-                <span className="text-slate-400">Dataset SHA256:</span>
-                <span className="text-indigo-400 truncate max-w-[200px]">{evidenceData?.datasetSha256 || "demo_sha256"}</span>
-              </div>
-              <div className="flex justify-between border-b border-slate-850 pb-1">
-                <span className="text-slate-400">Config SHA256:</span>
-                <span className="text-teal-400 truncate max-w-[200px]">{evidenceData?.configSha256 || "demo_config"}</span>
-              </div>
-              <div className="flex justify-between border-b border-slate-850 pb-1">
-                <span className="text-slate-400">Git Commit:</span>
-                <span className="text-slate-200">{evidenceData?.gitCommit || "local"}</span>
-              </div>
+	              <div className="flex justify-between border-b border-slate-850 pb-1">
+	                <span className="text-slate-400">Run ID:</span>
+	                <span className="text-cyan-400">{evidenceData?.run_context?.run_id || "Unavailable"}</span>
+	              </div>
+	              <div className="flex justify-between border-b border-slate-850 pb-1">
+	                <span className="text-slate-400">Dataset SHA256:</span>
+	                <span className="text-indigo-400 truncate max-w-[200px]">{evidenceData?.dataset?.dataset_sha256 || "Unavailable"}</span>
+	              </div>
+	              <div className="flex justify-between border-b border-slate-850 pb-1">
+	                <span className="text-slate-400">Config SHA256:</span>
+	                <span className="text-teal-400 truncate max-w-[200px]">{evidenceData?.detector?.config_sha256 || "Unavailable"}</span>
+	              </div>
+	              <div className="flex justify-between border-b border-slate-850 pb-1">
+	                <span className="text-slate-400">Git Commit:</span>
+	                <span className="text-slate-200">{evidenceData?.run_context?.git_commit || "Unavailable"}</span>
+	              </div>
             </div>
 
             <div className="bg-slate-950 p-5 rounded-xl border border-slate-800 space-y-2 text-xs">

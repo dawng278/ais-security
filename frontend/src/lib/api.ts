@@ -2,11 +2,13 @@ import {
   ArenaRunRequest,
   ArenaRunResponse,
   AttackerProfile,
+  BenchmarkV3CombinedReport,
   BenchmarkReportV2,
   BenchmarkSummary,
   CompareResponse,
   DashboardStats,
   DatasetLineageReport,
+  EvidenceReport,
   FailureAnalysisResponse,
   FirewallResult,
   GradingResult,
@@ -78,13 +80,13 @@ export const api = {
 
   runBenchmarkV2: () => request<BenchmarkReportV2>("/api/benchmark/run_v2", { method: "POST" }),
 
-  runBenchmarkV3: () => request<any>("/api/benchmark/v3/run", { method: "POST" }),
+  runBenchmarkV3: () => request<BenchmarkV3CombinedReport>("/api/benchmark/v3/run", { method: "POST" }),
 
-  getBenchmarkV3Report: () => request<any>("/api/benchmark/v3/report"),
+  getBenchmarkV3Report: () => request<BenchmarkV3CombinedReport>("/api/benchmark/v3/report"),
 
   getBenchmarkFailureAnalysis: () => request<FailureAnalysisResponse>("/api/benchmark/v3/failure-analysis"),
 
-  getEvidenceLatest: () => request<any>("/api/evidence/latest"),
+  getEvidenceLatest: () => request<EvidenceReport>("/api/evidence/latest"),
 
   getLineageReport: () => request<DatasetLineageReport>("/api/lineage/report"),
 

@@ -150,6 +150,76 @@ export interface BenchmarkReportV2 {
   failure_cases: BenchmarkCaseEvaluationResultV2[];
 }
 
+export interface EvidenceReport {
+  run_context?: {
+    run_id?: string;
+    created_at?: string;
+    git_commit?: string | null;
+    random_seed?: number;
+    environment?: string;
+  };
+  dataset?: {
+    dataset_path?: string;
+    dataset_version?: string;
+    dataset_sha256?: string;
+    total_cases?: number;
+    label_distribution?: Record<string, number>;
+    split_distribution?: Record<string, number>;
+    attack_type_distribution?: Record<string, number>;
+    language_distribution?: Record<string, number>;
+  };
+  detector?: {
+    detector_version?: string;
+    threshold_version?: string;
+    enable_embedding_detector?: boolean;
+    enable_classifier_detector?: boolean;
+    embedding_configured_state?: string;
+    embedding_dependency_state?: string;
+    embedding_model_load_state?: string;
+    embedding_runtime_state?: string;
+    embedding_model_name?: string | null;
+    embedding_fallback_reason?: string | null;
+    risk_thresholds?: Record<string, number>;
+    config_sha256?: string | null;
+  };
+  metrics?: {
+    overall_metrics?: Record<string, number>;
+    score_integrity_metrics?: Record<string, number>;
+    sanitizer_metrics?: Record<string, number>;
+    latency_metrics?: Record<string, number>;
+  };
+  failure_case_count?: number;
+  report_paths?: Record<string, string>;
+  notes?: string[];
+}
+
+export interface EvaluationTrackSummary {
+  track_name?: string;
+  primary_threat?: string;
+  clean_essay_score?: number;
+  injected_baseline_score?: number;
+  secure_firewall_score?: number;
+  score_inflation_prevented?: number;
+  defense_recovery?: number;
+  score_stability?: number;
+  critical_score_manipulation_failure_rate?: number;
+  total_cases?: number;
+  passed_cases?: number;
+  accuracy?: number;
+  critical_under_block?: number;
+  critical_under_block_rate?: number;
+  policy_under_block?: number;
+  false_positive_rate?: number;
+  status?: string;
+}
+
+export interface BenchmarkV3CombinedReport {
+  benchmark_report: BenchmarkReportV2;
+  evidence_report?: EvidenceReport;
+  evaluation_tracks?: Record<string, EvaluationTrackSummary>;
+  failure_analysis_count?: number;
+}
+
 export interface AttackerProfile {
   profile_id: string;
   name: string;
@@ -309,7 +379,7 @@ export interface CaseLibraryEvaluationResult {
   under_block_risk: string;
   over_block_risk: string;
   stakeholder_lenses?: string[];
-  evidence_observed?: Record<string, any>;
+  evidence_observed?: Record<string, unknown>;
   text_preview: string;
 }
 
@@ -337,7 +407,6 @@ export interface StakeholderLens {
   risk_if_overblocked: string;
   evidence_needed: string[];
 }
-
 
 
 

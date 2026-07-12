@@ -4,7 +4,6 @@ import React, { useEffect, useState } from "react";
 import { AppShell } from "@/components/AppShell";
 import { api } from "@/lib/api";
 import {
-  ArenaAttempt,
   ArenaRunResponse,
   AttackerProfile,
   TaskType,
@@ -12,7 +11,6 @@ import {
 import {
   Swords,
   ShieldCheck,
-  ShieldAlert,
   AlertTriangle,
   ChevronDown,
   ChevronRight,
@@ -46,14 +44,11 @@ export default function AttackArenaPage() {
       try {
         const data = await api.getArenaProfiles();
         setProfiles(data);
-        if (data.length > 0 && !selectedProfileId) {
-          setSelectedProfileId(data[0].profile_id);
-        }
-      } catch (err: any) {
+      } catch (err: unknown) {
         console.error("Failed to load attacker profiles:", err);
       }
     }
-    loadProfiles();
+    void loadProfiles();
   }, []);
 
   const handleRunScenario = async () => {
@@ -70,9 +65,9 @@ export default function AttackArenaPage() {
       if (result.attempts.length > 0) {
         setExpandedAttempts({ [result.attempts[0].attempt_id]: true });
       }
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error("Failed to run attack scenario:", err);
-      setError(err?.message || "Failed to execute attack scenario. Please check backend connection.");
+      setError(err instanceof Error ? err.message : "Failed to execute attack scenario. Please check backend connection.");
     } finally {
       setLoading(false);
     }
@@ -202,7 +197,7 @@ export default function AttackArenaPage() {
             </div>
 
             <p className="text-[11px] text-slate-500 italic">
-              * Click "Run Attack Scenario" to execute all attack vectors sequentially against GradingGuard AI.
+              * Click &quot;Run Attack Scenario&quot; to execute all attack vectors sequentially against GradingGuard AI.
             </p>
           </div>
         </div>

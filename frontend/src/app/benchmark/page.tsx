@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { AppShell } from "@/components/AppShell";
 import { api } from "@/lib/api";
 import {
@@ -9,6 +9,9 @@ import {
   MultiPerspectiveReport,
   CaseLibraryEvaluationReport,
   DecisionMatrixItem,
+  BenchmarkReportV2,
+  BenchmarkV3CombinedReport,
+  EvidenceReport,
 } from "@/lib/types";
 import {
   BarChart3,
@@ -21,11 +24,8 @@ import {
   Activity,
   Layers,
   Info,
-  ExternalLink,
   Lock,
   Compass,
-  Eye,
-  Globe,
   Grid,
   Scale,
 } from "lucide-react";
@@ -36,62 +36,62 @@ export default function BenchmarkPage() {
   >("overview");
 
   const [loading, setLoading] = useState(false);
-  const [combinedReport, setCombinedReport] = useState<any>(null);
+  const [combinedReport, setCombinedReport] = useState<BenchmarkV3CombinedReport | null>(null);
   const [failureRes, setFailureRes] = useState<FailureAnalysisResponse | null>(null);
-  const [evidenceData, setEvidenceData] = useState<any>(null);
+  const [evidenceData, setEvidenceData] = useState<EvidenceReport | null>(null);
   const [multiPerspectiveReport, setMultiPerspectiveReport] = useState<MultiPerspectiveReport | null>(null);
   const [decisionMatrix, setDecisionMatrix] = useState<DecisionMatrixItem[]>([]);
   const [caseLibraryReport, setCaseLibraryReport] = useState<CaseLibraryEvaluationReport | null>(null);
   const [selectedStakeholder, setSelectedStakeholder] = useState<string>("all");
   const [error, setError] = useState<string | null>(null);
 
-  const fetchAllBenchmarkData = async () => {
+  const fetchAllBenchmarkData = useCallback(async () => {
     try {
       const reportRes = await api.getBenchmarkV3Report();
       setCombinedReport(reportRes);
-    } catch (e) {
+    } catch {
       console.log("No existing benchmark v3 report found yet.");
     }
 
     try {
       const failRes = await api.getBenchmarkFailureAnalysis();
       setFailureRes(failRes);
-    } catch (e) {
+    } catch {
       console.log("Could not fetch failure analysis.");
     }
 
     try {
       const evRes = await api.getEvidenceLatest();
       setEvidenceData(evRes);
-    } catch (e) {
+    } catch {
       console.log("Could not fetch evidence data.");
     }
 
     try {
       const mpRes = await api.getMultiPerspectiveReport();
       setMultiPerspectiveReport(mpRes);
-    } catch (e) {
+    } catch {
       console.log("Could not fetch multi-perspective report.");
     }
 
     try {
       const dm = await api.getDecisionMatrix();
       setDecisionMatrix(dm);
-    } catch (e) {
+    } catch {
       console.log("Could not fetch decision matrix.");
     }
 
     try {
       const cl = await api.getCaseLibraryReport();
       setCaseLibraryReport(cl);
-    } catch (e) {
+    } catch {
       console.log("Could not fetch case library report.");
     }
-  };
+  }, []);
 
   useEffect(() => {
-    fetchAllBenchmarkData();
-  }, []);
+    void Promise.resolve().then(fetchAllBenchmarkData);
+  }, [fetchAllBenchmarkData]);
 
   const handleRunBenchmarkV3 = async () => {
     setLoading(true);
@@ -100,26 +100,26 @@ export default function BenchmarkPage() {
       const res = await api.runBenchmarkV3();
       setCombinedReport(res);
       await fetchAllBenchmarkData();
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error(err);
-      setError(err?.message || "Failed to run Benchmark v3 suite.");
+      setError(err instanceof Error ? err.message : "Failed to run Benchmark v3 suite.");
     } finally {
       setLoading(false);
     }
   };
 
-  const benchReport = combinedReport?.benchmark_report || combinedReport;
+  const benchReport: BenchmarkReportV2 | null = combinedReport?.benchmark_report ?? null;
   const evidenceReport = combinedReport?.evidence_report || evidenceData;
-  const failures = failureRes?.failures || benchReport?.failure_cases || [];
+  const failures: FailureAnalysisItem[] = failureRes?.failures || [];
 
   // Summary counts for failure analysis
   const totalFailures = failures.length;
   const highSeverity = failures.filter(
-    (f: any) => f.severity === "high" || f.error_type === "false_negative" || f.error_type === "under_block"
+    (f) => f.severity === "high" || f.error_type === "false_negative" || f.error_type === "under_block"
   ).length;
-  const falseNegatives = failures.filter((f: any) => f.error_type === "false_negative").length;
-  const falsePositives = failures.filter((f: any) => f.error_type === "false_positive").length;
-  const underBlocks = failures.filter((f: any) => f.error_type === "under_block").length;
+  const falseNegatives = failures.filter((f) => f.error_type === "false_negative").length;
+  const falsePositives = failures.filter((f) => f.error_type === "false_positive").length;
+  const underBlocks = failures.filter((f) => f.error_type === "under_block").length;
 
   return (
     <AppShell>
@@ -349,7 +349,7 @@ export default function BenchmarkPage() {
               <div className="bg-slate-900 border border-slate-800 rounded-xl p-5 space-y-4">
                 <h3 className="text-sm font-semibold text-slate-200">Accuracy Breakdown by Attack Vector</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-                  {Object.entries(benchReport.by_attack_type).map(([atk, val]: [string, any]) => (
+                  {Object.entries(benchReport.by_attack_type).map(([atk, val]) => (
                     <div
                       key={atk}
                       className="bg-slate-950 border border-slate-800 p-4 rounded-lg flex items-center justify-between"
@@ -386,7 +386,7 @@ export default function BenchmarkPage() {
               <div className="bg-slate-900 border border-slate-800 rounded-xl p-5 space-y-4">
                 <h3 className="text-sm font-semibold text-slate-200">Accuracy by Target Language</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                  {Object.entries(benchReport.by_language).map(([lang, val]: [string, any]) => (
+                  {Object.entries(benchReport.by_language).map(([lang, val]) => (
                     <div
                       key={lang}
                       className="bg-slate-950 border border-slate-800 p-4 rounded-lg flex items-center justify-between"
@@ -516,7 +516,7 @@ export default function BenchmarkPage() {
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-slate-800/80 text-slate-300">
-                      {failures.map((f: any, idx: number) => {
+                      {failures.map((f, idx) => {
                         const isHigh = f.severity === "high" || f.error_type === "false_negative";
                         const isMed = f.severity === "medium";
 

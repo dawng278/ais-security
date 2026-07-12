@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { AppShell } from "@/components/AppShell";
 import { api } from "@/lib/api";
 import { DatasetLineageReport, DataSourceLineage, TransformStage } from "@/lib/types";
@@ -10,10 +10,8 @@ import {
   Layers,
   ShieldCheck,
   FileCode,
-  AlertTriangle,
   CheckCircle2,
   Copy,
-  ArrowRight,
   Filter,
   PieChart,
   Hash,
@@ -26,7 +24,7 @@ export default function DataLineagePage() {
   const [copied, setCopied] = useState(false);
   const [isDemoFallback, setIsDemoFallback] = useState(false);
 
-  const fetchLineageData = async () => {
+  const fetchLineageData = useCallback(async () => {
     setLoading(true);
     try {
       const res = await api.getLineageReport();
@@ -38,11 +36,11 @@ export default function DataLineagePage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
   useEffect(() => {
-    fetchLineageData();
-  }, []);
+    void Promise.resolve().then(fetchLineageData);
+  }, [fetchLineageData]);
 
   const handleCopyHash = (text: string) => {
     navigator.clipboard.writeText(text);

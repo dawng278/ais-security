@@ -36,8 +36,11 @@ export default function DashboardPage() {
           <h2 className="text-xl font-bold text-white flex items-center gap-2">
             <Activity className="w-5 h-5 text-emerald-400" /> Security Operations Center
           </h2>
-          <p className="text-sm text-slate-400">
-            Real-time analytics, prompt injection telemetry, and automated grading defense logs.
+          <p className="text-sm text-slate-400 flex flex-wrap items-center gap-2">
+            <span>Security analytics, prompt injection telemetry, and automated grading defense logs.</span>
+            <span className="px-2 py-0.5 rounded border border-slate-700 bg-slate-900 text-[11px] font-mono text-slate-300">
+              {loading ? "Loading source" : stats ? "API data" : "Seeded fallback"}
+            </span>
           </p>
         </div>
 

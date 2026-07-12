@@ -10,7 +10,7 @@
 ---
 
 ### **Q2: Is your benchmark overfitted to your test set?**
-**Answer**: No. Benchmark v3 uses **group-aware dataset splitting**. All attack variants derived from the same base essay share a unique `group_id` and are restricted to a single partition (`train`, `validation`, `public_test`, `private_holdout`). This guarantees zero data leakage between training prototypes and test samples. Furthermore, we report a realistic 0.90 Macro F1 rather than claiming 100% classification perfection.
+**Answer**: No. Benchmark v3 uses **group-aware dataset splitting**. All attack variants derived from the same base essay share a unique `group_id` and are restricted to a single partition (`train`, `validation`, `public_test`, `private_holdout`). The current measured artifact reports Macro F1 0.64 and exposes 139 failure cases instead of hiding imperfect robustness.
 
 ---
 
@@ -20,7 +20,7 @@
 ---
 
 ### **Q4: What if an essay legitimately discusses cybersecurity, hacking, or AI security?**
-**Answer**: This is a classic "hard negative" false positive trap. GradingGuard AI includes 500 benign cybersecurity discussion essays in its evaluation set. By balancing semantic distance thresholds with role-spoofing classification, our system achieves a low 0.06 False Positive Rate, ensuring legitimate academic essays pass through without false blocking.
+**Answer**: This is a classic "hard negative" false positive trap. The current Benchmark v3 artifact reports 0.00 false positive rate on its evaluated clean set, but we still treat hard-negative coverage as an ongoing benchmark-hardening task.
 
 ---
 
@@ -29,8 +29,8 @@
 
 ---
 
-### **Q6: Is GradingGuard AI production-ready?**
-**Answer**: Yes. GradingGuard AI is built as an inline REST/gRPC proxy gateway (`FastAPI` backend, `Next.js` frontend, Pydantic v2 schemas). It features fallback heuristic execution modes when heavy transformer packages are absent, adds low latency overhead (p95 = 210ms), and provides an automated `manual_review` queue for high-risk edge cases.
+### **Q6: Is GradingGuard AI ready for production deployment today?**
+**Answer**: No. GradingGuard AI is a competition prototype with a clear production hardening path. The current repo verifies FastAPI routes, frontend build, benchmark evidence, and fallback behavior, but production readiness still requires persistent audit storage, auth/RBAC, rate limits, validated deployment, production latency measurement, and operational runbooks.
 
 ---
 
@@ -57,12 +57,12 @@
 ---
 
 ### **Q11: How does GradingGuard AI handle multilingual prompt injection?**
-**Answer**: The detector incorporates multilingual pattern dictionaries (English, Vietnamese, Chinese) and semantic embedding vector models trained on multilingual sentence representations. This detects instruction overrides regardless of the input language used.
+**Answer**: The detector currently incorporates multilingual pattern dictionaries and fallback heuristics. Semantic embedding support is optional; in the current runtime the dependency is unavailable and evidence records that degraded state rather than claiming healthy embedding coverage.
 
 ---
 
 ### **Q12: What is the difference between Benchmark v1 and Benchmark v3?**
-**Answer**: **Benchmark v1** was an internal development smoke test used to verify basic syntax and pipeline routing. **Benchmark v3** is an enterprise-grade evaluation suite featuring group-aware dataset splits, multi-vector metric breakdowns, failure diagnostics, and cryptographic SHA256 evidence generation.
+**Answer**: **Benchmark v1** was an internal development smoke test used to verify basic syntax and pipeline routing. **Benchmark v3** is the current audit-oriented evaluation suite featuring group-aware dataset splits, metric breakdowns, failure diagnostics, and cryptographic SHA256 evidence generation.
 
 ---
 
@@ -103,8 +103,8 @@
 
 ---
 
-### **Q21: Why are there 139–206 critical under-block cases in Benchmark v3?**
-**Answer**: Those cases are surfaced intentionally by Benchmark v3's failure analysis engine. We do not hide them. They represent broader prompt-injection edge cases beyond the core IELTS score manipulation scenario. Each failure is converted into a diagnostic category and an actionable engineering backlog item. In high-stakes AI systems, exposing failure diagnostics is essential for continuous hardening.
+### **Q21: Why are there 139 critical under-block cases in Benchmark v3?**
+**Answer**: Those current diagnostic cases are surfaced intentionally by Benchmark v3's failure analysis engine. We do not hide them. They represent broader prompt-injection edge cases beyond the core IELTS score manipulation scenario. Each failure is converted into a diagnostic category and an actionable engineering backlog item. In high-stakes AI systems, exposing failure diagnostics is essential for continuous hardening.
 
 ---
 
@@ -120,5 +120,3 @@
 
 ### **Q24: What is the single strongest contribution of GradingGuard AI?**
 **Answer**: The strongest contribution is **Score Integrity Evaluation & Auditability**. Most prompt injection tools stop at binary classification. GradingGuard AI measures whether an attack actually alters the IELTS band score (+3.0 bands inflation), whether the firewall recovers the clean score (+3.0 bands recovery), and generates cryptographic evidence reports to prove score integrity.
-
-

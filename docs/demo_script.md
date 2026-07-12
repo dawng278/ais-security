@@ -39,6 +39,6 @@ Demonstrate how an unprotected LLM-based IELTS grader is vulnerable to prompt in
 ---
 
 ### Step 5: Security Operations Center & Benchmark Suite
-1. Navigate to [http://localhost:3000/dashboard](http://localhost:3000/dashboard) to view real-time attack logs.
+1. Navigate to [http://localhost:3000/dashboard](http://localhost:3000/dashboard) to view API-backed or seeded security telemetry, depending on backend availability.
 2. Navigate to [http://localhost:3000/benchmark](http://localhost:3000/benchmark) and click **Execute Benchmark Suite**.
-3. View 100% Accuracy, Precision, and Recall on evaluation dataset.
+3. View the current Benchmark v3 artifact: 79.0% accuracy, 100% precision, 47% recall, 64% Macro F1, and 139 diagnostic failure cases.

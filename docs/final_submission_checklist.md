@@ -68,8 +68,8 @@
 ---
 
 ### **8. Deployment & Containerization**
-- [x] `docker-compose.yml` verified for single-command deployment (`docker compose up --build`).
-- [x] Docker environment routes frontend (port 3000) and backend (port 8000) correctly.
+- [ ] Docker deployment is not currently verified in this repository.
+- [ ] Docker artifacts must be added and tested from a clean environment before any Docker support claim is restored.
 
 ---
 

@@ -143,7 +143,7 @@ export default function BenchmarkPage() {
                 Core threat: protected (0.0% failure)
               </span>
               <span className="px-2.5 py-0.5 rounded-full text-xs font-mono font-bold bg-blue-950 text-blue-300 border border-blue-800">
-                General robustness: 79.0% (139 under-blocks)
+                General robustness: {benchReport ? `${(benchReport.accuracy * 100).toFixed(1)}%` : "Unavailable"}
               </span>
               <span className="px-2.5 py-0.5 rounded-full text-xs font-mono font-bold bg-purple-950 text-purple-300 border border-purple-800">
                 Failure analysis: transparent
@@ -813,47 +813,55 @@ export default function BenchmarkPage() {
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
               <div className="bg-slate-900 border border-slate-800 p-4 rounded-xl space-y-1">
                 <p className="text-xs font-medium text-slate-400">Total Cases</p>
-                <p className="text-2xl font-black text-white">{caseLibraryReport?.total_cases || 60}</p>
+                <p className="text-2xl font-black text-white">{caseLibraryReport?.total_cases ?? "Unavailable"}</p>
                 <p className="text-[10px] text-slate-500">Structured scenarios</p>
               </div>
 
               <div className="bg-slate-900 border border-slate-800 p-4 rounded-xl space-y-1">
                 <p className="text-xs font-medium text-slate-400">Pass Rate</p>
                 <p className="text-2xl font-black text-emerald-400">
-                  {((caseLibraryReport?.pass_rate || 0.80) * 100).toFixed(1)}%
+                  {typeof caseLibraryReport?.pass_rate === "number" ? `${(caseLibraryReport.pass_rate * 100).toFixed(1)}%` : "Unavailable"}
                 </p>
                 <p className="text-[10px] text-emerald-500/80 font-mono">
-                  {caseLibraryReport?.passed_cases || 48} / {caseLibraryReport?.total_cases || 60} passed
+                  {typeof caseLibraryReport?.passed_cases === "number" && typeof caseLibraryReport?.total_cases === "number"
+                    ? `${caseLibraryReport.passed_cases} / ${caseLibraryReport.total_cases} passed`
+                    : "Unavailable"}
                 </p>
               </div>
 
               <div className="bg-slate-900 border border-slate-800 p-4 rounded-xl space-y-1">
                 <p className="text-xs font-medium text-slate-400">Security Cases</p>
                 <p className="text-2xl font-black text-blue-400">
-                  {caseLibraryReport?.by_perspective?.security?.total || 25}
+                  {caseLibraryReport?.by_perspective?.security?.total ?? "Unavailable"}
                 </p>
                 <p className="text-[10px] text-blue-500/80 font-mono">
-                  {((caseLibraryReport?.by_perspective?.security?.pass_rate || 0.85) * 100).toFixed(0)}% pass rate
+                  {typeof caseLibraryReport?.by_perspective?.security?.pass_rate === "number"
+                    ? `${(caseLibraryReport.by_perspective.security.pass_rate * 100).toFixed(0)}% pass rate`
+                    : "Unavailable"}
                 </p>
               </div>
 
               <div className="bg-slate-900 border border-slate-800 p-4 rounded-xl space-y-1">
                 <p className="text-xs font-medium text-slate-400">Fairness Cases</p>
                 <p className="text-2xl font-black text-teal-400">
-                  {caseLibraryReport?.by_perspective?.fairness?.total || 10}
+                  {caseLibraryReport?.by_perspective?.fairness?.total ?? "Unavailable"}
                 </p>
                 <p className="text-[10px] text-teal-500/80 font-mono">
-                  {((caseLibraryReport?.by_perspective?.fairness?.pass_rate || 1.0) * 100).toFixed(0)}% pass rate
+                  {typeof caseLibraryReport?.by_perspective?.fairness?.pass_rate === "number"
+                    ? `${(caseLibraryReport.by_perspective.fairness.pass_rate * 100).toFixed(0)}% pass rate`
+                    : "Unavailable"}
                 </p>
               </div>
 
               <div className="bg-slate-900 border border-slate-800 p-4 rounded-xl space-y-1">
                 <p className="text-xs font-medium text-slate-400">Score Integrity</p>
                 <p className="text-2xl font-black text-purple-400">
-                  {caseLibraryReport?.by_perspective?.score_integrity?.total || 10}
+                  {caseLibraryReport?.by_perspective?.score_integrity?.total ?? "Unavailable"}
                 </p>
                 <p className="text-[10px] text-purple-500/80 font-mono">
-                  {((caseLibraryReport?.by_perspective?.score_integrity?.pass_rate || 0.90) * 100).toFixed(0)}% pass rate
+                  {typeof caseLibraryReport?.by_perspective?.score_integrity?.pass_rate === "number"
+                    ? `${(caseLibraryReport.by_perspective.score_integrity.pass_rate * 100).toFixed(0)}% pass rate`
+                    : "Unavailable"}
                 </p>
               </div>
 

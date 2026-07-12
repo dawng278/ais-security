@@ -177,13 +177,15 @@ Experimental validation on a benchmark dataset of 662 IELTS evaluation cases yie
 | **Clean Baseline Score** | 5.5 Band | Authentic essay proficiency |
 | **Injected Baseline Score** | 8.5 Band | Unprotected score manipulation (+3.0 bands) |
 | **Secure Score** | 5.5 Band | Protected score under GradingGuard AI |
-| **Defense Recovery Rate** | **100% (+3.0 Bands)** | Complete score integrity recovery |
+| **Defense Recovery Rate** | **100% (+3.0 Bands)** | Deterministic core demo recovery |
 | **Score Stability Delta** | **0.0** | Perfect alignment with clean baseline |
 | **Clean Utility Loss** | **0.0** | Zero degradation on benign submissions |
-| **Macro F1 Score** | 0.90 | High detection balance |
-| **False Positive Rate (Clean)** | 0.06 | Minimal impact on benign essays |
-| **Under-Block Rate** | 0.04 | Low residual leakage |
-| **p95 Latency** | 210 ms | Fast real-time gateway throughput |
+| **Precision** | 1.00 | Current Benchmark v3 measured artifact |
+| **Recall** | 0.47 | Current Benchmark v3 measured artifact |
+| **Macro F1 Score** | 0.64 | Current Benchmark v3 measured artifact |
+| **False Positive Rate (Clean)** | 0.00 | Current Benchmark v3 measured artifact |
+| **Under-Block Rate** | 0.21 | Current Benchmark v3 measured artifact |
+| **p95 Latency** | Not measured as production latency | Evidence generator contains a synthetic placeholder and must not be used as production latency evidence |
 
 ---
 
@@ -205,4 +207,4 @@ Experimental validation on a benchmark dataset of 662 IELTS evaluation cases yie
 
 ## 16. Conclusion
 
-GradingGuard AI demonstrates that securing automated AI assessment requires more than binary prompt injection detection—it requires **evidence-driven score integrity verification**. By combining multi-pattern detection, span sanitization, group-aware benchmark evaluation, transparent failure analysis, and data lineage tracking, GradingGuard AI provides a robust, production-ready gateway for trustworthy LLM-based IELTS grading.
+GradingGuard AI demonstrates that securing automated AI assessment requires more than binary prompt injection detection—it requires **evidence-driven score integrity verification**. The current system is a competition prototype with verified benchmark artifacts, transparent limitations, and a production hardening path.

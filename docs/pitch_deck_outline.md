@@ -55,7 +55,7 @@
 ### **Slide 7: Benchmark Credibility & Failure Analysis**
 - **Title**: Rigorous Benchmark v3 Infrastructure
 - **Key Message**: Group-aware splits, transparent failure classification, and 100% score integrity recovery.
-- **Visual Suggestion**: Benchmark v3 metric dashboard (Macro F1: 0.90, Recall: 0.91, 0.0 Utility Loss) with failure diagnostics table.
+- **Visual Suggestion**: Benchmark v3 metric dashboard (Accuracy: 79.0%, Recall: 0.47, Macro F1: 0.64, 139 diagnostic failures) plus a separate deterministic score-recovery demo.
 - **Speaker Notes**: "We evaluate on Benchmark v3, using group-aware splits to prevent leakage. We achieve 100% score recovery while openly classifying failure cases for engineering remediation."
 
 ---
@@ -72,7 +72,7 @@
 - **Title**: Why GradingGuard AI Stands Out
 - **Key Message**: First domain-specific score integrity gateway with seamless proxy integration for AI assessment platforms.
 - **Visual Suggestion**: 5 key differentiator cards (Score Integrity, Attack Arena, Benchmark v3, Lineage, Gateway Path).
-- **Speaker Notes**: "GradingGuard AI requires zero changes to downstream LLM graders, allowing assessment platforms to deploy immediate, enterprise-grade protection."
+- **Speaker Notes**: "GradingGuard AI is designed as a gateway that can integrate in front of downstream graders. The current repo is a competition prototype; production deployment requires the hardening gates documented in the readiness checklist."
 
 ---
 

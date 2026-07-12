@@ -90,7 +90,7 @@ This script provides the exact presenter actions, screen navigation steps, and s
 ### **Step 12: Show Score Integrity & Failure Analysis**
 - **Action**: Click on the **Failure Analysis** tab on `/benchmark`.
 - **Narration**:
-  > "On 662 benchmark cases, GradingGuard AI achieves 100% score recovery and a 0.90 Macro F1. Crucially, we don't hide failure cases: our Failure Analysis engine automatically classifies errors into false negatives or span misses, providing actionable engineering fixes for continuous hardening."
+  > "On 662 evaluated Benchmark v3 cases, the current artifact reports 79.0% accuracy, 100% precision, 47% recall, 0.64 Macro F1, and 139 diagnostic failure cases. Separately, the deterministic core demo shows the 5.5 → 8.5 → 5.5 score recovery story. We do not hide the broader robustness failures; we turn them into an engineering backlog."
 
 ---
 

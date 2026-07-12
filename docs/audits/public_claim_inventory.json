@@ -1,0 +1,74 @@
+{
+  "schema_version": "phase0_public_claim_inventory_v1",
+  "canonical_metric_source": "datasets/reports/v3/benchmark_v3_combined.json",
+  "canonical_runtime_source": "backend runtime import plus evidence generator detector health snapshot",
+  "current_measured_metrics": {
+    "benchmark_id": "gg_benchmark_v3",
+    "evaluated_sample_count": 662,
+    "dataset_fingerprint_total": 965,
+    "accuracy": 0.79,
+    "precision": 1.0,
+    "recall": 0.47,
+    "macro_f1": 0.64,
+    "false_positive_rate": 0.0,
+    "under_block_rate": 0.21,
+    "failure_count": 139
+  },
+  "detector_runtime": {
+    "embedding_configured": "optional",
+    "embedding_runtime_state": "unavailable",
+    "embedding_dependency_state": "missing",
+    "fallback_active": true
+  },
+  "claims": [
+    {
+      "claim": "Benchmark v3 accuracy is 79.0% over 662 evaluated cases.",
+      "locations": ["README.md", "docs/verification_report.md", "docs/final_slide_deck_content.md", "frontend/src/app/benchmark/page.tsx"],
+      "classification": "MEASURED_CURRENT",
+      "evidence_source": "datasets/reports/v3/benchmark_v3_combined.json",
+      "required_action": "Keep synchronized through scripts/audit_public_claims.py"
+    },
+    {
+      "claim": "Benchmark v3 has 139 diagnostic failure cases.",
+      "locations": ["README.md", "docs/under_block_audit.md", "docs/verification_report.md", "frontend/src/app/benchmark/page.tsx"],
+      "classification": "MEASURED_CURRENT",
+      "evidence_source": "datasets/reports/v3/benchmark_v3_combined.json and datasets/reports/v3/failure_analysis.jsonl",
+      "required_action": "Do not reintroduce 206 or 207 as current values"
+    },
+    {
+      "claim": "5.5 clean to 8.5 attacked to 5.5 protected score recovery.",
+      "locations": ["README.md", "docs/demo_script_top1.md", "docs/presentation_deck_outline.md", "frontend/src/app/judge-view/page.tsx"],
+      "classification": "DETERMINISTIC_DEMO",
+      "evidence_source": "mock grader deterministic demo flow",
+      "required_action": "Always label separately from measured benchmark metrics"
+    },
+    {
+      "claim": "Semantic embedding detector is available.",
+      "locations": ["backend/app/evidence/report_generator.py", "frontend/src/app/evidence/page.tsx"],
+      "classification": "FALSE_OR_MISSING",
+      "evidence_source": "runtime warning: sentence-transformers missing",
+      "required_action": "Public surfaces must say unavailable/degraded unless dependency and model load are verified"
+    },
+    {
+      "claim": "Docker Compose deployment is supported.",
+      "locations": ["README.md", "docs/final_submission_checklist.md"],
+      "classification": "UNVERIFIED",
+      "evidence_source": "no Dockerfile or compose artifacts found in Phase 0",
+      "required_action": "Keep unclaimed until deployment phase verifies clean-environment Docker workflow"
+    },
+    {
+      "claim": "Production readiness.",
+      "locations": ["README.md", "docs/judge_qna.md", "frontend/src/app/judge-view/page.tsx"],
+      "classification": "PLANNED",
+      "evidence_source": "Phase 0 audit",
+      "required_action": "Use competition prototype / hardening path language only"
+    },
+    {
+      "claim": "Frontend /evidence route exists.",
+      "locations": ["README.md", "frontend/src/components/AppShell.tsx", "frontend/src/app/evidence/page.tsx"],
+      "classification": "IMPLEMENTED_AND_VERIFIED",
+      "evidence_source": "Next build route table",
+      "required_action": "Route must continue to build and display unavailable state when backend evidence is unreachable"
+    }
+  ]
+}

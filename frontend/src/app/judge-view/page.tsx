@@ -83,23 +83,27 @@ const SEEDED_ARENA_SUMMARY = {
 
 interface JudgeBenchmarkData {
   datasetVersion: string;
+  accuracy: number | null;
   macroF1: number | null;
   recall: number | null;
   fpr: number | null;
   underBlockRate: number | null;
   asrReduction: number | null;
   p95LatencyMs: number | null;
+  failureCount: number | null;
   status: "Measured" | "Unavailable";
 }
 
 const EMPTY_BENCHMARK: JudgeBenchmarkData = {
   datasetVersion: "Unavailable",
+  accuracy: null,
   macroF1: null,
   recall: null,
   fpr: null,
   underBlockRate: null,
   asrReduction: null,
   p95LatencyMs: null,
+  failureCount: null,
   status: "Unavailable",
 };
 
@@ -141,12 +145,14 @@ export default function JudgeViewPage() {
         const r = (results[2].value as BenchmarkV3CombinedReport).benchmark_report;
         setBenchmarkData({
           datasetVersion: r.benchmark_id || "gradingguard_benchmark_v3",
+          accuracy: typeof r.accuracy === "number" ? r.accuracy : null,
           macroF1: typeof r.macro_f1 === "number" ? r.macro_f1 : null,
           recall: typeof r.recall === "number" ? r.recall : null,
           fpr: typeof r.false_positive_rate === "number" ? r.false_positive_rate : null,
           underBlockRate: typeof r.under_block_rate === "number" ? r.under_block_rate : null,
           asrReduction: null,
           p95LatencyMs: null,
+          failureCount: Array.isArray(r.failure_cases) ? r.failure_cases.length : null,
           status: "Measured",
         });
       } else {
@@ -619,7 +625,9 @@ export default function JudgeViewPage() {
               <div className="bg-slate-950 p-3.5 rounded-xl border border-slate-800/80 space-y-1.5">
                 <div className="flex items-center justify-between text-xs font-bold text-emerald-400 font-mono">
                   <span>3. Fairness View</span>
-                  <span className="text-[10px] text-emerald-400 bg-emerald-950 px-1.5 py-0.2 rounded">6.0% FPR</span>
+                  <span className="text-[10px] text-emerald-400 bg-emerald-950 px-1.5 py-0.2 rounded">
+                    FPR {formatMetric(benchmarkData.fpr)}
+                  </span>
                 </div>
                 <p className="text-[11px] text-slate-400 leading-normal">
                   Checks whether benign essays and academic discussions are preserved.
@@ -915,7 +923,7 @@ export default function JudgeViewPage() {
               </p>
             </div>
             <div className="bg-slate-950 border border-slate-800 p-5 rounded-xl space-y-2">
-              <h4 className="text-sm font-bold text-cyan-400">5. Production-Ready Gateway Path</h4>
+              <h4 className="text-sm font-bold text-cyan-400">5. Gateway Hardening Path</h4>
               <p className="text-xs text-slate-400 leading-relaxed">
                 Supports manual review routing, audit log streams, benchmark jobs, and deployment hardening.
               </p>
@@ -963,7 +971,8 @@ export default function JudgeViewPage() {
                 Evaluates 662 broader prompt-injection edge cases, obfuscations, and multilingual payloads. Diagnostic under-blocks are cataloged into an engineering backlog.
               </p>
               <div className="text-[10px] text-amber-400 font-mono bg-amber-950/40 p-2 rounded border border-amber-900/40">
-                Benchmark v3: 79.0% Accuracy | Failure Analysis: 139 Diagnostic Cases
+                Benchmark v3: {formatPercentMetric(benchmarkData.accuracy)} Accuracy | Failure Analysis:{" "}
+                {typeof benchmarkData.failureCount === "number" ? benchmarkData.failureCount : "Unavailable"} Diagnostic Cases
               </div>
             </div>
           </div>

@@ -20,7 +20,7 @@ To address benchmark metrics transparently without undermining project impact:
 
 2. **Track 2: General Prompt Injection Robustness Track** *(Research & Hardening)*
    - Evaluates 662 complex, multilingual, obfuscated, and diagnostic edge cases across broader LLM attack vectors.
-   - Benchmark v3 Result: **79.0% accuracy** (or 69.0% under initial strict diagnostic rules) with **139–206 diagnostic failure cases** categorized via transparent failure analysis into an actionable engineering backlog.
+   - Benchmark v3 Result: **79.0% accuracy** with **139 current diagnostic failure cases** categorized via transparent failure analysis into an actionable engineering backlog. The previous 206 count is historical and no longer the current evidence value.
 
 ---
 
@@ -109,6 +109,6 @@ To address benchmark metrics transparently without undermining project impact:
 | Common Jury Question | Recommended Defense Response |
 | :--- | :--- |
 | **"Your benchmark accuracy is ~69-79%. Isn't that weak?"** | *"Benchmark v3 is intentionally a robustness benchmark, not a polished leaderboard number. It includes broader prompt-injection, obfuscation, multilingual, and diagnostic edge cases. In the core IELTS score integrity track, score manipulation has a 0.0% critical failure rate (preventing +3.0 band inflation). The broader benchmark is used transparently to drive engineering hardening."* |
-| **"Why are there 139–206 under-block cases?"** | *"Those cases are surfaced by Benchmark v3 as part of transparent failure analysis. We do not hide them. They represent broader general prompt-injection edge cases, not failures of the core IELTS score manipulation demo. Each failure is converted into a diagnostic category and engineering backlog item."* |
+| **"Why are there 139 under-block cases?"** | *"Those cases are surfaced by Benchmark v3 as part of transparent failure analysis. We do not hide them. They represent broader general prompt-injection edge cases, not failures of the core IELTS score manipulation demo. Each failure is converted into a diagnostic category and engineering backlog item."* |
 | **"Is GradingGuard AI production ready?"** | *"It is a competition-ready prototype with an audit-ready architecture. The core threat model is fully defended and verified, while broader edge cases are cataloged with cryptographic evidence and failure logs."* |
 | **"How do you avoid being a crude keyword filter?"** | *"We evaluate hard negatives like academic essays on cybersecurity or quoted attack phrases. Our system uses span-level sanitization and multi-perspective risk engine thresholds to preserve legitimate student writing."* |

@@ -119,8 +119,8 @@
 ### If Asked About "69% Accuracy":
 > *"69% belongs to the general robustness track evaluating complex edge cases and hard negatives. On the core product threat—IELTS score manipulation—the system achieves 0% critical failure and prevents +3.0 bands inflation."*
 
-### If Asked About "206 Under-Block Cases":
-> *"Those 206 cases are surfaced intentionally by Benchmark v3's failure analysis engine. We expose them to build an active engineering backlog rather than claiming artificial perfection."*
+### If Asked About "139 Under-Block Cases":
+> *"Those 139 current diagnostic cases are surfaced intentionally by Benchmark v3's failure analysis engine. We expose them to build an active engineering backlog rather than claiming artificial perfection. Older 206-case references are historical and not the current evidence value."*
 
 ### If Server / Backend Network Issue Occurs During Demo:
 > *"The frontend includes pre-rendered seeded demonstration fallbacks for all benchmark runs, ensuring complete presentation stability even in offline or network-isolated competition environments."*

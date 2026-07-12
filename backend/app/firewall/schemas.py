@@ -9,8 +9,10 @@ RiskLevel = Literal["low", "medium", "high", "critical"]
 FirewallAction = Literal[
     "allow",
     "warn",
+    "sanitize",
     "secure_grade",
     "manual_review",
+    "block",
 ]
 
 AttackType = Literal[
@@ -41,6 +43,10 @@ class FirewallAnalyzeResponse(BaseModel):
     detected_patterns: list[str] = []
     normalization_flags: list[str] = []
     explanation: str
+    detector_contributions: list[dict] = []
+    public_reason_code: str = "GG_REASON_NONE"
+    operating_mode: Literal["shadow", "warn", "enforce", "degraded"] = "enforce"
+    counterfactual_action: Optional[FirewallAction] = None
 
 
 class RedteamGenerateRequest(BaseModel):
@@ -75,6 +81,7 @@ class GradingResult(BaseModel):
 class SanitizerResult(BaseModel):
     cleaned_text: str
     removed_spans: list[str] = []
+    transformation_summary: dict = {}
 
 
 class VerifierResult(BaseModel):

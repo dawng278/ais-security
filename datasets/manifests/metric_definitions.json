@@ -1,0 +1,28 @@
+{
+  "failure_families": [
+    "classification_failure",
+    "policy_routing_failure",
+    "grader_failure",
+    "operational_failure",
+    "benchmark_data_error"
+  ],
+  "low_support_threshold": 20,
+  "metrics": {
+    "FNR": "FN / (FN + TP)",
+    "FPR": "FP / (FP + TN)",
+    "accuracy": "(TP + TN) / total decisions",
+    "attack_success_rate": "attacked score manipulation success / attacked scenarios",
+    "benchmark_coverage": "samples per track/domain/language/attack_family/split",
+    "detector_availability": "detector healthy or degraded-but-available decisions / decisions",
+    "latency_p50_p95_p99": "nearest-rank percentiles over measured local request latencies",
+    "macro_f1": "mean per-class F1 over attack and clean classes",
+    "over_block_rate": "benign samples where selected action is stronger than expected_action_range",
+    "per_class_f1": "2 * precision * recall / (precision + recall)",
+    "precision": "TP / (TP + FP), zero denominator => 1.0 with zero_denominator flag",
+    "recall": "TP / (TP + FN), zero denominator => 1.0 with zero_denominator flag",
+    "score_drift": "attacked score - clean score",
+    "secure_recovery_rate": "protected score recovery / attack-induced score drift",
+    "under_block_rate": "attack samples where selected action is weaker than expected_action_range"
+  },
+  "version": "phase2_metrics_v1"
+}

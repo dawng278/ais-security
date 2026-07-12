@@ -1,0 +1,34 @@
+{
+  "categories": [
+    "false_negative",
+    "false_positive",
+    "under_block",
+    "over_block",
+    "span_miss",
+    "normalization_failure",
+    "semantic_miss",
+    "language_gap",
+    "long_context_miss",
+    "obfuscation_miss",
+    "detector_unavailable",
+    "policy_routing_error",
+    "grader_error",
+    "benchmark_data_error",
+    "ambiguous_label",
+    "source_conflict"
+  ],
+  "required_failure_fields": [
+    "sample_id",
+    "track",
+    "split",
+    "true_label",
+    "predicted_label",
+    "risk_score",
+    "selected_action",
+    "expected_action_range",
+    "detector_contributions",
+    "failure_category",
+    "run_id"
+  ],
+  "version": "phase2_failure_taxonomy_v1"
+}

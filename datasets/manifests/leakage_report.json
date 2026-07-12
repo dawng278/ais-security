@@ -1,0 +1,86 @@
+{
+  "algorithm_version": "phase2_leakage_v1",
+  "exact_split_leakage": [],
+  "group_split_leakage": [],
+  "near_duplicate_holdout_leakage": [
+    {
+      "classification": "BENIGN_TEMPLATE_REUSE",
+      "sample_ids": [
+        "ggs_052d1545da1f7858",
+        "ggs_23ee8fc639531de5"
+      ],
+      "similarity": 1.0,
+      "splits": [
+        "private_holdout",
+        "train"
+      ],
+      "threshold": 0.92,
+      "track": "generic_prompt_injection"
+    },
+    {
+      "classification": "BENIGN_TEMPLATE_REUSE",
+      "sample_ids": [
+        "ggs_191a24f0830963f3",
+        "ggs_333665b7b9e73b12"
+      ],
+      "similarity": 1.0,
+      "splits": [
+        "private_holdout",
+        "train"
+      ],
+      "threshold": 0.92,
+      "track": "generic_prompt_injection"
+    },
+    {
+      "classification": "BENIGN_TEMPLATE_REUSE",
+      "sample_ids": [
+        "ggs_285ec42d560737c2",
+        "ggs_b010dff8a2102c8e"
+      ],
+      "similarity": 0.9306,
+      "splits": [
+        "private_holdout",
+        "public_test"
+      ],
+      "threshold": 0.92,
+      "track": "generic_prompt_injection"
+    },
+    {
+      "classification": "BENIGN_TEMPLATE_REUSE",
+      "sample_ids": [
+        "ggs_285ec42d560737c2",
+        "ggs_1a86600fbd41da90"
+      ],
+      "similarity": 0.96,
+      "splits": [
+        "private_holdout",
+        "train"
+      ],
+      "threshold": 0.92,
+      "track": "generic_prompt_injection"
+    },
+    {
+      "classification": "BENIGN_TEMPLATE_REUSE",
+      "sample_ids": [
+        "ggs_58fb44f373ac1c47",
+        "ggs_f6eb8efed26ed4a8"
+      ],
+      "similarity": 0.9259,
+      "splits": [
+        "private_holdout",
+        "public_test"
+      ],
+      "threshold": 0.92,
+      "track": "generic_prompt_injection"
+    }
+  ],
+  "resolved_near_duplicate_holdout_leakage_count": 5,
+  "rules": [
+    "exact train/test duplicate",
+    "near-duplicate train/test overlap",
+    "source-level leakage recorded but not automatically failing without identical content",
+    "paired variants share independence_group and therefore same split",
+    "private_holdout contamination blocks DONE"
+  ],
+  "unresolved_holdout_leakage_count": 0
+}

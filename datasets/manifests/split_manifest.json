@@ -1,0 +1,4152 @@
+{
+  "algorithm_version": "phase2_group_hash_v1",
+  "counts": {
+    "private_holdout": 107,
+    "public_test": 89,
+    "train": 493
+  },
+  "group_keys": [
+    "independence_group",
+    "source_record_id",
+    "normalized_hash"
+  ],
+  "membership": [
+    {
+      "independence_group": "ielts_unicode_punctuation_clean",
+      "sample_id": "ggs_00b27e18c301ad7b",
+      "split": "train",
+      "track": "ielts_domain_security"
+    },
+    {
+      "independence_group": "deepset_group_train_0269",
+      "sample_id": "ggs_0176c3af51fcb84d",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0078",
+      "sample_id": "ggs_01c03be2cb3dee65",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0049",
+      "sample_id": "ggs_01ffd529c48cab2a",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0479",
+      "sample_id": "ggs_0226853a5b725d0d",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0520",
+      "sample_id": "ggs_029feb6a4f1679b8",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0036",
+      "sample_id": "ggs_02ac251ec43af8a8",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0453",
+      "sample_id": "ggs_02e751077b240fc2",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0282",
+      "sample_id": "ggs_034927244d1e770a",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0043",
+      "sample_id": "ggs_0392675682c0a5fb",
+      "split": "public_test",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0114",
+      "sample_id": "ggs_03da1e99b923695f",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0115",
+      "sample_id": "ggs_0403ac43e2c087c6",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0047",
+      "sample_id": "ggs_04270b07829bf898",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0343",
+      "sample_id": "ggs_044c6941a9ac796e",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0478",
+      "sample_id": "ggs_04ca88cb81dee387",
+      "split": "public_test",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0472",
+      "sample_id": "ggs_050c914bebdd4f2d",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0537",
+      "sample_id": "ggs_052d1545da1f7858",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0121",
+      "sample_id": "ggs_05d950776cb7110b",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0515",
+      "sample_id": "ggs_0632097c6dc24da3",
+      "split": "public_test",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0296",
+      "sample_id": "ggs_063713843070e6d3",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0450",
+      "sample_id": "ggs_06532c46c1e690fd",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0411",
+      "sample_id": "ggs_06827b303fdcce45",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0309",
+      "sample_id": "ggs_06829c487f8420ec",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0159",
+      "sample_id": "ggs_07563c51a53bd47b",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0528",
+      "sample_id": "ggs_07e9a863e3a18208",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0354",
+      "sample_id": "ggs_07f60c2e5a9f2a30",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0016",
+      "sample_id": "ggs_082c558a642f93ff",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0352",
+      "sample_id": "ggs_0848fee0cf20e4a1",
+      "split": "public_test",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0334",
+      "sample_id": "ggs_09002be20f9afaf4",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0336",
+      "sample_id": "ggs_09cc563fcc86b531",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0059",
+      "sample_id": "ggs_09cd8e0468f8f1da",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0512",
+      "sample_id": "ggs_09fc2b9e0a28004b",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0261",
+      "sample_id": "ggs_0b161c27efec05e2",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0173",
+      "sample_id": "ggs_0b67e6ac5848a4b0",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0052",
+      "sample_id": "ggs_0beb17215855678b",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0194",
+      "sample_id": "ggs_0bedac8e4c2203e1",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0531",
+      "sample_id": "ggs_0c4544546033442a",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0171",
+      "sample_id": "ggs_0c5b0e457441acd1",
+      "split": "public_test",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0341",
+      "sample_id": "ggs_0c5de75ca4241608",
+      "split": "public_test",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0032",
+      "sample_id": "ggs_0c6d630b923f23a1",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0430",
+      "sample_id": "ggs_0ca241b74c6033b7",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0530",
+      "sample_id": "ggs_0cebf5be1b0638af",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0006",
+      "sample_id": "ggs_0d2f8709e3780fc6",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0247",
+      "sample_id": "ggs_0da37e2d4db85b16",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0057",
+      "sample_id": "ggs_0daafe7aa05d0406",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0069",
+      "sample_id": "ggs_0daf2f340d3c7a93",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0191",
+      "sample_id": "ggs_0dd98ca6781a7809",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0524",
+      "sample_id": "ggs_0f963e06d20d9ede",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0082",
+      "sample_id": "ggs_10246eb296212891",
+      "split": "public_test",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0540",
+      "sample_id": "ggs_1078b8446d915545",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0356",
+      "sample_id": "ggs_10951dfd3e722d29",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0412",
+      "sample_id": "ggs_1096c69da33557fd",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0473",
+      "sample_id": "ggs_1179343aa122dea3",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0359",
+      "sample_id": "ggs_119a2587d7f8f25d",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0533",
+      "sample_id": "ggs_11ab4cfd6f169fe0",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0529",
+      "sample_id": "ggs_11b45eb103586f90",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0087",
+      "sample_id": "ggs_11df9399364180e3",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0086",
+      "sample_id": "ggs_12064f1088326010",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0094",
+      "sample_id": "ggs_129cbbd8dd69d806",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0444",
+      "sample_id": "ggs_131e5a5d4b7171e2",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0482",
+      "sample_id": "ggs_134173cbbf24cf18",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0067",
+      "sample_id": "ggs_1374f2ad2a51d089",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0281",
+      "sample_id": "ggs_13cbcb82effa705a",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0289",
+      "sample_id": "ggs_1416747ab199ca79",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0179",
+      "sample_id": "ggs_1449d7d9e17fa127",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0300",
+      "sample_id": "ggs_1496705936dc2d39",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0357",
+      "sample_id": "ggs_1499acfb37d22a52",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0025",
+      "sample_id": "ggs_14f134a3e62bdd65",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0509",
+      "sample_id": "ggs_1529d63b496713a4",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0463",
+      "sample_id": "ggs_153a931ff29661e0",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0081",
+      "sample_id": "ggs_15b2bf084d654630",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0461",
+      "sample_id": "ggs_1661d6fb87b8aa11",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0493",
+      "sample_id": "ggs_16a20ed23de595fa",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0062",
+      "sample_id": "ggs_16a2b2573e22c138",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0223",
+      "sample_id": "ggs_16dfe2cbd8ec9136",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0418",
+      "sample_id": "ggs_16f427a7831d359e",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0153",
+      "sample_id": "ggs_16faa2b677a279aa",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0346",
+      "sample_id": "ggs_179a52861c50a77e",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0091",
+      "sample_id": "ggs_18565bc205a1870a",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0353",
+      "sample_id": "ggs_18a90129034bc5d4",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0236",
+      "sample_id": "ggs_191a24f0830963f3",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "ielts_legitimate_feedback_request",
+      "sample_id": "ggs_19a95e26decdc051",
+      "split": "public_test",
+      "track": "ielts_domain_security"
+    },
+    {
+      "independence_group": "deepset_group_train_0534",
+      "sample_id": "ggs_1a86600fbd41da90",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0502",
+      "sample_id": "ggs_1a89248f4570f5fb",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0391",
+      "sample_id": "ggs_1aacc8069c95f4fd",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0037",
+      "sample_id": "ggs_1bf6734fb0daa0ef",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0181",
+      "sample_id": "ggs_1c43eba38e937a5e",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0222",
+      "sample_id": "ggs_1c5777316b8490b8",
+      "split": "public_test",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0062",
+      "sample_id": "ggs_1c6043cc98479f2e",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0498",
+      "sample_id": "ggs_1c6ce2d85fba97d2",
+      "split": "public_test",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0507",
+      "sample_id": "ggs_1d1991ffe54f7695",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0046",
+      "sample_id": "ggs_1d1b7970a3a22c91",
+      "split": "public_test",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0026",
+      "sample_id": "ggs_1d58ad9c0df80bf2",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0175",
+      "sample_id": "ggs_1d994e3e2fedd91f",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0220",
+      "sample_id": "ggs_1f34b1a316f7765a",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0077",
+      "sample_id": "ggs_1f75d2bb0dbe7a1d",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0252",
+      "sample_id": "ggs_1f9a870561820218",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0151",
+      "sample_id": "ggs_20a8775536f831a4",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0012",
+      "sample_id": "ggs_20ab6655d5c55dca",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0321",
+      "sample_id": "ggs_20b7e35b6e090e86",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0443",
+      "sample_id": "ggs_20d25ebe702e4137",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0422",
+      "sample_id": "ggs_210278c7a3f96d98",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0445",
+      "sample_id": "ggs_228026e4ba17141d",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0024",
+      "sample_id": "ggs_2289f71f64c7984d",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0101",
+      "sample_id": "ggs_22c22d462de125ca",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0446",
+      "sample_id": "ggs_23461630e70f21e8",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0031",
+      "sample_id": "ggs_23864cec1d537adf",
+      "split": "public_test",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0403",
+      "sample_id": "ggs_23cca834efb3ffb4",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0497",
+      "sample_id": "ggs_23ee8fc639531de5",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0452",
+      "sample_id": "ggs_242a7173e078971e",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0125",
+      "sample_id": "ggs_245e0ac98991368f",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0186",
+      "sample_id": "ggs_24b25bb306640d37",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0317",
+      "sample_id": "ggs_251112d8b20ebed5",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0315",
+      "sample_id": "ggs_257c4e88c4155be1",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0056",
+      "sample_id": "ggs_25887c13745bd7ff",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0225",
+      "sample_id": "ggs_25921a62d3e201e3",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0325",
+      "sample_id": "ggs_26505f91e212a0c8",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0085",
+      "sample_id": "ggs_265106c05e4dd04f",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0345",
+      "sample_id": "ggs_26839ce8951230ce",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0028",
+      "sample_id": "ggs_26a470acf6a6b124",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0426",
+      "sample_id": "ggs_26d1ea0d901546bb",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0190",
+      "sample_id": "ggs_273f3ffd1e8e5039",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0465",
+      "sample_id": "ggs_274515b881025492",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0519",
+      "sample_id": "ggs_2769b6e77d416b37",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0060",
+      "sample_id": "ggs_27c21013fef47e02",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0433",
+      "sample_id": "ggs_27e462ad758e4656",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0494",
+      "sample_id": "ggs_285ec42d560737c2",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0082",
+      "sample_id": "ggs_289265e35d160b4f",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0164",
+      "sample_id": "ggs_28a82f98fe4f8101",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0146",
+      "sample_id": "ggs_2976edbbe00cc992",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0084",
+      "sample_id": "ggs_2a2d40b87410bcb2",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0086",
+      "sample_id": "ggs_2a4e9874949ca193",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0311",
+      "sample_id": "ggs_2a617730920bc7f7",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0238",
+      "sample_id": "ggs_2a6d24c84c170db5",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0182",
+      "sample_id": "ggs_2abb5d053aad407a",
+      "split": "public_test",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0260",
+      "sample_id": "ggs_2b123123565206c3",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0447",
+      "sample_id": "ggs_2b6280848071faa6",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0054",
+      "sample_id": "ggs_2b99d879a412a25d",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0030",
+      "sample_id": "ggs_2bdda2af305293e6",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0053",
+      "sample_id": "ggs_2c8a015f097c6095",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0004",
+      "sample_id": "ggs_2d1fe3cdf5215efd",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0292",
+      "sample_id": "ggs_2d3854903d4c05f8",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0136",
+      "sample_id": "ggs_2f354910d02a3d3f",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0070",
+      "sample_id": "ggs_2fe92d95990630c4",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0030",
+      "sample_id": "ggs_2ffa65646dd556ff",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0369",
+      "sample_id": "ggs_307738aaaff5a3d2",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0378",
+      "sample_id": "ggs_31cd6fb5b9f9472f",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0084",
+      "sample_id": "ggs_31f327f771094242",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0508",
+      "sample_id": "ggs_3269d15b3cabbb7e",
+      "split": "public_test",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0042",
+      "sample_id": "ggs_329ea613c92e76f9",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0066",
+      "sample_id": "ggs_333665b7b9e73b12",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0379",
+      "sample_id": "ggs_33ec3a364500ac86",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0404",
+      "sample_id": "ggs_34187e11bf35f1ef",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0405",
+      "sample_id": "ggs_341e7a3ce5b1d2cb",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0008",
+      "sample_id": "ggs_34c4dc6475e5140a",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0417",
+      "sample_id": "ggs_355b24ebf6ac2df9",
+      "split": "public_test",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0114",
+      "sample_id": "ggs_357321187542ea95",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0127",
+      "sample_id": "ggs_368a2190e78bb9ba",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0021",
+      "sample_id": "ggs_3692b49587b462ca",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0012",
+      "sample_id": "ggs_37a3313ff71010fd",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0002",
+      "sample_id": "ggs_37aa276932fd4134",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0107",
+      "sample_id": "ggs_37bbb4150e78479b",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0172",
+      "sample_id": "ggs_381f8524ec510660",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0474",
+      "sample_id": "ggs_39dd9a4458baee6c",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0137",
+      "sample_id": "ggs_3a3e07fb34364869",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0073",
+      "sample_id": "ggs_3a8e5b58a8d61685",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0501",
+      "sample_id": "ggs_3bd8cfc1e50d21fe",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0113",
+      "sample_id": "ggs_3c63f8bac36fb9b2",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0035",
+      "sample_id": "ggs_3cb64e9a6216336c",
+      "split": "public_test",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0228",
+      "sample_id": "ggs_3cd630ab60d7e5af",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0358",
+      "sample_id": "ggs_3cd637d013c9c486",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0034",
+      "sample_id": "ggs_3cee5f92e88e0901",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0185",
+      "sample_id": "ggs_3cf739e26f6d3eb7",
+      "split": "public_test",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0043",
+      "sample_id": "ggs_3d369b7135861281",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "ielts_vietnamese_attack",
+      "sample_id": "ggs_3d399cb747faf2da",
+      "split": "train",
+      "track": "ielts_domain_security"
+    },
+    {
+      "independence_group": "deepset_group_train_0392",
+      "sample_id": "ggs_3d3d435e62186389",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0011",
+      "sample_id": "ggs_3d8802e0f48ec25d",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0350",
+      "sample_id": "ggs_3e13157e8b7d9b3f",
+      "split": "public_test",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0394",
+      "sample_id": "ggs_3e91560d2663b91e",
+      "split": "public_test",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0131",
+      "sample_id": "ggs_3f2adc93576ba2ea",
+      "split": "public_test",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0038",
+      "sample_id": "ggs_3f447abc80e6a6c3",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0075",
+      "sample_id": "ggs_3fb8ddd8ef680c3a",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0318",
+      "sample_id": "ggs_3fe534e787831a73",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0259",
+      "sample_id": "ggs_402a0f1280fb5549",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0092",
+      "sample_id": "ggs_40f1cafef4373421",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0437",
+      "sample_id": "ggs_41390bb8d36099b5",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0085",
+      "sample_id": "ggs_4140d3afde4243df",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0327",
+      "sample_id": "ggs_41a92b4e9df80eb2",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0363",
+      "sample_id": "ggs_42b1d8971ee9abbe",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0397",
+      "sample_id": "ggs_42de8cdfe4843e77",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0332",
+      "sample_id": "ggs_4364ecec58876fed",
+      "split": "public_test",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0348",
+      "sample_id": "ggs_437b7d17bb49c070",
+      "split": "public_test",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0033",
+      "sample_id": "ggs_439bdf1e7b5601b1",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0365",
+      "sample_id": "ggs_43c697a7084ebdb9",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0066",
+      "sample_id": "ggs_44c4b2c9b9f99817",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0032",
+      "sample_id": "ggs_4519ceeac612f6fc",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0050",
+      "sample_id": "ggs_455f49e164cda41c",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0169",
+      "sample_id": "ggs_4629884b69207ffb",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0342",
+      "sample_id": "ggs_463d3b234d0aa45e",
+      "split": "public_test",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0036",
+      "sample_id": "ggs_46944017416824d7",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0005",
+      "sample_id": "ggs_46ceae2e0a35c697",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0097",
+      "sample_id": "ggs_46d144d71b40f963",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0047",
+      "sample_id": "ggs_46efe3134fac57db",
+      "split": "public_test",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0138",
+      "sample_id": "ggs_475c4603cc46e945",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0373",
+      "sample_id": "ggs_4827951eabef443b",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0449",
+      "sample_id": "ggs_4842b468284b5f2e",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0257",
+      "sample_id": "ggs_493891a37c1a761f",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0065",
+      "sample_id": "ggs_4a1a4366de5cf022",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0304",
+      "sample_id": "ggs_4ac83fc3738d2126",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0370",
+      "sample_id": "ggs_4afb6f754d474f14",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0429",
+      "sample_id": "ggs_4b005e693ef75a75",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0095",
+      "sample_id": "ggs_4b835677a36a5e2a",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0106",
+      "sample_id": "ggs_4bc3f34452a8e694",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0495",
+      "sample_id": "ggs_4be12922b5d5c8f9",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0535",
+      "sample_id": "ggs_4bf782143a26fb40",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0116",
+      "sample_id": "ggs_4bfd7c5a806a45c1",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0193",
+      "sample_id": "ggs_4c243b712ae53f8d",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0504",
+      "sample_id": "ggs_4c6b0b6df4f5517a",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0485",
+      "sample_id": "ggs_4ca78b51b2e0c5f2",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "ielts_long_clean_context",
+      "sample_id": "ggs_4d0b238670df743e",
+      "split": "train",
+      "track": "ielts_domain_security"
+    },
+    {
+      "independence_group": "deepset_group_train_0058",
+      "sample_id": "ggs_4d0ff28e65432f67",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0049",
+      "sample_id": "ggs_4dd840057e308b61",
+      "split": "public_test",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0142",
+      "sample_id": "ggs_4de303bd42bc73bb",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "ielts_academic_prompt_injection",
+      "sample_id": "ggs_4e0798cf9b48cc0e",
+      "split": "train",
+      "track": "ielts_domain_security"
+    },
+    {
+      "independence_group": "deepset_group_train_0328",
+      "sample_id": "ggs_4e585bbee8d000f5",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0053",
+      "sample_id": "ggs_4ea74d6b4e82cac6",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0487",
+      "sample_id": "ggs_4ee586adc3808a1f",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0041",
+      "sample_id": "ggs_4fe96890bd88d5dd",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0466",
+      "sample_id": "ggs_4fe9fe3a456725fb",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0055",
+      "sample_id": "ggs_505bac31d93e1ff1",
+      "split": "public_test",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0140",
+      "sample_id": "ggs_5171e199f586ed7a",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0398",
+      "sample_id": "ggs_517602472d90a12b",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "ielts_normal_essay",
+      "sample_id": "ggs_5210aade8ee2f71d",
+      "split": "train",
+      "track": "ielts_domain_security"
+    },
+    {
+      "independence_group": "deepset_group_train_0288",
+      "sample_id": "ggs_524564e8f1b8b157",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0111",
+      "sample_id": "ggs_52a3c9e97740d513",
+      "split": "public_test",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0536",
+      "sample_id": "ggs_52d18a64ce5eefbc",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0122",
+      "sample_id": "ggs_52dadc682fcd1052",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0013",
+      "sample_id": "ggs_53690952d87ae9b3",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0205",
+      "sample_id": "ggs_5386ad7d2c5eddad",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0492",
+      "sample_id": "ggs_538edb8c87039cc1",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0132",
+      "sample_id": "ggs_53cb8f29e262919c",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0059",
+      "sample_id": "ggs_541c01de36cbcf72",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0460",
+      "sample_id": "ggs_54d946e76454cbb2",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "ielts_unicode_obfuscation",
+      "sample_id": "ggs_560c4b6285e97c86",
+      "split": "train",
+      "track": "ielts_domain_security"
+    },
+    {
+      "independence_group": "deepset_group_test_0051",
+      "sample_id": "ggs_5623a818523f668b",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0110",
+      "sample_id": "ggs_566898a55fffaa14",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0514",
+      "sample_id": "ggs_5684204c19026270",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0080",
+      "sample_id": "ggs_56a20e535cca7a9b",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0210",
+      "sample_id": "ggs_56f416eb5326e489",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0011",
+      "sample_id": "ggs_5743a8b50695ad6e",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0064",
+      "sample_id": "ggs_579215b78134dd87",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "ielts_system_prompt_extraction",
+      "sample_id": "ggs_57a601c39c4db8a2",
+      "split": "train",
+      "track": "ielts_domain_security"
+    },
+    {
+      "independence_group": "deepset_group_train_0477",
+      "sample_id": "ggs_57c149c9d7f85e9a",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0439",
+      "sample_id": "ggs_589819990ce3092c",
+      "split": "public_test",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0017",
+      "sample_id": "ggs_58a5c0c384bf38bd",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0499",
+      "sample_id": "ggs_58fb44f373ac1c47",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0128",
+      "sample_id": "ggs_591b87486698e09d",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0152",
+      "sample_id": "ggs_597e77572f3ac1ab",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0001",
+      "sample_id": "ggs_5999192d582a0520",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0005",
+      "sample_id": "ggs_5a2eb77500824b13",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0208",
+      "sample_id": "ggs_5a68babe5bdd17fb",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0481",
+      "sample_id": "ggs_5ae013d4990c8deb",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0211",
+      "sample_id": "ggs_5b1a6901c067c2ec",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0083",
+      "sample_id": "ggs_5b3ac47a10ca0116",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0522",
+      "sample_id": "ggs_5b9f013129ce8da4",
+      "split": "public_test",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0458",
+      "sample_id": "ggs_5c0da326f15c2229",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0268",
+      "sample_id": "ggs_5c3d40bc7707600a",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0020",
+      "sample_id": "ggs_5d13086994e08ce9",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0469",
+      "sample_id": "ggs_5de81f68c451c893",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0008",
+      "sample_id": "ggs_5e5e4469b676e01f",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0025",
+      "sample_id": "ggs_5eaea44bf874f449",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0168",
+      "sample_id": "ggs_5ec018c0706eeaf7",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0457",
+      "sample_id": "ggs_5f52da11bfa1383a",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0073",
+      "sample_id": "ggs_5f8c1bf419a2edf6",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0384",
+      "sample_id": "ggs_5fa2fb3c1ed8d0e9",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0055",
+      "sample_id": "ggs_5fc53ebcc7869e68",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0107",
+      "sample_id": "ggs_609043cc232ce6fe",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0135",
+      "sample_id": "ggs_618e2517df427a04",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0163",
+      "sample_id": "ggs_61fa10822ca0e801",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0385",
+      "sample_id": "ggs_621b25b5551aea1d",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0058",
+      "sample_id": "ggs_625abd92b2bc25d0",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0046",
+      "sample_id": "ggs_6269a399056ec521",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0213",
+      "sample_id": "ggs_63c331885c26e06b",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0273",
+      "sample_id": "ggs_642383e2bb357b27",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0329",
+      "sample_id": "ggs_648a2a250d4a918a",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0532",
+      "sample_id": "ggs_64ad111dd7d8ee79",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0295",
+      "sample_id": "ggs_64b1b3bec7ca27a3",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0154",
+      "sample_id": "ggs_64f9e5631502b10c",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "ielts_strong_writing",
+      "sample_id": "ggs_65b4d53f3ae6eba2",
+      "split": "train",
+      "track": "ielts_domain_security"
+    },
+    {
+      "independence_group": "deepset_group_train_0155",
+      "sample_id": "ggs_66580d95c76eaa79",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0039",
+      "sample_id": "ggs_6709d507261df0f6",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0166",
+      "sample_id": "ggs_6746acbea4163e0b",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0215",
+      "sample_id": "ggs_67721a0efedeeaac",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0006",
+      "sample_id": "ggs_689a0bbfbf18b3c8",
+      "split": "public_test",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0074",
+      "sample_id": "ggs_68b4552995bdf0f8",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0010",
+      "sample_id": "ggs_693d2aa9a9ae1fa6",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0209",
+      "sample_id": "ggs_6961c4e40efd1e3d",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0150",
+      "sample_id": "ggs_69ad5a04bfdd5752",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0119",
+      "sample_id": "ggs_69b6093953d16fd6",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0007",
+      "sample_id": "ggs_6a1ce03c530b9f85",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0038",
+      "sample_id": "ggs_6a66d366fb16f3bc",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0516",
+      "sample_id": "ggs_6aaeacae38237e63",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0523",
+      "sample_id": "ggs_6ad25cd52dfab5a8",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0063",
+      "sample_id": "ggs_6b12ed5abd9d1e71",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0293",
+      "sample_id": "ggs_6b41b82c4a32957b",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0009",
+      "sample_id": "ggs_6b8c961f8e51c22b",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0511",
+      "sample_id": "ggs_6c1e313de1cd0d2a",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0226",
+      "sample_id": "ggs_6c9feb89acdd7075",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "ielts_delimiter_abuse",
+      "sample_id": "ggs_6d39e7ac98d04096",
+      "split": "train",
+      "track": "ielts_domain_security"
+    },
+    {
+      "independence_group": "deepset_group_train_0368",
+      "sample_id": "ggs_6df66ccb9e2664d6",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0408",
+      "sample_id": "ggs_6dfd579ac89adbf0",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0013",
+      "sample_id": "ggs_6e46465205b89f74",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0071",
+      "sample_id": "ggs_6ec67904fdf8161e",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0421",
+      "sample_id": "ggs_706c50e89895a04d",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0069",
+      "sample_id": "ggs_708e2bf00f99fb21",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0320",
+      "sample_id": "ggs_70af9684656ced67",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0141",
+      "sample_id": "ggs_70c6d5e8e185d61d",
+      "split": "public_test",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0299",
+      "sample_id": "ggs_70e9510db0c091d3",
+      "split": "public_test",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0096",
+      "sample_id": "ggs_7164985f2e0b96cf",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0098",
+      "sample_id": "ggs_71abbf1a9e3aafd8",
+      "split": "public_test",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0170",
+      "sample_id": "ggs_71b028360875f159",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0002",
+      "sample_id": "ggs_72fbd9436068c67b",
+      "split": "public_test",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0216",
+      "sample_id": "ggs_732dced97e831614",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0217",
+      "sample_id": "ggs_73e27e2dd79a6a61",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0079",
+      "sample_id": "ggs_746ecb8687030e9b",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0455",
+      "sample_id": "ggs_74725c35eb85fe8c",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0072",
+      "sample_id": "ggs_74d54f1e1fb95224",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0427",
+      "sample_id": "ggs_74d5bcb1043901d0",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0188",
+      "sample_id": "ggs_74ef35c1adde31ac",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0197",
+      "sample_id": "ggs_75a89b71263998cd",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0241",
+      "sample_id": "ggs_75bee8fa6a00c2ff",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0097",
+      "sample_id": "ggs_75f78a8b12251ab0",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0158",
+      "sample_id": "ggs_7637d7fef174e451",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0410",
+      "sample_id": "ggs_76ee5bc9a18f4328",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0407",
+      "sample_id": "ggs_776919b614d14584",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0021",
+      "sample_id": "ggs_77bd0fb10926d29a",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0298",
+      "sample_id": "ggs_780408e40b4a9cd3",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0224",
+      "sample_id": "ggs_781b5b9245256d55",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0108",
+      "sample_id": "ggs_7846a30101bfce69",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0347",
+      "sample_id": "ggs_78d213f52c718094",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0104",
+      "sample_id": "ggs_78dd66ef4fae6a2c",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0306",
+      "sample_id": "ggs_79571e3b696338a3",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0431",
+      "sample_id": "ggs_798a112b1522363f",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0399",
+      "sample_id": "ggs_79ae3d5447a75742",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0048",
+      "sample_id": "ggs_7b1c898bc082a5e5",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0545",
+      "sample_id": "ggs_7ba1b992353ba6d6",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0174",
+      "sample_id": "ggs_7c5690549f2afce0",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0033",
+      "sample_id": "ggs_7d8c2937a0eae262",
+      "split": "public_test",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0133",
+      "sample_id": "ggs_7d8fe3cc5b92789c",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0139",
+      "sample_id": "ggs_7e5d76fccac24bac",
+      "split": "public_test",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0340",
+      "sample_id": "ggs_7e8ec2e957c22eff",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0266",
+      "sample_id": "ggs_7ea06b6b9ab27231",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0112",
+      "sample_id": "ggs_7f384a37bf15127f",
+      "split": "public_test",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0201",
+      "sample_id": "ggs_7f782ab5ed65036d",
+      "split": "public_test",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0184",
+      "sample_id": "ggs_7f9133bb56ec56b1",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0204",
+      "sample_id": "ggs_8010e92d0d7fda76",
+      "split": "public_test",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0034",
+      "sample_id": "ggs_809c87d9d9e9bfe6",
+      "split": "public_test",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0396",
+      "sample_id": "ggs_80aa2869e51e0034",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0525",
+      "sample_id": "ggs_810f92eed729458a",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0124",
+      "sample_id": "ggs_81b2329f78075766",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0367",
+      "sample_id": "ggs_81ceaff9711a7875",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0014",
+      "sample_id": "ggs_83222cfd19202e1e",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0409",
+      "sample_id": "ggs_834eabebacbfa0f6",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0102",
+      "sample_id": "ggs_837e630f24b240b2",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0023",
+      "sample_id": "ggs_839ce4bfaed3e420",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0093",
+      "sample_id": "ggs_83f9bdc09113e8fa",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0360",
+      "sample_id": "ggs_847faf3685f4a0f3",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0105",
+      "sample_id": "ggs_84e65901d237909f",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0189",
+      "sample_id": "ggs_8549260c4b037ffc",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0310",
+      "sample_id": "ggs_856a875fc8f0573e",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0165",
+      "sample_id": "ggs_8582c1546836a56a",
+      "split": "public_test",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0333",
+      "sample_id": "ggs_862796a7025f9985",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "ielts_indirect_prompt_injection",
+      "sample_id": "ggs_86363b5b7af34007",
+      "split": "train",
+      "track": "ielts_domain_security"
+    },
+    {
+      "independence_group": "ielts_legitimate_band9",
+      "sample_id": "ggs_8687f5bffae00723",
+      "split": "train",
+      "track": "ielts_domain_security"
+    },
+    {
+      "independence_group": "deepset_group_train_0372",
+      "sample_id": "ggs_869006d1e6a51f01",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0007",
+      "sample_id": "ggs_8692d2e656138cf2",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0067",
+      "sample_id": "ggs_86ddf05acf3eae2c",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0040",
+      "sample_id": "ggs_87283e42484574b0",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0061",
+      "sample_id": "ggs_87bb4690cb2f0e48",
+      "split": "public_test",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0040",
+      "sample_id": "ggs_88768fa1c9a1996c",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0290",
+      "sample_id": "ggs_887d2c3326226971",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0076",
+      "sample_id": "ggs_893f7067084be9e0",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0105",
+      "sample_id": "ggs_89cb7513412d4476",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "ielts_policy_manipulation",
+      "sample_id": "ggs_8a18b355b94ff863",
+      "split": "public_test",
+      "track": "ielts_domain_security"
+    },
+    {
+      "independence_group": "deepset_group_train_0207",
+      "sample_id": "ggs_8abce2a69b49a53a",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0230",
+      "sample_id": "ggs_8acf7896a9a980b3",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0451",
+      "sample_id": "ggs_8ae3312a9d35c947",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "ielts_hidden_in_essay",
+      "sample_id": "ggs_8b0f2ead08f75d7f",
+      "split": "private_holdout",
+      "track": "ielts_domain_security"
+    },
+    {
+      "independence_group": "deepset_group_train_0486",
+      "sample_id": "ggs_8b23f871f79e5301",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0076",
+      "sample_id": "ggs_8b291b6386215b9c",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0496",
+      "sample_id": "ggs_8b725d7016beb863",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "ielts_data_exfiltration",
+      "sample_id": "ggs_8b783db343bb3685",
+      "split": "public_test",
+      "track": "ielts_domain_security"
+    },
+    {
+      "independence_group": "deepset_group_train_0071",
+      "sample_id": "ggs_8b8287b147005698",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0337",
+      "sample_id": "ggs_8be4d6eead6c4a07",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0109",
+      "sample_id": "ggs_8c0c720bf9523d69",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0267",
+      "sample_id": "ggs_8c8b7c5a4fbedfde",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0366",
+      "sample_id": "ggs_8cdddac23d16fb80",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "ielts_multilingual_clean",
+      "sample_id": "ggs_8ceee5d7fcc32520",
+      "split": "private_holdout",
+      "track": "ielts_domain_security"
+    },
+    {
+      "independence_group": "deepset_group_train_0198",
+      "sample_id": "ggs_8d2de67f1bd532cc",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0231",
+      "sample_id": "ggs_8d7234fb24c4b908",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0212",
+      "sample_id": "ggs_8d99ae37aa0afe49",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0424",
+      "sample_id": "ggs_8ddc651f04b1176c",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0526",
+      "sample_id": "ggs_8e4a110039c334b7",
+      "split": "public_test",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0027",
+      "sample_id": "ggs_8ed359ac1c43c8fb",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0123",
+      "sample_id": "ggs_8f4aa8d2fe52f31b",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0052",
+      "sample_id": "ggs_8fadb8ebfe5cb804",
+      "split": "public_test",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0019",
+      "sample_id": "ggs_8fd93b24817659c1",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0115",
+      "sample_id": "ggs_8fef7305a5b36417",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0176",
+      "sample_id": "ggs_8ffe8dee1707876b",
+      "split": "public_test",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0024",
+      "sample_id": "ggs_90d6392d9de3728b",
+      "split": "public_test",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0004",
+      "sample_id": "ggs_90eb1b64f2aa351d",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0262",
+      "sample_id": "ggs_9108e61a223e0fe8",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0103",
+      "sample_id": "ggs_910c7d0548916038",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0180",
+      "sample_id": "ggs_92d932caae48d127",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0314",
+      "sample_id": "ggs_92e5f8f8b99141af",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0456",
+      "sample_id": "ggs_9355adda4d6879bf",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0039",
+      "sample_id": "ggs_93adf5e907e98643",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0355",
+      "sample_id": "ggs_93ec7b2adf825902",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0080",
+      "sample_id": "ggs_9460e947ffbb6f38",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0253",
+      "sample_id": "ggs_94f6ba8f5f0a62ac",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0303",
+      "sample_id": "ggs_95439f5c0ebeddef",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0126",
+      "sample_id": "ggs_9577daeb3e7c5f84",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0178",
+      "sample_id": "ggs_9580c0d173c83ad7",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0113",
+      "sample_id": "ggs_9595ddee17cb388f",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0388",
+      "sample_id": "ggs_95bacb7eb5145016",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0246",
+      "sample_id": "ggs_968eb784e8b293db",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0249",
+      "sample_id": "ggs_973aa4ece0e09031",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0335",
+      "sample_id": "ggs_976fc2f3006f2fac",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0096",
+      "sample_id": "ggs_982f61633feacb80",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0441",
+      "sample_id": "ggs_9876fa8fd09d1a9f",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0280",
+      "sample_id": "ggs_98a1f46578a42a71",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0428",
+      "sample_id": "ggs_98a585c3a6c3fc06",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0099",
+      "sample_id": "ggs_98aad1ecb805389d",
+      "split": "public_test",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0027",
+      "sample_id": "ggs_98ae5472bd48ce2a",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0020",
+      "sample_id": "ggs_992ec8679c2c3adc",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0448",
+      "sample_id": "ggs_9a5901bb8f5ff6e1",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0285",
+      "sample_id": "ggs_9a9441294e3b453b",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0242",
+      "sample_id": "ggs_9a97b62569ce33b2",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0074",
+      "sample_id": "ggs_9aacaae6513b916c",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0258",
+      "sample_id": "ggs_9ac9554b29a6c870",
+      "split": "public_test",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0376",
+      "sample_id": "ggs_9aeaedb8df137dbb",
+      "split": "public_test",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0254",
+      "sample_id": "ggs_9b545e704194aad5",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0104",
+      "sample_id": "ggs_9b6ca9ea7e615be0",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0100",
+      "sample_id": "ggs_9b70e1c1efe1b3cf",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0313",
+      "sample_id": "ggs_9d0de6e5dcc75d7c",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0095",
+      "sample_id": "ggs_9dd5d4e94cf1565b",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0480",
+      "sample_id": "ggs_9ec632efd3d4aa6e",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0187",
+      "sample_id": "ggs_a0f0d63a307f9f30",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0103",
+      "sample_id": "ggs_a10acf212107e009",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0028",
+      "sample_id": "ggs_a179b8a39db40041",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0338",
+      "sample_id": "ggs_a1a91b4aa71804e8",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0003",
+      "sample_id": "ggs_a270364b1e062a77",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0022",
+      "sample_id": "ggs_a27db90c116ce627",
+      "split": "public_test",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0090",
+      "sample_id": "ggs_a47984b8fb397445",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0160",
+      "sample_id": "ggs_a4c5a269582f8ab6",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0200",
+      "sample_id": "ggs_a50d22f08fb8cbca",
+      "split": "public_test",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0277",
+      "sample_id": "ggs_a50ed75efad148be",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0162",
+      "sample_id": "ggs_a5aa4acad580c605",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0349",
+      "sample_id": "ggs_a5b4ad5c493644f6",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0362",
+      "sample_id": "ggs_a6558a5c8c72297b",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0070",
+      "sample_id": "ggs_a674f9a6080a5aa9",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "ielts_mixed_vietnamese_english_attack",
+      "sample_id": "ggs_a707daeb014c644d",
+      "split": "train",
+      "track": "ielts_domain_security"
+    },
+    {
+      "independence_group": "deepset_group_train_0419",
+      "sample_id": "ggs_a762502e46b60136",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0264",
+      "sample_id": "ggs_a77b817a43d9be37",
+      "split": "public_test",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0454",
+      "sample_id": "ggs_a77db8087fef5e9a",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0256",
+      "sample_id": "ggs_a7c2fdec0474ce01",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0010",
+      "sample_id": "ggs_a7e6cf7e2181b983",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0361",
+      "sample_id": "ggs_a8915bcd57e769c3",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0287",
+      "sample_id": "ggs_a8ae33b36cacf7e0",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "ielts_hidden_in_quote",
+      "sample_id": "ggs_a8c74f09da58d9ef",
+      "split": "train",
+      "track": "ielts_domain_security"
+    },
+    {
+      "independence_group": "deepset_group_train_0014",
+      "sample_id": "ggs_a929d27c3930910f",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0307",
+      "sample_id": "ggs_a92e92402e564f10",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0541",
+      "sample_id": "ggs_a9d15a61edefdfec",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0468",
+      "sample_id": "ggs_aa03be2a9ca30ea2",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0234",
+      "sample_id": "ggs_aaaf9302b268b770",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0206",
+      "sample_id": "ggs_aac195f2f4cfb73c",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0221",
+      "sample_id": "ggs_ab9621109f016002",
+      "split": "public_test",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0544",
+      "sample_id": "ggs_abadf96526144ca6",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0054",
+      "sample_id": "ggs_abece89c19487d59",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0244",
+      "sample_id": "ggs_abf8320190c9cbbd",
+      "split": "public_test",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0387",
+      "sample_id": "ggs_ac71da3b6fa1a078",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0029",
+      "sample_id": "ggs_ad1cb1212495c29d",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0161",
+      "sample_id": "ggs_ad8e3de93991136d",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0255",
+      "sample_id": "ggs_ae34b7f5221a332b",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0037",
+      "sample_id": "ggs_afd6f7256692af7a",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0083",
+      "sample_id": "ggs_aff20c02aa3cbca7",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0339",
+      "sample_id": "ggs_b010dff8a2102c8e",
+      "split": "public_test",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0003",
+      "sample_id": "ggs_b123633be1a13996",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0044",
+      "sample_id": "ggs_b1becace0c656356",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0088",
+      "sample_id": "ggs_b21a641895d0b342",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0118",
+      "sample_id": "ggs_b3bf022a4b6924cb",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0442",
+      "sample_id": "ggs_b3e601475feaf9da",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0278",
+      "sample_id": "ggs_b3e7096c293aecab",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0112",
+      "sample_id": "ggs_b3fad917e81f63de",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0056",
+      "sample_id": "ggs_b41cf140ac952ffa",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0026",
+      "sample_id": "ggs_b424993667c4bbdc",
+      "split": "public_test",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0035",
+      "sample_id": "ggs_b42b40b6351369dd",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0308",
+      "sample_id": "ggs_b4a016b01b456c21",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0302",
+      "sample_id": "ggs_b4df0c4c0c24d880",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0506",
+      "sample_id": "ggs_b53fbfe977a45a20",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0305",
+      "sample_id": "ggs_b56d2ac550497b17",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0400",
+      "sample_id": "ggs_b5c91e76be667f95",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "ielts_harmless_imperative",
+      "sample_id": "ggs_b6aff42e89e20712",
+      "split": "private_holdout",
+      "track": "ielts_domain_security"
+    },
+    {
+      "independence_group": "deepset_group_train_0219",
+      "sample_id": "ggs_b6b8dda4219bb664",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0098",
+      "sample_id": "ggs_b84d76696930591d",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0045",
+      "sample_id": "ggs_b87dc28c29f34445",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0001",
+      "sample_id": "ggs_b88b3776b1acb68b",
+      "split": "public_test",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0251",
+      "sample_id": "ggs_b8d55a635654853d",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0425",
+      "sample_id": "ggs_b8ea9c7710e77848",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0129",
+      "sample_id": "ggs_b993b06975a694a2",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0527",
+      "sample_id": "ggs_ba7b9d9bc82d15b0",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0233",
+      "sample_id": "ggs_bac2a965f0500545",
+      "split": "public_test",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0270",
+      "sample_id": "ggs_bae512515f12350e",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0413",
+      "sample_id": "ggs_bb08caf0c367fa30",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0235",
+      "sample_id": "ggs_bbe47d3e71c25658",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0015",
+      "sample_id": "ggs_bc7727bd2a12f63b",
+      "split": "public_test",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0538",
+      "sample_id": "ggs_bcf5bea81410822a",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0109",
+      "sample_id": "ggs_be3c7857e08377de",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0079",
+      "sample_id": "ggs_bea5bd21aae35c0f",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0272",
+      "sample_id": "ggs_beaf022cc3e38fd2",
+      "split": "public_test",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0143",
+      "sample_id": "ggs_bfb2d8d3f550c2f9",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0467",
+      "sample_id": "ggs_bfeb1cf120cd4f07",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0149",
+      "sample_id": "ggs_bff4286bf493fb4f",
+      "split": "public_test",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "ielts_code_block_passage",
+      "sample_id": "ggs_c07d86a459d544b4",
+      "split": "train",
+      "track": "ielts_domain_security"
+    },
+    {
+      "independence_group": "deepset_group_train_0279",
+      "sample_id": "ggs_c1014761ad31becf",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0393",
+      "sample_id": "ggs_c162344fd1bb222f",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0060",
+      "sample_id": "ggs_c1b134ec39d1d09c",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0237",
+      "sample_id": "ggs_c2359779d9d2cc03",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0301",
+      "sample_id": "ggs_c2c05a23c7a15757",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0145",
+      "sample_id": "ggs_c32920555e0c1a56",
+      "split": "public_test",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0045",
+      "sample_id": "ggs_c3adb3620ddec075",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0371",
+      "sample_id": "ggs_c3b2e794f18b9bfb",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0065",
+      "sample_id": "ggs_c44153d5a6d7b4ee",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0389",
+      "sample_id": "ggs_c492561829898783",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "ielts_direct_score_manipulation",
+      "sample_id": "ggs_c53d0edfd7c319d1",
+      "split": "train",
+      "track": "ielts_domain_security"
+    },
+    {
+      "independence_group": "deepset_group_train_0239",
+      "sample_id": "ggs_c5d7e595349415e7",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0144",
+      "sample_id": "ggs_c5df72beca861614",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0383",
+      "sample_id": "ggs_c698ca6812708b03",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0214",
+      "sample_id": "ggs_c69daa22ed1fc406",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0286",
+      "sample_id": "ggs_c6a79f43bdbbf93a",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0521",
+      "sample_id": "ggs_c6b931f23da6af8d",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0091",
+      "sample_id": "ggs_c73cae78ccae5f61",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0017",
+      "sample_id": "ggs_c74ebdf7a747ea4b",
+      "split": "public_test",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0291",
+      "sample_id": "ggs_c778edf9bdb163ec",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0090",
+      "sample_id": "ggs_c7b4c1082474475b",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0542",
+      "sample_id": "ggs_c8115503221921d4",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0120",
+      "sample_id": "ggs_c8330ecd36b33298",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0351",
+      "sample_id": "ggs_c891b0954e1021a7",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0518",
+      "sample_id": "ggs_c90a5b415e7733c2",
+      "split": "public_test",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0513",
+      "sample_id": "ggs_c94fbc4bf258db0e",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0023",
+      "sample_id": "ggs_ca03c81b1676dbda",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0432",
+      "sample_id": "ggs_ca8a1bd214f1e5f9",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "ielts_encoded_payload",
+      "sample_id": "ggs_cabd3b5ef88ae7ea",
+      "split": "public_test",
+      "track": "ielts_domain_security"
+    },
+    {
+      "independence_group": "deepset_group_train_0470",
+      "sample_id": "ggs_caecdee638766388",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0435",
+      "sample_id": "ggs_cafa26a739d4cf5d",
+      "split": "public_test",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0202",
+      "sample_id": "ggs_cb084e121c146ca1",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0088",
+      "sample_id": "ggs_cc75cd12ad412f98",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "ielts_role_spoofing",
+      "sample_id": "ggs_ccb62d2e52604eef",
+      "split": "private_holdout",
+      "track": "ielts_domain_security"
+    },
+    {
+      "independence_group": "deepset_group_train_0250",
+      "sample_id": "ggs_ccf5fe4ad23f2153",
+      "split": "public_test",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0068",
+      "sample_id": "ggs_cd37e247c560130a",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0022",
+      "sample_id": "ggs_cd66f6b2a0f83b77",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "ielts_long_context_injection",
+      "sample_id": "ggs_cddfd20fa183e01c",
+      "split": "train",
+      "track": "ielts_domain_security"
+    },
+    {
+      "independence_group": "deepset_group_train_0106",
+      "sample_id": "ggs_ced544fd94152827",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0316",
+      "sample_id": "ggs_cfce2c8247f947e4",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0475",
+      "sample_id": "ggs_d05d146c22c7000c",
+      "split": "public_test",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0078",
+      "sample_id": "ggs_d089ebcc0b4f2bb1",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0500",
+      "sample_id": "ggs_d099d06adacb619e",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0330",
+      "sample_id": "ggs_d154b140dc3b2c5f",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0117",
+      "sample_id": "ggs_d21ffe6842475e46",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0414",
+      "sample_id": "ggs_d22320eed69c383f",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0265",
+      "sample_id": "ggs_d26fce3ace954d72",
+      "split": "public_test",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0248",
+      "sample_id": "ggs_d2fdfe646f356bd8",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0081",
+      "sample_id": "ggs_d313427846b6b3ec",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0436",
+      "sample_id": "ggs_d396cce54c9ee587",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0322",
+      "sample_id": "ggs_d438aa10c0274852",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0167",
+      "sample_id": "ggs_d4f2c178b9fd1121",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0276",
+      "sample_id": "ggs_d4f8ce89ebb2e6f9",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0503",
+      "sample_id": "ggs_d58b0f32d8231f23",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0312",
+      "sample_id": "ggs_d59e4079e689e1ea",
+      "split": "public_test",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0183",
+      "sample_id": "ggs_d71d87e6cc94702c",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0377",
+      "sample_id": "ggs_d72def9e971c56fb",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0057",
+      "sample_id": "ggs_d74faacde09a1943",
+      "split": "public_test",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0089",
+      "sample_id": "ggs_d78c96111d2bdb02",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0245",
+      "sample_id": "ggs_d7914404e0438771",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0110",
+      "sample_id": "ggs_d7c8a6ea00f5eacb",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0116",
+      "sample_id": "ggs_d7fbcf7635dcc7b8",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0380",
+      "sample_id": "ggs_d8a721d846a6abd8",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0440",
+      "sample_id": "ggs_da0ecdbb29274fdc",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0344",
+      "sample_id": "ggs_da7a937750940e5c",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0382",
+      "sample_id": "ggs_dae49d9646ac81d9",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0490",
+      "sample_id": "ggs_db3bd55c0a5e1838",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0130",
+      "sample_id": "ggs_dc3c554911d38cc4",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0196",
+      "sample_id": "ggs_dc73a2b691048390",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0263",
+      "sample_id": "ggs_dc8240a382a1be5f",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0491",
+      "sample_id": "ggs_dca6b583ad2267fc",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0092",
+      "sample_id": "ggs_dcf2fb8792a9c71e",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0042",
+      "sample_id": "ggs_dd1e0b19ecfd8f1b",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0232",
+      "sample_id": "ggs_dd2d739a5b10a134",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "ielts_weak_writing",
+      "sample_id": "ggs_dd43171c0eb4bdfe",
+      "split": "public_test",
+      "track": "ielts_domain_security"
+    },
+    {
+      "independence_group": "deepset_group_train_0326",
+      "sample_id": "ggs_dda158b619ee6f35",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0294",
+      "sample_id": "ggs_dda7d1db2dde9a49",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0075",
+      "sample_id": "ggs_ddded6abb899a177",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0094",
+      "sample_id": "ggs_dde786eb275e8482",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0041",
+      "sample_id": "ggs_ddfca1be5cc9f7f0",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0462",
+      "sample_id": "ggs_de3942bab689586e",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0029",
+      "sample_id": "ggs_dede17530df7afdf",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0420",
+      "sample_id": "ggs_df90cbed0f13edaa",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0415",
+      "sample_id": "ggs_e0626ebbcfa3085f",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0157",
+      "sample_id": "ggs_e0c65823de621198",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0374",
+      "sample_id": "ggs_e10b603c9646a0a0",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0243",
+      "sample_id": "ggs_e188927f5dd5325d",
+      "split": "public_test",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0015",
+      "sample_id": "ggs_e1a02792678c6cd2",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0063",
+      "sample_id": "ggs_e1cd6297b67d0410",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0077",
+      "sample_id": "ggs_e1eaad3c15ceeae7",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0395",
+      "sample_id": "ggs_e27dbbbc06ba5b6d",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0093",
+      "sample_id": "ggs_e3418751bb996e53",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0087",
+      "sample_id": "ggs_e38bc641d10afbb1",
+      "split": "public_test",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "ielts_cybersecurity_reading",
+      "sample_id": "ggs_e3e3c03a3c957d6d",
+      "split": "train",
+      "track": "ielts_domain_security"
+    },
+    {
+      "independence_group": "deepset_group_train_0203",
+      "sample_id": "ggs_e3ebbdb8fa33404d",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0072",
+      "sample_id": "ggs_e3f8b8657e212b04",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0147",
+      "sample_id": "ggs_e43d8da9e972a903",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0218",
+      "sample_id": "ggs_e4ab69f474c176ec",
+      "split": "public_test",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0464",
+      "sample_id": "ggs_e4f6c3aeba40b1f8",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0510",
+      "sample_id": "ggs_e562d3aa4bd270b1",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0148",
+      "sample_id": "ggs_e5869ab36e0c3649",
+      "split": "public_test",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0423",
+      "sample_id": "ggs_e5bdf3d11f095c8d",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0227",
+      "sample_id": "ggs_e5c24509e641699e",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0319",
+      "sample_id": "ggs_e5f4e32f19527eb0",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0240",
+      "sample_id": "ggs_e6577046d8b78b22",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0018",
+      "sample_id": "ggs_e6aca10b2a2f22b8",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0275",
+      "sample_id": "ggs_e6b3199c52827830",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0102",
+      "sample_id": "ggs_e83506085665a8a8",
+      "split": "public_test",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0018",
+      "sample_id": "ggs_e8550f9321ca5762",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0434",
+      "sample_id": "ggs_e8d58e60b1610271",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0009",
+      "sample_id": "ggs_e96b97566b3a1501",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0488",
+      "sample_id": "ggs_ea3104ac84d4d425",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0283",
+      "sample_id": "ggs_ea6023db67b644be",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0438",
+      "sample_id": "ggs_eabde04df8012ea8",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0111",
+      "sample_id": "ggs_eb1ff68b3ed6e945",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0390",
+      "sample_id": "ggs_eb80ff6771d2a80e",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0546",
+      "sample_id": "ggs_eba4b26cdeec39fd",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0050",
+      "sample_id": "ggs_eba5da35b01bc228",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0476",
+      "sample_id": "ggs_ebaad97116225c88",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0297",
+      "sample_id": "ggs_ebe0aa7aaa7d2b16",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0483",
+      "sample_id": "ggs_ee5feabb61e36ca7",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0323",
+      "sample_id": "ggs_ef5a5e1cd384a9f1",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0489",
+      "sample_id": "ggs_f1750e0074799f0f",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0375",
+      "sample_id": "ggs_f199ee9df7d4803a",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0331",
+      "sample_id": "ggs_f21644cd9ff192c2",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0101",
+      "sample_id": "ggs_f27109bf2e15cc1f",
+      "split": "public_test",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0064",
+      "sample_id": "ggs_f2d571f5b023ea5d",
+      "split": "public_test",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0324",
+      "sample_id": "ggs_f315b3b3fe030d7c",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0416",
+      "sample_id": "ggs_f3287a9c5a26d547",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0016",
+      "sample_id": "ggs_f33914a7fc32f74d",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0019",
+      "sample_id": "ggs_f4314fdad3430ebf",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0386",
+      "sample_id": "ggs_f4b601aa114b38a4",
+      "split": "public_test",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0177",
+      "sample_id": "ggs_f5353d41d39e3140",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0048",
+      "sample_id": "ggs_f56c91c327bb2cf7",
+      "split": "public_test",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0271",
+      "sample_id": "ggs_f5bc06aaead193ee",
+      "split": "public_test",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0099",
+      "sample_id": "ggs_f5cda32e8288e5de",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0543",
+      "sample_id": "ggs_f612c0f1245fc243",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0517",
+      "sample_id": "ggs_f68b563ec4ad313c",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0459",
+      "sample_id": "ggs_f6e16991d420938f",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0539",
+      "sample_id": "ggs_f6eb8efed26ed4a8",
+      "split": "public_test",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0471",
+      "sample_id": "ggs_f6f8fe89fae229e7",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0100",
+      "sample_id": "ggs_f75a45d8efd4bfeb",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0051",
+      "sample_id": "ggs_f7d3150e4f47e958",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0195",
+      "sample_id": "ggs_f7dc370d84de355a",
+      "split": "public_test",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0031",
+      "sample_id": "ggs_f8748aa2bc304095",
+      "split": "private_holdout",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0406",
+      "sample_id": "ggs_f884fb7cda196a07",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0229",
+      "sample_id": "ggs_f9150d767dbbfc1e",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0044",
+      "sample_id": "ggs_f9244d8968c60180",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "ielts_quoted_malicious_analysis",
+      "sample_id": "ggs_f9f161469e329f21",
+      "split": "private_holdout",
+      "track": "ielts_domain_security"
+    },
+    {
+      "independence_group": "deepset_group_train_0192",
+      "sample_id": "ggs_fa22a3d0b0d7faad",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0089",
+      "sample_id": "ggs_fa725300b6e8aa9b",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0284",
+      "sample_id": "ggs_fac2a0d363fa756a",
+      "split": "public_test",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0484",
+      "sample_id": "ggs_fad53ec22e500f3d",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0199",
+      "sample_id": "ggs_faf397d9d3be79b1",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0061",
+      "sample_id": "ggs_fbc31139a87f0bea",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0364",
+      "sample_id": "ggs_fbe3b08b1e997a39",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0108",
+      "sample_id": "ggs_fdde15358ce8288a",
+      "split": "public_test",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0156",
+      "sample_id": "ggs_fde13e1f0c850ba7",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0274",
+      "sample_id": "ggs_fe097204c1239e63",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_test_0068",
+      "sample_id": "ggs_fe5ca833468425fc",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0381",
+      "sample_id": "ggs_fe6969e75c895348",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0401",
+      "sample_id": "ggs_fe931342c9be3e91",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0402",
+      "sample_id": "ggs_fe95c0a32b98ee22",
+      "split": "public_test",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0134",
+      "sample_id": "ggs_ff30c11e6edd31f8",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    },
+    {
+      "independence_group": "deepset_group_train_0505",
+      "sample_id": "ggs_ff354acc1024e05c",
+      "split": "train",
+      "track": "generic_prompt_injection"
+    }
+  ],
+  "schema_version": "split_manifest.v1",
+  "seed": "gradingguard_phase2_seed_20260713",
+  "split_hash": "51e795858ff2d8460a4eeda9861407853a22bfbe6257dd9fd6bd3da983ef3fce"
+}

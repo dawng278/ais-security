@@ -1,6 +1,7 @@
 import json
+import os
 from pathlib import Path
-from typing import Any, Dict, List, Tuple
+from typing import Any, Dict, List, Optional, Tuple
 
 from app.benchmark.failure_analysis import analyze_failures
 from app.benchmark.runner_v2 import run_benchmark_v2
@@ -143,7 +144,18 @@ def load_dataset_samples() -> Tuple[List[BenchmarkSample], str, str]:
     return DEMO_FALLBACK_SAMPLES, "demo_fallback_dataset", "demo_fallback"
 
 
-def run_benchmark_v3() -> Dict[str, Any]:
+def resolve_reports_v3_dir(root: Path, output_dir: Optional[str] = None) -> Path:
+    configured_dir = output_dir or os.environ.get("GRADINGGUARD_REPORTS_V3_DIR")
+    if not configured_dir:
+        return root / "datasets" / "reports" / "v3"
+
+    path = Path(configured_dir)
+    if not path.is_absolute():
+        path = root / path
+    return path
+
+
+def run_benchmark_v3(output_dir: Optional[str] = None) -> Dict[str, Any]:
     samples, dataset_path, dataset_version = load_dataset_samples()
     benchmark_report = run_benchmark_v2(samples)
 
@@ -155,7 +167,7 @@ def run_benchmark_v3() -> Dict[str, Any]:
     bench_dict["benchmark_id"] = "gg_benchmark_v3"
 
     root = resolve_project_root()
-    reports_v3_dir = root / "datasets" / "reports" / "v3"
+    reports_v3_dir = resolve_reports_v3_dir(root, output_dir)
     evidence_dir = reports_v3_dir / "evidence"
     reports_v3_dir.mkdir(parents=True, exist_ok=True)
     evidence_dir.mkdir(parents=True, exist_ok=True)

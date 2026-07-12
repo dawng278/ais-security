@@ -138,6 +138,30 @@ Importing the backend emitted:
 Warning: sentence-transformers or numpy not available (No module named 'sentence_transformers'). Embedding detector running in fallback mode.
 ```
 
+Benchmark v3 safe rerun:
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=backend GRADINGGUARD_REPORTS_V3_DIR=/tmp/ais_gau_security_phase0_benchmark python -m app.benchmark.runner_v3
+```
+
+Result:
+
+```text
+Total Cases: 662
+Accuracy: 79.0%
+Failure Cases Analyzed: 139
+Outputs saved to /tmp/ais_gau_security_phase0_benchmark
+```
+
+Generated temporary evidence:
+
+```text
+run_id: run_20260712_185142_d55d54
+git_commit: 8c91f2d
+```
+
+The safe rerun used an output directory override and did not overwrite existing tracked report files.
+
 ## Existing Evidence Snapshot
 
 From `datasets/reports/v3/benchmark_v3_combined.json`:
@@ -211,7 +235,6 @@ Supported claims:
 
 Phase 0 is not fully complete because:
 
-- The benchmark runner writes directly to `datasets/reports/v3/*`, including dirty user files, so it was not safe to rerun during audit.
 - Frontend lint fails.
 - Frontend `/evidence` route is missing despite README/docs claims.
 - Docker claim is unsupported by repo artifacts.
@@ -230,7 +253,6 @@ Phase 0 is not fully complete because:
 
 Before implementing product features:
 
-- Add a safe benchmark output override or run directory so v3 can be rerun without overwriting dirty report files.
 - Make detector health evidence reflect actual runtime dependency/model state.
 - Add or remove frontend `/evidence` claims.
 - Remove unsupported Docker Compose claims or add verified Docker artifacts later in the deployment phase.

@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gradingguard.local/schemas/grading_error.schema.json",
+  "title": "GradingGuard Public Error",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "error_code",
+    "http_status",
+    "retryable",
+    "public_message",
+    "internal_reason_code",
+    "correlation_id",
+    "audit_required"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "grading_error.v1"
+    },
+    "error_code": {
+      "enum": [
+        "INVALID_REQUEST",
+        "UNSUPPORTED_SCHEMA_VERSION",
+        "REQUEST_TOO_LARGE",
+        "RATE_LIMITED",
+        "DETECTOR_UNAVAILABLE",
+        "POLICY_UNAVAILABLE",
+        "AUDIT_UNAVAILABLE",
+        "GRADER_TIMEOUT",
+        "GRADER_INVALID_RESPONSE",
+        "MANUAL_REVIEW_REQUIRED",
+        "REQUEST_BLOCKED",
+        "UNAUTHORIZED",
+        "FORBIDDEN",
+        "CONFLICT",
+        "INTERNAL_ERROR"
+      ]
+    },
+    "http_status": {
+      "type": "integer",
+      "minimum": 400,
+      "maximum": 599
+    },
+    "retryable": {
+      "type": "boolean"
+    },
+    "public_message": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 240
+    },
+    "internal_reason_code": {
+      "type": "string",
+      "pattern": "^[A-Z0-9_]+$"
+    },
+    "correlation_id": {
+      "type": "string",
+      "minLength": 8,
+      "maxLength": 128
+    },
+    "audit_required": {
+      "type": "boolean"
+    }
+  }
+}

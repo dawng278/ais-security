@@ -1,0 +1,213 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gradingguard.local/schemas/grading_decision.schema.json",
+  "title": "GradingGuard Grading Decision",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "request_id",
+    "correlation_id",
+    "risk_score",
+    "severity",
+    "confidence",
+    "detected_techniques",
+    "detector_contributions",
+    "selected_action",
+    "policy_id",
+    "policy_version",
+    "detector_health",
+    "latency_ms",
+    "created_at",
+    "completed_at",
+    "final_outcome",
+    "retryable"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "grading_decision.v1"
+    },
+    "request_id": {
+      "type": "string"
+    },
+    "correlation_id": {
+      "type": "string"
+    },
+    "risk_score": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "severity": {
+      "enum": [
+        "low",
+        "medium",
+        "high",
+        "critical"
+      ]
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "detected_techniques": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "detector_contributions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "detector_id",
+          "detector_version",
+          "runtime_state",
+          "risk_contribution",
+          "confidence",
+          "latency_ms"
+        ],
+        "properties": {
+          "detector_id": {
+            "type": "string"
+          },
+          "detector_version": {
+            "type": "string"
+          },
+          "runtime_state": {
+            "enum": [
+              "healthy",
+              "warming",
+              "degraded",
+              "unavailable",
+              "disabled"
+            ]
+          },
+          "risk_contribution": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "confidence": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "latency_ms": {
+            "type": "integer",
+            "minimum": 0
+          }
+        }
+      }
+    },
+    "matched_evidence_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "selected_action": {
+      "enum": [
+        "allow",
+        "warn",
+        "sanitize",
+        "secure_grade",
+        "manual_review",
+        "block"
+      ]
+    },
+    "policy_id": {
+      "type": "string"
+    },
+    "policy_version": {
+      "type": "string"
+    },
+    "detector_health": {
+      "type": "object",
+      "additionalProperties": {
+        "enum": [
+          "healthy",
+          "warming",
+          "degraded",
+          "unavailable",
+          "disabled"
+        ]
+      }
+    },
+    "latency_ms": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "sanitization_summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "applied": {
+          "type": "boolean"
+        },
+        "removed_span_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "transformation_ref": {
+          "type": "string"
+        }
+      }
+    },
+    "review_state": {
+      "enum": [
+        "pending",
+        "assigned",
+        "in_review",
+        "resolved_allow",
+        "resolved_block",
+        "escalated",
+        "expired"
+      ]
+    },
+    "grader_result_metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "adapter_id": {
+          "type": "string"
+        },
+        "adapter_version": {
+          "type": "string"
+        },
+        "provider": {
+          "type": "string"
+        },
+        "output_validated": {
+          "type": "boolean"
+        }
+      }
+    },
+    "final_outcome": {
+      "enum": [
+        "graded",
+        "graded_with_warning",
+        "sanitized_and_graded",
+        "queued_for_review",
+        "blocked",
+        "rejected",
+        "errored"
+      ]
+    },
+    "retryable": {
+      "type": "boolean"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "completed_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

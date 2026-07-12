@@ -1,0 +1,132 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gradingguard.local/schemas/grading_request.schema.json",
+  "title": "GradingGuard Grading Request",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "request_id",
+    "correlation_id",
+    "submission_id",
+    "pseudonymous_user_id",
+    "task_type",
+    "candidate_content",
+    "language",
+    "created_at"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "grading_request.v1"
+    },
+    "request_id": {
+      "type": "string",
+      "minLength": 8,
+      "maxLength": 128
+    },
+    "correlation_id": {
+      "type": "string",
+      "minLength": 8,
+      "maxLength": 128
+    },
+    "submission_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "pseudonymous_user_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "task_type": {
+      "enum": [
+        "writing",
+        "speaking"
+      ]
+    },
+    "candidate_content": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 20000
+    },
+    "language": {
+      "type": "string",
+      "pattern": "^[a-z]{2,3}(-[A-Z]{2})?$"
+    },
+    "grader_context": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "rubric_id": {
+          "type": "string"
+        },
+        "prompt_id": {
+          "type": "string"
+        },
+        "exam_module": {
+          "enum": [
+            "ielts_writing_task_1",
+            "ielts_writing_task_2",
+            "ielts_speaking"
+          ]
+        }
+      }
+    },
+    "operating_mode_override": {
+      "enum": [
+        "shadow",
+        "warn",
+        "enforce",
+        "degraded"
+      ]
+    },
+    "policy_hints": {
+      "type": "object",
+      "additionalProperties": {
+        "type": [
+          "string",
+          "number",
+          "boolean"
+        ]
+      }
+    },
+    "feature_flags": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "boolean"
+      }
+    },
+    "timeout_budget_ms": {
+      "type": "integer",
+      "minimum": 100,
+      "maximum": 30000
+    },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "client": {
+          "type": "string",
+          "maxLength": 64
+        },
+        "environment": {
+          "enum": [
+            "local",
+            "demo",
+            "staging",
+            "production"
+          ]
+        },
+        "source_ip_hash": {
+          "type": "string",
+          "maxLength": 128
+        }
+      }
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

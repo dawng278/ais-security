@@ -1,0 +1,550 @@
+{
+  "metric_definitions_version": "phase2_metrics_v1",
+  "overall": {
+    "accuracy": 0.7808,
+    "confusion_matrix": {
+      "fn": 150,
+      "fp": 1,
+      "tn": 411,
+      "tp": 127
+    },
+    "failure_count": 151,
+    "false_negative_rate": 0.5415,
+    "false_positive_rate": 0.0024,
+    "macro_f1": 0.736,
+    "over_block_count": 1,
+    "over_block_rate": 0.0015,
+    "per_class_f1": {
+      "attack": 0.6272,
+      "clean": 0.8448
+    },
+    "precision": 0.9922,
+    "recall": 0.4585,
+    "total_samples": 689,
+    "under_block_count": 150,
+    "under_block_rate": 0.2177
+  },
+  "tracks": {
+    "generic_prompt_injection": {
+      "accuracy": 0.79,
+      "by_attack_family": {
+        "direct_prompt_injection": {
+          "accuracy": 0.4715,
+          "confusion_matrix": {
+            "fn": 139,
+            "fp": 0,
+            "tn": 0,
+            "tp": 124
+          },
+          "failure_count": 139,
+          "false_negative_rate": 0.5285,
+          "false_positive_rate": 0.0,
+          "macro_f1": 0.3204,
+          "over_block_count": 0,
+          "over_block_rate": 0.0,
+          "per_class_f1": {
+            "attack": 0.6408,
+            "clean": 0.0
+          },
+          "precision": 1.0,
+          "recall": 0.4715,
+          "total_samples": 263,
+          "under_block_count": 139,
+          "under_block_rate": 0.5285
+        },
+        "none": {
+          "accuracy": 1.0,
+          "confusion_matrix": {
+            "fn": 0,
+            "fp": 0,
+            "tn": 399,
+            "tp": 0
+          },
+          "failure_count": 0,
+          "false_negative_rate": 0.0,
+          "false_positive_rate": 0.0,
+          "macro_f1": 1.0,
+          "over_block_count": 0,
+          "over_block_rate": 0.0,
+          "per_class_f1": {
+            "attack": 1.0,
+            "clean": 1.0
+          },
+          "precision": 1.0,
+          "recall": 1.0,
+          "total_samples": 399,
+          "under_block_count": 0,
+          "under_block_rate": 0.0
+        }
+      },
+      "by_language": {
+        "en": {
+          "accuracy": 0.79,
+          "confusion_matrix": {
+            "fn": 139,
+            "fp": 0,
+            "tn": 399,
+            "tp": 124
+          },
+          "failure_count": 139,
+          "false_negative_rate": 0.5285,
+          "false_positive_rate": 0.0,
+          "macro_f1": 0.7462,
+          "over_block_count": 0,
+          "over_block_rate": 0.0,
+          "per_class_f1": {
+            "attack": 0.6408,
+            "clean": 0.8517
+          },
+          "precision": 1.0,
+          "recall": 0.4715,
+          "total_samples": 662,
+          "under_block_count": 139,
+          "under_block_rate": 0.21
+        }
+      },
+      "confusion_matrix": {
+        "fn": 139,
+        "fp": 0,
+        "tn": 399,
+        "tp": 124
+      },
+      "failure_count": 139,
+      "false_negative_rate": 0.5285,
+      "false_positive_rate": 0.0,
+      "macro_f1": 0.7462,
+      "over_block_count": 0,
+      "over_block_rate": 0.0,
+      "per_class_f1": {
+        "attack": 0.6408,
+        "clean": 0.8517
+      },
+      "precision": 1.0,
+      "recall": 0.4715,
+      "support_warnings": [],
+      "total_samples": 662,
+      "under_block_count": 139,
+      "under_block_rate": 0.21
+    },
+    "ielts_domain_security": {
+      "accuracy": 0.5556,
+      "by_attack_family": {
+        "data_exfiltration": {
+          "accuracy": 0.0,
+          "confusion_matrix": {
+            "fn": 1,
+            "fp": 0,
+            "tn": 0,
+            "tp": 0
+          },
+          "failure_count": 1,
+          "false_negative_rate": 1.0,
+          "false_positive_rate": 0.0,
+          "macro_f1": 0.0,
+          "over_block_count": 0,
+          "over_block_rate": 0.0,
+          "per_class_f1": {
+            "attack": 0.0,
+            "clean": 0.0
+          },
+          "precision": 1.0,
+          "recall": 0.0,
+          "total_samples": 1,
+          "under_block_count": 1,
+          "under_block_rate": 1.0
+        },
+        "delimiter_abuse": {
+          "accuracy": 1.0,
+          "confusion_matrix": {
+            "fn": 0,
+            "fp": 0,
+            "tn": 0,
+            "tp": 1
+          },
+          "failure_count": 0,
+          "false_negative_rate": 0.0,
+          "false_positive_rate": 0.0,
+          "macro_f1": 1.0,
+          "over_block_count": 0,
+          "over_block_rate": 0.0,
+          "per_class_f1": {
+            "attack": 1.0,
+            "clean": 1.0
+          },
+          "precision": 1.0,
+          "recall": 1.0,
+          "total_samples": 1,
+          "under_block_count": 0,
+          "under_block_rate": 0.0
+        },
+        "direct_prompt_injection": {
+          "accuracy": 0.0,
+          "confusion_matrix": {
+            "fn": 1,
+            "fp": 0,
+            "tn": 0,
+            "tp": 0
+          },
+          "failure_count": 1,
+          "false_negative_rate": 1.0,
+          "false_positive_rate": 0.0,
+          "macro_f1": 0.0,
+          "over_block_count": 0,
+          "over_block_rate": 0.0,
+          "per_class_f1": {
+            "attack": 0.0,
+            "clean": 0.0
+          },
+          "precision": 1.0,
+          "recall": 0.0,
+          "total_samples": 1,
+          "under_block_count": 1,
+          "under_block_rate": 1.0
+        },
+        "encoding_attack": {
+          "accuracy": 0.0,
+          "confusion_matrix": {
+            "fn": 1,
+            "fp": 0,
+            "tn": 0,
+            "tp": 0
+          },
+          "failure_count": 1,
+          "false_negative_rate": 1.0,
+          "false_positive_rate": 0.0,
+          "macro_f1": 0.0,
+          "over_block_count": 0,
+          "over_block_rate": 0.0,
+          "per_class_f1": {
+            "attack": 0.0,
+            "clean": 0.0
+          },
+          "precision": 1.0,
+          "recall": 0.0,
+          "total_samples": 1,
+          "under_block_count": 1,
+          "under_block_rate": 1.0
+        },
+        "indirect_prompt_injection": {
+          "accuracy": 0.0,
+          "confusion_matrix": {
+            "fn": 2,
+            "fp": 0,
+            "tn": 0,
+            "tp": 0
+          },
+          "failure_count": 2,
+          "false_negative_rate": 1.0,
+          "false_positive_rate": 0.0,
+          "macro_f1": 0.0,
+          "over_block_count": 0,
+          "over_block_rate": 0.0,
+          "per_class_f1": {
+            "attack": 0.0,
+            "clean": 0.0
+          },
+          "precision": 1.0,
+          "recall": 0.0,
+          "total_samples": 2,
+          "under_block_count": 2,
+          "under_block_rate": 1.0
+        },
+        "long_context_attack": {
+          "accuracy": 0.0,
+          "confusion_matrix": {
+            "fn": 1,
+            "fp": 0,
+            "tn": 0,
+            "tp": 0
+          },
+          "failure_count": 1,
+          "false_negative_rate": 1.0,
+          "false_positive_rate": 0.0,
+          "macro_f1": 0.0,
+          "over_block_count": 0,
+          "over_block_rate": 0.0,
+          "per_class_f1": {
+            "attack": 0.0,
+            "clean": 0.0
+          },
+          "precision": 1.0,
+          "recall": 0.0,
+          "total_samples": 1,
+          "under_block_count": 1,
+          "under_block_rate": 1.0
+        },
+        "multilingual_attack": {
+          "accuracy": 0.0,
+          "confusion_matrix": {
+            "fn": 2,
+            "fp": 0,
+            "tn": 0,
+            "tp": 0
+          },
+          "failure_count": 2,
+          "false_negative_rate": 1.0,
+          "false_positive_rate": 0.0,
+          "macro_f1": 0.0,
+          "over_block_count": 0,
+          "over_block_rate": 0.0,
+          "per_class_f1": {
+            "attack": 0.0,
+            "clean": 0.0
+          },
+          "precision": 1.0,
+          "recall": 0.0,
+          "total_samples": 2,
+          "under_block_count": 2,
+          "under_block_rate": 1.0
+        },
+        "none": {
+          "accuracy": 0.9231,
+          "confusion_matrix": {
+            "fn": 0,
+            "fp": 1,
+            "tn": 12,
+            "tp": 0
+          },
+          "failure_count": 1,
+          "false_negative_rate": 0.0,
+          "false_positive_rate": 0.0769,
+          "macro_f1": 0.48,
+          "over_block_count": 1,
+          "over_block_rate": 0.0769,
+          "per_class_f1": {
+            "attack": 0.0,
+            "clean": 0.96
+          },
+          "precision": 0.0,
+          "recall": 1.0,
+          "total_samples": 13,
+          "under_block_count": 0,
+          "under_block_rate": 0.0
+        },
+        "policy_manipulation": {
+          "accuracy": 0.0,
+          "confusion_matrix": {
+            "fn": 1,
+            "fp": 0,
+            "tn": 0,
+            "tp": 0
+          },
+          "failure_count": 1,
+          "false_negative_rate": 1.0,
+          "false_positive_rate": 0.0,
+          "macro_f1": 0.0,
+          "over_block_count": 0,
+          "over_block_rate": 0.0,
+          "per_class_f1": {
+            "attack": 0.0,
+            "clean": 0.0
+          },
+          "precision": 1.0,
+          "recall": 0.0,
+          "total_samples": 1,
+          "under_block_count": 1,
+          "under_block_rate": 1.0
+        },
+        "role_spoofing": {
+          "accuracy": 1.0,
+          "confusion_matrix": {
+            "fn": 0,
+            "fp": 0,
+            "tn": 0,
+            "tp": 1
+          },
+          "failure_count": 0,
+          "false_negative_rate": 0.0,
+          "false_positive_rate": 0.0,
+          "macro_f1": 1.0,
+          "over_block_count": 0,
+          "over_block_rate": 0.0,
+          "per_class_f1": {
+            "attack": 1.0,
+            "clean": 1.0
+          },
+          "precision": 1.0,
+          "recall": 1.0,
+          "total_samples": 1,
+          "under_block_count": 0,
+          "under_block_rate": 0.0
+        },
+        "score_manipulation": {
+          "accuracy": 0.0,
+          "confusion_matrix": {
+            "fn": 1,
+            "fp": 0,
+            "tn": 0,
+            "tp": 0
+          },
+          "failure_count": 1,
+          "false_negative_rate": 1.0,
+          "false_positive_rate": 0.0,
+          "macro_f1": 0.0,
+          "over_block_count": 0,
+          "over_block_rate": 0.0,
+          "per_class_f1": {
+            "attack": 0.0,
+            "clean": 0.0
+          },
+          "precision": 1.0,
+          "recall": 0.0,
+          "total_samples": 1,
+          "under_block_count": 1,
+          "under_block_rate": 1.0
+        },
+        "system_prompt_extraction": {
+          "accuracy": 0.0,
+          "confusion_matrix": {
+            "fn": 1,
+            "fp": 0,
+            "tn": 0,
+            "tp": 0
+          },
+          "failure_count": 1,
+          "false_negative_rate": 1.0,
+          "false_positive_rate": 0.0,
+          "macro_f1": 0.0,
+          "over_block_count": 0,
+          "over_block_rate": 0.0,
+          "per_class_f1": {
+            "attack": 0.0,
+            "clean": 0.0
+          },
+          "precision": 1.0,
+          "recall": 0.0,
+          "total_samples": 1,
+          "under_block_count": 1,
+          "under_block_rate": 1.0
+        },
+        "unicode_obfuscation": {
+          "accuracy": 1.0,
+          "confusion_matrix": {
+            "fn": 0,
+            "fp": 0,
+            "tn": 0,
+            "tp": 1
+          },
+          "failure_count": 0,
+          "false_negative_rate": 0.0,
+          "false_positive_rate": 0.0,
+          "macro_f1": 1.0,
+          "over_block_count": 0,
+          "over_block_rate": 0.0,
+          "per_class_f1": {
+            "attack": 1.0,
+            "clean": 1.0
+          },
+          "precision": 1.0,
+          "recall": 1.0,
+          "total_samples": 1,
+          "under_block_count": 0,
+          "under_block_rate": 0.0
+        }
+      },
+      "by_language": {
+        "en": {
+          "accuracy": 0.5833,
+          "confusion_matrix": {
+            "fn": 9,
+            "fp": 1,
+            "tn": 11,
+            "tp": 3
+          },
+          "failure_count": 10,
+          "false_negative_rate": 0.75,
+          "false_positive_rate": 0.0833,
+          "macro_f1": 0.5312,
+          "over_block_count": 1,
+          "over_block_rate": 0.0417,
+          "per_class_f1": {
+            "attack": 0.375,
+            "clean": 0.6875
+          },
+          "precision": 0.75,
+          "recall": 0.25,
+          "total_samples": 24,
+          "under_block_count": 9,
+          "under_block_rate": 0.375
+        },
+        "vi": {
+          "accuracy": 0.0,
+          "confusion_matrix": {
+            "fn": 1,
+            "fp": 0,
+            "tn": 0,
+            "tp": 0
+          },
+          "failure_count": 1,
+          "false_negative_rate": 1.0,
+          "false_positive_rate": 0.0,
+          "macro_f1": 0.0,
+          "over_block_count": 0,
+          "over_block_rate": 0.0,
+          "per_class_f1": {
+            "attack": 0.0,
+            "clean": 0.0
+          },
+          "precision": 1.0,
+          "recall": 0.0,
+          "total_samples": 1,
+          "under_block_count": 1,
+          "under_block_rate": 1.0
+        },
+        "vi-en": {
+          "accuracy": 0.5,
+          "confusion_matrix": {
+            "fn": 1,
+            "fp": 0,
+            "tn": 1,
+            "tp": 0
+          },
+          "failure_count": 1,
+          "false_negative_rate": 1.0,
+          "false_positive_rate": 0.0,
+          "macro_f1": 0.3333,
+          "over_block_count": 0,
+          "over_block_rate": 0.0,
+          "per_class_f1": {
+            "attack": 0.0,
+            "clean": 0.6667
+          },
+          "precision": 1.0,
+          "recall": 0.0,
+          "total_samples": 2,
+          "under_block_count": 1,
+          "under_block_rate": 0.5
+        }
+      },
+      "confusion_matrix": {
+        "fn": 11,
+        "fp": 1,
+        "tn": 12,
+        "tp": 3
+      },
+      "failure_count": 12,
+      "false_negative_rate": 0.7857,
+      "false_positive_rate": 0.0769,
+      "macro_f1": 0.5,
+      "over_block_count": 1,
+      "over_block_rate": 0.037,
+      "per_class_f1": {
+        "attack": 0.3333,
+        "clean": 0.6667
+      },
+      "precision": 0.75,
+      "recall": 0.2143,
+      "support_warnings": [
+        {
+          "count": 27,
+          "dimension": "track",
+          "status": "LOW_SUPPORT",
+          "value": "ielts_domain_security"
+        }
+      ],
+      "total_samples": 27,
+      "under_block_count": 11,
+      "under_block_rate": 0.4074
+    }
+  }
+}

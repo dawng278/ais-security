@@ -1,0 +1,45 @@
+{
+  "dataset_hash": "a89eb6c09be417209af94f7026e319840195c4239202bec9639242b6a5511549",
+  "detector_config_hash": "5ec47ef7e57fa41f9779c9b45fa233777a1c52301f7d971b6b893acbfe33988c",
+  "detector_health": {
+    "configured_state": "enabled",
+    "dependency_state": "missing",
+    "fallback_reason": "No module named 'sentence_transformers'",
+    "model_load_state": "not_attempted",
+    "model_name": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+    "runtime_state": "unavailable"
+  },
+  "dirty_worktree": [
+    " M datasets/reports/v3/benchmark_v3_combined.json",
+    " M datasets/reports/v3/evidence/evidence_card.md",
+    " M datasets/reports/v3/evidence/evidence_report.json",
+    "?? docs/security/phase3_detector_improvement_plan.md",
+    "?? scripts/phase3_evaluation.py"
+  ],
+  "environment": {
+    "network_required": false,
+    "platform": "Linux-7.0.13-200.fc44.x86_64-x86_64-with-glibc2.42",
+    "python_version": "3.13.14"
+  },
+  "failure_taxonomy_version": "phase2_failure_taxonomy_v1",
+  "git_commit": "6c331e929c371a85acd99877a915fd0019ca27f6",
+  "limitations": [
+    "Private holdout content is not exported.",
+    "IELTS-domain track is LOW_SUPPORT.",
+    "Measured score-integrity remains NOT_MEASURED."
+  ],
+  "metric_definitions_version": "phase2_metrics_v1",
+  "phase2_evidence_bundle_hash": "4625ce3e746f3ca6ee4a89f8f292cc2a76b63c66d1e503ac4db3771ead035747",
+  "policy_config_hash": "5ec47ef7e57fa41f9779c9b45fa233777a1c52301f7d971b6b893acbfe33988c",
+  "protected_report_checksums": {
+    "datasets/reports/v3/benchmark_v3_combined.json": "863c8509af20d56e4f1370948f3ebf8b11562efef59245ab5e71061b83f44003",
+    "datasets/reports/v3/evidence/evidence_card.md": "c9e60724e1e8d6ba53549e790222e4a1f6e6e8cad8d74fb7001b62dfe9e9071f",
+    "datasets/reports/v3/evidence/evidence_report.json": "c5aa5b41c602c299acb59d8a0097e22aee12ed4d2a5ee8d06b5aa3bacf937b67"
+  },
+  "review_state": "generated",
+  "run_id": "phase3_prechange_baseline",
+  "schema_version": "phase3_evidence_bundle.v1",
+  "split_hash": "51e795858ff2d8460a4eeda9861407853a22bfbe6257dd9fd6bd3da983ef3fce",
+  "status": "generated",
+  "threshold_calibration_version": "phase3_static_weighted_v1"
+}

@@ -1,0 +1,6 @@
+{
+  "calibration_data": "train/development only; no private holdout tuning",
+  "limitations": "risk_score is a calibrated risk indicator, not probability",
+  "method": "static deterministic weighted mapping",
+  "version": "phase3_static_weighted_v1"
+}

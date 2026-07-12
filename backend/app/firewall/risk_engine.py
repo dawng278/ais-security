@@ -5,8 +5,10 @@ from app.firewall.schemas import FirewallAction, RiskLevel
 ACTION_RANK: dict[str, int] = {
     "allow": 0,
     "warn": 1,
+    "sanitize": 2,
     "secure_grade": 2,
     "manual_review": 3,
+    "block": 4,
 }
 
 RANK_TO_ACTION: dict[int, FirewallAction] = {
@@ -14,6 +16,7 @@ RANK_TO_ACTION: dict[int, FirewallAction] = {
     1: "warn",
     2: "secure_grade",
     3: "manual_review",
+    4: "block",
 }
 
 
@@ -48,11 +51,11 @@ def compute_risk(
     elif heuristic_score >= 0.70:
         risk_score = max(risk_score, round(min(0.65 + 0.20 * (heuristic_score - 0.70), 0.85), 2))
 
-    if risk_score >= 0.85:
+    if risk_score >= 0.90:
         risk_level: RiskLevel = "critical"
         action: FirewallAction = "manual_review"
         explanation = "High-severity prompt injection or score manipulation detected."
-    elif risk_score >= 0.45:
+    elif risk_score >= 0.50:
         risk_level: RiskLevel = "high"
         action: FirewallAction = "secure_grade"
         explanation = "Suspicious instructions detected. Secure grading mode and sanitization recommended."
@@ -72,6 +75,9 @@ def compute_risk(
         "instruction_override",
         "goal_hijacking",
         "delimiter_escape",
+        "policy_bypass",
+        "data_exfiltration",
+        "prompt_extraction",
     }
     
     current_rank = ACTION_RANK.get(action, 0)
@@ -85,6 +91,10 @@ def compute_risk(
     if ("authority_claim" in categories or "delimiter_escape" in categories) and risk_score >= 0.80:
         current_rank = max(current_rank, ACTION_RANK["manual_review"])
         explanation = "Role spoofing or tag breakout attempt with high risk. Manual review required."
+
+    if ("data_exfiltration" in categories or "policy_bypass" in categories or "prompt_extraction" in categories) and risk_score >= 0.75:
+        current_rank = max(current_rank, ACTION_RANK["manual_review"])
+        explanation = "Prompt extraction, policy bypass, or data exfiltration attempt detected. Manual review required."
 
     action = RANK_TO_ACTION[current_rank]
 

@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+import re
 from typing import Literal, NamedTuple
 
 
@@ -22,12 +23,23 @@ HeuristicCategory = Literal[
     "policy_bypass",
     "delimiter_escape",
     "multilingual_score_override",
+    "prompt_extraction",
+    "data_exfiltration",
     "general_injection",
 ]
 
 
 class HeuristicPatternRule(NamedTuple):
     phrase: str
+    pattern_id: str
+    weight: float
+    attack_type: AttackType
+    category: HeuristicCategory
+    explanation: str
+
+
+class HeuristicRegexRule(NamedTuple):
+    pattern: re.Pattern[str]
     pattern_id: str
     weight: float
     attack_type: AttackType
@@ -232,6 +244,33 @@ PATTERNS: list[HeuristicPatternRule] = [
 ]
 
 
+REGEX_PATTERNS: list[HeuristicRegexRule] = [
+    HeuristicRegexRule(re.compile(r"\b(additional|new|second)\s+instructions?\b", re.I), "phase3_additional_instruction", 0.82, "direct_english", "instruction_override", "Additional instruction marker."),
+    HeuristicRegexRule(re.compile(r"\brespond\s+to\s+all\s+questions?\s+with\b", re.I), "phase3_respond_all_with", 0.88, "direct_english", "response_format_hijack", "Response hijack."),
+    HeuristicRegexRule(re.compile(r"\bprint\s+(?:an?\s+)?improved\s+version\s+of\s+(?:it|the\s+text|all\s+of\s+the\s+text\s+above)\b", re.I), "phase3_print_improved_above", 0.78, "direct_english", "response_format_hijack", "Print transformed previous content."),
+    HeuristicRegexRule(re.compile(r"\bspellcheck\s+all\s+of\s+the\s+text\s+above\b", re.I), "phase3_spellcheck_above", 0.78, "direct_english", "goal_hijacking", "Operate on hidden/previous text."),
+    HeuristicRegexRule(re.compile(r"\bwhat\s+(?:are|were)\s+(?:your|the)\s+instructions\b", re.I), "phase3_instruction_extraction", 0.88, "direct_english", "prompt_extraction", "Instruction extraction request."),
+    HeuristicRegexRule(re.compile(r"\b(?:system|developer|scoring|evaluation)\s+prompt\b.*\b(?:show|print|reveal|tell)\b|\b(?:show|print|reveal|tell)\b.*\b(?:system|developer|scoring|evaluation)\s+prompt\b", re.I), "phase3_prompt_extraction", 0.88, "direct_english", "prompt_extraction", "Prompt extraction request."),
+    HeuristicRegexRule(re.compile(r"\b(?:previous|prior|past)\s+(?:candidate|user|submission|transcript|essay|answer)s?\b", re.I), "phase3_cross_user_data_request", 0.82, "direct_english", "data_exfiltration", "Cross-user data request."),
+    HeuristicRegexRule(re.compile(r"\b(?:do\s+not|don't)\s+answer\b.*\b(?:provided\s+documents?|articles?|context)\b", re.I), "phase3_ignore_context_documents", 0.82, "direct_english", "instruction_override", "Ignore retrieval/context documents."),
+    HeuristicRegexRule(re.compile(r"\banswer\s+by\s+your\s+own\s+knowledge\b.*\bnot\s+by\s+(?:the\s+)?(?:articles?|documents?|context)\b", re.I), "phase3_own_knowledge_not_context", 0.86, "direct_english", "instruction_override", "Answer outside provided context."),
+    HeuristicRegexRule(re.compile(r"\b(?:beginning|start)\s+of\s+(?:this\s+)?prompt\s+above\b", re.I), "phase3_prompt_above_extraction", 0.82, "direct_english", "prompt_extraction", "Prompt-above extraction."),
+    HeuristicRegexRule(re.compile(r"\b(?:from\s+now\s+(?:known\s+as|on)|you\s+are\s+the)\b", re.I), "phase3_persona_reassignment", 0.76, "markdown_role_spoofing", "authority_claim", "Persona reassignment."),
+    HeuristicRegexRule(re.compile(r"\bpretend\s+you\s+can\s+access\b", re.I), "phase3_pretend_access", 0.76, "markdown_role_spoofing", "authority_claim", "Pretend capability/access."),
+    HeuristicRegexRule(re.compile(r"\b(?:you\s+have\s+passed\s+the\s+first\s+test|here\s+comes\s+the\s+second\s+test)\b", re.I), "phase3_multi_stage_jailbreak", 0.82, "direct_english", "goal_hijacking", "Multi-stage jailbreak marker."),
+    HeuristicRegexRule(re.compile(r"\b(?:disable|turn\s+off|bypass)\s+(?:the\s+)?(?:firewall|filter|security\s+policy|policy)\b", re.I), "phase3_policy_bypass", 0.88, "direct_english", "policy_bypass", "Policy bypass request."),
+    HeuristicRegexRule(re.compile(r"\b(?:change|alter|modify)\s+(?:the\s+)?(?:scoring|grading)\s+(?:criteria|rubric|policy)\b", re.I), "phase3_scoring_policy_manipulation", 0.88, "direct_english", "evaluation_override", "Scoring policy manipulation."),
+    HeuristicRegexRule(re.compile(r"\breturn\s+only\s+(?:9(?:\.0)?|band\s*9|the\s+score)\b", re.I), "phase3_return_only_score", 0.88, "multilingual_score_manipulation", "evaluation_override", "Return only score manipulation."),
+    HeuristicRegexRule(re.compile(r"\b(?:official\s+)?ielts\s+examiner\b.*\b(?:band\s*9|ignore|rubric|criteria)\b|\b(?:you\s+are\s+now|act\s+as)\s+(?:the\s+)?(?:official\s+)?ielts\s+examiner\b", re.I), "phase3_ielts_examiner_impersonation", 0.9, "markdown_role_spoofing", "authority_claim", "IELTS examiner impersonation."),
+    HeuristicRegexRule(re.compile(r"\b(?:ignore|bypass|override)\s+(?:the\s+)?(?:rubric|criteria|scoring\s+criteria|grading\s+criteria)\b", re.I), "phase3_rubric_override_general", 0.9, "direct_english", "evaluation_override", "Rubric override."),
+    HeuristicRegexRule(re.compile(r"\b(?:give|award|assign|set)\s+(?:this\s+)?(?:essay|answer|response|submission)?\s*(?:a\s+)?(?:band\s*)?9(?:\.0)?\b", re.I), "phase3_general_band9_award", 0.92, "multilingual_score_manipulation", "evaluation_override", "Band 9 award request."),
+    HeuristicRegexRule(re.compile(r"\b(?:cho|hãy\s+cho|chấm)\b.*\b(?:band\s*9|điểm\s+(?:cao|tối\s+đa|cao\s+nhất))\b", re.I), "phase3_vietnamese_score_override", 0.92, "multilingual_score_manipulation", "multilingual_score_override", "Vietnamese score override."),
+    HeuristicRegexRule(re.compile(r"\b(?:bỏ\s+qua|đừng\s+làm\s+theo|không\s+theo)\b.*\b(?:rubric|tiêu\s+chí|hướng\s+dẫn)\b", re.I), "phase3_vietnamese_rubric_override", 0.92, "direct_vietnamese", "multilingual_score_override", "Vietnamese rubric override."),
+    HeuristicRegexRule(re.compile(r"\b(?:du\s+bist\s+keine|abweichend\s+zu\s+vorherigen|alle\s+bisherigen\s+informationen|nun\s+folgen\s+neue\s+anweisungen)\b", re.I), "phase3_german_override_general", 0.86, "direct_english", "instruction_override", "German instruction override."),
+    HeuristicRegexRule(re.compile(r"\b(?:or\s+you\s+die|du\s+stirbst|i'?ll\s+be\s+very\s+sad)\b", re.I), "phase3_coercive_instruction", 0.68, "direct_english", "general_injection", "Coercive instruction pressure."),
+]
+
+
 BENIGN_CONTEXT_HINTS = [
     "discusses prompt injection",
     "cybersecurity example",
@@ -241,6 +280,12 @@ BENIGN_CONTEXT_HINTS = [
     "example of prompt injection",
     "academic discussion of prompt injection",
     "essay about cybersecurity",
+    "as an example of unsafe text",
+    "not as a command",
+    "quoted",
+    "quotes",
+    "preparation books",
+    "desired future band 9",
     "ví dụ về prompt injection",
     "thảo luận về prompt injection",
 ]
@@ -261,6 +306,16 @@ def detect_heuristics(normalized_text: str) -> HeuristicDetectionResult:
             if rule.category not in matched_categories:
                 matched_categories.append(rule.category)
 
+            adjusted_score = rule.weight * 0.40 if benign_hint else rule.weight
+            if adjusted_score > max_score:
+                max_score = adjusted_score
+                attack_type = rule.attack_type
+
+    for rule in REGEX_PATTERNS:
+        if rule.pattern.search(normalized_text):
+            matched_patterns.append(rule.pattern_id)
+            if rule.category not in matched_categories:
+                matched_categories.append(rule.category)
             adjusted_score = rule.weight * 0.40 if benign_hint else rule.weight
             if adjusted_score > max_score:
                 max_score = adjusted_score

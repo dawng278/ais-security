@@ -1,0 +1,17 @@
+{
+  "database_type": "sqlite",
+  "dirty_worktree": [
+    " M datasets/reports/v3/benchmark_v3_combined.json",
+    " M datasets/reports/v3/evidence/evidence_card.md",
+    " M datasets/reports/v3/evidence/evidence_report.json",
+    "?? scripts/phase4_evidence.py"
+  ],
+  "environment": "local_test",
+  "git_commit": "f086a248c26ca16a6793e054fed8f04d5e317983",
+  "network_required": false,
+  "platform": "Linux-7.0.13-200.fc44.x86_64-x86_64-with-glibc2.42",
+  "python_version": "3.13.14",
+  "review_state": "approved",
+  "run_id": "phase4_operational_safety",
+  "status": "approved"
+}

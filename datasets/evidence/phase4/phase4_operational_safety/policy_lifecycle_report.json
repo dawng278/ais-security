@@ -1,0 +1,10 @@
+{
+  "published": {
+    "policy_id": "phase4_evidence_policy",
+    "status": "published",
+    "version": "v1",
+    "version_id": "polv_f2f98f70-f155-4fe6-9948-a81cef08f59c"
+  },
+  "rollback_supported": true,
+  "status": "PASS"
+}

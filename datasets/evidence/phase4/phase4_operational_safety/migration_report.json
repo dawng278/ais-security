@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "status": "PASS",
+  "tables_verified": [
+    "security_decisions",
+    "detector_results",
+    "audit_events",
+    "security_incidents",
+    "manual_reviews",
+    "security_policy_versions",
+    "idempotency_records",
+    "metrics_events"
+  ]
+}

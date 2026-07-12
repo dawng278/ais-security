@@ -1,0 +1,8 @@
+{
+  "routes": [
+    "/api/v1/security/analyze",
+    "/api/v1/security/grade"
+  ],
+  "schema_version": "grading_request.v1/grading_decision.v1",
+  "status": "PASS"
+}

@@ -1,0 +1,45 @@
+{
+  "dataset_hash": "a89eb6c09be417209af94f7026e319840195c4239202bec9639242b6a5511549",
+  "deltas": {
+    "generic_prompt_injection": {
+      "accuracy": 0.0,
+      "failure_count_delta": 0,
+      "false_negative_rate": 0.0,
+      "false_positive_rate": 0.0,
+      "macro_f1": 0.0,
+      "over_block_delta": 0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "under_block_delta": 0
+    },
+    "ielts_domain_security": {
+      "accuracy": 0.0,
+      "failure_count_delta": 0,
+      "false_negative_rate": 0.0,
+      "false_positive_rate": 0.0,
+      "macro_f1": 0.0,
+      "over_block_delta": 0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "under_block_delta": 0
+    }
+  },
+  "runtime": {
+    "embedding": {
+      "configured_state": "enabled",
+      "dependency_state": "missing",
+      "fallback_reason": "No module named 'sentence_transformers'",
+      "model_load_state": "not_attempted",
+      "model_name": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+      "runtime_state": "unavailable"
+    },
+    "latency_ms": {
+      "max": 3.088,
+      "p50": 0.082,
+      "p95": 0.261,
+      "p99": 0.488
+    }
+  },
+  "split_hash": "51e795858ff2d8460a4eeda9861407853a22bfbe6257dd9fd6bd3da983ef3fce",
+  "status": "PASS"
+}

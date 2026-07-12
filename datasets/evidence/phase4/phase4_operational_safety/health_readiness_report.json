@@ -1,0 +1,11 @@
+{
+  "readiness": {
+    "audit_persistence": "available",
+    "database": "reachable",
+    "embedding": "truthful_unavailable_when_missing",
+    "mode": "warn",
+    "schema_version": 1,
+    "status": "ready"
+  },
+  "status": "PASS"
+}

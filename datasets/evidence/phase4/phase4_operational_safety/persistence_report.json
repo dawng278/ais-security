@@ -1,0 +1,13 @@
+{
+  "counts": {
+    "audit_events": 11,
+    "detector_results": 3,
+    "idempotency_records": 0,
+    "manual_reviews": 1,
+    "metrics_events": 2,
+    "security_decisions": 1,
+    "security_incidents": 1,
+    "security_policy_versions": 1
+  },
+  "status": "PASS"
+}

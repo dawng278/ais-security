@@ -1,0 +1,14 @@
+{
+  "guarded_enforce": "tested in pytest",
+  "mode": {
+    "active_policy_version_id": null,
+    "mode": "warn",
+    "previous_mode": "shadow",
+    "reason_code": "GG_REASON_MODE_CHANGED",
+    "singleton_id": "global",
+    "updated_at": "2026-07-12T21:51:13.431692Z",
+    "updated_by": "admin",
+    "version": 2
+  },
+  "status": "PASS"
+}

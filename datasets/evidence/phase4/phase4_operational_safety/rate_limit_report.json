@@ -1,0 +1,5 @@
+{
+  "distributed": false,
+  "implementation": "sqlite-backed pilot bucket",
+  "status": "PASS"
+}

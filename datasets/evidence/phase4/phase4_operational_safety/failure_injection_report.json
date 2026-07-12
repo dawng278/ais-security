@@ -1,0 +1,11 @@
+{
+  "covered_by_tests": [
+    "invalid_token",
+    "expired_token",
+    "policy_unavailable",
+    "rate_limited",
+    "optimistic_lock_conflict",
+    "embedding_unavailable"
+  ],
+  "status": "PASS"
+}

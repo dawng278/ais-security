@@ -1,0 +1,11 @@
+{
+  "patterns": [
+    "email",
+    "phone",
+    "bearer_token",
+    "api_key",
+    "secret_like"
+  ],
+  "raw_content_default_response": false,
+  "status": "PASS"
+}

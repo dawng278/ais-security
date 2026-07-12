@@ -1,0 +1,61 @@
+{
+  "database_type": "sqlite",
+  "dirty_worktree": [
+    " M datasets/reports/v3/benchmark_v3_combined.json",
+    " M datasets/reports/v3/evidence/evidence_card.md",
+    " M datasets/reports/v3/evidence/evidence_report.json",
+    "?? scripts/phase4_evidence.py"
+  ],
+  "environment": "local_test",
+  "git_commit": "f086a248c26ca16a6793e054fed8f04d5e317983",
+  "limitations": [
+    "Pilot SQLite persistence, not production HA storage.",
+    "External production IdP is pending; local/test signed tokens are enforced.",
+    "Rate limiting is pilot-local/shared-SQLite, not distributed production enforcement.",
+    "PRODUCTION_READY remains NOT_READY."
+  ],
+  "network_required": false,
+  "phase2_evidence_checksums": {
+    "actual": {
+      "datasets/evidence/phase2/phase2_integrity_baseline/metrics.json": "4483da1febbeeadf94ff004e1431c0984d76dedd06f9f23f79f95f39b74308dd",
+      "datasets/evidence/phase2/phase2_integrity_baseline/run_manifest.json": "e4d96d149ec26194301ee7cd15ab73d23667c0e97c6e244e08dd89943ca6d1cd"
+    },
+    "expected": {
+      "datasets/evidence/phase2/phase2_integrity_baseline/metrics.json": "4483da1febbeeadf94ff004e1431c0984d76dedd06f9f23f79f95f39b74308dd",
+      "datasets/evidence/phase2/phase2_integrity_baseline/run_manifest.json": "e4d96d149ec26194301ee7cd15ab73d23667c0e97c6e244e08dd89943ca6d1cd"
+    },
+    "status": "PASS"
+  },
+  "phase3_evidence_checksums": {
+    "actual": {
+      "datasets/evidence/phase3/phase3_final_detection_engine/metrics.json": "2484ac00a1114d8aa735cbb7b6613ee41fa41dbc9c41f2ba67f96c0cbdab35df",
+      "datasets/evidence/phase3/phase3_final_detection_engine/run_manifest.json": "f68e4208016df63e0e558f9c4f0ef2e371d9c46b98d891a47fc3a8f027cc770d"
+    },
+    "expected": {
+      "datasets/evidence/phase3/phase3_final_detection_engine/metrics.json": "2484ac00a1114d8aa735cbb7b6613ee41fa41dbc9c41f2ba67f96c0cbdab35df",
+      "datasets/evidence/phase3/phase3_final_detection_engine/run_manifest.json": "f68e4208016df63e0e558f9c4f0ef2e371d9c46b98d891a47fc3a8f027cc770d"
+    },
+    "status": "PASS"
+  },
+  "phase3_regression": "PASS",
+  "protected_report_checksums": {
+    "actual": {
+      "datasets/reports/v3/benchmark_v3_combined.json": "863c8509af20d56e4f1370948f3ebf8b11562efef59245ab5e71061b83f44003",
+      "datasets/reports/v3/evidence/evidence_card.md": "c9e60724e1e8d6ba53549e790222e4a1f6e6e8cad8d74fb7001b62dfe9e9071f",
+      "datasets/reports/v3/evidence/evidence_report.json": "c5aa5b41c602c299acb59d8a0097e22aee12ed4d2a5ee8d06b5aa3bacf937b67"
+    },
+    "expected": {
+      "datasets/reports/v3/benchmark_v3_combined.json": "863c8509af20d56e4f1370948f3ebf8b11562efef59245ab5e71061b83f44003",
+      "datasets/reports/v3/evidence/evidence_card.md": "c9e60724e1e8d6ba53549e790222e4a1f6e6e8cad8d74fb7001b62dfe9e9071f",
+      "datasets/reports/v3/evidence/evidence_report.json": "c5aa5b41c602c299acb59d8a0097e22aee12ed4d2a5ee8d06b5aa3bacf937b67"
+    },
+    "status": "PASS"
+  },
+  "review_state": "approved",
+  "run_id": "phase4_operational_safety",
+  "status": "approved",
+  "test_summary": {
+    "backend": "76 passed before evidence generation",
+    "phase4_targeted": "7 passed"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "categories": {
+    "audit_events": 11,
+    "decision_metadata": 1,
+    "idempotency_records": 0,
+    "incidents": 1,
+    "manual_reviews": 1
+  },
+  "destructive_action_taken": false,
+  "execution_supported": false,
+  "mode": "dry_run_only",
+  "status": "PASS"
+}

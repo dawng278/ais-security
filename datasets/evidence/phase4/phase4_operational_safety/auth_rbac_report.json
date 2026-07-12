@@ -1,0 +1,11 @@
+{
+  "auth": "HS256 signed local/test token",
+  "roles": [
+    "viewer",
+    "analyst",
+    "policy_manager",
+    "security_admin",
+    "integration_service"
+  ],
+  "status": "PASS"
+}

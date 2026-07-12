@@ -1,0 +1,5 @@
+{
+  "conflict_behavior": "tested in pytest",
+  "scoped_by_actor_client": true,
+  "status": "PASS"
+}

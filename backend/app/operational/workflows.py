@@ -10,7 +10,7 @@ from app.operational.auth import Actor
 from app.operational.database import SecurityStore
 from app.operational.errors import GatewayException
 from app.operational.redaction import redact_text
-from app.operational.schemas import AssignReviewRequest, ModeChangeRequest, PolicyDraftRequest, ResolveReviewRequest
+from app.operational.schemas import AssignReviewRequest, ModeChangeRequest, PolicyDraftRequest, ResolveReviewRequest, StartReviewRequest
 from app.operational.time import utc_now_iso
 
 
@@ -261,6 +261,47 @@ def resolve_review(store: SecurityStore, actor: Actor, review_id: str, request: 
     return row
 
 
+def start_review(store: SecurityStore, actor: Actor, review_id: str, request: StartReviewRequest) -> dict[str, Any]:
+    actor.require("reviews:write")
+    note = redact_text(request.note or "")
+    now = utc_now_iso()
+    with store.connect() as con:
+        current = con.execute("SELECT * FROM manual_reviews WHERE review_id = ?", (review_id,)).fetchone()
+        if not current:
+            raise GatewayException("INVALID_REQUEST", detail="review_not_found")
+        if int(current["version"]) != request.expected_version:
+            raise GatewayException("CONFLICT", detail="review_version_conflict")
+        if current["state"] not in {"assigned", "pending"}:
+            raise GatewayException("CONFLICT", detail="review_not_startable")
+        con.execute(
+            """
+            UPDATE manual_reviews
+            SET state = 'in_review', version = version + 1, updated_at = ?
+            WHERE review_id = ? AND version = ?
+            """,
+            (now, review_id, request.expected_version),
+        )
+        if request.note:
+            con.execute(
+                "INSERT INTO review_notes(note_id, review_id, actor_subject, note_redacted, created_at) VALUES (?, ?, ?, ?, ?)",
+                (f"note_{uuid.uuid4()}", review_id, actor.subject, note.redacted_text, now),
+            )
+    row = store.fetch_one("SELECT * FROM manual_reviews WHERE review_id = ?", (review_id,))
+    store.audit(
+        correlation_id=row["correlation_id"],
+        actor_subject=actor.subject,
+        actor_type=actor.actor_type,
+        action="review_started",
+        target_type="manual_review",
+        target_id=review_id,
+        environment=settings.env,
+        policy_version=None,
+        safe_metadata={"state": "in_review"},
+        redaction_state=note.redaction_state,
+    )
+    return row
+
+
 def record_sensitive_access(store: SecurityStore, actor: Actor, decision_id: str, *, purpose: str) -> dict[str, Any]:
     actor.require("sensitive:read")
     row = store.fetch_one("SELECT * FROM security_decisions WHERE decision_id = ?", (decision_id,))
@@ -279,4 +320,3 @@ def record_sensitive_access(store: SecurityStore, actor: Actor, decision_id: str
         redaction_state=row["redaction_state"],
     )
     return {"decision_id": decision_id, "content_hash": row["content_hash"], "restricted_evidence": json.loads(row["restricted_evidence_json"])}
-

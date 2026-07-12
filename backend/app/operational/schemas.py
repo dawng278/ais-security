@@ -89,6 +89,19 @@ class ResolveReviewRequest(BaseModel):
     confirm: bool = True
 
 
+class StartReviewRequest(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    expected_version: int = Field(..., ge=1)
+    note: str | None = Field(default=None, max_length=1000)
+
+
+class DevSessionRequest(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    subject: str = Field(default="phase5-demo-analyst", min_length=2, max_length=128)
+    client_id: str = Field(default="phase5-console", min_length=2, max_length=128)
+    roles: list[str] = Field(default_factory=lambda: ["viewer", "analyst", "policy_manager", "security_admin", "integration_service"])
+
+
 class PolicyDraftRequest(BaseModel):
     model_config = ConfigDict(extra="forbid")
     policy_id: str = Field(..., min_length=3, max_length=96, pattern=r"^[A-Za-z0-9_.:-]+$")
@@ -115,4 +128,3 @@ class ModeChangeRequest(BaseModel):
     expected_version: int = Field(..., ge=1)
     justification: str = Field(..., min_length=4, max_length=500)
     confirm: bool = True
-

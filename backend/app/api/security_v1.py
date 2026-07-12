@@ -5,7 +5,8 @@ from typing import Annotated
 from fastapi import APIRouter, Depends, Header, Request
 from fastapi.responses import JSONResponse
 
-from app.operational.auth import Actor, require_actor
+from app.config import settings
+from app.operational.auth import Actor, create_signed_token, require_actor
 from app.operational.database import get_store
 from app.operational.errors import GatewayException
 from app.operational.gateway import create_decision, decision_response_from_row
@@ -15,12 +16,14 @@ from app.operational.rate_limit import check_rate_limit
 from app.operational.retention import retention_dry_run
 from app.operational.schemas import (
     AssignReviewRequest,
+    DevSessionRequest,
     GatewayRequest,
     ModeChangeRequest,
     PolicyDraftRequest,
     PolicyPublishRequest,
     PolicyRollbackRequest,
     ResolveReviewRequest,
+    StartReviewRequest,
 )
 from app.operational.workflows import (
     assign_review,
@@ -30,6 +33,7 @@ from app.operational.workflows import (
     record_sensitive_access,
     resolve_review,
     rollback_policy,
+    start_review,
 )
 
 
@@ -78,6 +82,29 @@ def analyze_gateway(
         return error_response(exc, request.correlation_id)
 
 
+@router.post("/session/dev-token")
+def issue_development_token(request: DevSessionRequest):
+    if settings.env not in {"development", "test"}:
+        return error_response(GatewayException("FORBIDDEN", detail="dev_token_disabled_outside_development"))
+    token = create_signed_token(
+        subject=request.subject,
+        roles=request.roles,
+        client_id=request.client_id,
+        actor_type="developer_session",
+        ttl_seconds=3600,
+    )
+    return {
+        "access_token": token,
+        "token_type": "Bearer",
+        "expires_in": 3600,
+        "subject": request.subject,
+        "client_id": request.client_id,
+        "roles": request.roles,
+        "environment": settings.env,
+        "truth_label": "DEVELOPMENT_ONLY_SIGNED_TOKEN",
+    }
+
+
 @router.post("/grade")
 def grade_gateway(
     request: GatewayRequest,
@@ -103,6 +130,25 @@ def grade_gateway(
         return response
     except GatewayException as exc:
         return error_response(exc, request.correlation_id)
+
+
+@router.get("/decisions")
+def list_decisions(actor: Annotated[Actor, Depends(require_actor)], limit: int = 100):
+    store = get_store()
+    try:
+        if "decisions:read" not in actor.permissions and "decisions:own_read" not in actor.permissions:
+            actor.require("decisions:read")
+        limit = min(max(limit, 1), 200)
+        if "decisions:read" in actor.permissions:
+            rows = store.fetch_all("SELECT * FROM security_decisions ORDER BY created_at DESC LIMIT ?", (limit,))
+        else:
+            rows = store.fetch_all(
+                "SELECT * FROM security_decisions WHERE client_id = ? ORDER BY created_at DESC LIMIT ?",
+                (actor.client_id, limit),
+            )
+        return {"items": [decision_response_from_row(row).model_dump(mode="json") for row in rows]}
+    except GatewayException as exc:
+        return error_response(exc)
 
 
 @router.get("/decisions/{decision_id}")
@@ -168,6 +214,15 @@ def assign_review_route(review_id: str, request: AssignReviewRequest, actor: Ann
     store = get_store()
     try:
         return assign_review(store, actor, review_id, request)
+    except GatewayException as exc:
+        return error_response(exc)
+
+
+@router.post("/reviews/{review_id}/start")
+def start_review_route(review_id: str, request: StartReviewRequest, actor: Annotated[Actor, Depends(require_actor)]):
+    store = get_store()
+    try:
+        return start_review(store, actor, review_id, request)
     except GatewayException as exc:
         return error_response(exc)
 
@@ -260,6 +315,36 @@ def retention(actor: Annotated[Actor, Depends(require_actor)]):
         return error_response(exc)
 
 
+@router.get("/audit")
+def list_audit_events(
+    actor: Annotated[Actor, Depends(require_actor)],
+    target_type: str | None = None,
+    target_id: str | None = None,
+    correlation_id: str | None = None,
+    limit: int = 100,
+):
+    store = get_store()
+    try:
+        actor.require("audit:read")
+        limit = min(max(limit, 1), 200)
+        clauses = []
+        params: list[str | int] = []
+        if target_type:
+            clauses.append("target_type = ?")
+            params.append(target_type)
+        if target_id:
+            clauses.append("target_id = ?")
+            params.append(target_id)
+        if correlation_id:
+            clauses.append("correlation_id = ?")
+            params.append(correlation_id)
+        where = " WHERE " + " AND ".join(clauses) if clauses else ""
+        rows = store.fetch_all(f"SELECT * FROM audit_events{where} ORDER BY created_at ASC LIMIT ?", (*params, limit))
+        return {"items": rows}
+    except GatewayException as exc:
+        return error_response(exc)
+
+
 @router.get("/health/live")
 def live():
     return {"status": "live", "service": "gradingguard-ai"}
@@ -282,4 +367,3 @@ def ready():
 @router.options("/{path:path}")
 def preflight(path: str, request: Request):
     return {"status": "ok", "path": path}
-

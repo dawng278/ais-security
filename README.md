@@ -2,7 +2,7 @@
 
 > **Evidence-driven AI Security Gateway for Trustworthy LLM-based IELTS Grading**
 
-GradingGuard AI is a competition-ready AI security gateway prototype (with a clear production hardening path) designed to protect automated IELTS Writing and Speaking evaluation pipelines against prompt injection attacks, role spoofing, and band score manipulation.
+GradingGuard AI is an evidence-driven AI security gateway prototype (with a clear production hardening path) designed to protect automated IELTS Writing and Speaking evaluation pipelines against prompt injection attacks, role spoofing, and band score manipulation.
 
 ---
 
@@ -30,6 +30,8 @@ GradingGuard AI acts as a transparent security firewall that sits between incomi
 ---
 
 ## 3. Core Demo Result
+
+This track is a deterministic judge demonstration, not a measured LLM benchmark.
 
 | Scenario | IELTS Band | Status | Security Recovery |
 | :--- | :---: | :---: | :--- |
@@ -65,21 +67,21 @@ flowchart TD
 
 ## 5. Key Features
 
-- **Multi-Layer Firewall**: Combines regex heuristics, semantic embedding distance, and multi-pattern classifiers to detect direct, multilingual, role-spoofing, and obfuscated attacks.
+- **Multi-Layer Firewall**: Combines regex heuristics, obfuscation checks, risk routing, and an optional semantic detector. Evidence records whether the semantic detector is actually healthy or running in fallback mode.
 - **Span-Level Sanitizer**: Strips malicious instruction spans while preserving authentic student writing context.
 - **Score Integrity Verifier**: Evaluates score stability by comparing clean, vulnerable, and sanitized outputs.
 - **Red-Team Attack Arena**: Interactive scenario runner that simulates multi-attempt attacker profiles (Novice, Multilingual, Obfuscation, Adaptive).
 - **Multi-Perspective Case Library & Decision Matrix**: 60-scenario evaluation library and policy matrix evaluating security, score integrity, fairness, operations, and evidence governance.
 - **Benchmark v3 & Failure Analysis**: Robustness evaluation suite with automated failure classification (`false_negative`, `false_positive`, `under_block`) and actionable remediation advice.
 - **Data Lineage Center**: Tracks multi-source datasets from source registry to canonical schema, deduplication, group-aware split, and dataset hash.
-- **Cryptographic Evidence Logs**: Persists `dataset_sha256`, `config_sha256`, `run_id`, and `git_commit` fingerprints for independent auditing.
+- **Evidence Logs**: Persists `dataset_sha256`, `config_sha256`, `run_id`, `git_commit`, detector runtime state, and benchmark metrics for independent auditing.
 
 ---
 
 ## 6. Runtime Pipeline
 
 1. **Input Normalizer**: Applies NFKC Unicode normalization, strips zero-width spaces, and decodes Base64/Obfuscated blocks.
-2. **Prompt Injection Detector**: Evaluates semantic similarity against known injection prototypes and flags prompt boundaries.
+2. **Prompt Injection Detector**: Evaluates heuristic, obfuscation, and optional semantic signals against known injection prototypes and flags prompt boundaries.
 3. **Risk Scoring Engine**: Computes normalized risk scores `[0.0, 1.0]` and maps actions (`allow`, `warn`, `secure_grade`, `manual_review`).
 4. **AI Grading Sanitizer**: Removes injected instruction spans while retaining original essay paragraphs.
 5. **Secure IELTS Grader**: Evaluates sanitized responses against strict Task Achievement, Coherence, Lexical, and Grammar rubrics.
@@ -107,16 +109,9 @@ flowchart TD
 
 ---
 
-## 9. Run with Docker Compose
+## 9. Docker Status
 
-```bash
-docker compose up --build
-```
-
-Access services at:
-- **Frontend**: [http://localhost:3000](http://localhost:3000)
-- **Backend API**: [http://localhost:8000](http://localhost:8000)
-- **Swagger Docs**: [http://localhost:8000/docs](http://localhost:8000/docs)
+Docker Compose is not currently verified in this repository. Do not use Docker deployment claims until Docker artifacts are added and tested from a clean environment.
 
 ---
 
@@ -157,7 +152,7 @@ npm run dev
 GradingGuard AI distinguishes between internal smoke tests and evaluation robustness:
 - **Benchmark v1**: Internal smoke test suite for quick regression verification.
 - **Benchmark v3**: Full two-track evaluation suite featuring group-aware splits, dataset SHA256 fingerprinting, and transparent failure analysis.
-  - **Core IELTS Score Integrity Track**: 100% Defense Recovery, 0.0% critical score manipulation failure rate on core IELTS attacks.
+  - **Core IELTS Score Integrity Track**: deterministic judge demo showing 100% defense recovery on the curated score-manipulation scenario.
   - **General Prompt Injection Robustness Track**: **79.0% Accuracy** (523 / 662 passed), **139 diagnostic under-blocks** (reduced from 206 via P4 heuristic & policy hardening).
 
 ---

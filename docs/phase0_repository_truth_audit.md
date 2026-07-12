@@ -67,7 +67,7 @@ Data and evidence:
 Deployment:
 
 - No `Dockerfile`, `docker-compose.yml`, or `.dockerignore` was found in the repo root or project tree at audit time.
-- README currently claims Docker Compose support.
+- README initially claimed Docker Compose support; this was downgraded to an explicit unverified Docker status after the audit.
 
 ## Baseline Verification
 
@@ -239,7 +239,7 @@ Registry gap:
 The following claims are not supported by the observed repository state:
 
 - README claims frontend `/evidence`; this claim is now backed by a real dynamic route.
-- README claims Docker Compose, but no Docker/Compose artifacts exist.
+- README Docker Compose claim was removed; deployment remains unverified until Docker artifacts exist and pass clean-environment smoke tests.
 - README and docs claim semantic embedding capability, while runtime falls back because `sentence_transformers` is unavailable.
 - `docs/technical_report.md`, `docs/evaluation_report.md`, `docs/judge_qna.md`, `docs/demo_script_top1.md`, and frontend `judge-view` contain stale or unsupported metrics such as `0.90` Macro F1, `0.06` FPR, or `210ms` p95.
 - Some docs answer or imply production readiness beyond the verified state.
@@ -257,7 +257,7 @@ Supported claims:
 Phase 0 is not fully complete because:
 
 - Frontend lint fails.
-- Docker claim is unsupported by repo artifacts.
+- Deployment remains unsupported by verified Docker artifacts.
 - Existing tracked evidence artifacts still contain stale embedding state until safely regenerated or reviewed.
 - Broader source/license due diligence is still required before final packaging.
 
@@ -275,5 +275,5 @@ Before implementing product features:
 
 - Make detector health evidence reflect actual runtime dependency/model state.
 - Regenerate or review tracked evidence artifacts now that new runs reflect detector health honestly.
-- Remove unsupported Docker Compose claims or add verified Docker artifacts later in the deployment phase.
+- Add verified Docker artifacts later in the deployment phase before restoring any Docker support claim.
 - Sync stale metrics in docs/UI from canonical evidence instead of hard-coded values.

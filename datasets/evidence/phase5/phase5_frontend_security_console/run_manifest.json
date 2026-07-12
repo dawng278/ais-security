@@ -27,13 +27,7 @@
   "dirty_worktree": [
     "M datasets/reports/v3/benchmark_v3_combined.json",
     " M datasets/reports/v3/evidence/evidence_card.md",
-    " M datasets/reports/v3/evidence/evidence_report.json",
-    "?? datasets/evidence/phase5/",
-    "?? docs/audits/phase5_frontend_security_console_report.json",
-    "?? docs/frontend/",
-    "?? docs/phase5_frontend_security_console_report.md",
-    "?? docs/product/phase5_gau_design_alignment.md",
-    "?? scripts/phase5_evidence.py"
+    " M datasets/reports/v3/evidence/evidence_report.json"
   ],
   "environment": {
     "platform": "Linux-7.0.13-200.fc44.x86_64-x86_64-with-glibc2.42",
@@ -46,7 +40,7 @@
     "static_phase5_tests": "PASS",
     "typecheck": "PASS"
   },
-  "git_commit": "3c92769134c733dace972fc53c2df0d57d7246d3",
+  "git_commit": "24477d52c9284bd37717e73b2c524039bebd44ae",
   "limitations": [
     "Six-browser Playwright E2E matrix not run because Playwright test tooling is not present.",
     "200% zoom and browser accessibility scans require browser automation/manual acceptance.",

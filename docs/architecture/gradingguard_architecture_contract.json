@@ -1,0 +1,237 @@
+{
+  "contract_version": "1.0.0-phase1",
+  "decision_schema_version": "grading_decision.v1",
+  "product": "GradingGuard AI",
+  "supported_modes": [
+    "shadow",
+    "warn",
+    "enforce",
+    "degraded"
+  ],
+  "supported_actions": [
+    "allow",
+    "warn",
+    "sanitize",
+    "secure_grade",
+    "manual_review",
+    "block"
+  ],
+  "runtime_action_state": {
+    "existing": [
+      "allow",
+      "warn",
+      "secure_grade",
+      "manual_review"
+    ],
+    "contracted_planned": [
+      "sanitize",
+      "block"
+    ]
+  },
+  "error_codes": [
+    "INVALID_REQUEST",
+    "UNSUPPORTED_SCHEMA_VERSION",
+    "REQUEST_TOO_LARGE",
+    "RATE_LIMITED",
+    "DETECTOR_UNAVAILABLE",
+    "POLICY_UNAVAILABLE",
+    "AUDIT_UNAVAILABLE",
+    "GRADER_TIMEOUT",
+    "GRADER_INVALID_RESPONSE",
+    "MANUAL_REVIEW_REQUIRED",
+    "REQUEST_BLOCKED",
+    "UNAUTHORIZED",
+    "FORBIDDEN",
+    "CONFLICT",
+    "INTERNAL_ERROR"
+  ],
+  "detector_health_states": [
+    "healthy",
+    "warming",
+    "degraded",
+    "unavailable",
+    "disabled"
+  ],
+  "detector_state_dimensions": [
+    "configured_state",
+    "dependency_state",
+    "model_load_state",
+    "runtime_state"
+  ],
+  "policy_statuses": [
+    "draft",
+    "validated",
+    "published",
+    "superseded",
+    "rolled_back",
+    "archived"
+  ],
+  "policy_lifecycle": [
+    "draft",
+    "validated",
+    "published",
+    "active",
+    "monitored",
+    "superseded_or_rolled_back",
+    "archived"
+  ],
+  "review_statuses": [
+    "pending",
+    "assigned",
+    "in_review",
+    "resolved_allow",
+    "resolved_block",
+    "escalated",
+    "expired"
+  ],
+  "review_transitions": [
+    [
+      "pending",
+      "assigned"
+    ],
+    [
+      "pending",
+      "expired"
+    ],
+    [
+      "assigned",
+      "in_review"
+    ],
+    [
+      "assigned",
+      "escalated"
+    ],
+    [
+      "in_review",
+      "resolved_allow"
+    ],
+    [
+      "in_review",
+      "resolved_block"
+    ],
+    [
+      "in_review",
+      "escalated"
+    ],
+    [
+      "escalated",
+      "assigned"
+    ],
+    [
+      "escalated",
+      "expired"
+    ]
+  ],
+  "benchmark_tracks": [
+    "generic_prompt_injection",
+    "ielts_domain_security",
+    "score_integrity",
+    "operational_reliability"
+  ],
+  "readiness_levels": [
+    "COMPETITION_READY",
+    "PILOT_READY",
+    "PRODUCTION_READY"
+  ],
+  "readiness_status_values": [
+    "READY",
+    "NOT_READY",
+    "BLOCKED"
+  ],
+  "required_audit_events": [
+    "request_received",
+    "normalization_completed",
+    "detector_result",
+    "decision_made",
+    "policy_evaluated",
+    "sanitized",
+    "grader_called",
+    "grader_completed",
+    "review_created",
+    "review_assigned",
+    "review_resolved",
+    "policy_published",
+    "policy_rolled_back",
+    "mode_changed",
+    "evidence_exported",
+    "sensitive_content_accessed"
+  ],
+  "threats": [
+    "direct_prompt_injection",
+    "indirect_prompt_injection",
+    "role_spoofing",
+    "score_manipulation",
+    "system_prompt_extraction",
+    "data_exfiltration",
+    "delimiter_abuse",
+    "unicode_obfuscation",
+    "encoding_attack",
+    "long_context_attack",
+    "multilingual_attack",
+    "policy_manipulation",
+    "grader_output_manipulation",
+    "audit_tampering",
+    "evidence_tampering",
+    "replay",
+    "duplicate_submission",
+    "privilege_escalation",
+    "sensitive_data_leakage",
+    "dependency_failure",
+    "detector_outage",
+    "grader_outage",
+    "policy_store_outage",
+    "audit_store_outage"
+  ],
+  "frontend_routes": [
+    "security_overview",
+    "threat_inbox",
+    "incident_detail",
+    "manual_review_queue",
+    "policy_management",
+    "detector_health",
+    "benchmark",
+    "evidence",
+    "data_lineage",
+    "integration_runtime",
+    "attack_arena",
+    "judge_view",
+    "playground"
+  ],
+  "contract_documents": [
+    "docs/product/gradingguard-product-contract.md",
+    "docs/product/readiness-gates.md",
+    "docs/product/security-console-information-architecture.md",
+    "docs/product/gau-ielts-design-language-inventory.md",
+    "docs/security/threat-model.md",
+    "docs/security/data-redaction-retention.md",
+    "docs/security/threat-control-test-matrix.md",
+    "docs/architecture/gradingguard-architecture.md",
+    "docs/architecture/operating-modes.md",
+    "docs/architecture/action-semantics.md",
+    "docs/contracts/grading-gateway-api.md",
+    "docs/contracts/detector-interface.md",
+    "docs/contracts/policy-contract.md",
+    "docs/contracts/grader-adapter.md",
+    "docs/contracts/audit-event-contract.md",
+    "docs/contracts/manual-review-workflow.md",
+    "docs/benchmark/benchmark-track-contracts.md",
+    "docs/competition/competition-capability-matrix.md"
+  ],
+  "schema_files": [
+    "schemas/grading_request.schema.json",
+    "schemas/grading_decision.schema.json",
+    "schemas/grading_error.schema.json"
+  ],
+  "adrs": [
+    "docs/adr/ADR-001-gateway-placement.md",
+    "docs/adr/ADR-002-operating-modes.md",
+    "docs/adr/ADR-003-action-semantics.md",
+    "docs/adr/ADR-004-detector-ensemble-contract.md",
+    "docs/adr/ADR-005-policy-versioning.md",
+    "docs/adr/ADR-006-audit-persistence-expectations.md",
+    "docs/adr/ADR-007-manual-review-workflow.md",
+    "docs/adr/ADR-008-benchmark-track-separation.md",
+    "docs/adr/ADR-009-deterministic-demo-separation.md",
+    "docs/adr/ADR-010-gau-ielts-ui-alignment.md"
+  ]
+}

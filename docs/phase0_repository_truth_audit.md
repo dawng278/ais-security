@@ -234,32 +234,114 @@ Registry gap:
 - Raw deepset files exist, but `datasets/registry/sources.yaml` does not list `deepset/prompt-injections`.
 - This was fixed after the initial audit by adding `deepset/prompt-injections` with Apache-2.0 license metadata verified from the Hugging Face dataset page on 2026-07-13.
 
-## Claim Audit Findings
+## Claim Audit Final State
 
-The following claims are not supported by the observed repository state:
+Public claim inventory:
 
-- README claims frontend `/evidence`; this claim is now backed by a real dynamic route.
-- README Docker Compose claim was removed; deployment remains unverified until Docker artifacts exist and pass clean-environment smoke tests.
-- README and docs claim semantic embedding capability, while runtime falls back because `sentence_transformers` is unavailable.
-- `docs/technical_report.md`, `docs/evaluation_report.md`, `docs/judge_qna.md`, `docs/demo_script_top1.md`, and frontend `judge-view` contain stale or unsupported metrics such as `0.90` Macro F1, `0.06` FPR, or `210ms` p95.
-- Some docs answer or imply production readiness beyond the verified state.
-- UI fallback values can display stronger metrics than the current evidence artifact.
+- Human-readable: `docs/audits/public_claim_inventory.md`
+- Machine-readable: `docs/audits/public_claim_inventory.json`
 
-Supported claims:
+Automated guard:
 
-- Backend API routes exist and smoke-tested successfully.
-- Backend unit tests pass when `PYTHONPATH=backend` is set.
-- Frontend production build succeeds.
-- Existing evidence artifacts report the handoff baseline metrics: 79% accuracy, 100% precision, 47% recall, 64% macro F1, 0% FPR, 21% under-block, 139 failures.
+```bash
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=. python scripts/audit_public_claims.py
+```
 
-## Phase 0 Blockers
+Result:
 
-Phase 0 is not fully complete because:
+```text
+Public claim audit: PASS
+Canonical metric source: datasets/reports/v3/benchmark_v3_combined.json
+Findings: 0
+```
 
-- Frontend lint fails.
-- Deployment remains unsupported by verified Docker artifacts.
-- Existing tracked evidence artifacts still contain stale embedding state until safely regenerated or reviewed.
-- Broader source/license due diligence is still required before final packaging.
+Resolved public claim drift:
+
+- `/evidence` is now a real frontend route and appears in the Next build route table.
+- Docker Compose is no longer claimed as verified.
+- Deterministic 5.5 -> 8.5 -> 5.5 score recovery is labelled as a demo, not a measured LLM benchmark.
+- Stale public values such as Macro F1 0.90, FPR 0.06, p95 210 ms, and 3,000 attacks were removed or relabelled on configured public surfaces.
+- Current public metric claims are synchronized to 79.0% accuracy, 100% precision, 47% recall, 64% Macro F1, 0.0% FPR, 21.0% under-block, and 139 diagnostic failures.
+- Embedding runtime is represented as optional/unavailable instead of healthy.
+- Production readiness wording was changed to competition prototype / hardening path language.
+
+## Capability Classification
+
+| Capability | Classification | Evidence |
+| --- | --- | --- |
+| FastAPI health and API routers | IMPLEMENTED_AND_VERIFIED | API smoke returned 200 |
+| Firewall analyze | IMPLEMENTED_AND_VERIFIED | `POST /api/firewall/analyze` smoke returned 200 |
+| Grade compare | DETERMINISTIC_DEMO | mock grader route smoke returned 200 |
+| Benchmark v3 runner | IMPLEMENTED_AND_VERIFIED | isolated rerun in `/tmp/ais_gau_security_phase0_final_benchmark` |
+| Evidence generator | IMPLEMENTED_AND_VERIFIED | isolated evidence records embedding unavailable |
+| Frontend `/evidence` | IMPLEMENTED_AND_VERIFIED | Next build lists dynamic `/evidence` route |
+| Dashboard telemetry | MOCK/PARTIAL | API-backed or seeded fallback, labelled in UI |
+| Attack Arena | DETERMINISTIC_DEMO/PARTIAL | API route exists; seeded scenario behavior remains demo-oriented |
+| Data lineage | PARTIAL | API route exists; broader source/license due diligence remains future work |
+| Docker deployment | NOT_IMPLEMENTED | no Dockerfile or compose artifacts found |
+| Auth/RBAC | NOT_IMPLEMENTED | no auth boundary verified in Phase 0 |
+| Persistent audit DB | NOT_IMPLEMENTED | current reports are file artifacts, not operational audit storage |
+| Manual review backend | NOT_IMPLEMENTED | action exists, persistent workflow not implemented |
+| Policy management UI/backend | NOT_IMPLEMENTED | no verified policy versioning workflow |
+
+## Route And API Truth Table
+
+| Frontend route | File | Build result | Backend/API dependency | Data status |
+| --- | --- | --- | --- | --- |
+| `/` | `frontend/src/app/page.tsx` | PASS | none critical | static |
+| `/dashboard` | `frontend/src/app/dashboard/page.tsx` | PASS | `/api/dashboard/stats`, `/api/dashboard/events` | API or seeded fallback |
+| `/judge-view` | `frontend/src/app/judge-view/page.tsx` | PASS | evidence, benchmark, lineage APIs | measured + deterministic demo |
+| `/attack-arena` | `frontend/src/app/attack-arena/page.tsx` | PASS | `/api/arena/profiles`, `/api/arena/run` | deterministic demo/API |
+| `/playground` | `frontend/src/app/playground/page.tsx` | PASS | firewall/grade/redteam APIs | API demo |
+| `/benchmark` | `frontend/src/app/benchmark/page.tsx` | PASS | benchmark/evidence APIs | measured or unavailable |
+| `/data-lineage` | `frontend/src/app/data-lineage/page.tsx` | PASS | `/api/lineage/report` | partial lineage |
+| `/evidence` | `frontend/src/app/evidence/page.tsx` | PASS | `/api/evidence/latest` | measured or unavailable |
+
+API smoke result:
+
+```text
+GET  /health                              200
+GET  /api/dashboard/stats                 200
+GET  /api/dashboard/events                200
+GET  /api/arena/profiles                  200
+GET  /api/benchmark/v3/report             200
+GET  /api/benchmark/v3/failure-analysis   200
+GET  /api/lineage/report                  200
+GET  /api/evidence/latest                 200
+POST /api/firewall/analyze                200
+POST /api/grade/compare                   200
+```
+
+## Final Verification
+
+```text
+Backend tests: 33 passed
+Frontend lint: PASS
+Frontend typecheck: PASS
+Frontend build: PASS
+Claim drift guard: PASS
+Safe Benchmark v3 rerun: 662 cases, 79.0% accuracy, 139 failures
+Embedding in safe rerun: enable_embedding_detector=false, runtime_state=unavailable
+Protected report checksums before/after: unchanged
+GAU IELTS HEAD: f2b7bddf8a24a42e0ded03208e4d92ae3ae166e7
+GAU IELTS status: unchanged from preflight dirty state
+```
+
+Protected report checksums:
+
+```text
+863c8509af20d56e4f1370948f3ebf8b11562efef59245ab5e71061b83f44003  datasets/reports/v3/benchmark_v3_combined.json
+c9e60724e1e8d6ba53549e790222e4a1f6e6e8cad8d74fb7001b62dfe9e9071f  datasets/reports/v3/evidence/evidence_card.md
+c5aa5b41c602c299acb59d8a0097e22aee12ed4d2a5ee8d06b5aa3bacf937b67  datasets/reports/v3/evidence/evidence_report.json
+```
+
+## Phase 0 Verdict
+
+```text
+PHASE_0_REPOSITORY_TRUTH_AUDIT_DONE
+```
+
+Phase 1 is authorized from the repository-truth perspective only. Phase 1 must still avoid protected dirty reports and must not implement deployment, auth, persistence, or frontend management overhaul unless those are explicitly in the next phase scope.
 
 ## Safety Notes
 
@@ -271,9 +353,10 @@ Phase 0 is not fully complete because:
 
 ## Recommended Next Phase 0 Work
 
-Before implementing product features:
+None. Phase 0 acceptance gates are complete.
 
-- Make detector health evidence reflect actual runtime dependency/model state.
+Recommended Phase 1 prerequisites:
+
 - Regenerate or review tracked evidence artifacts now that new runs reflect detector health honestly.
 - Add verified Docker artifacts later in the deployment phase before restoring any Docker support claim.
-- Sync stale metrics in docs/UI from canonical evidence instead of hard-coded values.
+- Start architecture/product contract work from the truth inventory instead of from older overclaiming docs.

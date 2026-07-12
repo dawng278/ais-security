@@ -1,0 +1,42 @@
+{
+  "schema_version": "phase0_repository_truth_audit_v1",
+  "verdict": "PHASE_0_REPOSITORY_TRUTH_AUDIT_DONE",
+  "repo": "/home/dawngbeo/school-project/ais-gau-security",
+  "last_code_commit_at_final_verification": "a8fa19d",
+  "protected_dirty_files": {
+    "datasets/reports/v3/benchmark_v3_combined.json": "863c8509af20d56e4f1370948f3ebf8b11562efef59245ab5e71061b83f44003",
+    "datasets/reports/v3/evidence/evidence_card.md": "c9e60724e1e8d6ba53549e790222e4a1f6e6e8cad8d74fb7001b62dfe9e9071f",
+    "datasets/reports/v3/evidence/evidence_report.json": "c5aa5b41c602c299acb59d8a0097e22aee12ed4d2a5ee8d06b5aa3bacf937b67"
+  },
+  "canonical_metric_source": "datasets/reports/v3/benchmark_v3_combined.json",
+  "safe_benchmark_rerun": {
+    "output_dir": "/tmp/ais_gau_security_phase0_final_benchmark",
+    "run_id": "run_20260712_194707_47a8a2",
+    "git_commit": "a8fa19d",
+    "total_cases": 662,
+    "accuracy": 0.79,
+    "failure_count": 139,
+    "enable_embedding_detector": false,
+    "embedding_runtime_state": "unavailable"
+  },
+  "verification": {
+    "backend_tests": "33 passed",
+    "frontend_lint": "PASS",
+    "frontend_typecheck": "PASS",
+    "frontend_build": "PASS",
+    "claim_drift_guard": "PASS",
+    "api_smoke": "PASS",
+    "protected_reports_changed": false,
+    "gau_ielts_unchanged": true
+  },
+  "docker_support": "ABSENT",
+  "phase1_authorized": true,
+  "remaining_non_phase0_gaps": [
+    "auth/RBAC not implemented",
+    "persistent audit storage not implemented",
+    "manual review backend workflow not implemented",
+    "policy versioning not implemented",
+    "Docker deployment not implemented",
+    "tracked dirty evidence artifacts still user-owned and not regenerated"
+  ]
+}

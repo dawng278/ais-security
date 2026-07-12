@@ -8,7 +8,7 @@
   "protected_reports": "PASS",
   "phase2_evidence": "PASS",
   "phase3_evidence": "PASS",
-  "backend_tests": "76 passed",
+  "backend_tests": "77 passed",
   "phase4_targeted_tests": "8 passed",
   "phase5_started": false,
   "warnings": [

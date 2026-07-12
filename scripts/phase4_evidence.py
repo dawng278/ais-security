@@ -243,7 +243,7 @@ def main() -> int:
         "phase2_evidence_checksums": phase2,
         "phase3_evidence_checksums": phase3,
         "phase3_regression": regression["status"],
-        "test_summary": {"backend": "76 passed before evidence generation", "phase4_targeted": "8 passed"},
+        "test_summary": {"backend": "77 passed before evidence generation", "phase4_targeted": "8 passed"},
         "limitations": [
             "Pilot SQLite persistence, not production HA storage.",
             "External production IdP is pending; local/test signed tokens are enforced.",
@@ -280,4 +280,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

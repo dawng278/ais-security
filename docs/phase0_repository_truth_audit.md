@@ -231,6 +231,7 @@ datasets/reports/v3/failure_analysis.jsonl               139
 Registry gap:
 
 - Raw deepset files exist, but `datasets/registry/sources.yaml` does not list `deepset/prompt-injections`.
+- This was fixed after the initial audit by adding `deepset/prompt-injections` with Apache-2.0 license metadata verified from the Hugging Face dataset page on 2026-07-13.
 
 ## Claim Audit Findings
 
@@ -258,7 +259,7 @@ Phase 0 is not fully complete because:
 - Frontend `/evidence` route is missing despite README/docs claims.
 - Docker claim is unsupported by repo artifacts.
 - Existing tracked evidence artifacts still contain stale embedding state until safely regenerated or reviewed.
-- Source/license registry is incomplete for raw datasets present in the repo.
+- Broader source/license due diligence is still required before final packaging.
 
 ## Safety Notes
 

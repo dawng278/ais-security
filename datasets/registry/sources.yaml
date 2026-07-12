@@ -15,6 +15,14 @@ sources:
     url: https://huggingface.co/datasets/neuralchemy/Prompt-injection-dataset
     notes: "Binary detection dataset, 29 attack categories."
 
+  - id: hf_deepset_prompt_injections
+    platform: huggingface
+    name: deepset/prompt-injections
+    purpose: train_validation
+    license: apache-2.0
+    url: https://huggingface.co/datasets/deepset/prompt-injections
+    notes: "Prompt injection classification data present in datasets/raw/deepset_prompt_injections."
+
   - id: hf_chillies_ielts_task2
     platform: huggingface
     name: chillies/IELTS-writing-task-2-evaluation

@@ -1,0 +1,99 @@
+{
+  "verdict": "PHASE_1_PRODUCT_ARCHITECTURE_CONTRACT_DONE",
+  "date": "2026-07-13",
+  "repository": "/home/dawngbeo/school-project/ais-gau-security",
+  "phase0_baseline_head": "8c93f87440d3ae8a7805765e3498b02d1d8235c1",
+  "protected_files": {
+    "classification": "USER_EXISTING_WORK",
+    "unchanged": true,
+    "checksums": {
+      "datasets/reports/v3/benchmark_v3_combined.json": "863c8509af20d56e4f1370948f3ebf8b11562efef59245ab5e71061b83f44003",
+      "datasets/reports/v3/evidence/evidence_card.md": "c9e60724e1e8d6ba53549e790222e4a1f6e6e8cad8d74fb7001b62dfe9e9071f",
+      "datasets/reports/v3/evidence/evidence_report.json": "c5aa5b41c602c299acb59d8a0097e22aee12ed4d2a5ee8d06b5aa3bacf937b67"
+    }
+  },
+  "documents_created": [
+    "docs/product/gradingguard-product-contract.md",
+    "docs/product/readiness-gates.md",
+    "docs/product/security-console-information-architecture.md",
+    "docs/product/gau-ielts-design-language-inventory.md",
+    "docs/security/threat-model.md",
+    "docs/security/threat-control-test-matrix.md",
+    "docs/security/data-redaction-retention.md",
+    "docs/architecture/gradingguard-architecture.md",
+    "docs/architecture/operating-modes.md",
+    "docs/architecture/action-semantics.md",
+    "docs/contracts/grading-gateway-api.md",
+    "docs/contracts/detector-interface.md",
+    "docs/contracts/policy-contract.md",
+    "docs/contracts/grader-adapter.md",
+    "docs/contracts/audit-event-contract.md",
+    "docs/contracts/manual-review-workflow.md",
+    "docs/benchmark/benchmark-track-contracts.md",
+    "docs/competition/competition-capability-matrix.md"
+  ],
+  "contracts_created": [
+    "docs/architecture/gradingguard_architecture_contract.json",
+    "schemas/grading_request.schema.json",
+    "schemas/grading_decision.schema.json",
+    "schemas/grading_error.schema.json"
+  ],
+  "adrs_created": [
+    "docs/adr/ADR-001-gateway-placement.md",
+    "docs/adr/ADR-002-operating-modes.md",
+    "docs/adr/ADR-003-action-semantics.md",
+    "docs/adr/ADR-004-detector-ensemble-contract.md",
+    "docs/adr/ADR-005-policy-versioning.md",
+    "docs/adr/ADR-006-audit-persistence-expectations.md",
+    "docs/adr/ADR-007-manual-review-workflow.md",
+    "docs/adr/ADR-008-benchmark-track-separation.md",
+    "docs/adr/ADR-009-deterministic-demo-separation.md",
+    "docs/adr/ADR-010-gau-ielts-ui-alignment.md"
+  ],
+  "semantic_conflicts_found": [
+    {
+      "conflict": "Runtime actions currently lack sanitize and block.",
+      "resolution": "Contract freezes six actions and labels sanitize/block as planned."
+    },
+    {
+      "conflict": "Embedding detector may be unavailable at runtime.",
+      "resolution": "Health contract forbids healthy state when dependencies are missing."
+    }
+  ],
+  "decisions_made": [
+    "GradingGuard is a security gateway around AI grading.",
+    "Operating modes are shadow, warn, enforce, degraded.",
+    "Actions are allow, warn, sanitize, secure_grade, manual_review, block.",
+    "Benchmark tracks remain separate.",
+    "Deterministic demo is separate from measured grader evidence.",
+    "GAU IELTS is read-only reference."
+  ],
+  "coverage": {
+    "threats_covered": "24/24",
+    "required_audit_events_covered": "16/16",
+    "review_states_reachable": "7/7",
+    "error_codes_unique": "15/15",
+    "frontend_ia_routes_covered": "13/13",
+    "adrs_complete": "10/10"
+  },
+  "verification": {
+    "backend_tests": "41 passed",
+    "contract_validation_tests": "8 passed",
+    "frontend_lint": "PASS",
+    "frontend_typecheck": "PASS",
+    "frontend_build": "PASS",
+    "claim_drift_guard": "PASS, 0 findings",
+    "git_diff_check": "PASS",
+    "protected_checksum_comparison": "PASS",
+    "gau_ielts_head": "f2b7bddf8a24a42e0ded03208e4d92ae3ae166e7",
+    "gau_ielts_unchanged_from_preflight": true
+  },
+  "blockers": [],
+  "warnings": [
+    "Pilot and production readiness remain blocked by later-phase implementation work.",
+    "Docker remains outside Phase 1 and unverified.",
+    "Phase 2 is not automatically authorized."
+  ],
+  "unresolved_critical_architecture_decisions": 0,
+  "phase2_authorized": false
+}

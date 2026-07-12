@@ -24,7 +24,7 @@ Phase 4 implemented a pilot-capable operational gateway:
 Verification:
 
 - Backend tests: 76 passed.
-- Phase 4 targeted integration tests: 7 passed.
+- Phase 4 targeted integration tests: 8 passed.
 - Phase 3 regression: PASS with zero metric/action deltas.
 - Protected reports: PASS.
 - Phase 2 evidence: PASS.
@@ -44,4 +44,3 @@ Limits:
 - IELTS_DOMAIN_TRACK remains LOW_SUPPORT.
 - MEASURED_SCORE_INTEGRITY remains NOT_MEASURED.
 - Phase 5 frontend redesign was not started.
-

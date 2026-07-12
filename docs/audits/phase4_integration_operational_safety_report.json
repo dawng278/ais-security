@@ -9,7 +9,7 @@
   "phase2_evidence": "PASS",
   "phase3_evidence": "PASS",
   "backend_tests": "76 passed",
-  "phase4_targeted_tests": "7 passed",
+  "phase4_targeted_tests": "8 passed",
   "phase5_started": false,
   "warnings": [
     "External production IdP pending",
@@ -19,4 +19,3 @@
     "MEASURED_SCORE_INTEGRITY remains NOT_MEASURED"
   ]
 }
-

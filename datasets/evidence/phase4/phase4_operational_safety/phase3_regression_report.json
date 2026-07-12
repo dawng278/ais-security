@@ -34,10 +34,10 @@
       "runtime_state": "unavailable"
     },
     "latency_ms": {
-      "max": 3.088,
-      "p50": 0.082,
-      "p95": 0.261,
-      "p99": 0.488
+      "max": 3.127,
+      "p50": 0.084,
+      "p95": 0.26,
+      "p99": 0.505
     }
   },
   "split_hash": "51e795858ff2d8460a4eeda9861407853a22bfbe6257dd9fd6bd3da983ef3fce",

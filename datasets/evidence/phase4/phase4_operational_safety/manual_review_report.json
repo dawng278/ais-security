@@ -1,12 +1,12 @@
 {
   "assigned": {
-    "review_id": "rev_70659402-3cf1-4719-b487-b7763f1f011d",
+    "review_id": "rev_cbafa140-fe39-45e9-a11d-ca12a141c18b",
     "state": "assigned",
     "version": 2
   },
   "optimistic_locking": "tested",
   "resolved": {
-    "review_id": "rev_70659402-3cf1-4719-b487-b7763f1f011d",
+    "review_id": "rev_cbafa140-fe39-45e9-a11d-ca12a141c18b",
     "state": "resolved_block",
     "version": 3
   },

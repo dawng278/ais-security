@@ -1,30 +1,79 @@
 import re
-from typing import List, Tuple
+from typing import Any, Dict, List, Tuple
 from app.firewall.prototypes import PROMPT_INJECTION_PROTOTYPES
+
+MODEL_NAME = "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
 
 try:
     import numpy as np
     from sentence_transformers import SentenceTransformer
     MODEL_AVAILABLE = True
+    IMPORT_ERROR = ""
 except Exception as e:
     MODEL_AVAILABLE = False
+    IMPORT_ERROR = str(e)
     print(f"Warning: sentence-transformers or numpy not available ({e}). Embedding detector running in fallback mode.")
 
 _MODEL_CACHE = None
+_MODEL_LOAD_ERROR = ""
 
 
 def get_embedding_model():
-    global _MODEL_CACHE
+    global _MODEL_CACHE, _MODEL_LOAD_ERROR
     if not MODEL_AVAILABLE:
         return None
     if _MODEL_CACHE is None:
         try:
             # Load lightweight multilingual model
-            _MODEL_CACHE = SentenceTransformer("sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2")
+            _MODEL_CACHE = SentenceTransformer(MODEL_NAME)
+            _MODEL_LOAD_ERROR = ""
         except Exception as e:
+            _MODEL_LOAD_ERROR = str(e)
             print(f"Warning: Failed to load SentenceTransformer model ({e}).")
             _MODEL_CACHE = None
     return _MODEL_CACHE
+
+
+def get_embedding_detector_health(load_model: bool = False) -> Dict[str, Any]:
+    if not MODEL_AVAILABLE:
+        return {
+            "configured_state": "enabled",
+            "dependency_state": "missing",
+            "model_load_state": "not_attempted",
+            "runtime_state": "unavailable",
+            "model_name": MODEL_NAME,
+            "fallback_reason": IMPORT_ERROR or "sentence-transformers or numpy not available",
+        }
+
+    model = get_embedding_model() if load_model else _MODEL_CACHE
+    if model is not None:
+        return {
+            "configured_state": "enabled",
+            "dependency_state": "available",
+            "model_load_state": "loaded",
+            "runtime_state": "healthy",
+            "model_name": MODEL_NAME,
+            "fallback_reason": "",
+        }
+
+    if _MODEL_LOAD_ERROR:
+        return {
+            "configured_state": "enabled",
+            "dependency_state": "available",
+            "model_load_state": "failed",
+            "runtime_state": "unavailable",
+            "model_name": MODEL_NAME,
+            "fallback_reason": _MODEL_LOAD_ERROR,
+        }
+
+    return {
+        "configured_state": "enabled",
+        "dependency_state": "available",
+        "model_load_state": "not_loaded",
+        "runtime_state": "warming",
+        "model_name": MODEL_NAME,
+        "fallback_reason": "model has not been loaded in this process",
+    }
 
 
 def chunk_text(text: str, window_size: int = 3, stride: int = 2) -> List[str]:

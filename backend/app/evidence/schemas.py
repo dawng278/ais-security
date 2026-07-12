@@ -16,8 +16,14 @@ class DatasetFingerprint(BaseModel):
 class DetectorConfigSnapshot(BaseModel):
     detector_version: str = "ensemble_v3"
     threshold_version: str = "risk_policy_v3"
-    enable_embedding_detector: bool = True
+    enable_embedding_detector: bool = False
     enable_classifier_detector: bool = False
+    embedding_configured_state: str = "enabled"
+    embedding_dependency_state: str = "unknown"
+    embedding_model_load_state: str = "unknown"
+    embedding_runtime_state: str = "unknown"
+    embedding_model_name: Optional[str] = None
+    embedding_fallback_reason: Optional[str] = None
     risk_thresholds: Dict[str, float] = Field(default_factory=dict)
     config_sha256: Optional[str] = None
 

@@ -192,7 +192,26 @@ Evidence inconsistency:
 
 - Runtime says embedding detector is in fallback mode.
 - Evidence says `enable_embedding_detector: true`.
-- This must be fixed before any embedding-related claim is used in UI, README, slides, or judge materials.
+- This was fixed for newly generated evidence after this audit by recording embedding dependency, model load, runtime state, and fallback reason.
+- Existing tracked evidence artifacts were not regenerated because they are dirty user work.
+
+Embedding evidence verification after the fix:
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=backend GRADINGGUARD_REPORTS_V3_DIR=/tmp/ais_gau_security_embedding_evidence python -m app.benchmark.runner_v3
+```
+
+Generated detector snapshot:
+
+```text
+enable_embedding_detector: false
+embedding_configured_state: enabled
+embedding_dependency_state: missing
+embedding_model_load_state: not_attempted
+embedding_runtime_state: unavailable
+embedding_model_name: sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2
+embedding_fallback_reason: No module named 'sentence_transformers'
+```
 
 ## Dataset Snapshot
 
@@ -238,7 +257,7 @@ Phase 0 is not fully complete because:
 - Frontend lint fails.
 - Frontend `/evidence` route is missing despite README/docs claims.
 - Docker claim is unsupported by repo artifacts.
-- Runtime detector health and evidence detector config disagree.
+- Existing tracked evidence artifacts still contain stale embedding state until safely regenerated or reviewed.
 - Source/license registry is incomplete for raw datasets present in the repo.
 
 ## Safety Notes
@@ -254,6 +273,7 @@ Phase 0 is not fully complete because:
 Before implementing product features:
 
 - Make detector health evidence reflect actual runtime dependency/model state.
+- Regenerate or review tracked evidence artifacts now that new runs reflect detector health honestly.
 - Add or remove frontend `/evidence` claims.
 - Remove unsupported Docker Compose claims or add verified Docker artifacts later in the deployment phase.
 - Sync stale metrics in docs/UI from canonical evidence instead of hard-coded values.

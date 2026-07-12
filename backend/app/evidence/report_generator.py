@@ -12,6 +12,7 @@ from app.evidence.schemas import (
     EvidenceMetricSummary,
     EvidenceReport,
 )
+from app.firewall.embedding_detector import get_embedding_detector_health
 
 
 def generate_evidence_report(
@@ -87,11 +88,20 @@ def generate_evidence_report(
 
     # Detector snapshot
     risk_thresholds = {"low": 0.3, "medium": 0.6, "high": 0.85}
+    embedding_health = get_embedding_detector_health(load_model=False)
+    embedding_runtime_state = embedding_health["runtime_state"]
+    embedding_enabled = embedding_runtime_state == "healthy"
     detector_snapshot_dict = {
         "detector_version": "ensemble_v3",
         "threshold_version": "risk_policy_v3",
-        "enable_embedding_detector": True,
+        "enable_embedding_detector": embedding_enabled,
         "enable_classifier_detector": False,
+        "embedding_configured_state": embedding_health["configured_state"],
+        "embedding_dependency_state": embedding_health["dependency_state"],
+        "embedding_model_load_state": embedding_health["model_load_state"],
+        "embedding_runtime_state": embedding_runtime_state,
+        "embedding_model_name": embedding_health["model_name"],
+        "embedding_fallback_reason": embedding_health["fallback_reason"],
         "risk_thresholds": risk_thresholds,
     }
     cfg_sha256 = sha256_json(detector_snapshot_dict)
@@ -99,8 +109,14 @@ def generate_evidence_report(
     detector_config = DetectorConfigSnapshot(
         detector_version="ensemble_v3",
         threshold_version="risk_policy_v3",
-        enable_embedding_detector=True,
+        enable_embedding_detector=embedding_enabled,
         enable_classifier_detector=False,
+        embedding_configured_state=embedding_health["configured_state"],
+        embedding_dependency_state=embedding_health["dependency_state"],
+        embedding_model_load_state=embedding_health["model_load_state"],
+        embedding_runtime_state=embedding_runtime_state,
+        embedding_model_name=embedding_health["model_name"],
+        embedding_fallback_reason=embedding_health["fallback_reason"],
         risk_thresholds=risk_thresholds,
         config_sha256=cfg_sha256,
     )
@@ -202,6 +218,8 @@ def generate_evidence_report(
 ## 🛡️ Detector Configuration
 - **Detector Version**: `{detector_config.detector_version}`
 - **Threshold Version**: `{detector_config.threshold_version}`
+- **Embedding Runtime State**: `{detector_config.embedding_runtime_state}`
+- **Embedding Dependency State**: `{detector_config.embedding_dependency_state}`
 - **Config SHA256**: `{detector_config.config_sha256}`
 
 ---

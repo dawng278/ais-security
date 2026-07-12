@@ -7,7 +7,7 @@ from app.firewall.risk_engine import compute_risk
 from app.firewall.schemas import FirewallAnalyzeRequest, FirewallAnalyzeResponse
 
 
-def analyze_submission(request: FirewallAnalyzeRequest) -> FirewallAnalyzeResponse:
+def analyze_submission(request: FirewallAnalyzeRequest, *, mode: str = "enforce") -> FirewallAnalyzeResponse:
     norm_res = normalize_text(request.text)
     heur_res = detect_heuristics(norm_res.normalized_text)
     obf_res = detect_obfuscation(norm_res.normalized_text, norm_res.flags)
@@ -68,7 +68,7 @@ def analyze_submission(request: FirewallAnalyzeRequest) -> FirewallAnalyzeRespon
     policy = evaluate_policy(
         risk_score=risk_res.risk_score,
         matched_categories=list(heur_res.matched_categories),
-        mode="enforce",
+        mode=mode,
         detector_unavailable=False,
     )
 
@@ -82,6 +82,6 @@ def analyze_submission(request: FirewallAnalyzeRequest) -> FirewallAnalyzeRespon
         explanation=risk_res.explanation,
         detector_contributions=detector_contributions,
         public_reason_code=policy.public_reason_code,
-        operating_mode="enforce",
+        operating_mode=mode,
         counterfactual_action=policy.counterfactual_action,
     )

@@ -1,0 +1,128 @@
+{
+  "verdict": "PHASE_2_DATASET_BENCHMARK_EVIDENCE_DONE",
+  "date": "2026-07-13",
+  "repository": "/home/dawngbeo/school-project/ais-gau-security",
+  "phase2_evidence_run_id": "phase2_integrity_baseline",
+  "protected_files": {
+    "classification": "USER_EXISTING_WORK",
+    "unchanged": true,
+    "checksums": {
+      "datasets/reports/v3/benchmark_v3_combined.json": "863c8509af20d56e4f1370948f3ebf8b11562efef59245ab5e71061b83f44003",
+      "datasets/reports/v3/evidence/evidence_card.md": "c9e60724e1e8d6ba53549e790222e4a1f6e6e8cad8d74fb7001b62dfe9e9071f",
+      "datasets/reports/v3/evidence/evidence_report.json": "c5aa5b41c602c299acb59d8a0097e22aee12ed4d2a5ee8d06b5aa3bacf937b67"
+    }
+  },
+  "source_registry_result": {
+    "path": "datasets/manifests/source_registry.json",
+    "approved": 2,
+    "approved_with_restrictions": 1,
+    "internal_synthetic": 3,
+    "unknown_or_rejected_in_canonical": 0
+  },
+  "canonical_schema": {
+    "path": "schemas/canonical_security_sample.schema.json",
+    "version": "canonical_security_sample.v1",
+    "deterministic_ids": true,
+    "raw_and_normalized_hashes": true
+  },
+  "canonical_samples": {
+    "total": 689,
+    "dataset_hash": "a89eb6c09be417209af94f7026e319840195c4239202bec9639242b6a5511549",
+    "by_track": {
+      "generic_prompt_injection": 662,
+      "ielts_domain_security": 27
+    },
+    "by_language": {
+      "en": 686,
+      "vi": 1,
+      "vi-en": 2
+    },
+    "by_domain": {
+      "generic_llm_security": 662,
+      "ielts_reading": 5,
+      "ielts_speaking": 4,
+      "ielts_writing_task_1": 2,
+      "ielts_writing_task_2": 16
+    }
+  },
+  "deduplication": {
+    "exact_duplicate_groups": 0,
+    "unresolved_measured_duplicate_count": 0,
+    "near_duplicate_groups": 8,
+    "near_duplicate_method": "phase2_token_jaccard_v1",
+    "near_duplicate_threshold": 0.92
+  },
+  "leakage": {
+    "resolved_near_duplicate_holdout_findings": 5,
+    "unresolved_holdout_leakage": 0
+  },
+  "splits": {
+    "algorithm_version": "phase2_group_hash_v1",
+    "seed": "gradingguard_phase2_seed_20260713",
+    "split_hash": "51e795858ff2d8460a4eeda9861407853a22bfbe6257dd9fd6bd3da983ef3fce",
+    "counts": {
+      "private_holdout": 107,
+      "public_test": 89,
+      "train": 493
+    }
+  },
+  "benchmark": {
+    "legacy_safe_rerun": {
+      "total_cases": 662,
+      "accuracy": 0.79,
+      "failures": 139,
+      "output_dir": "/tmp/ais_phase2_legacy_v3"
+    },
+    "generic_canonical_baseline": {
+      "samples": 662,
+      "accuracy": 0.79,
+      "recall": 0.4715,
+      "failures": 139
+    },
+    "ielts_domain_baseline": {
+      "samples": 27,
+      "accuracy": 0.5556,
+      "recall": 0.2143,
+      "low_support": true
+    },
+    "score_integrity": {
+      "deterministic_demo": "DEMO_ONLY",
+      "measured_track": "NOT_MEASURED"
+    },
+    "operational_reliability": {
+      "status": "LOCAL_BENCHMARK",
+      "scenario_count": 12,
+      "p95_ms": 0.29,
+      "production_capacity_claim": false
+    }
+  },
+  "metric_definitions_version": "phase2_metrics_v1",
+  "failure_taxonomy_version": "phase2_failure_taxonomy_v1",
+  "evidence_bundle": {
+    "path": "datasets/evidence/phase2/phase2_integrity_baseline",
+    "approved_run_pointer": "datasets/manifests/approved_evidence_run.json",
+    "bundle_hash": "232e6fcecf974a7782bc3e78a91a8fea94b104590efe2d97ed27ae2d41f8f2f1"
+  },
+  "verification": {
+    "backend_tests": "50 passed",
+    "dataset_integrity_gate": "PASS",
+    "claim_drift_guard": "PASS",
+    "frontend_lint": "PASS",
+    "frontend_typecheck": "PASS",
+    "frontend_build": "PASS",
+    "git_diff_check": "PASS",
+    "protected_checksum_comparison": "PASS",
+    "gau_ielts_head": "f2b7bddf8a24a42e0ded03208e4d92ae3ae166e7",
+    "gau_ielts_unchanged_from_preflight": true
+  },
+  "blockers": [],
+  "warnings": [
+    "IELTS-domain track is intentionally small and LOW_SUPPORT.",
+    "Measured score-integrity is NOT_MEASURED until an approved evaluator exists.",
+    "Operational reliability is local and not production capacity.",
+    "Embedding detector remains unavailable when sentence-transformers is missing.",
+    "Phase 3 detector/policy tuning has not started."
+  ],
+  "unresolved_critical_data_or_license_decisions": 0,
+  "phase3_authorized": false
+}

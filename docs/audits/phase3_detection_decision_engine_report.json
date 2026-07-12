@@ -1,0 +1,103 @@
+{
+  "verdict": "PHASE_3_DETECTION_DECISION_ENGINE_DONE",
+  "date": "2026-07-13",
+  "repository": "/home/dawngbeo/school-project/ais-gau-security",
+  "run_id": "phase3_final_detection_engine",
+  "protected_reports_unchanged": true,
+  "protected_report_checksums": {
+    "datasets/reports/v3/benchmark_v3_combined.json": "863c8509af20d56e4f1370948f3ebf8b11562efef59245ab5e71061b83f44003",
+    "datasets/reports/v3/evidence/evidence_card.md": "c9e60724e1e8d6ba53549e790222e4a1f6e6e8cad8d74fb7001b62dfe9e9071f",
+    "datasets/reports/v3/evidence/evidence_report.json": "c5aa5b41c602c299acb59d8a0097e22aee12ed4d2a5ee8d06b5aa3bacf937b67"
+  },
+  "phase2_evidence_checksums": {
+    "datasets/evidence/phase2/phase2_integrity_baseline/run_manifest.json": "e4d96d149ec26194301ee7cd15ab73d23667c0e97c6e244e08dd89943ca6d1cd",
+    "datasets/evidence/phase2/phase2_integrity_baseline/metrics.json": "4483da1febbeeadf94ff004e1431c0984d76dedd06f9f23f79f95f39b74308dd"
+  },
+  "frozen_hashes": {
+    "canonical_dataset_hash": "a89eb6c09be417209af94f7026e319840195c4239202bec9639242b6a5511549",
+    "split_hash": "51e795858ff2d8460a4eeda9861407853a22bfbe6257dd9fd6bd3da983ef3fce"
+  },
+  "pre_registered_objective": "Reduce generic false negatives and under-blocking without generic FPR above 0.08.",
+  "metrics": {
+    "generic_prompt_injection": {
+      "samples": 662,
+      "accuracy_before": 0.79,
+      "accuracy_after": 0.8369,
+      "recall_before": 0.4715,
+      "recall_after": 0.5894,
+      "false_positive_rate_before": 0.0,
+      "false_positive_rate_after": 0.0,
+      "failure_count_before": 139,
+      "failure_count_after": 111,
+      "under_block_before": 139,
+      "under_block_after": 111,
+      "over_block_before": 0,
+      "over_block_after": 0
+    },
+    "ielts_domain_security": {
+      "samples": 27,
+      "support": "LOW_SUPPORT",
+      "accuracy_before": 0.5556,
+      "accuracy_after": 0.8148,
+      "recall_before": 0.2143,
+      "recall_after": 0.7143,
+      "false_positive_rate_before": 0.0769,
+      "false_positive_rate_after": 0.0769,
+      "failure_count_before": 12,
+      "failure_count_after": 6,
+      "under_block_before": 11,
+      "under_block_after": 5,
+      "over_block_before": 1,
+      "over_block_after": 0
+    }
+  },
+  "changed_predictions": {
+    "corrected_failure": 34,
+    "changed_failure": 5,
+    "action_changed_no_failure": 3,
+    "total": 42
+  },
+  "latency_ms": {
+    "prechange": {
+      "p50": 0.038,
+      "p95": 0.086,
+      "p99": 0.148,
+      "max": 0.788
+    },
+    "final": {
+      "p50": 0.096,
+      "p95": 0.305,
+      "p99": 0.528,
+      "max": 3.133
+    }
+  },
+  "embedding_runtime": "unavailable_when_sentence_transformers_missing",
+  "score_integrity_status": {
+    "deterministic_demo": "DETERMINISTIC_DEMO",
+    "measured": "NOT_MEASURED"
+  },
+  "verification": {
+    "backend_tests": "69 passed",
+    "dataset_integrity_guard": "PASS",
+    "claim_drift_guard": "PASS",
+    "frontend_lint": "PASS",
+    "frontend_typecheck": "PASS",
+    "frontend_build": "PASS",
+    "git_diff_check": "PASS",
+    "gau_ielts_head": "f2b7bddf8a24a42e0ded03208e4d92ae3ae166e7",
+    "gau_ielts_unchanged_from_preflight": true
+  },
+  "evidence": {
+    "path": "datasets/evidence/phase3/phase3_final_detection_engine",
+    "run_manifest_sha256": "f68e4208016df63e0e558f9c4f0ef2e371d9c46b98d891a47fc3a8f027cc770d",
+    "metrics_sha256": "2484ac00a1114d8aa735cbb7b6613ee41fa41dbc9c41f2ba67f96c0cbdab35df"
+  },
+  "unresolved_critical_detector_or_policy_decisions": 0,
+  "phase4_authorized": false,
+  "warnings": [
+    "IELTS-domain metrics are LOW_SUPPORT.",
+    "Embedding remains unavailable unless optional dependency/model load succeeds.",
+    "Score integrity remains deterministic demo / not measured.",
+    "Local latency is not production capacity."
+  ]
+}

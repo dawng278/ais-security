@@ -30,6 +30,10 @@ def detect_obfuscation(
 
     if "base64_like_payload_detected" in normalization_flags:
         flags.append("base64_like_payload_detected")
+        score = max(score, 0.70)
+
+    if "url_encoded_payload_detected" in normalization_flags:
+        flags.append("url_encoded_payload_detected")
         score = max(score, 0.65)
 
     if "markdown_or_code_block_detected" in normalization_flags:
@@ -38,6 +42,10 @@ def detect_obfuscation(
 
     if "zero_width_removed" in normalization_flags:
         flags.append("zero_width_obfuscation_detected")
+        score = max(score, 0.55)
+
+    if "bidi_control_removed" in normalization_flags:
+        flags.append("bidi_control_obfuscation_detected")
         score = max(score, 0.55)
 
     if SYMBOL_HEAVY_RE.search(normalized_text):

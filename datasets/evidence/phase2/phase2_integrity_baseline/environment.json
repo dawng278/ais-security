@@ -1,0 +1,7 @@
+{
+  "package_versions": {
+    "stdlib_only_phase2_tools": true
+  },
+  "platform": "Linux-7.0.13-200.fc44.x86_64-x86_64-with-glibc2.42",
+  "python_version": "3.13.14"
+}

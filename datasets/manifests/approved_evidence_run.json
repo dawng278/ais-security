@@ -1,0 +1,9 @@
+{
+  "approval_scope": "Phase 2 data/evidence integrity contract; not automatic README/UI public metric publication.",
+  "approved_run_id": "phase2_integrity_baseline",
+  "bundle_hash": "232e6fcecf974a7782bc3e78a91a8fea94b104590efe2d97ed27ae2d41f8f2f1",
+  "evidence_path": "datasets/evidence/phase2/phase2_integrity_baseline",
+  "metric_definitions_version": "phase2_metrics_v1",
+  "schema_version": "approved_evidence_run.v1",
+  "status": "approved"
+}

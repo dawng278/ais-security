@@ -1,0 +1,10 @@
+{
+  "observed_phase0_values": {
+    "accuracy": 0.79,
+    "evaluated_cases": 662,
+    "failure_count": 139
+  },
+  "schema_version": "legacy_baseline.v1",
+  "source": "datasets/reports/v3/benchmark_v3_combined.json",
+  "status": "preserved_user_owned_report_not_modified"
+}

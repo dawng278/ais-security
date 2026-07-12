@@ -1,0 +1,33 @@
+{
+  "generic": {
+    "embedding": {
+      "configured_state": "enabled",
+      "dependency_state": "missing",
+      "fallback_reason": "No module named 'sentence_transformers'",
+      "model_load_state": "not_attempted",
+      "model_name": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+      "runtime_state": "unavailable"
+    }
+  },
+  "ielts": {
+    "embedding": {
+      "configured_state": "enabled",
+      "dependency_state": "missing",
+      "fallback_reason": "No module named 'sentence_transformers'",
+      "model_load_state": "not_attempted",
+      "model_name": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+      "runtime_state": "unavailable"
+    }
+  },
+  "operational": {
+    "embedding": {
+      "configured_state": "enabled",
+      "dependency_state": "missing",
+      "fallback_reason": "No module named 'sentence_transformers'",
+      "model_load_state": "not_attempted",
+      "model_name": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+      "runtime_state": "unavailable"
+    },
+    "rule_detector": "healthy"
+  }
+}

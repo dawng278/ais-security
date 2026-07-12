@@ -1,0 +1,296 @@
+{
+  "schema_version": "track_manifest.v1",
+  "tracks": {
+    "generic_prompt_injection": {
+      "accuracy": 0.79,
+      "by_attack_family": {
+        "direct_prompt_injection": 263,
+        "none": 399
+      },
+      "by_language": {
+        "en": 662
+      },
+      "by_split": {
+        "private_holdout": 102,
+        "public_test": 84,
+        "train": 476
+      },
+      "confusion_matrix": {
+        "fn": 139,
+        "fp": 0,
+        "tn": 399,
+        "tp": 124
+      },
+      "detector_health": {
+        "embedding": {
+          "configured_state": "enabled",
+          "dependency_state": "missing",
+          "fallback_reason": "No module named 'sentence_transformers'",
+          "model_load_state": "not_attempted",
+          "model_name": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+          "runtime_state": "unavailable"
+        }
+      },
+      "false_negative_rate": 0.5285,
+      "false_positive_rate": 0.0,
+      "macro_f1": 0.7462,
+      "per_class_f1": {
+        "attack": 0.6408,
+        "clean": 0.8517
+      },
+      "precision": 1.0,
+      "recall": 0.4715,
+      "runtime_seconds": 0.034,
+      "support_warnings": [],
+      "total_samples": 662,
+      "zero_denominator_policy": "precision/recall default to 1.0 only when no predicted/actual positives exist; reports must show sample count."
+    },
+    "ielts_domain_security": {
+      "accuracy": 0.5556,
+      "by_attack_family": {
+        "data_exfiltration": 1,
+        "delimiter_abuse": 1,
+        "direct_prompt_injection": 1,
+        "encoding_attack": 1,
+        "indirect_prompt_injection": 2,
+        "long_context_attack": 1,
+        "multilingual_attack": 2,
+        "none": 13,
+        "policy_manipulation": 1,
+        "role_spoofing": 1,
+        "score_manipulation": 1,
+        "system_prompt_extraction": 1,
+        "unicode_obfuscation": 1
+      },
+      "by_language": {
+        "en": 24,
+        "vi": 1,
+        "vi-en": 2
+      },
+      "by_split": {
+        "private_holdout": 5,
+        "public_test": 5,
+        "train": 17
+      },
+      "confusion_matrix": {
+        "fn": 11,
+        "fp": 1,
+        "tn": 12,
+        "tp": 3
+      },
+      "detector_health": {
+        "embedding": {
+          "configured_state": "enabled",
+          "dependency_state": "missing",
+          "fallback_reason": "No module named 'sentence_transformers'",
+          "model_load_state": "not_attempted",
+          "model_name": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+          "runtime_state": "unavailable"
+        }
+      },
+      "false_negative_rate": 0.7857,
+      "false_positive_rate": 0.0769,
+      "macro_f1": 0.5,
+      "per_class_f1": {
+        "attack": 0.3333,
+        "clean": 0.6667
+      },
+      "precision": 0.75,
+      "recall": 0.2143,
+      "runtime_seconds": 0.002,
+      "support_warnings": [
+        {
+          "count": 1,
+          "dimension": "language",
+          "status": "LOW_SUPPORT",
+          "value": "vi"
+        },
+        {
+          "count": 2,
+          "dimension": "language",
+          "status": "LOW_SUPPORT",
+          "value": "vi-en"
+        },
+        {
+          "count": 5,
+          "dimension": "domain",
+          "status": "LOW_SUPPORT",
+          "value": "ielts_reading"
+        },
+        {
+          "count": 4,
+          "dimension": "domain",
+          "status": "LOW_SUPPORT",
+          "value": "ielts_speaking"
+        },
+        {
+          "count": 2,
+          "dimension": "domain",
+          "status": "LOW_SUPPORT",
+          "value": "ielts_writing_task_1"
+        },
+        {
+          "count": 16,
+          "dimension": "domain",
+          "status": "LOW_SUPPORT",
+          "value": "ielts_writing_task_2"
+        },
+        {
+          "count": 1,
+          "dimension": "attack_family",
+          "status": "LOW_SUPPORT",
+          "value": "data_exfiltration"
+        },
+        {
+          "count": 1,
+          "dimension": "attack_family",
+          "status": "LOW_SUPPORT",
+          "value": "delimiter_abuse"
+        },
+        {
+          "count": 1,
+          "dimension": "attack_family",
+          "status": "LOW_SUPPORT",
+          "value": "direct_prompt_injection"
+        },
+        {
+          "count": 1,
+          "dimension": "attack_family",
+          "status": "LOW_SUPPORT",
+          "value": "encoding_attack"
+        },
+        {
+          "count": 2,
+          "dimension": "attack_family",
+          "status": "LOW_SUPPORT",
+          "value": "indirect_prompt_injection"
+        },
+        {
+          "count": 1,
+          "dimension": "attack_family",
+          "status": "LOW_SUPPORT",
+          "value": "long_context_attack"
+        },
+        {
+          "count": 2,
+          "dimension": "attack_family",
+          "status": "LOW_SUPPORT",
+          "value": "multilingual_attack"
+        },
+        {
+          "count": 13,
+          "dimension": "attack_family",
+          "status": "LOW_SUPPORT",
+          "value": "none"
+        },
+        {
+          "count": 1,
+          "dimension": "attack_family",
+          "status": "LOW_SUPPORT",
+          "value": "policy_manipulation"
+        },
+        {
+          "count": 1,
+          "dimension": "attack_family",
+          "status": "LOW_SUPPORT",
+          "value": "role_spoofing"
+        },
+        {
+          "count": 1,
+          "dimension": "attack_family",
+          "status": "LOW_SUPPORT",
+          "value": "score_manipulation"
+        },
+        {
+          "count": 1,
+          "dimension": "attack_family",
+          "status": "LOW_SUPPORT",
+          "value": "system_prompt_extraction"
+        },
+        {
+          "count": 1,
+          "dimension": "attack_family",
+          "status": "LOW_SUPPORT",
+          "value": "unicode_obfuscation"
+        },
+        {
+          "count": 5,
+          "dimension": "split",
+          "status": "LOW_SUPPORT",
+          "value": "private_holdout"
+        },
+        {
+          "count": 5,
+          "dimension": "split",
+          "status": "LOW_SUPPORT",
+          "value": "public_test"
+        },
+        {
+          "count": 17,
+          "dimension": "split",
+          "status": "LOW_SUPPORT",
+          "value": "train"
+        }
+      ],
+      "total_samples": 27,
+      "zero_denominator_policy": "precision/recall default to 1.0 only when no predicted/actual positives exist; reports must show sample count."
+    },
+    "operational_reliability": {
+      "action_distribution": {
+        "allow": 3,
+        "manual_review": 1,
+        "secure_grade": 1
+      },
+      "detector_availability": {
+        "embedding": {
+          "configured_state": "enabled",
+          "dependency_state": "missing",
+          "fallback_reason": "No module named 'sentence_transformers'",
+          "model_load_state": "not_attempted",
+          "model_name": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+          "runtime_state": "unavailable"
+        },
+        "rule_detector": "healthy"
+      },
+      "environment_label": "local benchmark; environment-specific; not production capacity",
+      "error_rate": 0.0,
+      "p50_ms": 0.0,
+      "p95_ms": 0.29,
+      "p99_ms": 0.29,
+      "scenario_count": 12,
+      "status": "LOCAL_BENCHMARK",
+      "throughput_requests_per_second": 12000.0,
+      "timeout_rate": 0.0,
+      "track": "operational_reliability"
+    },
+    "score_integrity": {
+      "deterministic_demonstration": {
+        "attacked_score": 8.5,
+        "clean_score": 5.5,
+        "label": "deterministic demonstration; non-measured; not evidence of real LLM robustness",
+        "protected_score": 5.5,
+        "status": "DEMO_ONLY"
+      },
+      "measured_score_integrity": {
+        "hard_coded_demo_results_allowed": false,
+        "reason": "No approved measured grader adapter is available in Phase 2.",
+        "required_future_metadata": [
+          "evaluator_type",
+          "evaluator_version",
+          "provider",
+          "configuration",
+          "run_count",
+          "temperature",
+          "clean_score",
+          "attacked_score",
+          "protected_score",
+          "score_drift",
+          "secure_recovery",
+          "variance",
+          "cost"
+        ],
+        "status": "NOT_MEASURED"
+      }
+    }
+  }
+}

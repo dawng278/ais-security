@@ -113,6 +113,16 @@ CLAIM_PATTERNS = [
         re.compile(r"(semantic embedding|embedding detector)[^\n]*(?:enabled|healthy|detects instruction overrides regardless)", re.IGNORECASE),
         "Embedding is optional and currently unavailable in runtime evidence.",
     ),
+    ClaimPattern(
+        "demo_score_claimed_as_measured",
+        re.compile(r"(5\.5\s*(?:→|->)\s*8\.5\s*(?:→|->)\s*5\.5|8\.5[^\n]*5\.5)[^\n]*(?:measured|real LLM|production|validated grader)", re.IGNORECASE),
+        "The deterministic 5.5→8.5→5.5 path is demo-only, not measured score-integrity evidence.",
+    ),
+    ClaimPattern(
+        "unsupported_phase2_latency_claim",
+        re.compile(r"(?:p50|p95|p99|throughput)[^\n]*(?:production|prod|capacity|SLA)", re.IGNORECASE),
+        "Phase 2 operational latency is local/environment-specific and must not be presented as production capacity.",
+    ),
 ]
 
 
@@ -146,6 +156,32 @@ def canonical_metrics(root: Path) -> dict:
         "failure_count": benchmark.get("failure_analysis_count") or combined.get("failure_analysis_count"),
         "embedding_runtime_state": detector.get("embedding_runtime_state"),
         "embedding_enabled": detector.get("enable_embedding_detector"),
+    }
+
+
+def phase2_evidence_state(root: Path) -> dict:
+    approved = load_json(root / "datasets/manifests/approved_evidence_run.json")
+    track = load_json(root / "datasets/manifests/track_manifest.json")
+    if not approved:
+        return {
+            "approved_run_id": None,
+            "approved_status": "missing",
+            "measured_score_integrity_status": "missing",
+            "operational_environment_label": "missing",
+        }
+
+    tracks = track.get("tracks", {})
+    score_integrity = tracks.get("score_integrity", {})
+    measured = score_integrity.get("measured_score_integrity", {})
+    operational = tracks.get("operational_reliability", {})
+    return {
+        "approved_run_id": approved.get("approved_run_id"),
+        "approved_status": approved.get("status"),
+        "approval_scope": approved.get("approval_scope"),
+        "metric_definitions_version": approved.get("metric_definitions_version"),
+        "measured_score_integrity_status": measured.get("status"),
+        "deterministic_demo_status": score_integrity.get("deterministic_demonstration", {}).get("status"),
+        "operational_environment_label": operational.get("environment_label"),
     }
 
 
@@ -221,14 +257,43 @@ def docker_findings(root: Path, findings: list[dict]) -> list[dict]:
     return []
 
 
+def phase2_evidence_findings(root: Path) -> list[dict]:
+    state = phase2_evidence_state(root)
+    findings: list[dict] = []
+    if state["approved_status"] not in {"approved", "missing"}:
+        findings.append(
+            {
+                "file": "datasets/manifests/approved_evidence_run.json",
+                "line": 0,
+                "claim_type": "unapproved_phase2_evidence_run",
+                "claim_text": str(state["approved_run_id"]),
+                "message": "Phase 2 public measured claims may only reference approved runs.",
+            }
+        )
+    if state["measured_score_integrity_status"] not in {"NOT_MEASURED", "missing"}:
+        findings.append(
+            {
+                "file": "datasets/manifests/track_manifest.json",
+                "line": 0,
+                "claim_type": "unexpected_measured_score_integrity_status",
+                "claim_text": str(state["measured_score_integrity_status"]),
+                "message": "Measured score-integrity status must stay NOT_MEASURED until an approved evaluator exists.",
+            }
+        )
+    return findings
+
+
 def build_report(root: Path, scan_paths: Iterable[str]) -> dict:
     findings = scan_claims(root, scan_paths)
     findings.extend(route_findings(root))
     findings.extend(docker_findings(root, findings))
+    findings.extend(phase2_evidence_findings(root))
     metrics = canonical_metrics(root)
+    phase2_state = phase2_evidence_state(root)
     return {
         "status": "PASS" if not findings else "FAIL",
         "canonical_metrics": metrics,
+        "phase2_evidence_state": phase2_state,
         "scan_paths": list(scan_paths),
         "findings": findings,
         "summary": {
@@ -254,6 +319,7 @@ def main() -> int:
     else:
         print(f"Public claim audit: {report['status']}")
         print(f"Canonical metric source: {report['canonical_metrics']['source']}")
+        print(f"Phase 2 approved run: {report['phase2_evidence_state']['approved_run_id']}")
         print(f"Findings: {report['summary']['finding_count']}")
         for finding in report["findings"]:
             print(f"- {finding['file']}:{finding['line']} [{finding['claim_type']}] {finding['claim_text']}")

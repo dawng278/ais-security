@@ -1,0 +1,138 @@
+{
+  "action_distribution": {
+    "allow": 3,
+    "manual_review": 1,
+    "secure_grade": 1
+  },
+  "detector_availability": {
+    "embedding": {
+      "configured_state": "enabled",
+      "dependency_state": "missing",
+      "fallback_reason": "No module named 'sentence_transformers'",
+      "model_load_state": "not_attempted",
+      "model_name": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+      "runtime_state": "unavailable"
+    },
+    "rule_detector": "healthy"
+  },
+  "environment_label": "local benchmark; environment-specific; not production capacity",
+  "error_rate": 0.0,
+  "p50_ms": 0.0,
+  "p95_ms": 0.29,
+  "p99_ms": 0.29,
+  "results": [
+    {
+      "action": "allow",
+      "expected_state": "success",
+      "fault": "none",
+      "latency_ms": 0.047,
+      "observed_state": "success",
+      "risk_score": 0.01,
+      "scenario_id": "normal_request_latency"
+    },
+    {
+      "action": "allow",
+      "expected_state": "success",
+      "fault": "long_request",
+      "latency_ms": 0.29,
+      "observed_state": "success",
+      "risk_score": 0.01,
+      "scenario_id": "long_request_latency"
+    },
+    {
+      "action": "manual_review",
+      "expected_state": "success_with_embedding_unavailable",
+      "fault": "embedding_unavailable",
+      "latency_ms": 0.042,
+      "observed_state": "success_with_embedding_unavailable",
+      "risk_score": 0.86,
+      "scenario_id": "rule_detector_only"
+    },
+    {
+      "action": "allow",
+      "expected_state": "success_with_embedding_unavailable",
+      "fault": "embedding_unavailable",
+      "latency_ms": 0.038,
+      "observed_state": "success_with_embedding_unavailable",
+      "risk_score": 0.01,
+      "scenario_id": "embedding_unavailable"
+    },
+    {
+      "action": null,
+      "expected_state": "simulated",
+      "fault": "simulated_partial_detector_failure",
+      "latency_ms": 0.0,
+      "observed_state": "simulated",
+      "risk_score": null,
+      "scenario_id": "partial_detector_failure"
+    },
+    {
+      "action": null,
+      "expected_state": "simulated",
+      "fault": "simulated_detector_timeout",
+      "latency_ms": 0.0,
+      "observed_state": "simulated",
+      "risk_score": null,
+      "scenario_id": "detector_timeout"
+    },
+    {
+      "action": null,
+      "expected_state": "validation_error",
+      "fault": "malformed_input",
+      "latency_ms": 0.0,
+      "observed_state": "validation_error",
+      "risk_score": null,
+      "scenario_id": "malformed_input"
+    },
+    {
+      "action": null,
+      "expected_state": "schema_limit",
+      "fault": "oversized_input",
+      "latency_ms": 0.0,
+      "observed_state": "schema_limit",
+      "risk_score": null,
+      "scenario_id": "oversized_input"
+    },
+    {
+      "action": null,
+      "expected_state": "simulated",
+      "fault": "simulated_policy_error",
+      "latency_ms": 0.0,
+      "observed_state": "simulated",
+      "risk_score": null,
+      "scenario_id": "policy_error_simulation"
+    },
+    {
+      "action": null,
+      "expected_state": "simulated",
+      "fault": "simulated_grader_timeout",
+      "latency_ms": 0.0,
+      "observed_state": "simulated",
+      "risk_score": null,
+      "scenario_id": "grader_timeout_simulation"
+    },
+    {
+      "action": null,
+      "expected_state": "simulated",
+      "fault": "simulated_audit_failure",
+      "latency_ms": 0.0,
+      "observed_state": "simulated",
+      "risk_score": null,
+      "scenario_id": "audit_failure_simulation"
+    },
+    {
+      "action": "secure_grade",
+      "expected_state": "success",
+      "fault": "local_concurrency",
+      "latency_ms": 0.038,
+      "observed_state": "success",
+      "risk_score": 0.68,
+      "scenario_id": "controlled_concurrency"
+    }
+  ],
+  "scenario_count": 12,
+  "status": "LOCAL_BENCHMARK",
+  "throughput_requests_per_second": 12000.0,
+  "timeout_rate": 0.0,
+  "track": "operational_reliability"
+}

@@ -1,0 +1,12 @@
+{
+  "datasets/evidence/phase2/phase2_integrity_baseline/confusion_matrix.json": "69fb7a4b122f8a668b4a9b5cb231a323985de150e1c83b71f6250fa8c324776f",
+  "datasets/evidence/phase2/phase2_integrity_baseline/dataset_manifest.json": "f13d3f8d930ce27b062dcb0fc162247ab505ef00a271f8abbd734046234732a2",
+  "datasets/evidence/phase2/phase2_integrity_baseline/detector_health.json": "7407adcfb83bd3c788b814da631b64e7d341d3418fdafade63a271741261a88e",
+  "datasets/evidence/phase2/phase2_integrity_baseline/environment.json": "4e410a24d5d38effb30295d050fbc5b047a520ef25bb62a4ca6d82912ba8b9af",
+  "datasets/evidence/phase2/phase2_integrity_baseline/evidence_card.md": "37dd8e5df18bd4c7fe59c294f7aebf2ba743d50d237d4e70fd1a01945f37de95",
+  "datasets/evidence/phase2/phase2_integrity_baseline/failure_analysis.jsonl": "002766cd48fe0fac3cfd9df26f5ce04feae5e5c05abf49e78dd8fe3a642bd37f",
+  "datasets/evidence/phase2/phase2_integrity_baseline/metrics.json": "4483da1febbeeadf94ff004e1431c0984d76dedd06f9f23f79f95f39b74308dd",
+  "datasets/evidence/phase2/phase2_integrity_baseline/operational_reliability.json": "672ba0a5461eeb1832417dc8fa24521f12d1166a0740f457ba3ef3bad2cf60f8",
+  "datasets/evidence/phase2/phase2_integrity_baseline/run_manifest.json": "a2cdd1a3a07c06f5923798aad4b2328f627ada384d1be6f57c3d12e0aafdc65d",
+  "datasets/evidence/phase2/phase2_integrity_baseline/score_integrity.json": "5a7fb00793b5c09399c66b5b8df9f790811d762b1c7142cefac492db1be8b1c7"
+}

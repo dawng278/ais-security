@@ -1,0 +1,29 @@
+{
+  "deterministic_demonstration": {
+    "attacked_score": 8.5,
+    "clean_score": 5.5,
+    "label": "deterministic demonstration; non-measured; not evidence of real LLM robustness",
+    "protected_score": 5.5,
+    "status": "DEMO_ONLY"
+  },
+  "measured_score_integrity": {
+    "hard_coded_demo_results_allowed": false,
+    "reason": "No approved measured grader adapter is available in Phase 2.",
+    "required_future_metadata": [
+      "evaluator_type",
+      "evaluator_version",
+      "provider",
+      "configuration",
+      "run_count",
+      "temperature",
+      "clean_score",
+      "attacked_score",
+      "protected_score",
+      "score_drift",
+      "secure_recovery",
+      "variance",
+      "cost"
+    ],
+    "status": "NOT_MEASURED"
+  }
+}

@@ -100,9 +100,27 @@ def docker_status() -> dict[str, Any]:
     }
 
 
+def phase6_static_validation() -> dict[str, Any]:
+    result = run([sys.executable, "scripts/phase6_static_validation.py"])
+    parsed: dict[str, Any] | None = None
+    if result["status"] == "PASS" and result.get("stdout"):
+        try:
+            parsed = json.loads(result["stdout"])
+        except json.JSONDecodeError:
+            parsed = None
+    return {
+        "status": result["status"],
+        "command": result["command"],
+        "parsed": parsed,
+        "stdout": result.get("stdout"),
+        "stderr": result.get("stderr"),
+    }
+
+
 def main() -> int:
     OUT.mkdir(parents=True, exist_ok=True)
     docker = docker_status()
+    static_validation = phase6_static_validation()
     manifest = {
         "run_id": "phase6_deployment_reproducibility",
         "status": "STARTED",
@@ -119,10 +137,14 @@ def main() -> int:
         "protected_checksums": protected_checksums(),
         "versions": package_versions(),
         "docker": docker,
+        "phase6a_static_validation": static_validation,
         "artifacts": {
             "webkit_test_image_dockerfile": "frontend/e2e/Dockerfile.playwright-webkit",
             "dockerignore": ".dockerignore",
+            "environment_contract": "docs/contracts/environment-contract.md",
+            "deployment_reproducibility_runbook": "docs/operations/deployment-reproducibility-runbook.md",
             "manual_acceptance_checklist": "docs/frontend/phase5-manual-browser-acceptance.md",
+            "static_validation_workflow": ".github/workflows/phase6-static.yml",
         },
         "readiness": {
             "demo": "READY_WITH_ENVIRONMENTAL_WAIVER",

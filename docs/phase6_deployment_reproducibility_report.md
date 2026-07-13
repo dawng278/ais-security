@@ -18,6 +18,7 @@ PRODUCTION_READY: NOT_READY
 - Add a reusable WebKit test-container artifact without claiming it is verified in this local environment.
 - Add an external-server mode to the Playwright config so browser containers can run against host-started isolated E2E services.
 - Add an environment audit script for reproducibility and deployment readiness.
+- Add a non-Docker Phase 6A static validation gate for environment contracts, pinned versions, build-context boundaries and readiness truthfulness.
 
 ## Current local environment result
 
@@ -31,6 +32,29 @@ base image: mcr.microsoft.com/playwright:v1.61.1-noble
 ```
 
 No production deployment claim is made.
+
+## Phase 6A non-Docker hardening
+
+The following artifacts are now part of the reproducibility contract:
+
+```text
+docs/contracts/environment-contract.md
+docs/operations/deployment-reproducibility-runbook.md
+scripts/phase6_static_validation.py
+.github/workflows/phase6-static.yml
+backend/.env.example
+frontend/.env.example
+```
+
+Current static gate:
+
+```text
+phase6_static_validation: PASS
+docker_runtime_required: false
+docker_verified: false
+webkit_verified: false
+production_ready: false
+```
 
 ## Verification debt retained
 

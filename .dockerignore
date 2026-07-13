@@ -1,0 +1,25 @@
+# Keep Docker build contexts small and free of local artifacts.
+
+.git
+.pytest_cache
+**/__pycache__/
+**/*.pyc
+
+frontend/node_modules
+frontend/.next
+frontend/.playwright-artifacts
+frontend/.playwright-e2e
+frontend/playwright-report
+frontend/test-results
+frontend/.env*
+
+backend/venv
+backend/.env*
+backend/.pytest_cache
+
+datasets/reports/v3/
+datasets/evidence/
+
+*.pem
+*.log
+.DS_Store

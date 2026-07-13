@@ -8,6 +8,7 @@ const BACKEND_URL = `http://127.0.0.1:${BACKEND_PORT}`;
 const NODE_BIN_DIR = process.env.PHASE5_E2E_NODE_BIN_DIR ?? "/home/dawngbeo/Documents/study-code/.tools/node-v20.19.2-linux-x64/bin";
 const E2E_DIR = path.resolve(__dirname, ".playwright-e2e");
 const E2E_DB = path.join(E2E_DIR, "phase5-browser-acceptance-test.db");
+const USE_EXTERNAL_SERVERS = process.env.PHASE5_E2E_EXTERNAL_SERVERS === "1";
 
 export default defineConfig({
   testDir: "./tests/e2e/phase5",
@@ -39,7 +40,7 @@ export default defineConfig({
     databaseURL: `sqlite:///${E2E_DB}`,
     databaseIsolation: "single isolated temporary SQLite DB with per-project fixture IDs and workers=1",
   },
-  webServer: [
+  webServer: USE_EXTERNAL_SERVERS ? undefined : [
     {
       command: [
         `mkdir -p ${JSON.stringify(E2E_DIR)}`,

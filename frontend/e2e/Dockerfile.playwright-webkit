@@ -1,0 +1,33 @@
+# Test-only Playwright WebKit runner for Phase 5 verification debt closure.
+#
+# This is not a production deployment image.
+# Build/use only from a clean environment after confirming the project package
+# still pins @playwright/test to 1.61.1.
+#
+# Suggested build context: repository root.
+# Suggested run topology:
+# - backend and frontend are started on the host with isolated TEST_DATABASE_URL;
+# - this container runs only Playwright WebKit projects with --network host;
+# - set PHASE5_E2E_EXTERNAL_SERVERS=1 so Playwright does not start nested servers.
+
+FROM mcr.microsoft.com/playwright:v1.61.1-noble
+
+WORKDIR /workspace
+
+COPY frontend/package.json frontend/package-lock.json ./frontend/
+WORKDIR /workspace/frontend
+RUN npm ci
+
+WORKDIR /workspace
+COPY frontend/eslint.config.mjs frontend/next.config.ts frontend/postcss.config.mjs frontend/tsconfig.json frontend/playwright.config.ts ./frontend/
+COPY frontend/src ./frontend/src
+COPY frontend/public ./frontend/public
+COPY frontend/tests ./frontend/tests
+
+WORKDIR /workspace/frontend
+
+ENV CI=1
+ENV PHASE5_E2E_EXTERNAL_SERVERS=1
+ENV NEXT_PUBLIC_API_URL=http://127.0.0.1:18100
+
+CMD ["npx", "playwright", "test", "--project=webkit-desktop", "--project=mobile-ios"]

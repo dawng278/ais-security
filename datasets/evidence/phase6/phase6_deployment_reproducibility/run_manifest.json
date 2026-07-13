@@ -1,0 +1,97 @@
+{
+  "artifacts": {
+    "dockerignore": ".dockerignore",
+    "manual_acceptance_checklist": "docs/frontend/phase5-manual-browser-acceptance.md",
+    "webkit_test_image_dockerfile": "frontend/e2e/Dockerfile.playwright-webkit"
+  },
+  "dirty_worktree": [
+    "M datasets/reports/v3/benchmark_v3_combined.json",
+    " M datasets/reports/v3/evidence/evidence_card.md",
+    " M datasets/reports/v3/evidence/evidence_report.json",
+    "?? datasets/evidence/phase6/",
+    "?? docs/phase6_deployment_reproducibility_report.md",
+    "?? scripts/phase6_environment_audit.py"
+  ],
+  "docker": {
+    "docker_cli": null,
+    "preferred_image": "mcr.microsoft.com/playwright:v1.61.1-noble",
+    "reason": "docker CLI is unavailable in this environment",
+    "status": "UNAVAILABLE",
+    "verified": false
+  },
+  "environment": {
+    "platform": "Linux-7.0.13-200.fc44.x86_64-x86_64-with-glibc2.42",
+    "python": "3.13.14"
+  },
+  "git_commit": "c6425ef33ee940f3beb0cf6f28e0d6bc72d72c9b",
+  "limitations": [
+    "Docker cannot be verified in this local environment because docker CLI is unavailable.",
+    "The Playwright WebKit container artifact is test-only and unverified until built/run in a clean Docker environment.",
+    "Phase 5 WebKit/iOS and human manual acceptance debt remains open."
+  ],
+  "phase5_waiver": {
+    "formal_verdict": "PHASE_5_FRONTEND_SECURITY_CONSOLE_PARTIAL",
+    "implementation": "ACCEPTED",
+    "phase6": "AUTHORIZED",
+    "verification_debt": "OPEN"
+  },
+  "protected_checksums": {
+    "actual": {
+      "datasets/evidence/phase2/phase2_integrity_baseline/metrics.json": "4483da1febbeeadf94ff004e1431c0984d76dedd06f9f23f79f95f39b74308dd",
+      "datasets/evidence/phase2/phase2_integrity_baseline/run_manifest.json": "e4d96d149ec26194301ee7cd15ab73d23667c0e97c6e244e08dd89943ca6d1cd",
+      "datasets/evidence/phase3/phase3_final_detection_engine/metrics.json": "2484ac00a1114d8aa735cbb7b6613ee41fa41dbc9c41f2ba67f96c0cbdab35df",
+      "datasets/evidence/phase3/phase3_final_detection_engine/run_manifest.json": "f68e4208016df63e0e558f9c4f0ef2e371d9c46b98d891a47fc3a8f027cc770d",
+      "datasets/evidence/phase4/phase4_operational_safety/phase3_regression_report.json": "212391bdb3b922dab29602a7a7d16e1b9e87ab4b6429e28c94fe5c12571a8272",
+      "datasets/evidence/phase4/phase4_operational_safety/run_manifest.json": "2be011314732a7c080a5fb488c8cc9320ee9dc11f30842bbaa520d85683b9be0",
+      "datasets/reports/v3/benchmark_v3_combined.json": "863c8509af20d56e4f1370948f3ebf8b11562efef59245ab5e71061b83f44003",
+      "datasets/reports/v3/evidence/evidence_card.md": "c9e60724e1e8d6ba53549e790222e4a1f6e6e8cad8d74fb7001b62dfe9e9071f",
+      "datasets/reports/v3/evidence/evidence_report.json": "c5aa5b41c602c299acb59d8a0097e22aee12ed4d2a5ee8d06b5aa3bacf937b67"
+    },
+    "expected": {
+      "datasets/evidence/phase2/phase2_integrity_baseline/metrics.json": "4483da1febbeeadf94ff004e1431c0984d76dedd06f9f23f79f95f39b74308dd",
+      "datasets/evidence/phase2/phase2_integrity_baseline/run_manifest.json": "e4d96d149ec26194301ee7cd15ab73d23667c0e97c6e244e08dd89943ca6d1cd",
+      "datasets/evidence/phase3/phase3_final_detection_engine/metrics.json": "2484ac00a1114d8aa735cbb7b6613ee41fa41dbc9c41f2ba67f96c0cbdab35df",
+      "datasets/evidence/phase3/phase3_final_detection_engine/run_manifest.json": "f68e4208016df63e0e558f9c4f0ef2e371d9c46b98d891a47fc3a8f027cc770d",
+      "datasets/evidence/phase4/phase4_operational_safety/phase3_regression_report.json": "212391bdb3b922dab29602a7a7d16e1b9e87ab4b6429e28c94fe5c12571a8272",
+      "datasets/evidence/phase4/phase4_operational_safety/run_manifest.json": "2be011314732a7c080a5fb488c8cc9320ee9dc11f30842bbaa520d85683b9be0",
+      "datasets/reports/v3/benchmark_v3_combined.json": "863c8509af20d56e4f1370948f3ebf8b11562efef59245ab5e71061b83f44003",
+      "datasets/reports/v3/evidence/evidence_card.md": "c9e60724e1e8d6ba53549e790222e4a1f6e6e8cad8d74fb7001b62dfe9e9071f",
+      "datasets/reports/v3/evidence/evidence_report.json": "c5aa5b41c602c299acb59d8a0097e22aee12ed4d2a5ee8d06b5aa3bacf937b67"
+    },
+    "status": "PASS"
+  },
+  "readiness": {
+    "competition_submission": "NOT_READY",
+    "demo": "READY_WITH_ENVIRONMENTAL_WAIVER",
+    "docker_deployment_verified": false,
+    "production": "NOT_READY"
+  },
+  "run_id": "phase6_deployment_reproducibility",
+  "status": "STARTED",
+  "verdict": "PHASE_6_STARTED_ENVIRONMENT_HARDENING_PARTIAL",
+  "versions": {
+    "axe_playwright": "4.12.1",
+    "next": "16.2.10",
+    "node": {
+      "command": [
+        "/home/dawngbeo/Documents/study-code/.tools/node-v20.19.2-linux-x64/bin/node",
+        "--version"
+      ],
+      "returncode": 0,
+      "status": "PASS",
+      "stderr": "",
+      "stdout": "v20.19.2"
+    },
+    "npm": {
+      "command": [
+        "/home/dawngbeo/Documents/study-code/.tools/node-v20.19.2-linux-x64/bin/npm",
+        "--version"
+      ],
+      "returncode": 127,
+      "status": "FAIL",
+      "stderr": "env: \u2018node\u2019: No such file or directory",
+      "stdout": ""
+    },
+    "playwright": "1.61.1"
+  }
+}

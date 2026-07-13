@@ -1,0 +1,21 @@
+{
+  "blocked_projects": [
+    "webkit-desktop",
+    "mobile-ios"
+  ],
+  "covered": [
+    "skip link",
+    "mobile drawer",
+    "incident reveal",
+    "manual review controls",
+    "policy control",
+    "judge view focus"
+  ],
+  "passed_projects": [
+    "chromium-desktop",
+    "firefox-desktop",
+    "mobile-android",
+    "tablet"
+  ],
+  "status": "PARTIAL_AUTOMATED_PASS_4_OF_6_MANUAL_NOT_RUN"
+}

@@ -1,11 +1,20 @@
 {
-  "implemented": [
-    "skip link",
-    "landmarks",
-    "focus-visible",
-    "table headers",
-    "text labels beyond color",
-    "reduced motion"
+  "blocked_projects": [
+    "webkit-desktop",
+    "mobile-ios"
   ],
-  "status": "STATIC_PASS_BROWSER_SCAN_NOT_RUN"
+  "fixes": [
+    "button contrast",
+    "description-list structure",
+    "focusable scrollable JSON regions"
+  ],
+  "passed_projects": [
+    "chromium-desktop",
+    "firefox-desktop",
+    "mobile-android",
+    "tablet"
+  ],
+  "status": "PARTIAL_PASS_4_OF_6",
+  "tool": "@axe-core/playwright",
+  "unresolved_critical_or_serious_in_passed_projects": 0
 }

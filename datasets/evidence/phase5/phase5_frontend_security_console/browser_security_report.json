@@ -3,10 +3,10 @@
     "webkit-desktop",
     "mobile-ios"
   ],
-  "fixes": [
-    "mobile production-readiness status bar",
-    "policy ID/checksum wrapping",
-    "technical row wrapping"
+  "covered": [
+    "XSS non-execution",
+    "token absence from URL/localStorage/sessionStorage",
+    "restricted content withheld before reveal"
   ],
   "passed_projects": [
     "chromium-desktop",

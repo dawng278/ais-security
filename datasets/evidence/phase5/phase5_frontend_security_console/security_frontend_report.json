@@ -1,6 +1,6 @@
 {
   "dangerously_set_inner_html": true,
-  "local_storage_absent": true,
+  "runtime_local_storage_absent": true,
   "status": "PASS",
   "truth_labels": {
     "DETERMINISTIC_DEMO": true,

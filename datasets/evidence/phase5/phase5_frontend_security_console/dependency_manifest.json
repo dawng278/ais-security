@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "versions": {
+    "axe_playwright": "4.12.1",
+    "node": "v20.19.2",
+    "package_manager": "npm package-lock.json",
+    "playwright": "1.61.1"
+  }
+}

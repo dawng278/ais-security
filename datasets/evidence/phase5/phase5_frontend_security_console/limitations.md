@@ -1,5 +1,5 @@
 # Phase 5 Limitations
 
-- Browser E2E matrix is not run in this dependency set.
-- 200% zoom and automated browser accessibility scans remain acceptance work.
+- Browser E2E matrix is PARTIAL: 4/6 projects passed; WebKit desktop and mobile iOS are blocked by missing host system dependencies.
+- Actual headed 200% browser zoom and manual keyboard acceptance remain open.
 - PRODUCTION_READY remains NOT_READY.

@@ -30,10 +30,25 @@ Verification passed:
 - Phase 5 static frontend safety tests;
 - backend Phase 4 regression tests;
 - dataset/claim guards.
+- pinned Playwright browser infrastructure;
+- real-backend E2E on isolated `TEST_DATABASE_URL` SQLite;
+- Chromium desktop browser acceptance: 11/11 PASS;
+- Firefox desktop browser acceptance: 11/11 PASS;
+- Android mobile browser acceptance: 11/11 PASS;
+- Chromium tablet browser acceptance: 11/11 PASS.
 
 Partial reason:
 
-- full six-browser Playwright E2E matrix, 200% zoom browser verification and automated accessibility browser scan are not available because the frontend project does not include Playwright test tooling in the current dependency set.
+- WebKit desktop and mobile iOS remain blocked by missing host system dependencies (`libgtk-4-1`, `libicu74`, `libxml2`, `libevent-2.1-7t64`, `libflite1`, `libjpeg-turbo8`, `libmanette-0.2-0`, `libenchant-2-2`, `libwoff1`); sudo non-interactive is unavailable.
+- actual headed-browser 200% zoom and manual keyboard acceptance were not completed. Headless keyboard-shortcut reflow regression passed on runnable projects but is not enough to promote Phase 5 to DONE.
+
+Browser-discovered fixes:
+
+- default incident lists/details no longer render raw candidate content before audited reveal;
+- session token truth label is visible;
+- long technical policy/row values wrap without page overflow;
+- mobile header exposes `Pilot · Production Not Ready`;
+- axe serious issues fixed for button contrast, description-list structure and focusable scrollable JSON regions.
 
 Readiness:
 
@@ -42,4 +57,3 @@ Readiness:
 - PRODUCTION_READY: NOT_READY
 
 Phase 6 was not started.
-

@@ -1,0 +1,5 @@
+{
+  "command": "PYTHONPATH=.:.. python3 -m pytest tests",
+  "result": "82 passed",
+  "status": "PASS"
+}

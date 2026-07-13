@@ -1,4 +1,8 @@
 {
+  "blocked_projects": [
+    "webkit-desktop",
+    "mobile-ios"
+  ],
   "flows": [
     "viewer",
     "analyst",
@@ -8,5 +12,11 @@
     "attack arena",
     "judge view"
   ],
-  "status": "STATIC_AND_BUILD_PASS_E2E_NOT_RUN"
+  "passed_projects": [
+    "chromium-desktop",
+    "firefox-desktop",
+    "mobile-android",
+    "tablet"
+  ],
+  "status": "PARTIAL_PASS_4_OF_6"
 }

@@ -1,6 +1,6 @@
 {
   "verdict": "PHASE_5_FRONTEND_SECURITY_CONSOLE_PARTIAL",
-  "partial_reason": "Six-browser Playwright E2E, browser zoom and automated browser accessibility matrix are unavailable in the current frontend dependency set.",
+  "partial_reason": "Browser closure is partial: Chromium desktop, Firefox desktop, Android mobile and Chromium tablet passed 44/44 real-backend Playwright tests, but WebKit desktop and mobile iOS are blocked by missing host system dependencies; actual headed 200% zoom and manual keyboard acceptance remain open.",
   "competition_ready": "READY",
   "pilot_ready": "READY",
   "production_ready": "NOT_READY",
@@ -28,6 +28,34 @@
     "MEASURED_SCORE_INTEGRITY NOT_MEASURED",
     "EMBEDDING_RUNTIME unavailable/degraded when missing",
     "PRODUCTION_READY NOT_READY"
+  ],
+  "browser_closure": {
+    "playwright": "1.61.1",
+    "axe_core_playwright": "4.12.1",
+    "node": "v20.19.2",
+    "passed_projects": {
+      "chromium-desktop": "11/11 PASS",
+      "firefox-desktop": "11/11 PASS",
+      "mobile-android": "11/11 PASS",
+      "tablet": "11/11 PASS"
+    },
+    "blocked_projects": {
+      "webkit-desktop": "BLOCKED_HOST_DEPENDENCIES",
+      "mobile-ios": "BLOCKED_HOST_DEPENDENCIES"
+    },
+    "real_backend": true,
+    "e2e_database": "isolated TEST_DATABASE_URL SQLite",
+    "critical_flows": "PASS on runnable projects",
+    "accessibility": "PASS on runnable projects, no unresolved serious/critical axe findings",
+    "keyboard": "AUTOMATED PASS on runnable projects; manual acceptance NOT_RUN",
+    "zoom_200_percent": "HEADLESS REFLOW PASS on runnable projects; actual headed browser zoom NOT_CONFIRMED",
+    "flake_count": 0
+  },
+  "browser_discovered_fixes": [
+    "withhold raw candidate content before audited restricted-evidence reveal",
+    "show signed-session truth label",
+    "wrap long technical values to prevent overflow",
+    "show production readiness on mobile header",
+    "fix axe contrast/list/scrollable-region issues"
   ]
 }
-

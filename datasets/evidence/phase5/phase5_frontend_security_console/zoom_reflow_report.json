@@ -1,4 +1,14 @@
 {
-  "reason": "requires browser automation/manual browser acceptance",
-  "status": "NOT_RUN"
+  "blocked_projects": [
+    "webkit-desktop",
+    "mobile-ios"
+  ],
+  "passed_projects": [
+    "chromium-desktop",
+    "firefox-desktop",
+    "mobile-android",
+    "tablet"
+  ],
+  "status": "PARTIAL_AUTOMATED_REFLOW_PASS_ACTUAL_200_PERCENT_NOT_MANUALLY_CONFIRMED",
+  "warning": "Headless keyboard-shortcut reflow assertions passed on runnable projects, but actual headed browser 200% zoom was not independently confirmed."
 }

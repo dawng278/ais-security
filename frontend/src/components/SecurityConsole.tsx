@@ -374,7 +374,9 @@ function ThreatInbox({ data }: { data: ConsoleData }) {
                     <td className="p-3">{incident.status}</td>
                     <td className="p-3">
                       <Link className="font-mono text-blue-700 underline" href={`/incidents/${incident.incident_id}`}>{incident.incident_id}</Link>
-                      <div className="mt-1 max-w-md truncate text-xs text-slate-500">{incident.safe_summary}</div>
+                      <div className="mt-1 max-w-md truncate text-xs text-slate-500">
+                        Raw submission withheld by default · evidence ref {incident.restricted_evidence_ref}
+                      </div>
                     </td>
                     <td className="p-3">{parseJsonArray(incident.techniques_json).slice(0, 3).join(", ") || "none"}</td>
                     <td className="p-3">{incident.selected_action}</td>
@@ -412,35 +414,39 @@ function IncidentDetail({ data, session, incidentId }: { data: ConsoleData; sess
   }
   return (
     <>
-      <PageHeader title="Incident Detail" description="One incident with redacted submission preview, decision context, detector contributions and audited sensitive-content access." labels={<><Badge tone="green">Redacted default</Badge><Badge tone="amber">Reveal is audited</Badge></>} />
+      <PageHeader title="Incident Detail" description="One incident with restricted submission preview, decision context, detector contributions and audited sensitive-content access." labels={<><Badge tone="green">Restricted default</Badge><Badge tone="amber">Reveal is audited</Badge></>} />
       {!incident ? <EmptyMessage text="No incident exists yet." /> : (
         <div className="grid grid-cols-1 gap-4 xl:grid-cols-3">
           <Card title="Incident identity" icon={AlertTriangle}>
-            <dl className="space-y-3 text-sm">
+            <div className="space-y-3 text-sm">
               <Row label="Incident" value={incident.incident_id} mono />
               <Row label="Severity" value={incident.severity} />
               <Row label="Status" value={incident.status} />
               <Row label="Correlation" value={incident.correlation_id} mono />
               <Row label="Decision" value={incident.decision_id} mono />
-            </dl>
+            </div>
           </Card>
-          <Card title="Redacted submission preview" icon={Lock}>
-            <p className="rounded-xl bg-slate-50 p-4 text-sm leading-6 text-slate-700">{incident.safe_summary}</p>
+          <Card title="Restricted submission preview" icon={Lock}>
+            <div className="rounded-xl bg-slate-50 p-4 text-sm leading-6 text-slate-700">
+              <p className="font-bold text-slate-900">Raw candidate content is withheld by default.</p>
+              <p className="mt-1 text-xs text-slate-500">Restricted evidence ref: {incident.restricted_evidence_ref}</p>
+            </div>
             <button onClick={reveal} className="mt-4 inline-flex items-center gap-2 rounded-xl bg-amber-500 px-4 py-2 text-sm font-black text-amber-950">
               <Eye className="h-4 w-4" aria-hidden /> Reveal restricted evidence
             </button>
             <StatePanel state={restricted} />
-            {restricted.status === "success" ? <pre className="mt-4 max-h-72 overflow-auto rounded-xl bg-slate-950 p-4 text-xs text-slate-100">{JSON.stringify(restricted.data, null, 2)}</pre> : null}
+            {restricted.status === "success" ? <div className="mt-3 rounded-xl border border-emerald-200 bg-emerald-50 px-3 py-2 text-sm font-black text-emerald-900" role="status">Access audited</div> : null}
+            {restricted.status === "success" ? <pre className="mt-4 max-h-72 overflow-auto rounded-xl bg-slate-950 p-4 text-xs text-slate-100" tabIndex={0} aria-label="Restricted evidence JSON">{JSON.stringify(restricted.data, null, 2)}</pre> : null}
           </Card>
           <Card title="Decision route" icon={ShieldCheck}>
             {decision ? (
-              <dl className="space-y-3 text-sm">
+              <div className="space-y-3 text-sm">
                 <Row label="Mode" value={decision.operating_mode} />
                 <Row label="Applied action" value={decision.applied_action} />
                 <Row label="Counterfactual" value={decision.counterfactual_action || "none"} />
                 <Row label="Risk" value={`${Math.round(decision.risk_score * 100)}% ${decision.severity}`} />
                 <Row label="Policy" value={`${decision.policy_id}@${decision.policy_version}`} />
-              </dl>
+              </div>
             ) : <EmptyMessage text="Decision detail unavailable." />}
           </Card>
           <Card title="Audit timeline" icon={Activity}>
@@ -454,9 +460,9 @@ function IncidentDetail({ data, session, incidentId }: { data: ConsoleData; sess
 
 function Row({ label, value, mono }: { label: string; value: React.ReactNode; mono?: boolean }) {
   return (
-    <div className="flex items-start justify-between gap-3 border-b border-slate-100 pb-2">
-      <dt className="text-slate-500">{label}</dt>
-      <dd className={`text-right font-bold text-slate-900 ${mono ? "font-mono text-xs" : ""}`}>{value}</dd>
+    <div className="flex min-w-0 items-start justify-between gap-3 border-b border-slate-100 pb-2" role="group" aria-label={label}>
+      <span className="shrink-0 text-slate-500">{label}</span>
+      <span className={`min-w-0 break-words text-right font-bold text-slate-900 ${mono ? "font-mono text-xs break-all" : ""}`}>{value}</span>
     </div>
   );
 }
@@ -510,7 +516,7 @@ function ManualReviewView({ data, session, reload }: { data: ConsoleData; sessio
               <div className="flex flex-wrap items-start gap-2 lg:w-72">
                 <button className="rounded-xl bg-blue-600 px-3 py-2 text-sm font-black text-white" onClick={() => mutate("assigned", () => securityApi.assignReview(session, review, session.subject, "Phase 5 console assignment"))}>Assign</button>
                 <button className="rounded-xl bg-slate-800 px-3 py-2 text-sm font-black text-white" onClick={() => mutate("started", () => securityApi.startReview(session, review, "Phase 5 start review"))}>Start</button>
-                <button className="rounded-xl bg-emerald-600 px-3 py-2 text-sm font-black text-white" onClick={() => mutate("resolved allow", () => securityApi.resolveReview(session, review, "resolved_allow", "Phase 5 allow resolution"))}>Allow</button>
+                <button className="rounded-xl bg-emerald-700 px-3 py-2 text-sm font-black text-white" onClick={() => mutate("resolved allow", () => securityApi.resolveReview(session, review, "resolved_allow", "Phase 5 allow resolution"))}>Allow</button>
                 <button className="rounded-xl bg-red-600 px-3 py-2 text-sm font-black text-white" onClick={() => mutate("resolved block", () => securityApi.resolveReview(session, review, "resolved_block", "Phase 5 block resolution"))}>Block</button>
                 <button className="rounded-xl bg-amber-500 px-3 py-2 text-sm font-black text-amber-950" onClick={() => mutate("escalated", () => securityApi.resolveReview(session, review, "escalated", "Phase 5 escalation"))}>Escalate</button>
               </div>
@@ -569,15 +575,15 @@ function PoliciesView({ data, session, reload }: { data: ConsoleData; session: S
         {data.policies.length ? data.policies.map((policy) => (
           <div key={policy.version_id} className="mb-3 rounded-2xl border border-slate-200 bg-slate-50 p-4">
             <div className="flex flex-wrap items-start justify-between gap-3">
-              <div>
-                <div className="font-black">{policy.policy_id} <span className="font-mono text-xs">v{policy.version}</span></div>
-                <div className="mt-1 text-xs text-slate-500">Checksum {policy.checksum}</div>
+              <div className="min-w-0">
+                <div className="break-all font-black">{policy.policy_id} <span className="font-mono text-xs">v{policy.version}</span></div>
+                <div className="mt-1 break-all text-xs text-slate-500">Checksum {policy.checksum}</div>
               </div>
               <Badge tone={policy.status === "published" ? "green" : "slate"}>{policy.status}</Badge>
             </div>
-            <pre className="mt-3 max-h-36 overflow-auto rounded-xl bg-white p-3 text-xs text-slate-700">{policy.policy_json}</pre>
+            <pre className="mt-3 max-h-36 overflow-auto rounded-xl bg-white p-3 text-xs text-slate-700" tabIndex={0} aria-label={`Policy JSON for ${policy.policy_id}`}>{policy.policy_json}</pre>
             <div className="mt-3 flex flex-wrap gap-2">
-              <button onClick={() => publish(policy)} className="rounded-xl bg-emerald-600 px-3 py-2 text-sm font-black text-white">Publish</button>
+              <button onClick={() => publish(policy)} className="rounded-xl bg-emerald-700 px-3 py-2 text-sm font-black text-white">Publish</button>
               <button onClick={() => rollback(policy)} className="rounded-xl bg-amber-500 px-3 py-2 text-sm font-black text-amber-950">Rollback</button>
             </div>
           </div>
@@ -607,19 +613,19 @@ function RuntimeView({ data, session, reload }: { data: ConsoleData; session: Se
       <div className="mb-4"><StatePanel state={result} /></div>
       <div className="grid grid-cols-1 gap-4 xl:grid-cols-2">
         <Card title="Readiness" icon={Activity}>
-          <dl className="space-y-3 text-sm">
+          <div className="space-y-3 text-sm">
             <Row label="API readiness" value={data.readiness?.status ?? "unavailable"} />
             <Row label="Database" value={data.readiness?.database ?? "unavailable"} />
             <Row label="Audit persistence" value={data.readiness?.audit_persistence ?? "unavailable"} />
             <Row label="Embedding" value={data.readiness?.embedding ?? "truthful unavailable when missing"} />
-          </dl>
+          </div>
         </Card>
         <Card title="Operating mode" icon={ShieldAlert}>
-          <dl className="space-y-3 text-sm">
+          <div className="space-y-3 text-sm">
             <Row label="Current mode" value={data.runtime?.mode.mode ?? "unavailable"} />
             <Row label="Version" value={data.runtime?.mode.version ?? "n/a"} />
             <Row label="Reason" value={data.runtime?.mode.reason_code ?? "n/a"} />
-          </dl>
+          </div>
           <div className="mt-4 flex flex-wrap gap-2">
             {(["shadow", "warn", "enforce", "degraded"] as OperatingMode[]).map((mode) => (
               <button key={mode} onClick={() => change(mode)} className="rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm font-black text-slate-700">{mode}</button>
@@ -640,30 +646,30 @@ function BenchmarkEvidence({ data, kind }: { data: ConsoleData; kind: "benchmark
       <TruthStrip />
       <div className="mt-6 grid grid-cols-1 gap-4 xl:grid-cols-3">
         <Card title="Generic prompt injection" icon={BarChart3}>
-          <dl className="space-y-3 text-sm">
+          <div className="space-y-3 text-sm">
             <Row label="Run" value={APPROVED.phase3Run} mono />
             <Row label="Accuracy" value={formatPercent(report?.accuracy ?? APPROVED.genericAccuracy)} />
             <Row label="Recall" value={formatPercent(report?.recall ?? APPROVED.genericRecall)} />
             <Row label="Macro F1" value={formatPercent(report?.macro_f1 ?? APPROVED.genericMacroF1)} />
             <Row label="FPR" value={formatPercent(report?.false_positive_rate ?? APPROVED.genericFpr)} />
-          </dl>
+          </div>
         </Card>
         <Card title="IELTS domain security" icon={ShieldCheck}>
-          <dl className="space-y-3 text-sm">
+          <div className="space-y-3 text-sm">
             <Row label="Support" value="LOW_SUPPORT" />
             <Row label="Samples" value={APPROVED.ieltsSamples} />
             <Row label="Accuracy" value={formatPercent(APPROVED.ieltsAccuracy)} />
             <Row label="Recall" value={formatPercent(APPROVED.ieltsRecall)} />
             <Row label="Macro F1" value={formatPercent(APPROVED.ieltsMacroF1)} />
-          </dl>
+          </div>
         </Card>
         <Card title="Run metadata" icon={FileSearch}>
-          <dl className="space-y-3 text-sm">
+          <div className="space-y-3 text-sm">
             <Row label="Dataset hash" value={data.evidence?.dataset?.dataset_sha256 ?? "a89eb6..."} mono />
             <Row label="Score integrity" value="NOT_MEASURED" />
             <Row label="Operational latency" value="LOCAL_BENCHMARK" />
             <Row label="Phase 4 run" value={APPROVED.phase4Run} mono />
-          </dl>
+          </div>
         </Card>
       </div>
       <Card title="Failure explorer" icon={FileSearch} right={<Badge tone="blue">safe metadata</Badge>}>
@@ -692,7 +698,7 @@ function DataLineage({ data }: { data: ConsoleData }) {
         <MetricCard label="Duplicate groups" value="0 exact" status={<Badge tone="green">PASS</Badge>} note="Near-duplicate groups: 8, reported transparently." />
       </div>
       <Card title="Lineage source" icon={GitBranch}>
-        <pre className="max-h-96 overflow-auto rounded-xl bg-slate-950 p-4 text-xs text-slate-100">{JSON.stringify(data.lineage ?? { status: "available through /api/lineage/report when backend is running" }, null, 2)}</pre>
+        <pre className="max-h-96 overflow-auto rounded-xl bg-slate-950 p-4 text-xs text-slate-100" tabIndex={0} aria-label="Data lineage JSON">{JSON.stringify(data.lineage ?? { status: "available through /api/lineage/report when backend is running" }, null, 2)}</pre>
       </Card>
     </>
   );

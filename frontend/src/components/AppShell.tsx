@@ -148,8 +148,20 @@ export const AppShell: React.FC<AppShellProps> = ({ children, session, runtime, 
             <div className="min-w-0 text-right">
               <div className="truncate text-xs font-bold text-slate-900">{session?.subject ?? "Unauthenticated"}</div>
               <div className="truncate text-[11px] text-slate-500">{session?.roles.join(", ") ?? "No token"}</div>
+              <div className="truncate text-[10px] font-black uppercase tracking-wide text-blue-700">{session?.truthLabel ?? "NO_SESSION_TOKEN"}</div>
             </div>
           </div>
+        </div>
+        <div className="mx-auto flex max-w-[var(--gg-container)] flex-wrap gap-2 px-4 pb-3 md:hidden">
+          <span className={`rounded-full border px-3 py-1 text-[11px] font-black uppercase tracking-wide ${modeClass(mode)}`}>
+            Mode: {mode}
+          </span>
+          <span className={`rounded-full border px-3 py-1 text-[11px] font-black uppercase tracking-wide ${degraded ? "border-orange-300 bg-orange-50 text-orange-900" : "border-emerald-200 bg-emerald-50 text-emerald-800"}`}>
+            {degraded ? "Degraded" : "Ready"}
+          </span>
+          <span className="rounded-full border border-violet-200 bg-violet-50 px-3 py-1 text-[11px] font-black uppercase tracking-wide text-violet-800">
+            Pilot · Production Not Ready
+          </span>
         </div>
       </header>
 

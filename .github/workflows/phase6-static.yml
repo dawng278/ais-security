@@ -1,0 +1,28 @@
+name: Phase 6 static validation
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  phase6-static:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Validate Phase 6 static contracts
+        run: python3 scripts/phase6_static_validation.py
+
+      - name: Audit public claims
+        run: python3 scripts/audit_public_claims.py
+
+      - name: Generate Phase 6 environment audit
+        run: python3 scripts/phase6_environment_audit.py

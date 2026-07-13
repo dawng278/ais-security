@@ -1,0 +1,137 @@
+{
+  "attestation": "NOT_RUN: requires real human-visible browser verification before Phase 5 can be promoted to DONE.",
+  "browser": null,
+  "browser_version": null,
+  "display_resolution": null,
+  "evidence_references": [
+    "docs/frontend/phase5-manual-browser-acceptance.md"
+  ],
+  "failures": [],
+  "keyboard_flows": [
+    {
+      "flow": "skip link",
+      "status": "NOT_RUN"
+    },
+    {
+      "flow": "AppShell navigation",
+      "status": "NOT_RUN"
+    },
+    {
+      "flow": "mobile or compact drawer",
+      "status": "NOT_RUN"
+    },
+    {
+      "flow": "Threat Inbox filters",
+      "status": "NOT_RUN"
+    },
+    {
+      "flow": "Incident restricted reveal",
+      "status": "NOT_RUN"
+    },
+    {
+      "flow": "Manual Review assignment and transition",
+      "status": "NOT_RUN"
+    },
+    {
+      "flow": "optimistic conflict presentation",
+      "status": "NOT_RUN"
+    },
+    {
+      "flow": "policy validation/publish/rollback",
+      "status": "NOT_RUN"
+    },
+    {
+      "flow": "Attack Arena controls",
+      "status": "NOT_RUN"
+    },
+    {
+      "flow": "Judge View controls",
+      "status": "NOT_RUN"
+    },
+    {
+      "flow": "Escape/Enter/Space behavior",
+      "status": "NOT_RUN"
+    },
+    {
+      "flow": "visible focus and no keyboard trap",
+      "status": "NOT_RUN"
+    }
+  ],
+  "os": "Linux-7.0.13-200.fc44.x86_64-x86_64-with-glibc2.42",
+  "routes": [
+    {
+      "keyboard_only": "NOT_RUN",
+      "route": "/dashboard",
+      "zoom_200_percent": "NOT_RUN"
+    },
+    {
+      "keyboard_only": "NOT_RUN",
+      "route": "/threat-inbox",
+      "zoom_200_percent": "NOT_RUN"
+    },
+    {
+      "keyboard_only": "NOT_RUN",
+      "route": "/incidents/[id]",
+      "zoom_200_percent": "NOT_RUN"
+    },
+    {
+      "keyboard_only": "NOT_RUN",
+      "route": "/manual-review",
+      "zoom_200_percent": "NOT_RUN"
+    },
+    {
+      "keyboard_only": "NOT_RUN",
+      "route": "/policies",
+      "zoom_200_percent": "NOT_RUN"
+    },
+    {
+      "keyboard_only": "NOT_RUN",
+      "route": "/detector-health",
+      "zoom_200_percent": "NOT_RUN"
+    },
+    {
+      "keyboard_only": "NOT_RUN",
+      "route": "/benchmark",
+      "zoom_200_percent": "NOT_RUN"
+    },
+    {
+      "keyboard_only": "NOT_RUN",
+      "route": "/evidence",
+      "zoom_200_percent": "NOT_RUN"
+    },
+    {
+      "keyboard_only": "NOT_RUN",
+      "route": "/data-lineage",
+      "zoom_200_percent": "NOT_RUN"
+    },
+    {
+      "keyboard_only": "NOT_RUN",
+      "route": "/integration-runtime",
+      "zoom_200_percent": "NOT_RUN"
+    },
+    {
+      "keyboard_only": "NOT_RUN",
+      "route": "/attack-arena",
+      "zoom_200_percent": "NOT_RUN"
+    },
+    {
+      "keyboard_only": "NOT_RUN",
+      "route": "/judge-view",
+      "zoom_200_percent": "NOT_RUN"
+    },
+    {
+      "keyboard_only": "NOT_RUN",
+      "route": "/playground",
+      "zoom_200_percent": "NOT_RUN"
+    }
+  ],
+  "status": "NOT_RUN",
+  "verified_at": null,
+  "verifier": null,
+  "warnings": [
+    "No human verifier completed a visible headed-browser 200% zoom session.",
+    "No human verifier completed the keyboard-only acceptance checklist.",
+    "A coding agent cannot self-certify manual acceptance from headless tests or source inspection."
+  ],
+  "zoom_percent": null
+}

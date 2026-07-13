@@ -6,6 +6,7 @@ from __future__ import annotations
 import hashlib
 import json
 import platform
+import shutil
 import subprocess
 import sys
 from pathlib import Path
@@ -93,6 +94,8 @@ def package_versions() -> dict[str, str]:
         "package_manager": "npm package-lock.json",
         "playwright": str(dev.get("@playwright/test", "not-installed")),
         "axe_playwright": str(dev.get("@axe-core/playwright", "not-installed")),
+        "docker_cli": shutil.which("docker") or "UNAVAILABLE",
+        "preferred_playwright_docker_image": "mcr.microsoft.com/playwright:v1.61.1-noble",
     }
 
 
@@ -181,6 +184,53 @@ def main() -> int:
             ["LOW_SUPPORT", "NOT_MEASURED", "DETERMINISTIC_DEMO", "PRODUCTION NOT READY", "phase3_final_detection_engine", "phase4_operational_safety"],
         ),
     }
+    manual_acceptance = {
+        "status": "NOT_RUN",
+        "verifier": None,
+        "verified_at": None,
+        "browser": None,
+        "browser_version": None,
+        "os": platform.platform(),
+        "display_resolution": None,
+        "zoom_percent": None,
+        "routes": [
+            {"route": "/dashboard", "zoom_200_percent": "NOT_RUN", "keyboard_only": "NOT_RUN"},
+            {"route": "/threat-inbox", "zoom_200_percent": "NOT_RUN", "keyboard_only": "NOT_RUN"},
+            {"route": "/incidents/[id]", "zoom_200_percent": "NOT_RUN", "keyboard_only": "NOT_RUN"},
+            {"route": "/manual-review", "zoom_200_percent": "NOT_RUN", "keyboard_only": "NOT_RUN"},
+            {"route": "/policies", "zoom_200_percent": "NOT_RUN", "keyboard_only": "NOT_RUN"},
+            {"route": "/detector-health", "zoom_200_percent": "NOT_RUN", "keyboard_only": "NOT_RUN"},
+            {"route": "/benchmark", "zoom_200_percent": "NOT_RUN", "keyboard_only": "NOT_RUN"},
+            {"route": "/evidence", "zoom_200_percent": "NOT_RUN", "keyboard_only": "NOT_RUN"},
+            {"route": "/data-lineage", "zoom_200_percent": "NOT_RUN", "keyboard_only": "NOT_RUN"},
+            {"route": "/integration-runtime", "zoom_200_percent": "NOT_RUN", "keyboard_only": "NOT_RUN"},
+            {"route": "/attack-arena", "zoom_200_percent": "NOT_RUN", "keyboard_only": "NOT_RUN"},
+            {"route": "/judge-view", "zoom_200_percent": "NOT_RUN", "keyboard_only": "NOT_RUN"},
+            {"route": "/playground", "zoom_200_percent": "NOT_RUN", "keyboard_only": "NOT_RUN"},
+        ],
+        "keyboard_flows": [
+            {"flow": "skip link", "status": "NOT_RUN"},
+            {"flow": "AppShell navigation", "status": "NOT_RUN"},
+            {"flow": "mobile or compact drawer", "status": "NOT_RUN"},
+            {"flow": "Threat Inbox filters", "status": "NOT_RUN"},
+            {"flow": "Incident restricted reveal", "status": "NOT_RUN"},
+            {"flow": "Manual Review assignment and transition", "status": "NOT_RUN"},
+            {"flow": "optimistic conflict presentation", "status": "NOT_RUN"},
+            {"flow": "policy validation/publish/rollback", "status": "NOT_RUN"},
+            {"flow": "Attack Arena controls", "status": "NOT_RUN"},
+            {"flow": "Judge View controls", "status": "NOT_RUN"},
+            {"flow": "Escape/Enter/Space behavior", "status": "NOT_RUN"},
+            {"flow": "visible focus and no keyboard trap", "status": "NOT_RUN"},
+        ],
+        "failures": [],
+        "warnings": [
+            "No human verifier completed a visible headed-browser 200% zoom session.",
+            "No human verifier completed the keyboard-only acceptance checklist.",
+            "A coding agent cannot self-certify manual acceptance from headless tests or source inspection.",
+        ],
+        "evidence_references": ["docs/frontend/phase5-manual-browser-acceptance.md"],
+        "attestation": "NOT_RUN: requires real human-visible browser verification before Phase 5 can be promoted to DONE.",
+    }
     reports = {
         "route_inventory.json": {"status": "PASS", "routes": routes},
         "dependency_manifest.json": {"status": "PASS", "versions": versions},
@@ -196,6 +246,7 @@ def main() -> int:
             "video": "off",
         },
         "browser_matrix.json": matrix,
+        "manual_browser_acceptance.json": manual_acceptance,
         "accessibility_report.json": {
             "status": "PARTIAL_PASS_4_OF_6",
             "passed_projects": pass_projects,
@@ -215,6 +266,7 @@ def main() -> int:
             "passed_projects": pass_projects,
             "blocked_projects": blocked_projects,
             "warning": "Headless keyboard-shortcut reflow assertions passed on runnable projects, but actual headed browser 200% zoom was not independently confirmed.",
+            "manual_acceptance": "NOT_RUN",
         },
         "critical_flows_report.json": {
             "status": "PARTIAL_PASS_4_OF_6",
@@ -233,6 +285,7 @@ def main() -> int:
             "passed_projects": pass_projects,
             "blocked_projects": blocked_projects,
             "covered": ["skip link", "mobile drawer", "incident reveal", "manual review controls", "policy control", "judge view focus"],
+            "manual_acceptance": "NOT_RUN",
         },
         "browser_security_report.json": {
             "status": "PARTIAL_PASS_4_OF_6",
@@ -291,10 +344,13 @@ def main() -> int:
             "runnable_projects": pass_projects,
             "blocked_projects": blocked_projects,
             "final_gate": "PARTIAL because WebKit desktop and mobile iOS require missing host system dependencies, and actual headed 200% zoom/manual keyboard acceptance were not completed.",
+            "docker_cli": shutil.which("docker") or "UNAVAILABLE",
+            "manual_acceptance": "NOT_RUN",
         },
         "readiness": {"competition": "READY", "pilot": "READY", "production": "NOT_READY"},
         "limitations": [
             "Six-project matrix is partial: Chromium, Firefox, Android and Chromium-tablet passed; WebKit desktop and mobile iOS are blocked by missing host system dependencies.",
+            "Docker CLI is unavailable in the current environment, so the official Playwright Docker image could not be inspected or used.",
             "Actual headed-browser 200% zoom verification was not completed; headless keyboard-shortcut reflow regression passed on runnable projects.",
             "Manual keyboard verification was not completed; automated keyboard smoke passed on runnable projects.",
             "No screenshots/videos/traces committed.",
@@ -305,6 +361,7 @@ def main() -> int:
         OUT / "limitations.md",
         "# Phase 5 Limitations\n\n"
         "- Browser E2E matrix is PARTIAL: 4/6 projects passed; WebKit desktop and mobile iOS are blocked by missing host system dependencies.\n"
+        "- Docker CLI is unavailable in the current environment, so the preferred official Playwright image could not be used.\n"
         "- Actual headed 200% browser zoom and manual keyboard acceptance remain open.\n"
         "- PRODUCTION_READY remains NOT_READY.\n",
     )
@@ -315,6 +372,7 @@ def main() -> int:
         "- Frontend lint/typecheck/build: PASS.\n"
         "- Static frontend safety tests: PASS.\n"
         "- Browser matrix: PARTIAL — Chromium desktop, Firefox desktop, mobile Android and tablet passed 44/44; WebKit desktop and mobile iOS are blocked by missing host dependencies.\n"
+        "- Manual browser acceptance: NOT_RUN; verifier not recorded.\n"
         "- Truth labels preserved: LOW_SUPPORT, NOT_MEASURED, DETERMINISTIC_DEMO, PRODUCTION NOT READY.\n",
     )
     checksums = checksum_manifest()

@@ -2,8 +2,10 @@
   "status": "PASS",
   "versions": {
     "axe_playwright": "4.12.1",
+    "docker_cli": "UNAVAILABLE",
     "node": "v20.19.2",
     "package_manager": "npm package-lock.json",
-    "playwright": "1.61.1"
+    "playwright": "1.61.1",
+    "preferred_playwright_docker_image": "mcr.microsoft.com/playwright:v1.61.1-noble"
   }
 }

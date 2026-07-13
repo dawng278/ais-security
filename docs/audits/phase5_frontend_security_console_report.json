@@ -1,6 +1,6 @@
 {
   "verdict": "PHASE_5_FRONTEND_SECURITY_CONSOLE_PARTIAL",
-  "partial_reason": "Browser closure is partial: Chromium desktop, Firefox desktop, Android mobile and Chromium tablet passed 44/44 real-backend Playwright tests, but WebKit desktop and mobile iOS are blocked by missing host system dependencies; actual headed 200% zoom and manual keyboard acceptance remain open.",
+  "partial_reason": "Browser closure is partial: Chromium desktop, Firefox desktop, Android mobile and Chromium tablet passed 44/44 real-backend Playwright tests, but WebKit desktop and mobile iOS are blocked by missing host system dependencies. Docker CLI is unavailable, so the preferred official Playwright image could not be inspected or used. Actual headed 200% zoom and manual keyboard acceptance remain NOT_RUN.",
   "competition_ready": "READY",
   "pilot_ready": "READY",
   "production_ready": "NOT_READY",
@@ -49,7 +49,15 @@
     "accessibility": "PASS on runnable projects, no unresolved serious/critical axe findings",
     "keyboard": "AUTOMATED PASS on runnable projects; manual acceptance NOT_RUN",
     "zoom_200_percent": "HEADLESS REFLOW PASS on runnable projects; actual headed browser zoom NOT_CONFIRMED",
-    "flake_count": 0
+    "flake_count": 0,
+    "docker_cli": "UNAVAILABLE",
+    "preferred_playwright_image": "mcr.microsoft.com/playwright:v1.61.1-noble"
+  },
+  "manual_acceptance": {
+    "status": "NOT_RUN",
+    "artifact": "datasets/evidence/phase5/phase5_frontend_security_console/manual_browser_acceptance.json",
+    "checklist": "docs/frontend/phase5-manual-browser-acceptance.md",
+    "verifier": null
   },
   "browser_discovered_fixes": [
     "withhold raw candidate content before audited restricted-evidence reveal",

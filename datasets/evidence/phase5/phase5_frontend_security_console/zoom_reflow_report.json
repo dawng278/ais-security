@@ -3,6 +3,7 @@
     "webkit-desktop",
     "mobile-ios"
   ],
+  "manual_acceptance": "NOT_RUN",
   "passed_projects": [
     "chromium-desktop",
     "firefox-desktop",

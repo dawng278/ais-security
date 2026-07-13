@@ -11,6 +11,7 @@
     "policy control",
     "judge view focus"
   ],
+  "manual_acceptance": "NOT_RUN",
   "passed_projects": [
     "chromium-desktop",
     "firefox-desktop",

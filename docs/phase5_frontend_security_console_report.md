@@ -40,7 +40,9 @@ Verification passed:
 Partial reason:
 
 - WebKit desktop and mobile iOS remain blocked by missing host system dependencies (`libgtk-4-1`, `libicu74`, `libxml2`, `libevent-2.1-7t64`, `libflite1`, `libjpeg-turbo8`, `libmanette-0.2-0`, `libenchant-2-2`, `libwoff1`); sudo non-interactive is unavailable.
+- Docker CLI is unavailable in this environment, so the preferred official Playwright image `mcr.microsoft.com/playwright:v1.61.1-noble` could not be inspected or used.
 - actual headed-browser 200% zoom and manual keyboard acceptance were not completed. Headless keyboard-shortcut reflow regression passed on runnable projects but is not enough to promote Phase 5 to DONE.
+- manual browser acceptance artifact exists with status `NOT_RUN`; no human verifier has attested the checklist.
 
 Browser-discovered fixes:
 

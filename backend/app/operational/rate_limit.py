@@ -31,6 +31,13 @@ def check_rate_limit(
     window_start = now - (now % window_seconds)
     bucket_key = f"{route}:{actor_scope}:{window_start}"
     with store.connect() as con:
+        # BEGIN IMMEDIATE acquires the write lock before the read, so two
+        # concurrent callers for the same bucket_key serialize instead of
+        # both observing "no row yet" and racing on the INSERT (which would
+        # otherwise raise sqlite3.IntegrityError on the bucket_key UNIQUE
+        # constraint under real concurrent load, e.g. many simultaneous
+        # login attempts from the same IP).
+        con.execute("BEGIN IMMEDIATE")
         row = con.execute("SELECT count FROM rate_limit_buckets WHERE bucket_key = ?", (bucket_key,)).fetchone()
         if row is None:
             con.execute(

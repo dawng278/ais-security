@@ -171,3 +171,19 @@ def revoke_device(session_id: str, student: Annotated[StudentTokenPayload, Depen
         return _error_response("INVALID_CREDENTIALS")
     repository.revoke_session(store, session_id)
     return {"ok": True}
+
+
+@router.get("/submissions")
+def list_submissions(student: Annotated[StudentTokenPayload, Depends(require_student)]):
+    store = get_store()
+    rows = store.fetch_all(
+        """
+        SELECT decision_id, request_id, selected_action, risk_score, severity, created_at
+        FROM security_decisions
+        WHERE pseudonymous_user_id = ?
+        ORDER BY created_at DESC
+        LIMIT 50
+        """,
+        (student.student_id,),
+    )
+    return {"submissions": rows}

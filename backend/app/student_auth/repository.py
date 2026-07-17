@@ -55,8 +55,8 @@ def create_session(
 
 def find_session_by_refresh_hash(store: SecurityStore, refresh_token_hash: str) -> dict | None:
     row = store.fetch_one(
-        "SELECT * FROM student_sessions WHERE refresh_token_hash = ? AND revoked_at IS NULL",
-        (refresh_token_hash,),
+        "SELECT * FROM student_sessions WHERE refresh_token_hash = ? AND revoked_at IS NULL AND expires_at > ?",
+        (refresh_token_hash, _utc_now_iso()),
     )
     return dict(row) if row else None
 

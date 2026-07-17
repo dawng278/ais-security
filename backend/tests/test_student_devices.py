@@ -38,8 +38,9 @@ def test_devices_requires_auth_returns_consistent_error_shape(client):
     assert body == {
         "error": {
             "code": "UNAUTHORIZED",
-            "message": "Login required.",
+            "message": "Authentication is required.",
             "retryable": False,
+            "correlation_id": None,
         }
     }
 

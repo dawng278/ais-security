@@ -4,13 +4,13 @@ import hashlib
 import secrets
 from typing import Annotated
 
-from fastapi import APIRouter, Depends, HTTPException, Request, Response
+from fastapi import APIRouter, Depends, Request, Response
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel, ConfigDict, EmailStr, Field
 
 from app.config import settings
 from app.operational.database import get_store
-from app.operational.errors import ERRORS
+from app.operational.errors import ERRORS, GatewayException
 from app.student_auth import repository
 from app.student_auth.passwords import hash_password, verify_password
 from app.student_auth.tokens import StudentTokenPayload, create_student_access_token, verify_student_access_token
@@ -144,19 +144,11 @@ def refresh(request: Request, response: Response):
 def require_student(request: Request) -> StudentTokenPayload:
     token = request.cookies.get(settings.student_session_cookie_name)
     if not token:
-        raise HTTPException(
-            status_code=401,
-            detail={"error": {"code": "UNAUTHORIZED", "message": "Login required.", "retryable": False}},
-        )
+        raise GatewayException("UNAUTHORIZED", detail="student_session_cookie_missing")
     try:
         return verify_student_access_token(token)
     except ValueError as exc:
-        raise HTTPException(
-            status_code=401,
-            detail={
-                "error": {"code": "UNAUTHORIZED", "message": "Session expired or invalid.", "retryable": False}
-            },
-        ) from exc
+        raise GatewayException("UNAUTHORIZED", detail="student_session_token_invalid") from exc
 
 
 @router.get("/me")

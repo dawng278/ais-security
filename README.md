@@ -187,9 +187,10 @@ Sources include Hugging Face benchmarks, Kaggle datasets, clean IELTS essay pool
 - **Heuristic Fallback**: Runs in heuristic mode when embedding transformer packages are missing from runtime environment.
 - **Novel Mutation Vectors**: Extremely novel obfuscation techniques may require continuous seed updates.
 - **Manual Review Dependency**: High-risk ambiguous edge cases route to manual human review.
-- **No Rate Limiting on Student Login/Register**: `/api/v1/students/login` and `/register` are not throttled; an existing `rate_limit.py` module could be reused for this before any production deployment.
-- **`/refresh` Endpoint Untested**: The student session-refresh flow has unit coverage on token expiry but no end-to-end integration test (e.g. revoked-session refresh rejection).
-- **Revoked Device Stays Active Until Access-Token Expiry**: Revoking a device from "Thiết bị của tôi" invalidates its refresh token immediately, but a still-valid access token (up to 30 minutes) continues to work until it naturally expires — revocation is not instant for the active session.
+- **No Rate Limiting on Student Login/Register**: `/api/v1/students/login` and `/register` are not throttled; an existing `rate_limit.py` module could be reused for this before any production deployment. Not brute-force resistant.
+- **No CSRF Defense on Student Endpoints**: State-changing student routes (`/login`, `/logout`, `/refresh`, `/devices/{id}/revoke`) rely solely on `SameSite=Lax` cookies with no explicit CSRF token or Origin/Referer check, and cookies are not marked `Secure`. Adequate for a local/demo deployment; not production-appropriate.
+- **Revoked Device Stays Active Until Access-Token Expiry**: Revoking a device from "Thiết bị của tôi" invalidates its refresh token immediately (confirmed by `/refresh` rejecting a revoked session), but the already-issued access token (a stateless JWT, valid up to 30 minutes) is never re-checked against revocation and continues to authenticate `/me`, `/devices`, `/submissions` until it naturally expires — revocation is not instant for the currently-active session.
+- **Data Linkage Is Client-Asserted**: A student's `pseudonymous_user_id` on a grading decision is set by the frontend when calling the operator-authenticated `/analyze` endpoint, not enforced server-side by the student-auth layer itself. The operator-token requirement on `/analyze` prevents an unauthenticated student from forging this in the current UI flow, but the two systems are wired together at the client, not the server.
 
 ---
 

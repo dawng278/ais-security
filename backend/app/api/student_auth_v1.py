@@ -144,12 +144,18 @@ def refresh(request: Request, response: Response):
 def require_student(request: Request) -> StudentTokenPayload:
     token = request.cookies.get(settings.student_session_cookie_name)
     if not token:
-        raise HTTPException(status_code=401, detail={"error": {"code": "UNAUTHORIZED", "message": "Login required."}})
+        raise HTTPException(
+            status_code=401,
+            detail={"error": {"code": "UNAUTHORIZED", "message": "Login required.", "retryable": False}},
+        )
     try:
         return verify_student_access_token(token)
     except ValueError as exc:
         raise HTTPException(
-            status_code=401, detail={"error": {"code": "UNAUTHORIZED", "message": "Session expired or invalid."}}
+            status_code=401,
+            detail={
+                "error": {"code": "UNAUTHORIZED", "message": "Session expired or invalid.", "retryable": False}
+            },
         ) from exc
 
 

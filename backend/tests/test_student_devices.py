@@ -30,6 +30,20 @@ def test_devices_requires_auth(client):
     assert res.status_code == 401
 
 
+def test_devices_requires_auth_returns_consistent_error_shape(client):
+    res = client.get("/api/v1/students/devices")
+    assert res.status_code == 401
+    body = res.json()
+    assert "detail" not in body
+    assert body == {
+        "error": {
+            "code": "UNAUTHORIZED",
+            "message": "Login required.",
+            "retryable": False,
+        }
+    }
+
+
 def test_devices_lists_active_sessions(client):
     login_res = register_and_login(client)
     client.cookies.set(settings.student_session_cookie_name, login_res.cookies[settings.student_session_cookie_name])

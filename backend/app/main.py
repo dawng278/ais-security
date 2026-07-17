@@ -1,6 +1,7 @@
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
+from starlette.exceptions import HTTPException as StarletteHTTPException
 
 from app.config import allowed_cors_origins, settings
 from app.api import firewall, redteam, grading, dashboard, benchmark, arena, evidence, lineage
@@ -52,6 +53,16 @@ async def enforce_security_request_size(request: Request, call_next):
 @app.exception_handler(GatewayException)
 def handle_gateway_exception(_request, exc: GatewayException):
     return error_response(exc)
+
+
+@app.exception_handler(StarletteHTTPException)
+def handle_http_exception(_request, exc: StarletteHTTPException):
+    detail = exc.detail
+    if isinstance(detail, dict) and isinstance(detail.get("error"), dict):
+        content = detail
+    else:
+        content = {"error": {"code": "HTTP_ERROR", "message": str(detail), "retryable": False}}
+    return JSONResponse(status_code=exc.status_code, content=content, headers=exc.headers)
 
 
 app.include_router(firewall.router, prefix="/api/firewall", tags=["firewall"])

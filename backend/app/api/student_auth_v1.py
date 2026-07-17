@@ -2,8 +2,9 @@ from __future__ import annotations
 
 import hashlib
 import secrets
+from typing import Annotated
 
-from fastapi import APIRouter, Request, Response
+from fastapi import APIRouter, Depends, HTTPException, Request, Response
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel, ConfigDict, EmailStr, Field
 
@@ -12,7 +13,7 @@ from app.operational.database import get_store
 from app.operational.errors import ERRORS
 from app.student_auth import repository
 from app.student_auth.passwords import hash_password, verify_password
-from app.student_auth.tokens import create_student_access_token
+from app.student_auth.tokens import StudentTokenPayload, create_student_access_token, verify_student_access_token
 
 router = APIRouter()
 
@@ -137,4 +138,38 @@ def refresh(request: Request, response: Response):
         samesite="lax",
         max_age=settings.student_access_token_ttl_seconds,
     )
+    return {"ok": True}
+
+
+def require_student(request: Request) -> StudentTokenPayload:
+    token = request.cookies.get(settings.student_session_cookie_name)
+    if not token:
+        raise HTTPException(status_code=401, detail={"error": {"code": "UNAUTHORIZED", "message": "Login required."}})
+    try:
+        return verify_student_access_token(token)
+    except ValueError as exc:
+        raise HTTPException(
+            status_code=401, detail={"error": {"code": "UNAUTHORIZED", "message": "Session expired or invalid."}}
+        ) from exc
+
+
+@router.get("/me")
+def me(student: Annotated[StudentTokenPayload, Depends(require_student)]):
+    return {"id": student.student_id, "email": student.email}
+
+
+@router.get("/devices")
+def list_devices(student: Annotated[StudentTokenPayload, Depends(require_student)]):
+    store = get_store()
+    sessions = repository.list_active_sessions(store, student.student_id)
+    return {"devices": sessions}
+
+
+@router.post("/devices/{session_id}/revoke")
+def revoke_device(session_id: str, student: Annotated[StudentTokenPayload, Depends(require_student)]):
+    store = get_store()
+    sessions = repository.list_active_sessions(store, student.student_id)
+    if not any(s["id"] == session_id for s in sessions):
+        return _error_response("INVALID_CREDENTIALS")
+    repository.revoke_session(store, session_id)
     return {"ok": True}

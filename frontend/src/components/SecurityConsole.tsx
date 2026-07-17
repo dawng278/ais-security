@@ -24,6 +24,7 @@ import {
   Terminal,
 } from "lucide-react";
 import { api } from "@/lib/api";
+import { studentApi, StudentSubmission } from "@/lib/student-api";
 import { AppShell } from "@/components/AppShell";
 import {
   ApiError,
@@ -63,6 +64,7 @@ type View =
 interface SecurityConsolePageProps {
   view: View;
   incidentId?: string;
+  studentId?: string;
 }
 
 interface ConsoleData {
@@ -742,7 +744,7 @@ function AttackArena({ session, reload }: { session: SecuritySession; reload: ()
   );
 }
 
-function Playground({ session, reload }: { session: SecuritySession; reload: () => void }) {
+function Playground({ session, reload, studentId }: { session: SecuritySession; reload: () => void; studentId?: string }) {
   const [content, setContent] = React.useState(ATTACK_TEXT);
   const [result, setResult] = React.useState<RequestState<GatewayDecision>>({ status: "idle" });
   async function analyze() {
@@ -753,7 +755,7 @@ function Playground({ session, reload }: { session: SecuritySession; reload: () 
         request_id: createRequestId("playground"),
         correlation_id: createRequestId("corr-playground"),
         submission_id: createRequestId("sub-playground"),
-        pseudonymous_user_id: "phase5-playground-user",
+        pseudonymous_user_id: studentId ?? "phase5-playground-user",
         task_type: "writing",
         candidate_content: content,
         language: "en",
@@ -776,7 +778,35 @@ function Playground({ session, reload }: { session: SecuritySession; reload: () 
       </Card>
       <StatePanel state={result} />
       {result.status === "success" && result.data ? <DecisionCard decision={result.data} /> : null}
+      {studentId ? <SubmissionHistory studentId={studentId} /> : null}
     </>
+  );
+}
+
+function SubmissionHistory({ studentId }: { studentId: string }) {
+  const [submissions, setSubmissions] = React.useState<StudentSubmission[]>([]);
+
+  React.useEffect(() => {
+    studentApi
+      .submissions()
+      .then((res) => setSubmissions(res.submissions))
+      .catch(() => setSubmissions([]));
+  }, [studentId]);
+
+  if (submissions.length === 0) return null;
+
+  return (
+    <section className="mt-8 rounded-2xl border border-slate-200 p-6">
+      <h2 className="text-lg font-semibold text-slate-900">Lịch sử bài làm của tôi</h2>
+      <ul className="mt-4 flex flex-col gap-2">
+        {submissions.map((s) => (
+          <li key={s.decision_id} className="flex justify-between text-sm text-slate-700">
+            <span>{new Date(s.created_at).toLocaleString("vi-VN")}</span>
+            <span className="font-mono">{s.applied_action} · risk {Math.round(s.risk_score * 100)}%</span>
+          </li>
+        ))}
+      </ul>
+    </section>
   );
 }
 
@@ -829,7 +859,7 @@ function DetectorHealth({ data }: { data: ConsoleData }) {
   );
 }
 
-function pickContent(view: View, props: { data: ConsoleData; session: SecuritySession; reload: () => void; incidentId?: string }) {
+function pickContent(view: View, props: { data: ConsoleData; session: SecuritySession; reload: () => void; incidentId?: string; studentId?: string }) {
   if (view === "overview") return <Overview data={props.data} session={props.session} onRefresh={props.reload} />;
   if (view === "threats") return <ThreatInbox data={props.data} />;
   if (view === "incident") return <IncidentDetail data={props.data} session={props.session} incidentId={props.incidentId} />;
@@ -841,11 +871,11 @@ function pickContent(view: View, props: { data: ConsoleData; session: SecuritySe
   if (view === "evidence") return <BenchmarkEvidence data={props.data} kind="evidence" />;
   if (view === "lineage") return <DataLineage data={props.data} />;
   if (view === "arena") return <AttackArena session={props.session} reload={props.reload} />;
-  if (view === "playground") return <Playground session={props.session} reload={props.reload} />;
+  if (view === "playground") return <Playground session={props.session} reload={props.reload} studentId={props.studentId} />;
   return <JudgeView data={props.data} />;
 }
 
-export function SecurityConsolePage({ view, incidentId }: SecurityConsolePageProps) {
+export function SecurityConsolePage({ view, incidentId, studentId }: SecurityConsolePageProps) {
   const { session, data, refresh } = useConsoleData();
   const activeSession = session.data;
   const activeData = data.data ?? { decisions: [], incidents: [], reviews: [], policies: [], audit: [] };
@@ -857,7 +887,7 @@ export function SecurityConsolePage({ view, incidentId }: SecurityConsolePagePro
     <AppShell session={activeSession ?? null} runtime={activeData.runtime ?? null} degraded={degraded}>
       <StatePanel state={session} />
       {session.status === "success" ? <StatePanel state={data} onRetry={reload} /> : null}
-      {session.status === "success" && activeSession ? pickContent(view, { data: activeData, session: activeSession, reload, incidentId }) : null}
+      {session.status === "success" && activeSession ? pickContent(view, { data: activeData, session: activeSession, reload, incidentId, studentId }) : null}
     </AppShell>
   );
 }

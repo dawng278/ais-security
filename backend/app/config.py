@@ -18,6 +18,12 @@ class Settings(BaseSettings):
     max_request_body_chars: int = 20000
     rate_limit_window_seconds: int = 60
     rate_limit_max_requests: int = 120
+    student_token_secret: str = "student-development-only-change-me"
+    student_access_token_ttl_seconds: int = 1800
+    student_refresh_token_ttl_seconds: int = 604800
+    student_max_devices: int = 2
+    student_session_cookie_name: str = "gg_student_access"
+    student_refresh_cookie_name: str = "gg_student_refresh"
 
 settings = Settings()
 

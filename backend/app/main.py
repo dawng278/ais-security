@@ -5,6 +5,7 @@ from fastapi.responses import JSONResponse
 from app.config import allowed_cors_origins, settings
 from app.api import firewall, redteam, grading, dashboard, benchmark, arena, evidence, lineage
 from app.api import security_v1
+from app.api import student_auth_v1
 from app.operational.errors import GatewayException
 from app.api.security_v1 import error_response
 
@@ -62,3 +63,4 @@ app.include_router(arena.router, prefix="/api/arena", tags=["arena"])
 app.include_router(evidence.router, prefix="/api/evidence", tags=["evidence"])
 app.include_router(lineage.router, prefix="/api/lineage", tags=["lineage"])
 app.include_router(security_v1.router, prefix="/api/v1/security", tags=["security-v1"])
+app.include_router(student_auth_v1.router, prefix="/api/v1/students", tags=["student-auth-v1"])

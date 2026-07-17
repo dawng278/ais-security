@@ -32,6 +32,21 @@ ERRORS: dict[str, GatewayErrorSpec] = {
     "GRADER_TIMEOUT": GatewayErrorSpec("GRADER_TIMEOUT", 504, True, "Grading provider timed out.", "GRADER_TIMEOUT_BUDGET_EXCEEDED"),
     "GRADER_INVALID_RESPONSE": GatewayErrorSpec("GRADER_INVALID_RESPONSE", 502, True, "Grading provider returned an invalid response.", "GRADER_SCHEMA_INVALID"),
     "INTERNAL_ERROR": GatewayErrorSpec("INTERNAL_ERROR", 500, True, "Unexpected internal error.", "UNEXPECTED_INTERNAL_ERROR"),
+    "DEVICE_LIMIT_EXCEEDED": GatewayErrorSpec(
+        "DEVICE_LIMIT_EXCEEDED", 409, False,
+        "You are already logged in on 2 devices. Log out from one device to continue.",
+        "STUDENT_DEVICE_LIMIT_EXCEEDED",
+    ),
+    "EMAIL_ALREADY_EXISTS": GatewayErrorSpec(
+        "EMAIL_ALREADY_EXISTS", 409, False,
+        "An account with this email already exists.",
+        "STUDENT_EMAIL_DUPLICATE",
+    ),
+    "INVALID_CREDENTIALS": GatewayErrorSpec(
+        "INVALID_CREDENTIALS", 401, False,
+        "Email or password is incorrect.",
+        "STUDENT_INVALID_CREDENTIALS",
+    ),
 }
 
 

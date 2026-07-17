@@ -12,18 +12,19 @@ export default function DevicesPage() {
   const [error, setError] = useState<string | null>(null);
   const [revokingId, setRevokingId] = useState<string | null>(null);
 
-  async function load() {
-    try {
-      const [devicesRes, meRes] = await Promise.all([studentApi.devices(), studentApi.me()]);
-      setDevices(devicesRes.devices);
-      setProfile(meRes);
-    } catch (err) {
-      if (err instanceof StudentRequestError && err.status === 401) {
-        router.push("/login");
-        return;
-      }
-      setError("Không tải được danh sách thiết bị.");
-    }
+  function load() {
+    return Promise.all([studentApi.devices(), studentApi.me()])
+      .then(([devicesRes, meRes]) => {
+        setDevices(devicesRes.devices);
+        setProfile(meRes);
+      })
+      .catch((err) => {
+        if (err instanceof StudentRequestError && err.status === 401) {
+          router.push("/login");
+          return;
+        }
+        setError("Không tải được danh sách thiết bị.");
+      });
   }
 
   useEffect(() => {

@@ -178,7 +178,7 @@ def list_submissions(student: Annotated[StudentTokenPayload, Depends(require_stu
     store = get_store()
     rows = store.fetch_all(
         """
-        SELECT decision_id, request_id, selected_action, risk_score, severity, created_at
+        SELECT decision_id, request_id, selected_action AS applied_action, risk_score, severity, created_at
         FROM security_decisions
         WHERE pseudonymous_user_id = ?
         ORDER BY created_at DESC

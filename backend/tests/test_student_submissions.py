@@ -65,7 +65,7 @@ def test_submissions_lists_own_analysis(client):
     assert res.status_code == 200
     submissions = res.json()["submissions"]
     assert len(submissions) == 1
-    assert submissions[0]["selected_action"] is not None
+    assert submissions[0]["applied_action"] is not None
     assert submissions[0]["request_id"] is not None
     assert submissions[0]["decision_id"] is not None
 

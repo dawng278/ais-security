@@ -2,15 +2,21 @@ from __future__ import annotations
 
 import hashlib
 import secrets
-from typing import Annotated
+import time
+import uuid
+from typing import Annotated, Literal
 
 from fastapi import APIRouter, Depends, Request, Response
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel, ConfigDict, EmailStr, Field
 
 from app.config import settings
+from app.operational.auth import Actor
 from app.operational.database import get_store
 from app.operational.errors import ERRORS, GatewayException
+from app.operational.gateway import create_decision
+from app.operational.rate_limit import check_rate_limit
+from app.operational.schemas import GatewayRequest
 from app.student_auth import repository
 from app.student_auth.passwords import hash_password, verify_password
 from app.student_auth.tokens import StudentTokenPayload, create_student_access_token, verify_student_access_token
@@ -32,6 +38,22 @@ class LoginRequest(BaseModel):
 
     email: EmailStr
     password: str = Field(..., min_length=1, max_length=128)
+
+
+class StudentAnalyzeRequest(BaseModel):
+    """Student-facing analyze request. Deliberately has no field for the
+    caller to assert their own identity (no pseudonymous_user_id, no
+    student_id, no actor/client_id) -- extra="forbid" rejects any request
+    that tries to smuggle one in. The authenticated student_id is bound
+    server-side in the analyze() handler below, from require_student's
+    verified token, never from this payload."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    submission_id: str = Field(..., min_length=1, max_length=128)
+    task_type: Literal["writing", "speaking"] = "writing"
+    candidate_content: str = Field(..., min_length=1)
+    language: str = Field(default="en", min_length=2, max_length=16, pattern=r"^[A-Za-z]{2,3}(?:-[A-Za-z0-9]{2,8})?$")
 
 
 def _error_response(code: str) -> JSONResponse:
@@ -171,6 +193,51 @@ def revoke_device(session_id: str, student: Annotated[StudentTokenPayload, Depen
         return _error_response("INVALID_CREDENTIALS")
     repository.revoke_session(store, session_id)
     return {"ok": True}
+
+
+_STUDENT_GATEWAY_ACTOR_ROLES = ("integration_service",)
+
+
+def _build_student_gateway_actor(student: StudentTokenPayload) -> Actor:
+    """A synthetic operator-shaped Actor used only to satisfy create_decision's
+    signature. It carries no real operator credentials and is never derived
+    from a signed token -- it exists solely so the student-auth layer can
+    reuse the existing grading/firewall pipeline without touching gateway.py
+    or security_v1.py. Its only meaningful permission is gateway:submit."""
+    now = int(time.time())
+    return Actor(
+        subject=f"student:{student.student_id}",
+        actor_type="student_session",
+        roles=_STUDENT_GATEWAY_ACTOR_ROLES,
+        client_id=f"student-{student.student_id}",
+        tenant="local",
+        issued_at=now,
+        expires_at=now + 1,
+    )
+
+
+@router.post("/analyze")
+def analyze(payload: StudentAnalyzeRequest, student: Annotated[StudentTokenPayload, Depends(require_student)]):
+    store = get_store()
+    actor = _build_student_gateway_actor(student)
+    gateway_request = GatewayRequest(
+        request_id=f"stu-{uuid.uuid4().hex}",
+        submission_id=payload.submission_id,
+        pseudonymous_user_id=student.student_id,
+        task_type=payload.task_type,
+        candidate_content=payload.candidate_content,
+        language=payload.language,
+    )
+    try:
+        check_rate_limit(store, actor_scope=actor.client_id, route="student_analyze")
+        result = create_decision(store, actor=actor, request=gateway_request, route="student_analyze", invoke_grader=False)
+        return result.model_dump(mode="json")
+    except GatewayException as exc:
+        spec = exc.spec
+        return JSONResponse(
+            status_code=spec.status_code,
+            content={"error": {"code": spec.code, "message": spec.public_message, "retryable": spec.retryable}},
+        )
 
 
 @router.get("/submissions")

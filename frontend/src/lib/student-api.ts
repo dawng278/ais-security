@@ -1,4 +1,6 @@
 // frontend/src/lib/student-api.ts
+import type { GatewayDecision } from "./security-api";
+
 const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
 export interface StudentApiError {
@@ -89,4 +91,13 @@ export const studentApi = {
     studentRequest<{ ok: boolean }>(`/api/v1/students/devices/${sessionId}/revoke`, { method: "POST" }),
 
   submissions: () => studentRequest<{ submissions: StudentSubmission[] }>("/api/v1/students/submissions"),
+
+  // Note: no student_id/pseudonymous_user_id field exists here by design --
+  // the backend binds the submission to the authenticated student from the
+  // session cookie, never from client input. See backend/app/api/student_auth_v1.py.
+  analyze: (input: { submission_id: string; task_type: "writing" | "speaking"; candidate_content: string; language?: string }) =>
+    studentRequest<GatewayDecision>("/api/v1/students/analyze", {
+      method: "POST",
+      body: JSON.stringify(input),
+    }),
 };

@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { SecurityConsolePage } from "@/components/SecurityConsole";
+import { StudentHeader } from "@/components/StudentHeader";
 import { studentApi, StudentProfile } from "@/lib/student-api";
 
 export default function PlaygroundPage() {
@@ -26,5 +27,10 @@ export default function PlaygroundPage() {
     return null;
   }
 
-  return <SecurityConsolePage view="playground" studentId={student.id} />;
+  return (
+    <>
+      <StudentHeader email={student.email} />
+      <SecurityConsolePage view="playground" studentId={student.id} />
+    </>
+  );
 }

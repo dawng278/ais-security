@@ -98,6 +98,9 @@ flowchart TD
 - **`/benchmark`**: Robustness suite with 5 tabs (Overview, Attack Type, Score Integrity, Failure Analysis, Evidence Report).
 - **`/data-lineage`**: Provenance center showing dataset sources, license registry, pipeline stages, and distribution splits.
 - **`/evidence`**: Cryptographic evidence artifact viewer.
+- **`/register`**: Đăng ký tài khoản học viên.
+- **`/login`**: Đăng nhập học viên (email + mật khẩu, tối đa 2 thiết bị).
+- **`/account/devices`**: Quản lý thiết bị đang đăng nhập.
 
 ---
 
@@ -144,6 +147,9 @@ npm run dev
 - `GET /api/benchmark/v3/failure-analysis`: Retrieves classified failure cases with next fix actions.
 - `GET /api/lineage/report`: Retrieves dataset lineage, license status, and pipeline stage metrics.
 - `GET /api/evidence/latest`: Retrieves cryptographic evidence run report.
+- `POST /api/v1/students/register`: Đăng ký tài khoản học viên mới.
+- `POST /api/v1/students/login`: Đăng nhập, từ chối nếu đã đủ 2 thiết bị.
+- `GET /api/v1/students/devices`: Liệt kê thiết bị đang đăng nhập.
 
 ---
 

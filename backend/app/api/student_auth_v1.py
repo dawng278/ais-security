@@ -86,19 +86,19 @@ def login(payload: LoginRequest, request: Request, response: Response):
     if student is None or not verify_password(payload.password, student["password_hash"]):
         return _error_response("INVALID_CREDENTIALS")
 
-    active_count = repository.count_active_sessions(store, student["id"])
-    if active_count >= settings.student_max_devices:
-        return _error_response("DEVICE_LIMIT_EXCEEDED")
-
     refresh_token = secrets.token_urlsafe(32)
-    repository.create_session(
+    session_id = repository.try_create_session_within_limit(
         store,
         student_id=student["id"],
         refresh_token_hash=_hash_refresh_token(refresh_token),
         user_agent=request.headers.get("user-agent"),
         ip_address=request.client.host if request.client else None,
         ttl_seconds=settings.student_refresh_token_ttl_seconds,
+        max_devices=settings.student_max_devices,
     )
+    if session_id is None:
+        return _error_response("DEVICE_LIMIT_EXCEEDED")
+
     access_token = create_student_access_token(student_id=student["id"], email=student["email"])
     _set_session_cookies(response, access_token, refresh_token)
     return {"id": student["id"], "email": student["email"], "full_name": student["full_name"]}

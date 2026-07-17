@@ -53,6 +53,51 @@ def create_session(
     return session_id
 
 
+def try_create_session_within_limit(
+    store: SecurityStore,
+    *,
+    student_id: str,
+    refresh_token_hash: str,
+    user_agent: str | None,
+    ip_address: str | None,
+    ttl_seconds: int,
+    max_devices: int,
+) -> str | None:
+    """Atomically check the active-session count and insert a new session in a
+    single transaction, so two concurrent logins cannot both observe a count
+    below the limit and both insert (the race count_active_sessions() +
+    create_session() as two separate calls would allow). Returns the new
+    session id, or None if the student is already at max_devices."""
+    now = datetime.now(timezone.utc)
+    now_iso = now.isoformat()
+    expires_at = (now + timedelta(seconds=ttl_seconds)).isoformat()
+    session_id = f"sess_{uuid.uuid4().hex}"
+    with store.connect() as con:
+        # BEGIN IMMEDIATE acquires SQLite's reserved write lock before the
+        # count is read, so a concurrent call blocks here (waiting on the
+        # lock) rather than reading a stale count and racing to insert. A
+        # plain SELECT does not start a transaction under Python's default
+        # sqlite3 isolation mode, which is what made the two-call pattern
+        # (count_active_sessions() then create_session()) unsafe.
+        con.execute("BEGIN IMMEDIATE")
+        row = con.execute(
+            "SELECT COUNT(*) AS n FROM student_sessions WHERE student_id = ? AND revoked_at IS NULL AND expires_at > ?",
+            (student_id, now_iso),
+        ).fetchone()
+        active_count = int(row["n"]) if row else 0
+        if active_count >= max_devices:
+            return None
+        con.execute(
+            """
+            INSERT INTO student_sessions
+                (id, student_id, refresh_token_hash, user_agent, ip_address, created_at, last_seen_at, expires_at, revoked_at)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, NULL)
+            """,
+            (session_id, student_id, refresh_token_hash, user_agent, ip_address, now_iso, now_iso, expires_at),
+        )
+    return session_id
+
+
 def find_session_by_refresh_hash(store: SecurityStore, refresh_token_hash: str) -> dict | None:
     row = store.fetch_one(
         "SELECT * FROM student_sessions WHERE refresh_token_hash = ? AND revoked_at IS NULL AND expires_at > ?",

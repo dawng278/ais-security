@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-import json
+import hashlib
 from pathlib import Path
 
 import pytest
@@ -60,3 +60,4 @@ def test_stored_refresh_token_is_hashed_not_plaintext(client):
     row = store.fetch_one("SELECT refresh_token_hash FROM student_sessions LIMIT 1")
     assert row["refresh_token_hash"] != raw_refresh
     assert len(row["refresh_token_hash"]) == 64  # sha256 hex digest
+    assert row["refresh_token_hash"] == hashlib.sha256(raw_refresh.encode("utf-8")).hexdigest()

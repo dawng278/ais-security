@@ -47,6 +47,11 @@ ERRORS: dict[str, GatewayErrorSpec] = {
         "Email or password is incorrect.",
         "STUDENT_INVALID_CREDENTIALS",
     ),
+    "ORIGIN_NOT_TRUSTED": GatewayErrorSpec(
+        "ORIGIN_NOT_TRUSTED", 403, False,
+        "This request's origin is not allowed to perform this action.",
+        "STUDENT_ORIGIN_UNTRUSTED",
+    ),
 }
 
 

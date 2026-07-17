@@ -16,7 +16,9 @@ def client(tmp_path: Path):
     settings.test_database_url = db_url
     assert_isolated_test_database(db_url)
     reset_store_for_tests(db_url)
-    yield TestClient(app)
+    client = TestClient(app)
+    client.headers.update({"origin": "http://localhost:3000"})
+    yield client
     settings.test_database_url = None
 
 

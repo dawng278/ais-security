@@ -24,6 +24,12 @@ class Settings(BaseSettings):
     student_max_devices: int = 2
     student_session_cookie_name: str = "gg_student_access"
     student_refresh_cookie_name: str = "gg_student_refresh"
+    student_login_max_attempts_per_email: int = 5
+    student_login_window_seconds_per_email: int = 300
+    student_login_max_attempts_per_ip: int = 20
+    student_login_window_seconds_per_ip: int = 300
+    student_register_max_attempts_per_ip: int = 10
+    student_register_window_seconds_per_ip: int = 3600
 
 settings = Settings()
 
@@ -33,3 +39,12 @@ def allowed_cors_origins() -> list[str]:
     if settings.frontend_origin and settings.frontend_origin not in origins:
         origins.append(settings.frontend_origin)
     return origins
+
+
+def student_cookie_secure() -> bool:
+    """Cookies must not set Secure over plain HTTP (localhost demo, dev) --
+    browsers silently refuse to store them, which is exactly the bug fixed
+    previously for the 127.0.0.1/localhost hostname mismatch. Secure is only
+    turned on when ENV=production, where the deployment is expected to serve
+    over HTTPS."""
+    return settings.env == "production"

@@ -5,12 +5,13 @@ import secrets
 import time
 import uuid
 from typing import Annotated, Literal
+from urllib.parse import urlparse
 
 from fastapi import APIRouter, Depends, Request, Response
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel, ConfigDict, EmailStr, Field
 
-from app.config import settings
+from app.config import allowed_cors_origins, settings, student_cookie_secure
 from app.operational.auth import Actor
 from app.operational.database import get_store
 from app.operational.errors import ERRORS, GatewayException
@@ -68,26 +69,76 @@ def _hash_refresh_token(raw: str) -> str:
     return hashlib.sha256(raw.encode("utf-8")).hexdigest()
 
 
-def _set_session_cookies(response: Response, access_token: str, refresh_token: str) -> None:
+def _origin_from_header(value: str) -> str | None:
+    """Extract scheme://host[:port] from an Origin or Referer header value,
+    so a full Referer URL (which includes a path) can be compared against
+    the allowlist the same way a bare Origin header is."""
+    parsed = urlparse(value)
+    if not parsed.scheme or not parsed.netloc:
+        return None
+    return f"{parsed.scheme}://{parsed.netloc}"
+
+
+def require_trusted_origin(request: Request) -> None:
+    """CSRF mitigation for cookie-authenticated state-changing endpoints.
+    SameSite=Lax already blocks the classic cross-site auto-submit-form
+    attack, but provides no defense on its own against browsers or contexts
+    that don't enforce it, and is not a substitute for a server-side check.
+    This validates the request actually originated from a trusted frontend
+    origin, using the Origin header (sent by browsers on all same-origin and
+    cross-origin fetch/XHR POST requests) with Referer as a fallback for
+    clients that omit Origin. A request with neither header is rejected --
+    a legitimate browser-issued POST always sends at least one."""
+    origin_header = request.headers.get("origin")
+    referer_header = request.headers.get("referer")
+    candidate = origin_header or referer_header
+    if not candidate:
+        raise GatewayException("ORIGIN_NOT_TRUSTED", detail="origin_and_referer_missing")
+    origin = _origin_from_header(candidate)
+    if origin is None or origin not in allowed_cors_origins():
+        raise GatewayException("ORIGIN_NOT_TRUSTED", detail=f"untrusted_origin:{origin}")
+
+
+def _set_access_cookie(response: Response, access_token: str) -> None:
     response.set_cookie(
         settings.student_session_cookie_name,
         access_token,
         httponly=True,
         samesite="lax",
+        secure=student_cookie_secure(),
+        path="/",
         max_age=settings.student_access_token_ttl_seconds,
     )
+
+
+def _set_session_cookies(response: Response, access_token: str, refresh_token: str) -> None:
+    _set_access_cookie(response, access_token)
     response.set_cookie(
         settings.student_refresh_cookie_name,
         refresh_token,
         httponly=True,
         samesite="lax",
+        secure=student_cookie_secure(),
+        path="/",
         max_age=settings.student_refresh_token_ttl_seconds,
     )
 
 
-@router.post("/register", status_code=201)
-def register(payload: RegisterRequest):
+@router.post("/register", status_code=201, dependencies=[Depends(require_trusted_origin)])
+def register(payload: RegisterRequest, request: Request):
     store = get_store()
+    client_ip = request.client.host if request.client else "unknown"
+    try:
+        check_rate_limit(
+            store,
+            actor_scope=f"ip:{client_ip}",
+            route="student_register_ip",
+            limit=settings.student_register_max_attempts_per_ip,
+            window_seconds=settings.student_register_window_seconds_per_ip,
+        )
+    except GatewayException:
+        return _error_response("RATE_LIMITED")
+
     try:
         student_id = repository.create_student(
             store,
@@ -101,9 +152,28 @@ def register(payload: RegisterRequest):
     return {"id": student_id, "email": payload.email, "full_name": payload.full_name}
 
 
-@router.post("/login")
+@router.post("/login", dependencies=[Depends(require_trusted_origin)])
 def login(payload: LoginRequest, request: Request, response: Response):
     store = get_store()
+    client_ip = request.client.host if request.client else "unknown"
+    try:
+        check_rate_limit(
+            store,
+            actor_scope=f"ip:{client_ip}",
+            route="student_login_ip",
+            limit=settings.student_login_max_attempts_per_ip,
+            window_seconds=settings.student_login_window_seconds_per_ip,
+        )
+        check_rate_limit(
+            store,
+            actor_scope=f"email:{payload.email.lower()}",
+            route="student_login_email",
+            limit=settings.student_login_max_attempts_per_email,
+            window_seconds=settings.student_login_window_seconds_per_email,
+        )
+    except GatewayException:
+        return _error_response("RATE_LIMITED")
+
     student = repository.find_student_by_email(store, payload.email)
     if student is None or not verify_password(payload.password, student["password_hash"]):
         return _error_response("INVALID_CREDENTIALS")
@@ -126,7 +196,7 @@ def login(payload: LoginRequest, request: Request, response: Response):
     return {"id": student["id"], "email": student["email"], "full_name": student["full_name"]}
 
 
-@router.post("/logout")
+@router.post("/logout", dependencies=[Depends(require_trusted_origin)])
 def logout(request: Request, response: Response):
     store = get_store()
     raw_refresh = request.cookies.get(settings.student_refresh_cookie_name)
@@ -139,9 +209,21 @@ def logout(request: Request, response: Response):
     return {"ok": True}
 
 
-@router.post("/refresh")
+@router.post("/refresh", dependencies=[Depends(require_trusted_origin)])
 def refresh(request: Request, response: Response):
     store = get_store()
+    client_ip = request.client.host if request.client else "unknown"
+    try:
+        check_rate_limit(
+            store,
+            actor_scope=f"ip:{client_ip}",
+            route="student_refresh_ip",
+            limit=settings.student_login_max_attempts_per_ip,
+            window_seconds=settings.student_login_window_seconds_per_ip,
+        )
+    except GatewayException:
+        return _error_response("RATE_LIMITED")
+
     raw_refresh = request.cookies.get(settings.student_refresh_cookie_name)
     if not raw_refresh:
         return _error_response("INVALID_CREDENTIALS")
@@ -153,13 +235,7 @@ def refresh(request: Request, response: Response):
         return _error_response("INVALID_CREDENTIALS")
     repository.touch_session(store, session["id"])
     access_token = create_student_access_token(student_id=row["id"], email=row["email"])
-    response.set_cookie(
-        settings.student_session_cookie_name,
-        access_token,
-        httponly=True,
-        samesite="lax",
-        max_age=settings.student_access_token_ttl_seconds,
-    )
+    _set_access_cookie(response, access_token)
     return {"ok": True}
 
 
@@ -185,7 +261,7 @@ def list_devices(student: Annotated[StudentTokenPayload, Depends(require_student
     return {"devices": sessions}
 
 
-@router.post("/devices/{session_id}/revoke")
+@router.post("/devices/{session_id}/revoke", dependencies=[Depends(require_trusted_origin)])
 def revoke_device(session_id: str, student: Annotated[StudentTokenPayload, Depends(require_student)]):
     store = get_store()
     sessions = repository.list_active_sessions(store, student.student_id)
@@ -216,7 +292,7 @@ def _build_student_gateway_actor(student: StudentTokenPayload) -> Actor:
     )
 
 
-@router.post("/analyze")
+@router.post("/analyze", dependencies=[Depends(require_trusted_origin)])
 def analyze(payload: StudentAnalyzeRequest, student: Annotated[StudentTokenPayload, Depends(require_student)]):
     store = get_store()
     actor = _build_student_gateway_actor(student)

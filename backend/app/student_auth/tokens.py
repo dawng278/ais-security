@@ -14,6 +14,7 @@ from app.config import settings
 class StudentTokenPayload:
     student_id: str
     email: str
+    session_id: str
 
 
 def _b64url_encode(data: bytes) -> str:
@@ -29,13 +30,14 @@ def _sign(message: str, secret: str) -> str:
     return _b64url_encode(hmac.new(secret.encode("utf-8"), message.encode("ascii"), hashlib.sha256).digest())
 
 
-def create_student_access_token(student_id: str, email: str, ttl_seconds: int | None = None) -> str:
+def create_student_access_token(student_id: str, email: str, session_id: str, ttl_seconds: int | None = None) -> str:
     ttl = settings.student_access_token_ttl_seconds if ttl_seconds is None else ttl_seconds
     now = int(time.time())
     header = {"alg": "HS256", "typ": "GGSTU"}
     payload = {
         "sub": student_id,
         "email": email,
+        "sid": session_id,
         "iat": now,
         "exp": now + ttl,
     }
@@ -61,4 +63,7 @@ def verify_student_access_token(token: str) -> StudentTokenPayload:
         raise ValueError("malformed_payload") from exc
     if payload.get("exp", 0) < int(time.time()):
         raise ValueError("token_expired")
-    return StudentTokenPayload(student_id=payload["sub"], email=payload["email"])
+    try:
+        return StudentTokenPayload(student_id=payload["sub"], email=payload["email"], session_id=payload["sid"])
+    except KeyError as exc:
+        raise ValueError("malformed_payload") from exc

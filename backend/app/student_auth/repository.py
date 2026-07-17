@@ -106,6 +106,18 @@ def find_session_by_refresh_hash(store: SecurityStore, refresh_token_hash: str) 
     return dict(row) if row else None
 
 
+def find_active_session_by_id(store: SecurityStore, session_id: str, student_id: str) -> dict | None:
+    """Used by require_student to check the access token's session is still
+    active on every request -- both session_id AND student_id must match, so
+    a session row can never be used to authenticate as a different student
+    even in the event of a session_id collision or lookup bug."""
+    row = store.fetch_one(
+        "SELECT * FROM student_sessions WHERE id = ? AND student_id = ? AND revoked_at IS NULL AND expires_at > ?",
+        (session_id, student_id, _utc_now_iso()),
+    )
+    return dict(row) if row else None
+
+
 def revoke_session(store: SecurityStore, session_id: str) -> None:
     store.execute(
         "UPDATE student_sessions SET revoked_at = ? WHERE id = ?",

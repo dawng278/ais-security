@@ -191,7 +191,7 @@ def login(payload: LoginRequest, request: Request, response: Response):
     if session_id is None:
         return _error_response("DEVICE_LIMIT_EXCEEDED")
 
-    access_token = create_student_access_token(student_id=student["id"], email=student["email"])
+    access_token = create_student_access_token(student_id=student["id"], email=student["email"], session_id=session_id)
     _set_session_cookies(response, access_token, refresh_token)
     return {"id": student["id"], "email": student["email"], "full_name": student["full_name"]}
 
@@ -234,7 +234,7 @@ def refresh(request: Request, response: Response):
     if row is None:
         return _error_response("INVALID_CREDENTIALS")
     repository.touch_session(store, session["id"])
-    access_token = create_student_access_token(student_id=row["id"], email=row["email"])
+    access_token = create_student_access_token(student_id=row["id"], email=row["email"], session_id=session["id"])
     _set_access_cookie(response, access_token)
     return {"ok": True}
 
@@ -244,9 +244,21 @@ def require_student(request: Request) -> StudentTokenPayload:
     if not token:
         raise GatewayException("UNAUTHORIZED", detail="student_session_cookie_missing")
     try:
-        return verify_student_access_token(token)
+        payload = verify_student_access_token(token)
     except ValueError as exc:
         raise GatewayException("UNAUTHORIZED", detail="student_session_token_invalid") from exc
+
+    # Beyond verifying the JWT signature/expiry, also check the underlying
+    # session is still active in the DB. This is what makes device revoke
+    # take effect immediately rather than waiting out the access token's TTL
+    # (previously up to 30 minutes) -- a revoked or expired session_id fails
+    # this lookup even if the JWT itself is still cryptographically valid
+    # and unexpired.
+    store = get_store()
+    session = repository.find_active_session_by_id(store, payload.session_id, payload.student_id)
+    if session is None:
+        raise GatewayException("UNAUTHORIZED", detail="student_session_revoked_or_expired")
+    return payload
 
 
 @router.get("/me")

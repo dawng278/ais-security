@@ -66,17 +66,57 @@ def test_me_returns_current_student(client):
 
 
 def test_revoke_device_succeeds_for_own_session(client):
-    login_res = register_and_login(client)
-    client.cookies.set(settings.student_session_cookie_name, login_res.cookies[settings.student_session_cookie_name])
-    devices = client.get("/api/v1/students/devices").json()["devices"]
-    session_id = devices[0]["id"]
+    """Revokes device A's session using device B's still-active session --
+    revoking your OWN currently-in-use session is covered separately by
+    test_revoke_current_session_immediately_invalidates_its_access_token,
+    since that has a different, stronger assertion (the access token used
+    to make the revoke call itself stops working right after)."""
+    login_res_a = register_and_login(client, email="devicea@example.com")
+    access_a = login_res_a.cookies[settings.student_session_cookie_name]
+    session_ids_after_a = {d["id"] for d in client.get("/api/v1/students/devices").json()["devices"]}
+    assert len(session_ids_after_a) == 1
+    session_id_a = next(iter(session_ids_after_a))
 
-    res = client.post(f"/api/v1/students/devices/{session_id}/revoke")
+    client.cookies.clear()
+    login_res_b = client.post(
+        "/api/v1/students/login", json={"email": "devicea@example.com", "password": "hunter2pass"}
+    )
+    access_b = login_res_b.cookies[settings.student_session_cookie_name]
+    client.cookies.set(settings.student_session_cookie_name, access_b)
+
+    devices_via_b = client.get("/api/v1/students/devices").json()["devices"]
+    assert len(devices_via_b) == 2
+
+    res = client.post(f"/api/v1/students/devices/{session_id_a}/revoke")
     assert res.status_code == 200
     assert res.json()["ok"] is True
 
     remaining = client.get("/api/v1/students/devices").json()["devices"]
-    assert all(d["id"] != session_id for d in remaining)
+    assert all(d["id"] != session_id_a for d in remaining)
+    assert len(remaining) == 1
+
+
+def test_revoke_current_session_immediately_invalidates_its_access_token(client):
+    """Regression test for the P2 fix: previously, revoking your own
+    currently-active session only blocked future /refresh calls -- the
+    already-issued access token (a stateless JWT) kept working for up to its
+    full TTL. require_student now looks up the session in the DB on every
+    request, so the SAME access token that was used to issue the revoke
+    call must stop authenticating immediately afterward."""
+    login_res = register_and_login(client)
+    access_token = login_res.cookies[settings.student_session_cookie_name]
+    client.cookies.set(settings.student_session_cookie_name, access_token)
+
+    devices = client.get("/api/v1/students/devices").json()["devices"]
+    session_id = devices[0]["id"]
+
+    revoke_res = client.post(f"/api/v1/students/devices/{session_id}/revoke")
+    assert revoke_res.status_code == 200
+
+    # Same access token, same cookie jar -- no new login. Under the old
+    # stateless-JWT-only check this would still return 200.
+    me_res = client.get("/api/v1/students/me")
+    assert me_res.status_code == 401
 
 
 def test_revoke_device_rejects_other_students_session(client):

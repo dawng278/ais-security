@@ -1,0 +1,27 @@
+- generic [active] [ref=f29e1]:
+  - generic [ref=f29e2]:
+    - link "Bỏ qua đến nội dung chính" [ref=f29e3] [cursor=pointer]:
+      - /url: "#main-content"
+    - banner [ref=f29e4]:
+      - generic [ref=f29e5]:
+        - generic [ref=f29e6]:
+          - button "Mở điều hướng" [ref=f29e7]
+          - link "GradingGuard AI Bảng điều khiển bảo mật GAU IELTS" [ref=f29e9] [cursor=pointer]:
+            - /url: /dashboard
+            - generic [ref=f29e14]:
+              - generic [ref=f29e15]: GradingGuard AI
+              - generic [ref=f29e16]: Bảng điều khiển bảo mật GAU IELTS
+        - generic [ref=f29e17]:
+          - generic [ref=f29e18]: "Chế độ: shadow"
+          - generic [ref=f29e19]: Suy giảm
+          - generic [ref=f29e20]: Thử nghiệm · Chưa sẵn sàng Production
+        - generic [ref=f29e24]:
+          - generic [ref=f29e25]: Chưa xác thực
+          - generic [ref=f29e26]: Không có token
+          - generic [ref=f29e27]: NO_SESSION_TOKEN
+    - main [ref=f29e29]:
+      - status [ref=f29e30]:
+        - generic [ref=f29e34]:
+          - generic [ref=f29e35]: Đang tải
+          - generic [ref=f29e36]: Đang lấy dữ liệu thật từ API Phase 4…
+  - button "Open Next.js Dev Tools" [ref=f29e42] [cursor=pointer]

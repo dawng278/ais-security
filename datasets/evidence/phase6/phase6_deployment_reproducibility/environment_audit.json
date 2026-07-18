@@ -8,27 +8,76 @@
     "webkit_test_image_dockerfile": "frontend/e2e/Dockerfile.playwright-webkit"
   },
   "dirty_worktree": [
-    "M datasets/evidence/phase6/phase6_deployment_reproducibility/checksum_manifest.txt",
-    " M datasets/evidence/phase6/phase6_deployment_reproducibility/environment_audit.json",
-    " M datasets/evidence/phase6/phase6_deployment_reproducibility/run_manifest.json",
+    "M backend/app/__pycache__/config.cpython-314.pyc",
+    " M backend/app/__pycache__/main.cpython-314.pyc",
+    " M backend/app/benchmark/__pycache__/runner_v3.cpython-314.pyc",
+    " M backend/app/datasets/reports/multi_perspective_case_results.jsonl",
+    " M backend/app/datasets/reports/multi_perspective_report.json",
+    " M backend/app/evidence/__pycache__/report_generator.cpython-314.pyc",
+    " M backend/app/evidence/__pycache__/schemas.cpython-314.pyc",
+    " M backend/app/firewall/__pycache__/embedding_detector.cpython-314.pyc",
+    " M backend/app/firewall/__pycache__/heuristics.cpython-314.pyc",
+    " M backend/app/firewall/__pycache__/normalizer.cpython-314.pyc",
+    " M backend/app/firewall/__pycache__/obfuscation.cpython-314.pyc",
+    " M backend/app/firewall/__pycache__/risk_engine.cpython-314.pyc",
+    " M backend/app/firewall/__pycache__/sanitizer.cpython-314.pyc",
+    " M backend/app/firewall/__pycache__/schemas.cpython-314.pyc",
+    " M backend/app/firewall/__pycache__/service.cpython-314.pyc",
+    " M backend/app/firewall/embedding_detector.py",
+    " M backend/app/grader/__pycache__/mock_grader.cpython-314.pyc",
+    " M datasets/reports/case_library_report.json",
+    " M datasets/reports/case_library_results.jsonl",
+    " M datasets/reports/v3/benchmark_report.json",
     " M datasets/reports/v3/benchmark_v3_combined.json",
     " M datasets/reports/v3/evidence/evidence_card.md",
     " M datasets/reports/v3/evidence/evidence_report.json",
-    " M docs/phase6_deployment_reproducibility_report.md",
-    " M scripts/phase6_environment_audit.py"
+    " M datasets/reports/v3/failure_analysis.jsonl",
+    "?? backend/app/api/__pycache__/security_v1.cpython-314.pyc",
+    "?? backend/app/firewall/__pycache__/policy_engine.cpython-314.pyc",
+    "?? backend/app/operational/__pycache__/",
+    "?? backend/tests/__pycache__/test_architecture_contract.cpython-314-pytest-9.1.1.pyc",
+    "?? backend/tests/__pycache__/test_architecture_contract.cpython-314.pyc",
+    "?? backend/tests/__pycache__/test_benchmark.cpython-314-pytest-9.1.1.pyc",
+    "?? backend/tests/__pycache__/test_benchmark_v2.cpython-314-pytest-9.1.1.pyc",
+    "?? backend/tests/__pycache__/test_case_library.cpython-314-pytest-9.1.1.pyc",
+    "?? backend/tests/__pycache__/test_firewall.cpython-314-pytest-9.1.1.pyc",
+    "?? backend/tests/__pycache__/test_hard_negatives.cpython-314-pytest-9.1.1.pyc",
+    "?? backend/tests/__pycache__/test_multi_perspective.cpython-314-pytest-9.1.1.pyc",
+    "?? backend/tests/__pycache__/test_phase2_dataset_integrity.cpython-314-pytest-9.1.1.pyc",
+    "?? backend/tests/__pycache__/test_phase2_dataset_integrity.cpython-314.pyc",
+    "?? backend/tests/__pycache__/test_phase3_detection_engine.cpython-314-pytest-9.1.1.pyc",
+    "?? backend/tests/__pycache__/test_phase3_detection_engine.cpython-314.pyc",
+    "?? backend/tests/__pycache__/test_phase5_frontend_console_static.cpython-314-pytest-9.1.1.pyc",
+    "?? backend/tests/__pycache__/test_phase5_frontend_console_static.cpython-314.pyc",
+    "?? backend/tests/__pycache__/test_public_claim_audit.cpython-314-pytest-9.1.1.pyc",
+    "?? backend/tests/__pycache__/test_public_claim_audit.cpython-314.pyc",
+    "?? backend/tests/__pycache__/test_under_block_regression.cpython-314-pytest-9.1.1.pyc",
+    "?? backend/tests/phase4/__pycache__/",
+    "?? scripts/__pycache__/"
   ],
   "docker": {
-    "docker_cli": null,
+    "docker_cli": "/usr/local/bin/docker",
+    "manifest": {
+      "command": [
+        "/usr/local/bin/docker",
+        "manifest",
+        "inspect",
+        "mcr.microsoft.com/playwright:v1.61.1-noble"
+      ],
+      "returncode": 0,
+      "status": "PASS",
+      "stderr": "",
+      "stdout": "{\n   \"schemaVersion\": 2,\n   \"mediaType\": \"application/vnd.docker.distribution.manifest.list.v2+json\",\n   \"manifests\": [\n      {\n         \"mediaType\": \"application/vnd.docker.distribution.manifest.v2+json\",\n         \"size\": 1166,\n         \"digest\": \"sha256:cf0daee9b994042e011bc29f20cdff1a9f682a039b43fcd738f7d8a9d3bcd9d6\",\n         \"platform\": {\n            \"architecture\": \"amd64\",\n            \"os\": \"linux\"\n         }\n      },\n      {\n         \"mediaType\": \"application/vnd.docker.distribution.manifest.v2+json\",\n         \"size\": 1166,\n         \"digest\": \"sha256:824f1a789072e648c62541c2cfa4479c4061a290d5c27766d67dc1dcbc19b321\",\n         \"platform\": {\n            \"architecture\": \"arm64\",\n            \"os\": \"linux\"\n         }\n      }\n   ]\n}"
+    },
     "preferred_image": "mcr.microsoft.com/playwright:v1.61.1-noble",
-    "reason": "docker CLI is unavailable in this environment",
-    "status": "UNAVAILABLE",
-    "verified": false
+    "status": "PASS",
+    "verified": true
   },
   "environment": {
-    "platform": "Linux-7.0.13-200.fc44.x86_64-x86_64-with-glibc2.42",
-    "python": "3.13.14"
+    "platform": "Linux-7.0.13-200.fc44.x86_64-x86_64-with-glibc2.43",
+    "python": "3.14.6"
   },
-  "git_commit": "debb9c6925bb736591bb6f9cf391682d5491b0d9",
+  "git_commit": "9c5ff29231f09b29c0421351d94c224223319a74",
   "limitations": [
     "Docker cannot be verified in this local environment because docker CLI is unavailable.",
     "The Playwright WebKit container artifact is test-only and unverified until built/run in a clean Docker environment.",
@@ -69,9 +118,9 @@
       "datasets/evidence/phase3/phase3_final_detection_engine/run_manifest.json": "f68e4208016df63e0e558f9c4f0ef2e371d9c46b98d891a47fc3a8f027cc770d",
       "datasets/evidence/phase4/phase4_operational_safety/phase3_regression_report.json": "212391bdb3b922dab29602a7a7d16e1b9e87ab4b6429e28c94fe5c12571a8272",
       "datasets/evidence/phase4/phase4_operational_safety/run_manifest.json": "2be011314732a7c080a5fb488c8cc9320ee9dc11f30842bbaa520d85683b9be0",
-      "datasets/reports/v3/benchmark_v3_combined.json": "863c8509af20d56e4f1370948f3ebf8b11562efef59245ab5e71061b83f44003",
-      "datasets/reports/v3/evidence/evidence_card.md": "c9e60724e1e8d6ba53549e790222e4a1f6e6e8cad8d74fb7001b62dfe9e9071f",
-      "datasets/reports/v3/evidence/evidence_report.json": "c5aa5b41c602c299acb59d8a0097e22aee12ed4d2a5ee8d06b5aa3bacf937b67"
+      "datasets/reports/v3/benchmark_v3_combined.json": "9688a56b565413b4761fbe48d326d760bf3cbae63730a32cde3cdaa8b94d2e92",
+      "datasets/reports/v3/evidence/evidence_card.md": "bc1f3c95a3b809978899c558ad1c922e6ae6e5b3cc274b5061e125c10636579c",
+      "datasets/reports/v3/evidence/evidence_report.json": "ca377180382d1f21aa34eaeda6e682a80e5f42f04f8f3b354f754cd83ba6c0e3"
     },
     "expected": {
       "datasets/evidence/phase2/phase2_integrity_baseline/metrics.json": "4483da1febbeeadf94ff004e1431c0984d76dedd06f9f23f79f95f39b74308dd",
@@ -84,7 +133,7 @@
       "datasets/reports/v3/evidence/evidence_card.md": "c9e60724e1e8d6ba53549e790222e4a1f6e6e8cad8d74fb7001b62dfe9e9071f",
       "datasets/reports/v3/evidence/evidence_report.json": "c5aa5b41c602c299acb59d8a0097e22aee12ed4d2a5ee8d06b5aa3bacf937b67"
     },
-    "status": "PASS"
+    "status": "FAIL"
   },
   "readiness": {
     "competition_submission": "NOT_READY",
@@ -113,10 +162,10 @@
         "/home/dawngbeo/Documents/study-code/.tools/node-v20.19.2-linux-x64/bin/npm",
         "--version"
       ],
-      "returncode": 127,
-      "status": "FAIL",
-      "stderr": "env: \u2018node\u2019: No such file or directory",
-      "stdout": ""
+      "returncode": 0,
+      "status": "PASS",
+      "stderr": "",
+      "stdout": "10.8.2"
     },
     "playwright": "1.61.1"
   }

@@ -20,7 +20,8 @@ _MODEL_LOAD_ERROR = ""
 
 def get_embedding_model():
     global _MODEL_CACHE, _MODEL_LOAD_ERROR
-    if not MODEL_AVAILABLE:
+    import os
+    if not MODEL_AVAILABLE or os.environ.get("OFFLINE_MODE") == "true":
         return None
     if _MODEL_CACHE is None:
         try:

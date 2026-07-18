@@ -1,0 +1,13 @@
+- generic [active] [ref=f28e1]:
+  - main [ref=f28e2]:
+    - heading "Đăng nhập" [level=1] [ref=f28e3]
+    - generic [ref=f28e4]:
+      - generic [ref=f28e5]:
+        - text: Email
+        - textbox "Email" [ref=f28e6]
+      - generic [ref=f28e7]:
+        - text: Mật khẩu
+        - textbox "Mật khẩu" [ref=f28e8]
+      - button "Đăng nhập" [ref=f28e9]
+  - button "Open Next.js Dev Tools" [ref=f28e15] [cursor=pointer]
+  - alert [ref=f28e19]

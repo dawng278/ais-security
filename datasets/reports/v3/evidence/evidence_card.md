@@ -1,13 +1,13 @@
 # GradingGuard AI — Benchmark v3 Evidence Card
 
 > **Reproducible Security Evidence Record**  
-> Generated: `2026-07-06T08:31:59.858497+00:00`
+> Generated: `2026-07-16T02:37:29.163630+00:00`
 
 ---
 
 ## 📌 Context Snapshot
-- **Run ID**: `run_20260706_083159_903f0a`
-- **Git Commit**: `9d8417d`
+- **Run ID**: `run_20260716_023729_718cff`
+- **Git Commit**: `9c5ff29`
 - **Environment**: `local`
 - **Random Seed**: `42`
 
@@ -20,7 +20,9 @@
 ## 🛡️ Detector Configuration
 - **Detector Version**: `ensemble_v3`
 - **Threshold Version**: `risk_policy_v3`
-- **Config SHA256**: `967615c90ee6cf78d0e87cf695726a5c8a572423146c9f2855d60951b3a09fac`
+- **Embedding Runtime State**: `unavailable`
+- **Embedding Dependency State**: `missing`
+- **Config SHA256**: `0451e8419d8559a4349809021d4d9824fa1bae3298624c5f332ababc668aa613`
 
 ---
 
@@ -29,12 +31,12 @@
 ### Overall Classification
 | Metric | Value |
 | :--- | :---: |
-| **Accuracy** | `79.0%` |
+| **Accuracy** | `84.0%` |
 | **Precision** | `100.0%` |
-| **Recall** | `47.0%` |
-| **Macro F1** | `64.0%` |
+| **Recall** | `59.0%` |
+| **Macro F1** | `74.0%` |
 | **False Positive Rate** | `0.0%` |
-| **Under-Block Rate** | `21.0%` |
+| **Under-Block Rate** | `16.0%` |
 | **Over-Block Rate** | `0.0%` |
 
 ### Score Integrity & Protection

@@ -1,8 +1,8 @@
 {
   "run_context": {
-    "run_id": "run_20260706_083159_903f0a",
-    "created_at": "2026-07-06T08:31:59.858497+00:00",
-    "git_commit": "9d8417d",
+    "run_id": "run_20260716_023729_718cff",
+    "created_at": "2026-07-16T02:37:29.163630+00:00",
+    "git_commit": "9c5ff29",
     "random_seed": 42,
     "environment": "local"
   },
@@ -38,23 +38,29 @@
   "detector": {
     "detector_version": "ensemble_v3",
     "threshold_version": "risk_policy_v3",
-    "enable_embedding_detector": true,
+    "enable_embedding_detector": false,
     "enable_classifier_detector": false,
+    "embedding_configured_state": "enabled",
+    "embedding_dependency_state": "missing",
+    "embedding_model_load_state": "not_attempted",
+    "embedding_runtime_state": "unavailable",
+    "embedding_model_name": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+    "embedding_fallback_reason": "No module named 'sentence_transformers'",
     "risk_thresholds": {
       "low": 0.3,
       "medium": 0.6,
       "high": 0.85
     },
-    "config_sha256": "967615c90ee6cf78d0e87cf695726a5c8a572423146c9f2855d60951b3a09fac"
+    "config_sha256": "0451e8419d8559a4349809021d4d9824fa1bae3298624c5f332ababc668aa613"
   },
   "metrics": {
     "overall_metrics": {
-      "accuracy": 0.79,
+      "accuracy": 0.84,
       "precision": 1.0,
-      "recall": 0.47,
-      "macro_f1": 0.64,
+      "recall": 0.59,
+      "macro_f1": 0.74,
       "false_positive_rate": 0.0,
-      "under_block_rate": 0.21,
+      "under_block_rate": 0.16,
       "over_block_rate": 0.0
     },
     "score_integrity_metrics": {
@@ -71,7 +77,7 @@
       "p95_ms": 45.0
     }
   },
-  "failure_case_count": 139,
+  "failure_case_count": 108,
   "report_paths": {
     "report_json": "/home/dawngbeo/school-project/ais-gau-security/datasets/reports/v3/evidence/evidence_report.json",
     "evidence_card": "/home/dawngbeo/school-project/ais-gau-security/datasets/reports/v3/evidence/evidence_card.md"

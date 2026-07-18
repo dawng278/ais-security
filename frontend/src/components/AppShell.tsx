@@ -39,19 +39,25 @@ type NavItem = {
   roles?: Role[];
 };
 
+const GROUP_LABELS: Record<NavItem["group"], string> = {
+  Operations: "Vận hành",
+  Governance: "Quản trị",
+  Demonstration: "Trình diễn",
+};
+
 const navItems: NavItem[] = [
-  { href: "/dashboard", label: "Security Overview", group: "Operations", icon: LayoutDashboard, roles: ["viewer", "analyst", "security_admin"] },
-  { href: "/threat-inbox", label: "Threat Inbox", group: "Operations", icon: AlertTriangle, roles: ["analyst", "security_admin"] },
-  { href: "/manual-review", label: "Manual Review", group: "Operations", icon: ClipboardCheck, roles: ["analyst", "security_admin"] },
-  { href: "/detector-health", label: "Detector Health", group: "Operations", icon: HeartPulse, roles: ["viewer", "analyst", "security_admin"] },
-  { href: "/integration-runtime", label: "Integration & Runtime", group: "Operations", icon: Activity, roles: ["security_admin"] },
-  { href: "/policies", label: "Policies", group: "Governance", icon: ScrollText, roles: ["policy_manager", "security_admin"] },
-  { href: "/benchmark", label: "Benchmark & Evidence", group: "Governance", icon: BarChart3 },
-  { href: "/evidence", label: "Evidence Browser", group: "Governance", icon: FileSearch },
-  { href: "/data-lineage", label: "Data Lineage", group: "Governance", icon: GitBranch },
-  { href: "/attack-arena", label: "Attack Arena", group: "Demonstration", icon: Swords },
-  { href: "/playground", label: "Playground", group: "Demonstration", icon: Terminal },
-  { href: "/judge-view", label: "Judge View", group: "Demonstration", icon: Trophy },
+  { href: "/dashboard", label: "Tổng quan bảo mật", group: "Operations", icon: LayoutDashboard, roles: ["viewer", "analyst", "security_admin"] },
+  { href: "/threat-inbox", label: "Hộp thư mối đe dọa", group: "Operations", icon: AlertTriangle, roles: ["analyst", "security_admin"] },
+  { href: "/manual-review", label: "Xét duyệt thủ công", group: "Operations", icon: ClipboardCheck, roles: ["analyst", "security_admin"] },
+  { href: "/detector-health", label: "Tình trạng bộ phát hiện", group: "Operations", icon: HeartPulse, roles: ["viewer", "analyst", "security_admin"] },
+  { href: "/integration-runtime", label: "Tích hợp & Vận hành runtime", group: "Operations", icon: Activity, roles: ["security_admin"] },
+  { href: "/policies", label: "Chính sách", group: "Governance", icon: ScrollText, roles: ["policy_manager", "security_admin"] },
+  { href: "/benchmark", label: "Benchmark & Bằng chứng", group: "Governance", icon: BarChart3 },
+  { href: "/evidence", label: "Trình duyệt bằng chứng", group: "Governance", icon: FileSearch },
+  { href: "/data-lineage", label: "Nguồn gốc dữ liệu", group: "Governance", icon: GitBranch },
+  { href: "/attack-arena", label: "Đấu trường tấn công", group: "Demonstration", icon: Swords },
+  { href: "/playground", label: "Sân thử nghiệm", group: "Demonstration", icon: Terminal },
+  { href: "/judge-view", label: "Góc nhìn giám khảo", group: "Demonstration", icon: Trophy },
 ];
 
 function canSee(item: NavItem, roles: Role[]): boolean {
@@ -73,11 +79,11 @@ export const AppShell: React.FC<AppShellProps> = ({ children, session, runtime, 
   const mode = runtime?.mode.mode ?? "shadow";
 
   const nav = (
-    <nav aria-label="Security console navigation" className="space-y-7">
+    <nav aria-label="Điều hướng bảng điều khiển bảo mật" className="space-y-7">
       {(["Operations", "Governance", "Demonstration"] as const).map((group) => (
         <section key={group} aria-labelledby={`nav-${group}`} className="space-y-2">
           <h2 id={`nav-${group}`} className="px-3 text-[11px] font-black uppercase tracking-[0.22em] text-slate-500">
-            {group}
+            {GROUP_LABELS[group]}
           </h2>
           <div className="space-y-1">
             {visibleItems.filter((item) => item.group === group).map((item) => {
@@ -106,7 +112,7 @@ export const AppShell: React.FC<AppShellProps> = ({ children, session, runtime, 
   return (
     <div className="min-h-screen text-slate-950">
       <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-amber-300 focus:px-4 focus:py-2 focus:text-slate-950">
-        Skip to main content
+        Bỏ qua đến nội dung chính
       </a>
 
       <header className="sticky top-0 z-40 border-b border-slate-200/80 bg-white/85 backdrop-blur-xl">
@@ -116,7 +122,7 @@ export const AppShell: React.FC<AppShellProps> = ({ children, session, runtime, 
               type="button"
               className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-700 lg:hidden"
               onClick={() => setDrawerOpen(true)}
-              aria-label="Open navigation"
+              aria-label="Mở điều hướng"
             >
               <Menu className="h-5 w-5" aria-hidden />
             </button>
@@ -126,41 +132,41 @@ export const AppShell: React.FC<AppShellProps> = ({ children, session, runtime, 
               </span>
               <span className="min-w-0">
                 <span className="block truncate text-base font-black tracking-tight">GradingGuard AI</span>
-                <span className="block truncate text-xs font-semibold text-slate-500">GAU IELTS Security Console</span>
+                <span className="block truncate text-xs font-semibold text-slate-500">Bảng điều khiển bảo mật GAU IELTS</span>
               </span>
             </Link>
           </div>
 
           <div className="hidden items-center gap-2 md:flex">
             <span className={`rounded-full border px-3 py-1 text-xs font-black uppercase tracking-wide ${modeClass(mode)}`}>
-              Mode: {mode}
+              Chế độ: {mode}
             </span>
             <span className={`rounded-full border px-3 py-1 text-xs font-black uppercase tracking-wide ${degraded ? "border-orange-300 bg-orange-50 text-orange-900" : "border-emerald-200 bg-emerald-50 text-emerald-800"}`}>
-              {degraded ? "Degraded" : "Ready"}
+              {degraded ? "Suy giảm" : "Sẵn sàng"}
             </span>
             <span className="rounded-full border border-violet-200 bg-violet-50 px-3 py-1 text-xs font-black uppercase tracking-wide text-violet-800">
-              Pilot · Production Not Ready
+              Thử nghiệm · Chưa sẵn sàng Production
             </span>
           </div>
 
           <div className="flex min-w-0 items-center gap-3 rounded-2xl border border-slate-200 bg-slate-50 px-3 py-2">
             <BookOpen className="hidden h-4 w-4 text-blue-600 sm:block" aria-hidden />
             <div className="min-w-0 text-right">
-              <div className="truncate text-xs font-bold text-slate-900">{session?.subject ?? "Unauthenticated"}</div>
-              <div className="truncate text-[11px] text-slate-500">{session?.roles.join(", ") ?? "No token"}</div>
+              <div className="truncate text-xs font-bold text-slate-900">{session?.subject ?? "Chưa xác thực"}</div>
+              <div className="truncate text-[11px] text-slate-500">{session?.roles.join(", ") ?? "Không có token"}</div>
               <div className="truncate text-[10px] font-black uppercase tracking-wide text-blue-700">{session?.truthLabel ?? "NO_SESSION_TOKEN"}</div>
             </div>
           </div>
         </div>
         <div className="mx-auto flex max-w-[var(--gg-container)] flex-wrap gap-2 px-4 pb-3 md:hidden">
           <span className={`rounded-full border px-3 py-1 text-[11px] font-black uppercase tracking-wide ${modeClass(mode)}`}>
-            Mode: {mode}
+            Chế độ: {mode}
           </span>
           <span className={`rounded-full border px-3 py-1 text-[11px] font-black uppercase tracking-wide ${degraded ? "border-orange-300 bg-orange-50 text-orange-900" : "border-emerald-200 bg-emerald-50 text-emerald-800"}`}>
-            {degraded ? "Degraded" : "Ready"}
+            {degraded ? "Suy giảm" : "Sẵn sàng"}
           </span>
           <span className="rounded-full border border-violet-200 bg-violet-50 px-3 py-1 text-[11px] font-black uppercase tracking-wide text-violet-800">
-            Pilot · Production Not Ready
+            Thử nghiệm · Chưa sẵn sàng Production
           </span>
         </div>
       </header>
@@ -171,9 +177,9 @@ export const AppShell: React.FC<AppShellProps> = ({ children, session, runtime, 
           <div className="mt-8 rounded-2xl border border-slate-200 bg-slate-50 p-4 text-xs text-slate-600">
             <div className="mb-2 flex items-center gap-2 font-black text-slate-900">
               <Scale className="h-4 w-4 text-blue-600" aria-hidden />
-              Truth labels
+              Nhãn minh bạch
             </div>
-            <p>IELTS LOW_SUPPORT · Score Integrity NOT_MEASURED · Demo labels stay visible.</p>
+            <p>IELTS LOW_SUPPORT · Score Integrity NOT_MEASURED · Nhãn demo luôn hiển thị công khai.</p>
           </div>
         </aside>
 
@@ -181,12 +187,12 @@ export const AppShell: React.FC<AppShellProps> = ({ children, session, runtime, 
       </div>
 
       {drawerOpen && (
-        <div className="fixed inset-0 z-50 lg:hidden" role="dialog" aria-modal="true" aria-label="Navigation drawer">
-          <button className="absolute inset-0 bg-slate-950/40" aria-label="Close navigation" onClick={() => setDrawerOpen(false)} />
+        <div className="fixed inset-0 z-50 lg:hidden" role="dialog" aria-modal="true" aria-label="Ngăn điều hướng">
+          <button className="absolute inset-0 bg-slate-950/40" aria-label="Đóng điều hướng" onClick={() => setDrawerOpen(false)} />
           <div className="relative h-full w-[min(88vw,340px)] overflow-auto bg-slate-50 p-4 shadow-2xl">
             <div className="mb-4 flex items-center justify-between">
-              <div className="font-black">Navigation</div>
-              <button className="grid h-10 w-10 place-items-center rounded-xl border border-slate-200 bg-white" onClick={() => setDrawerOpen(false)} aria-label="Close navigation">
+              <div className="font-black">Điều hướng</div>
+              <button className="grid h-10 w-10 place-items-center rounded-xl border border-slate-200 bg-white" onClick={() => setDrawerOpen(false)} aria-label="Đóng điều hướng">
                 <X className="h-5 w-5" aria-hidden />
               </button>
             </div>
